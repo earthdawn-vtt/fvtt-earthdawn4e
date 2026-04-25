@@ -144,12 +144,12 @@ export default class SkillData extends IncreasableAbilityTemplate.mixin(
       [LEGEND.validationCategories.health]:    [
         {
           name:      "ED.Dialogs.Legend.Validation.hasDamage",
-          value:     increaseData.hasDamage ? game.i18n.localize( "ED.Dialogs.Legend.Validation.hasDamage" ) : game.i18n.localize( "ED.Dialogs.Legend.Validation.hasNoDamage" ),
+          value:     increaseData.hasDamage ? _loc( "ED.Dialogs.Legend.Validation.hasDamage" ) : _loc( "ED.Dialogs.Legend.Validation.hasNoDamage" ),
           fulfilled: !increaseData.hasDamage,
         },
         {
           name:      "ED.Dialogs.Legend.Validation.hasWounds",
-          value:     increaseData.hasWounds ? game.i18n.localize( "ED.Dialogs.Legend.Validation.hasWounds" ) : game.i18n.localize( "ED.Dialogs.Legend.Validation.hasNoWounds" ),
+          value:     increaseData.hasWounds ? _loc( "ED.Dialogs.Legend.Validation.hasWounds" ) : _loc( "ED.Dialogs.Legend.Validation.hasNoWounds" ),
           fulfilled: !increaseData.hasWounds,
         },
       ],

@@ -143,7 +143,7 @@ export default class ThreadData extends ItemDataModel.mixin(
 
   /** @inheritdoc */
   get increaseRules() {
-    return game.i18n.localize( "ED.Dialogs.Legend.Rules.threadItemIncreaseShortRequirements" );
+    return _loc( "ED.Dialogs.Legend.Rules.threadItemIncreaseShortRequirements" );
   }
 
   /** @inheritdoc */
@@ -166,12 +166,12 @@ export default class ThreadData extends ItemDataModel.mixin(
       [LEGEND.validationCategories.health]:    [
         {
           name:      "ED.Dialogs.Legend.Validation.hasDamage",
-          value:     increaseData.hasDamage ? game.i18n.localize( "ED.Dialogs.Legend.Validation.hasDamage" ) : game.i18n.localize( "ED.Dialogs.Legend.Validation.hasNoDamage" ),
+          value:     increaseData.hasDamage ? _loc( "ED.Dialogs.Legend.Validation.hasDamage" ) : _loc( "ED.Dialogs.Legend.Validation.hasNoDamage" ),
           fulfilled: !increaseData.hasDamage,
         },
         {
           name:      "ED.Dialogs.Legend.Validation.hasWounds",
-          value:     increaseData.hasWounds ? game.i18n.localize( "ED.Dialogs.Legend.Validation.hasWounds" ) : game.i18n.localize( "ED.Dialogs.Legend.Validation.hasNoWounds" ),
+          value:     increaseData.hasWounds ? _loc( "ED.Dialogs.Legend.Validation.hasWounds" ) : _loc( "ED.Dialogs.Legend.Validation.hasNoWounds" ),
           fulfilled: !increaseData.hasWounds,
         },
       ],
@@ -240,7 +240,7 @@ export default class ThreadData extends ItemDataModel.mixin(
 
     if ( foundry.utils.isEmpty( updatedActor ) )
       ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.abilityIncreaseProblems" )
+        _loc( "ED.Notifications.Warn.abilityIncreaseProblems" )
       );
 
     const updatedThread = await this.parentDocument.update( {
@@ -248,7 +248,7 @@ export default class ThreadData extends ItemDataModel.mixin(
     } );
     if ( foundry.utils.isEmpty( updatedThread ) ) {
       ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.abilityIncreaseProblems" )
+        _loc( "ED.Notifications.Warn.abilityIncreaseProblems" )
       );
       return;
     }

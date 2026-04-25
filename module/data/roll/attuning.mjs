@@ -94,7 +94,7 @@ export default class AttuningRollOptions extends EdRollOptions {
       base:      ability.system.rankFinal,
     };
     stepData.modifiers = ( data.attuningType === "grimoire" && data.grimoirePenalty )
-      ? { [ game.i18n.localize( "ED.Rolls.Modifiers.grimoirePenalty" ) ]: -2 }
+      ? { [ _loc( "ED.Rolls.Modifiers.grimoirePenalty" ) ]: -2 }
       : {};
     return stepData;
   }

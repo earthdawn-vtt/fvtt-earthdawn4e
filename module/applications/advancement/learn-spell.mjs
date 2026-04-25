@@ -158,7 +158,7 @@ export default class LearnSpellPrompt extends ApplicationEd {
    */
   static async _patterncraftTest( _ ) {
     const modifiers = {};
-    if ( this.dataModel.teacherTestSuccessful ) modifiers[ game.i18n.localize( "ED.Dialogs.Legend.LearnSpell.teacherBonusModifier" ) ] = this.dataModel.teacherRank;
+    if ( this.dataModel.teacherTestSuccessful ) modifiers[ _loc( "ED.Dialogs.Legend.LearnSpell.teacherBonusModifier" ) ] = this.dataModel.teacherRank;
 
     const roll = await this.actor.rollAbility(
       this.actor.getSingleItemByEdid(

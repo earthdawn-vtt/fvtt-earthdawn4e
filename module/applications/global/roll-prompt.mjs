@@ -53,7 +53,7 @@ export default class RollPrompt extends ApplicationEd {
     this.edRollOptions = edRollOptions;
 
     this.rollData = rollData;
-    const manualModifierKey = `step.modifiers.${ game.i18n.localize( "ED.Rolls.Modifiers.manual" ) }`;
+    const manualModifierKey = `step.modifiers.${ _loc( "ED.Rolls.Modifiers.manual" ) }`;
     this.edRollOptions.updateSource( {
       [ manualModifierKey ]: edRollOptions.step.modifiers.manual ?? 0,
     } );
@@ -123,7 +123,7 @@ export default class RollPrompt extends ApplicationEd {
     RollPrompt.waitPrompt(
       new EdRollOptions( {
         testType:   "arbitrary",
-        chatFlavor: game.i18n.localize( "ED.Chat.Header.arbitraryTest" ),
+        chatFlavor: _loc( "ED.Chat.Header.arbitraryTest" ),
       } ),
     ).then( ( roll ) => roll?.toMessage() );
   }

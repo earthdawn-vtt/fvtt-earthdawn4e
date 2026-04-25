@@ -105,7 +105,7 @@ export default class ChooseAdderSubstitutePrompt extends ApplicationEd {
     switch ( partId ) {
       case "form": {
         partContext.actor = this._actor;
-        partContext.rollTypeLocalized = game.i18n.localize( ROLLS.rollTypes[ this._rollType ].label );
+        partContext.rollTypeLocalized = _loc( ROLLS.rollTypes[ this._rollType ].label );
         partContext.adders = this._adders;
         partContext.substitutes = this._substitutes;
         break;

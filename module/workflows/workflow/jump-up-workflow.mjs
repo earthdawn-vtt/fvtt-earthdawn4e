@@ -27,7 +27,7 @@ export default class JumpUpWorkflow extends Rollable( ActorWorkflow ) {
     this._jumpUpAbility = options.jumpUpAbility ?? null;
 
     this._rollToMessage = true;
-    this._rollPromptTitle = game.i18n.localize(
+    this._rollPromptTitle = _loc(
 
     );
 

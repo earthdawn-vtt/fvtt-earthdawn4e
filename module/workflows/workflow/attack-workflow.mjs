@@ -71,7 +71,7 @@ export default class AttackWorkflow extends Rollable( ActorWorkflow ) {
     if ( !weapon && this._attackType !== "tail" ) weapon = await this._actor.drawWeapon();
     if ( !weapon ) throw new WorkflowInterruptError(
       this,
-      game.i18n.localize( "ED.Notifications.Warn.attackNoWeaponFound" ),
+      _loc( "ED.Notifications.Warn.attackNoWeaponFound" ),
     );
 
     this._weapon = weapon;

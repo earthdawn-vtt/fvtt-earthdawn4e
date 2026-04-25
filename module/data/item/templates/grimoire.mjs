@@ -123,12 +123,12 @@ export default class GrimoireTemplate extends SystemDataModel {
     if ( !this.isGrimoire || spell.type !== SYSTEM_TYPES.Item.spell ) {
       if ( !this.isGrimoire ) {
         ui.notifications.error(
-          game.i18n.localize( "ED.Notifications.Error.grimoireAddNotAGrimoire" ),
+          _loc( "ED.Notifications.Error.grimoireAddNotAGrimoire" ),
         );
       }
       if ( spell.type !== SYSTEM_TYPES.Item.spell ) {
         ui.notifications.error(
-          game.i18n.localize( "ED.Notifications.Error.grimoireAddNotASpell" ),
+          _loc( "ED.Notifications.Error.grimoireAddNotASpell" ),
         );
       }
 
@@ -138,7 +138,7 @@ export default class GrimoireTemplate extends SystemDataModel {
     // If the spell is already in the grimoire, do nothing
     if ( this.grimoire.spells.has( spell.uuid ) ) {
       ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.grimoireAddAlreadyInGrimoire" ),
+        _loc( "ED.Notifications.Warn.grimoireAddAlreadyInGrimoire" ),
       );
       return;
     }
@@ -212,7 +212,7 @@ export default class GrimoireTemplate extends SystemDataModel {
   async setGrimoireActiveSpell( spellUuid ) {
     if ( !this.isGrimoire ) {
       ui.notifications.error(
-        game.i18n.localize( "ED.Notifications.Error.grimoireSetActiveNotAGrimoire" ),
+        _loc( "ED.Notifications.Error.grimoireSetActiveNotAGrimoire" ),
       );
       return;
     }
@@ -220,13 +220,13 @@ export default class GrimoireTemplate extends SystemDataModel {
     const spell = await fromUuid( spellUuid );
     if ( !spell || spell.type !== SYSTEM_TYPES.Item.spell ) {
       ui.notifications.error(
-        game.i18n.localize( "ED.Notifications.Error.grimoireSetActiveNotASpell" ),
+        _loc( "ED.Notifications.Error.grimoireSetActiveNotASpell" ),
       );
       return;
     }
     if ( !this.grimoire.spells.has( spell.uuid ) ) {
       ui.notifications.error(
-        game.i18n.localize( "ED.Notifications.Error.grimoireSetActiveNotInGrimoire" ),
+        _loc( "ED.Notifications.Error.grimoireSetActiveNotInGrimoire" ),
       );
       return;
     }

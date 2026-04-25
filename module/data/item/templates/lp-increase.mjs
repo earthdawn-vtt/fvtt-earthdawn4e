@@ -133,7 +133,7 @@ export default class LpIncreaseTemplate extends SystemDataModel {
 
     if ( foundry.utils.isEmpty( updatedItem ) ) {
       ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.abilityIncreaseProblems" )
+        _loc( "ED.Notifications.Warn.abilityIncreaseProblems" )
       );
       return;
     }

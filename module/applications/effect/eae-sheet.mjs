@@ -58,7 +58,7 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
     if ( this.document.system.appliedToActor ) return EFFECTS.eaeChangeKeysActor;
     return [ {
       value:    "",
-      label:    game.i18n.localize( "ED.ActiveEffect.placeholderBlankSelectOption" ),
+      label:    _loc( "ED.ActiveEffect.placeholderBlankSelectOption" ),
       selected: true,
     } ];
   }
@@ -120,7 +120,7 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
           if ( context.hasLevels ) context.levelInput = this.document.system.levelsToFormGroup();
         }
         context.disabledReadOnly = this.document.parent?.system instanceof ClassTemplate;
-        context.tooltips.disabled = game.i18n.localize( "ED.ToolTips.activeEffectCantBeEnabledOnClassItems" );
+        context.tooltips.disabled = _loc( "ED.ToolTips.activeEffectCantBeEnabledOnClassItems" );
         break;
       case "duration":
         break;

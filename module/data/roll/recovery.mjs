@@ -120,7 +120,7 @@ export default class RecoveryRollOptions extends EdRollOptions {
 
     const modifiers = {};
     if ( data.recoveryMode === "recoverStun" && actor.system.characteristics.recoveryTestsResource.stunRecoveryAvailable ) {
-      modifiers[ game.i18n.localize(
+      modifiers[ _loc(
         "ED.Rolls.Modifiers.stunRecoveryWillpower"
       ) ] = actor.system.attributes.wil.step;
     }

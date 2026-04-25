@@ -294,7 +294,7 @@ export default class PcData extends NamegiverTemplate {
     const currentIncrease = attributeField.timesIncreased;
     if ( currentIncrease >= 3 ) {
       ui.notifications.warn(
-        game.i18n.localize( `X.Localize: Cannot increase attribute "${attribute}" for actor "${actor.name}" (${actor.id}). Maximum increase reached.` )
+        _loc( `X.Localize: Cannot increase attribute "${attribute}" for actor "${actor.name}" (${actor.id}). Maximum increase reached.` )
       );
       return;
     }

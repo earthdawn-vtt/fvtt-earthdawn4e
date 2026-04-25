@@ -96,7 +96,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
    * @inheritDoc
    */
   get increaseRules() {
-    return game.i18n.localize( "ED.Dialogs.Legend.Rules.disciplineIncreaseShortRequirements" );
+    return _loc( "ED.Dialogs.Legend.Rules.disciplineIncreaseShortRequirements" );
   }
 
   /** @inheritDoc */
@@ -126,7 +126,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
 
   /** @inheritDoc */
   get learnRules() {
-    return game.i18n.localize( "ED.Dialogs.Legend.Rules.disciplineLearnShortRequirements" );
+    return _loc( "ED.Dialogs.Legend.Rules.disciplineLearnShortRequirements" );
   }
 
   /** @inheritDoc */
@@ -328,7 +328,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
   /** @inheritDoc */
   static async learn( actor, item, createData = {} ) {
     if ( isEmpty( actor.disciplines ) && isEmpty( actor.itemTypes.questor ) ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.firstClassViaCharGen" ) );
+      ui.notifications.warn( _loc( "ED.Notifications.Warn.firstClassViaCharGen" ) );
     }
 
     const disciplineCreateData = foundry.utils.mergeObject(

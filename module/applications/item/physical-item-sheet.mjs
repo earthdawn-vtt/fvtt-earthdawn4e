@@ -274,7 +274,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       ?? game.user.character
       ?? canvas.tokens.controlled[0]?.actor;
     if ( !actor ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.castSpellNoActor" ) );
+      ui.notifications.warn( _loc( "ED.Notifications.Warn.castSpellNoActor" ) );
       return;
     }
 
@@ -332,7 +332,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
         {}
       );
     if ( !actor ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.noActorSelected" ) );
+      ui.notifications.warn( _loc( "ED.Notifications.Warn.noActorSelected" ) );
       return;
     }
 
@@ -363,7 +363,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
         {}
       );
     if ( !actor ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.weaveThreadNoActor" ) );
+      ui.notifications.warn( _loc( "ED.Notifications.Warn.weaveThreadNoActor" ) );
       return;
     }
 

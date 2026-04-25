@@ -8,17 +8,17 @@ export default function () {
       const changeLogButton = document.createElement( "button" );
       changeLogButton.id = "ed4eChangelog";
       changeLogButton.className = "changelog";
-      changeLogButton.textContent = game.i18n.localize( "ED.Settings.SystemSupportOptions.changelog" );
+      changeLogButton.textContent = _loc( "ED.Settings.SystemSupportOptions.changelog" );
 
       const helpButton = document.createElement( "button" );
       helpButton.id = "ed4eHelp";
       helpButton.className = "help";
-      helpButton.textContent = game.i18n.localize( "ED.Settings.SystemSupportOptions.help" );
+      helpButton.textContent = _loc( "ED.Settings.SystemSupportOptions.help" );
 
       const createBugButton = document.createElement( "button" );
       createBugButton.id = "ed4eTroubleshooting";
       createBugButton.className = "troubleshooter";
-      createBugButton.textContent = game.i18n.localize( "ED.Settings.SystemSupportOptions.troubleshooting" );
+      createBugButton.textContent = _loc( "ED.Settings.SystemSupportOptions.troubleshooting" );
 
       // Find the first element with the class "settings"
       const settingsElement = html.querySelector( ".settings" );
@@ -30,7 +30,7 @@ export default function () {
 
         const title = document.createElement( "h4" );
         title.className = "divider"; // Add the "divider" class
-        title.textContent = game.i18n.localize( "ED.Settings.SystemSupportOptions.title" );
+        title.textContent = _loc( "ED.Settings.SystemSupportOptions.title" );
 
         // Append title and buttons directly to the sidebar div
         sidebarDiv.appendChild( title );

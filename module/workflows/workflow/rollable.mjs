@@ -170,7 +170,7 @@ export default function Rollable( WorkflowClass ) {
             { rollType: this._rollOptions?.rollType }
           ),
           window:  {
-            title: game.i18n.localize( "ED.Dialogs.Title.failedRollConfirm" ),
+            title: _loc( "ED.Dialogs.Title.failedRollConfirm" ),
           }
         } );
         if ( continueWorkflow !== true ) this.cancel();

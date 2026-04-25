@@ -158,7 +158,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
 
     if ( foundry.utils.isEmpty( updatedItem ) && !this.schema.fields.tier.initial ) {
       ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.abilityIncreaseProblems" )
+        _loc( "ED.Notifications.Warn.abilityIncreaseProblems" )
       );
       return;
     }

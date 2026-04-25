@@ -184,7 +184,7 @@ export default class PromptFactory {
       : actors;
 
     if ( availableActors.length === 0 ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.chooseActorPromptNoActorAvailable" ) );
+      ui.notifications.warn( _loc( "ED.Notifications.Warn.chooseActorPromptNoActorAvailable" ) );
       return null;
     }
 
@@ -204,7 +204,7 @@ export default class PromptFactory {
       uniqueId:    String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:     [ "earthdawn4e", "choose-actor-prompt", "flexcol" ],
       window:      {
-        title:       game.i18n.localize( "ED.Dialogs.Title.chooseActor" ),
+        title:       _loc( "ED.Dialogs.Title.chooseActor" ),
         minimizable: false
       },
       modal:   false,
@@ -227,7 +227,7 @@ export default class PromptFactory {
   static async genericDeleteConfirmationPrompt( name, checkQuickDelete = false ) {
     if ( checkQuickDelete && getSetting( "quickDeleteEmbeddedOnShiftClick" ) ) return true;
 
-    const question = game.i18n.localize( "AreYouSure" );
+    const question = _loc( "AreYouSure" );
     const warning = game.i18n.format( "SIDEBAR.DeleteWarning", { type: name } );
     const content = `<p><strong>${question}</strong><br>${warning}</p>`;
     return DialogClass.confirm( {
@@ -654,7 +654,7 @@ class ItemPromptFactory extends PromptFactory {
     }
 
     const content = `
-    <p>${ game.i18n.localize( "ED.Dialogs.Legend.learnOnZeroOrOne" ) }</p>
+    <p>${ _loc( "ED.Dialogs.Legend.learnOnZeroOrOne" ) }</p>
     `;
 
     return DialogClass.wait( {
@@ -855,7 +855,7 @@ class ItemPromptFactory extends PromptFactory {
         } ),
         minimizable: false
       },
-      content: game.i18n.localize( "ED.Dialogs.continueWeavingSpell" ),
+      content: _loc( "ED.Dialogs.continueWeavingSpell" ),
       yes:     {
         label: "ED.Dialogs.Buttons.continueWeavingSpellYes"
       },

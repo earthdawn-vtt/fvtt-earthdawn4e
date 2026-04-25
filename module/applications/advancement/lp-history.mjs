@@ -21,9 +21,9 @@ export default class LegendPointHistory extends ApplicationEd {
     this.actor = options.actor;
     this.resolve = options.resolve;
     this.SORTING = {
-      time: game.i18n.localize( "ED.Dialogs.Sorting.time" ),
-      type: game.i18n.localize( "ED.Dialogs.Sorting.type" ),
-      item: game.i18n.localize( "ED.Dialogs.Sorting.item" ),
+      time: _loc( "ED.Dialogs.Sorting.time" ),
+      type: _loc( "ED.Dialogs.Sorting.type" ),
+      item: _loc( "ED.Dialogs.Sorting.item" ),
     };
     this.sortBy = "time";
   }

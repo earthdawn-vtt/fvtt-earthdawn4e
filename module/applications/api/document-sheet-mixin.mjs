@@ -106,7 +106,7 @@ const DocumentSheetMixinEd = Base => {
         toggle.checked = this._sheetMode === this.constructor.SHEET_MODES.EDIT;
         toggle.classList.add( "mode-slider" );
         toggle.dataset.tooltip = "ED.Controls.sheetModeEdit";
-        toggle.setAttribute( "aria-label", game.i18n.localize( "ED.Controls.sheetModeEdit" ) );
+        toggle.setAttribute( "aria-label", _loc( "ED.Controls.sheetModeEdit" ) );
         toggle.addEventListener( "change", this._onChangeSheetMode.bind( this ) );
         toggle.addEventListener( "dblclick", event => event.stopPropagation() );
         header.insertAdjacentElement( "afterbegin", toggle );
@@ -167,7 +167,7 @@ const DocumentSheetMixinEd = Base => {
     async _onChangeSheetMode( event ) {
       const { SHEET_MODES } = this.constructor;
       const toggle = event.currentTarget;
-      const label = game.i18n.localize( `ED.Controls.sheetMode${toggle.checked ? "Play" : "Edit"}` );
+      const label = _loc( `ED.Controls.sheetMode${toggle.checked ? "Play" : "Edit"}` );
       toggle.dataset.tooltip = label;
       toggle.setAttribute( "aria-label", label );
       this._sheetMode = toggle.checked ? SHEET_MODES.EDIT : SHEET_MODES.PLAY;
@@ -216,7 +216,7 @@ const DocumentSheetMixinEd = Base => {
         }
         default: {
           if ( documentConfig && type in documentConfig.dataModels ) {
-            createData.name = game.i18n.localize( documentConfig.typeLabels[ type ] );
+            createData.name = _loc( documentConfig.typeLabels[ type ] );
             const createdDocuments = await this.document.createEmbeddedDocuments(
               documentType,
               [ createData ],

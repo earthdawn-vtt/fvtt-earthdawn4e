@@ -114,7 +114,7 @@ export default class SpellcastingRollOptions extends EdRollOptions {
       && !data.grimoire.system.grimoireBelongsTo( data.rollingActorUuid )
     ) {
       stepData.modifiers[
-        game.i18n.localize( "ED.Rolls.Modifiers.grimoirePenalty" )
+        _loc( "ED.Rolls.Modifiers.grimoirePenalty" )
       ] = MAGIC.grimoireModifiers.notOwned;
     }
 

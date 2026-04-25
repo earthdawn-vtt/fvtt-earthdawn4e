@@ -41,21 +41,21 @@ export default class SpellMigration extends BaseMigration {
       source.system.effect.details = {};
       source.system.effect.type = "special";
       source.system.effect.details.special = {};
-      source.system.effect.details.special.description = oldSpellEffect + " " + game.i18n.localize( "ED.Migrations.setSpellEffect" );
+      source.system.effect.details.special.description = oldSpellEffect + " " + _loc( "ED.Migrations.setSpellEffect" );
     }
 
     if ( typeof source.system?.duration !== "object" ) {
       const oldDuration = source.system.duration;
       source.system.duration = {};
       source.system.duration.unit = "spec";
-      source.system.duration.special = oldDuration + " " + game.i18n.localize( "ED.Migrations.setSpellDuration" );
+      source.system.duration.special = oldDuration + " " + _loc( "ED.Migrations.setSpellDuration" );
     }
 
     if ( typeof source.system?.range !== "object" ) {
       const oldRange = source.system.range;
       source.system.range = {};
       source.system.range.unit = "spec";
-      source.system.range.special = oldRange + " " + game.i18n.localize( "ED.Migrations.setSpellRange" );
+      source.system.range.special = oldRange + " " + _loc( "ED.Migrations.setSpellRange" );
     }
 
     return source;

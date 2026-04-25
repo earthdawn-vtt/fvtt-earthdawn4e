@@ -89,7 +89,7 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
   _createInitialContextMenu() {
     return [
       {
-        name:      game.i18n.localize( "ED.ContextMenu.favoritable" ),
+        name:      _loc( "ED.ContextMenu.favoritable" ),
         icon:      "<i class='fas fa-star'></i>",
         callback:  this._onAddToFavorites.bind( this ),
       },
@@ -105,7 +105,7 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
         const macro = await fromUuid( uuid );
         return {
           uuid:    uuid,
-          name:    macro?.name || game.i18n.localize( "ED.Actor.Header.Favorites.brokenReference" ),
+          name:    macro?.name || _loc( "ED.Actor.Header.Favorites.brokenReference" ),
           isValid: !!macro,
           macro:   macro
         };
@@ -194,12 +194,12 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
       return this.document.deleteFavorite( macroUuid );
     }
 
-    const type = `${game.i18n.localize( "ED.Dialogs.DeleteFavorite.favorite" )}`;
+    const type = `${_loc( "ED.Dialogs.DeleteFavorite.favorite" )}`;
     const reallyDelete = await DialogEd.confirm( {
       title:   `${game.i18n.format( "DOCUMENT.Delete", { type } )}`,
-      content: `<h4>${game.i18n.localize( "AreYouSure" )}</h4>
+      content: `<h4>${_loc( "AreYouSure" )}</h4>
               <p>${game.i18n.format( "SIDEBAR.DeleteWarning", { type } )}</p>
-              <p>${game.i18n.localize( "ED.Dialogs.DeleteFavorite.alsoDeletesMacro" )}</p>`,
+              <p>${_loc( "ED.Dialogs.DeleteFavorite.alsoDeletesMacro" )}</p>`,
       options: {
         top:   Math.min( event.clientY - 80, window.innerHeight - 350 ),
         left:  window.innerWidth - 720,
@@ -236,7 +236,7 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
   static async _onExecuteFavoriteMacro( event, target ) {
     const macro = /** @type {Macro} */ await fromUuid( target.dataset.macroUuid );
     if ( !macro ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Actor.Header.Favorites.macroNotFound" ) );
+      ui.notifications.warn( _loc( "ED.Actor.Header.Favorites.macroNotFound" ) );
       return;
     }
     macro.execute();
@@ -287,7 +287,7 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
         {}
       );
     if ( !actor ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.weaveThreadNoActor" ) );
+      ui.notifications.warn( _loc( "ED.Notifications.Warn.weaveThreadNoActor" ) );
       return;
     }
 

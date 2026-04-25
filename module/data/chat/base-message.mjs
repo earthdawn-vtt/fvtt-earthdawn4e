@@ -86,8 +86,8 @@ export default class BaseMessageData extends SystemDataModel {
       <a class="source-message content-anchor"
               data-uuid="${ this.parent.uuid }" data-id="${ this.parent.id }"
               data-action="scrollToSource"
-              data-tooltip="${ game.i18n.localize( " ED.ToolTips.scrollToSourceMessage" ) }">
-      ${ game.i18n.localize( "ED.Chat.Button.scrollToSourceMessage" ) }
+              data-tooltip="${ _loc( " ED.ToolTips.scrollToSourceMessage" ) }">
+      ${ _loc( "ED.Chat.Button.scrollToSourceMessage" ) }
       </a>
     </div>`;
   }
@@ -217,7 +217,7 @@ export default class BaseMessageData extends SystemDataModel {
     const effects = itemForEffects.targetEffects;
     const targets = Array.from( game.user.targets.map( target => target.document.actor ) );
     if ( targets.length === 0 ) {
-      ui.notifications.warn( game.i18n.localize(
+      ui.notifications.warn( _loc(
         "ED.Notifications.Warn.needTargetsToApplyFromChat",
       ) );
       return;

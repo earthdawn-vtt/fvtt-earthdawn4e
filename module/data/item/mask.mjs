@@ -238,14 +238,14 @@ export default class MaskData extends ItemDataModel.mixin(
   async addPowerToMask( power ) {
     if ( power.type !== SYSTEM_TYPES.Item.power ) {
       ui.notifications.error(
-        game.i18n.localize( "ED.Notifications.Error.maskAddNotAPower" ),
+        _loc( "ED.Notifications.Error.maskAddNotAPower" ),
       );
       return;
     }
 
     if ( this.hasPower( power.uuid ) ) {
       ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.maskAddAlreadyInMask" ),
+        _loc( "ED.Notifications.Warn.maskAddAlreadyInMask" ),
       );
     } else {
       return this.parentDocument.update( {
@@ -262,7 +262,7 @@ export default class MaskData extends ItemDataModel.mixin(
   async addManeuverToMask( power ) {
     if ( power.type !== SYSTEM_TYPES.Item.maneuver ) {
       ui.notifications.error(
-        game.i18n.localize( "ED.Notifications.Warn.maskAddAlreadyInMask" ),
+        _loc( "ED.Notifications.Warn.maskAddAlreadyInMask" ),
       );
       return;
     }
@@ -273,7 +273,7 @@ export default class MaskData extends ItemDataModel.mixin(
       return this.parent.update( {"system.maneuvers": newManeuvers } );
     } else  {
       ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.maskAddAlreadyInMask" ),
+        _loc( "ED.Notifications.Warn.maskAddAlreadyInMask" ),
       );
     }
   }

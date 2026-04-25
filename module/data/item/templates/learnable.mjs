@@ -65,7 +65,7 @@ export default class LearnableTemplate extends SystemDataModel {
       "ED.Actor.LpTracking.Spendings.learningTransactionDescription",
       {
         itemName: this.parent?.name || "",
-        itemType: game.i18n.localize( `TYPES.Item.${ this.parent?.type }` ) || "",
+        itemType: _loc( `TYPES.Item.${ this.parent?.type }` ) || "",
       }
     );
   }

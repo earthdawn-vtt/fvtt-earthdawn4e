@@ -47,7 +47,7 @@ export default class FormulaField extends foundry.data.fields.StringField {
     const value = foundry.utils.getProperty( model, keyPath );
     if ( !value ) return;
     const item = model.item ?? model.parent;
-    const property = game.i18n.localize( label );
+    const property = _loc( label );
     try {
       const formula = this.replaceFormulaData( value, rollData, { item, property } );
       const roll = new Roll( formula );

@@ -34,7 +34,7 @@ export default class MatrixCastingWorkflow extends BaseCastingWorkflow {
     if ( activeSpell?.system?.getAttunedMatrix()?.uuid !== this._matrix.uuid ) {
       throw new WorkflowInterruptError(
         this,
-        game.i18n.localize( "ED.Notifications.Error.matrixCastingSpellNotAttuned" ),
+        _loc( "ED.Notifications.Error.matrixCastingSpellNotAttuned" ),
       );
     }
 

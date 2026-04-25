@@ -49,7 +49,7 @@ async function enrichRoll( match, options ) {
 
   const textRollFormula = rollCmd.replace(
     "/s",
-    game.i18n.localize( "ED.Journal.TextEnricher.step"
+    _loc( "ED.Journal.TextEnricher.step"
     ) );
   const textTestType = ( testType === "arbitrary" )
     ? ""
@@ -57,7 +57,7 @@ async function enrichRoll( match, options ) {
 
   const rollElement = `
             <a class="journal--roll strong" data-roll-cmd="${rollCmd}" data-roll-flavor="${rollFlavor}" 
-              data-test-type="${testType}" title="${game.i18n.localize( "X.Click to roll" )}">
+              data-test-type="${testType}" title="${_loc( "X.Click to roll" )}">
               <i class="fas fa-regular fa-dice"></i>
               ${textTestType}${textRollFormula}&nbsp;${rollFlavor}
             </a>`;

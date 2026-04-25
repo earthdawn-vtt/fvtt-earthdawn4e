@@ -215,7 +215,7 @@ async function _showUpdateNews() {
     "systems/ed4e/templates/system-messages/update-message-v1_0_0.hbs"
   );
   DialogEd.wait( {
-    title:   game.i18n.localize( "ED.Dialogs.Header.update" ),
+    title:   _loc( "ED.Dialogs.Header.update" ),
     content: html,
     buttons: [
       {

@@ -57,7 +57,7 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
     super( actor, options );
     if ( !options.attributeId || !( options.attributeId in ACTORS.attributes ) ) {
       ui.notifications.error(
-        game.i18n.localize( "ED.Notifications.Error.substituteAttributeNotFound" ),
+        _loc( "ED.Notifications.Error.substituteAttributeNotFound" ),
       );
     }
     this._rollToMessage = true;
@@ -107,14 +107,14 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
       }
       buttons.push( {
         action:   `${mode.rollType}:${key}`,
-        label:    game.i18n.localize( mode.label ),
+        label:    _loc( mode.label ),
         icon:     "",
         class:    `button-standard substitute-ability ${key}`,
         default:  false,
         callback: () => {
         // Set the action and modeKey immediately after click
           this._action = mode.rollType;
-          this._substituteName = game.i18n.localize( mode.label );
+          this._substituteName = _loc( mode.label );
           if ( mode.attackType ) {
             this._attackType = mode.attackType;
           }

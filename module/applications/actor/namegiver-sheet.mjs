@@ -50,8 +50,8 @@ export default class ActorSheetEdNamegiver extends ActorSheetEdSentient {
     const singleton = dataModel?.metadata?.singleton ?? false;
     if ( singleton && this.actor.itemTypes[item.type].length ) {
       ui.notifications.error( game.i18n.format( "ED.Notifications.Error.singleton", {
-        itemType:  game.i18n.localize( CONFIG.Item.typeLabels[item.type] ),
-        actorType: game.i18n.localize( CONFIG.Actor.typeLabels[this.actor.type] )
+        itemType:  _loc( CONFIG.Item.typeLabels[item.type] ),
+        actorType: _loc( CONFIG.Actor.typeLabels[this.actor.type] )
       } ) );
       return false;
     }

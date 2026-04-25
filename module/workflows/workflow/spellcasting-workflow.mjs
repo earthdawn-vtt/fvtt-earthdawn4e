@@ -114,8 +114,8 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
       castingMethods.push( {
         action:  "matrix",
         label:   this._matrix
-          ? game.i18n.localize( "ED.Dialogs.Buttons.matrixCastingAlreadyAttuned" )
-          : game.i18n.localize( "ED.Dialogs.Buttons.matrixCastingToAttune" ),
+          ? _loc( "ED.Dialogs.Buttons.matrixCastingAlreadyAttuned" )
+          : _loc( "ED.Dialogs.Buttons.matrixCastingToAttune" ),
         icon:    "systems/ed4e/assets/icons/matrix.svg",
         class:   buttonClass,
       } );
@@ -139,7 +139,7 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
       castingMethods,
       buttonClass,
       {
-        title: game.i18n.localize( "ED.Dialogs.Title.selectCastingMethod" ),
+        title: _loc( "ED.Dialogs.Title.selectCastingMethod" ),
       }
     );
   }
@@ -164,12 +164,12 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
             attunedGrimoires,
             "ed-button-select-attuned-grimoire",
             {
-              title: game.i18n.localize( "ED.Dialogs.Title.selectAttunedGrimoire" ),
+              title: _loc( "ED.Dialogs.Title.selectAttunedGrimoire" ),
             }
           );
       } else {
         this._attuneGrimoire = await DialogEd.confirm( {
-          content:     game.i18n.localize( "ED.Dialogs.doYouWantToAttuneGrimoireBeforeCasting" ),
+          content:     _loc( "ED.Dialogs.doYouWantToAttuneGrimoireBeforeCasting" ),
           rejectClose: true
         } );
 
@@ -200,7 +200,7 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
     if ( !this._matrix ) {
       throw new WorkflowInterruptError(
         this,
-        game.i18n.localize( "ED.Notifications.Error.spellNotAttunedToMatrix" )
+        _loc( "ED.Notifications.Error.spellNotAttunedToMatrix" )
       );
     }
   }
@@ -209,7 +209,7 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
     if ( !this._castingMethod ) {
       throw new WorkflowInterruptError(
         this,
-        game.i18n.localize( "ED.Notifications.Error.noCastingMethodSelected" )
+        _loc( "ED.Notifications.Error.noCastingMethodSelected" )
       );
     }
 

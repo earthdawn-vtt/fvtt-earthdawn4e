@@ -125,12 +125,12 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     const typesRadio = Object.fromEntries(
       Object.entries( types ).map( ( [ typeGroup, types ], i ) => {
         return [
-          game.i18n.localize( `TYPES.${ this.documentType }.TypeGroups.${ typeGroup }` ),
+          _loc( `TYPES.${ this.documentType }.TypeGroups.${ typeGroup }` ),
           sortObjectEntries( types.reduce(
             ( accumulator, type ) =>  {
               if ( CONFIG.ED4E.SYSTEM.UNAVAILABLE_SYSTEM_TYPES[this.documentType].includes( type ) ) return accumulator;
               let label = CONFIG[this.documentType].typeLabels?.[type];
-              label = label && game.i18n.has( label ) ? game.i18n.localize( label ) : type;
+              label = label && game.i18n.has( label ) ? _loc( label ) : type;
               accumulator[type] = label;
               return accumulator;
             } ,

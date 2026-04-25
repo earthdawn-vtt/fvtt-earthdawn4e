@@ -80,7 +80,7 @@ export default class ItemHistoryWorkflow extends Rollable( ActorWorkflow ) {
     this._numAlreadyKnownLevels = this._target.system.truePattern.numberOfKnownLevels;
 
     this._rollToMessage = true;
-    this._rollPromptTitle = game.i18n.localize( "ED.Dialogs.RollPrompt.Title.itemHistory" );
+    this._rollPromptTitle = _loc( "ED.Dialogs.RollPrompt.Title.itemHistory" );
 
     this._steps.push(
       this.#initialize.bind( this ),
@@ -106,9 +106,9 @@ export default class ItemHistoryWorkflow extends Rollable( ActorWorkflow ) {
     );
     if ( !this._itemHistoryAbility ) {
       const continueWorkflow = await DialogEd.confirm( {
-        content: game.i18n.localize( "ED.Dialogs.Title.missingItemHistoryAbilityConfirm" ),
+        content: _loc( "ED.Dialogs.Title.missingItemHistoryAbilityConfirm" ),
         window:  {
-          title:   game.i18n.localize( "ED.Dialogs.missingItemHistoryAbilityConfirm" ),
+          title:   _loc( "ED.Dialogs.missingItemHistoryAbilityConfirm" ),
         },
       } );
       if ( continueWorkflow !== true ) this.cancel();
@@ -173,7 +173,7 @@ export default class ItemHistoryWorkflow extends Rollable( ActorWorkflow ) {
       {
         numKeyKnowledgeObtained:  this._numObtainedKnowledge,
         numMaxPossible:           this._maxObtainableKnowledge,
-        typeMaxPossible:          game.i18n.localize( this._typeMaxPossible ),
+        typeMaxPossible:          _loc( this._typeMaxPossible ),
       },
     );
 
