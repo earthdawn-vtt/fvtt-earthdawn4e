@@ -205,7 +205,7 @@ export default class KnackTemplate extends SystemDataModel.mixin(
       item.system.sourceItem,
       this.SOURCE_ITEM_TYPE ?? SYSTEM_TYPES.Item.talent,
     ) ) {
-      ui.notifications.warn( game.i18n.format(
+      ui.notifications.warn( _loc(
         "ED.Notifications.Warn.learningKnackNoSourceItem",
         { sourceItemEdid: item.system.sourceItem },
       ) );
@@ -229,7 +229,7 @@ export default class KnackTemplate extends SystemDataModel.mixin(
       "spendings",
       {
         amount:      learn === "spendLp" ? item.system.requiredLpForLearning : 0,
-        description: game.i18n.format(
+        description: _loc(
           "ED.Actor.LpTracking.Spendings.learnKnack", {
             name: item.name,
           }

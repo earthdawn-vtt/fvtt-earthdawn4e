@@ -165,7 +165,7 @@ export default function Rollable( WorkflowClass ) {
       this._result = undefined;
       if ( !this._roll.isSuccess ) {
         const continueWorkflow = await DialogEd.confirm( {
-          content: game.i18n.format(
+          content: _loc(
             "ED.Dialogs.failedRollOfTypeConfirm",
             { rollType: this._rollOptions?.rollType }
           ),

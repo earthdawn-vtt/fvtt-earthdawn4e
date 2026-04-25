@@ -273,7 +273,7 @@ export default class SpellData extends ItemDataModel.mixin(
       if ( !elemSubtype ) return undefined;
 
       if ( !Object.keys( MAGIC.elementSubtypes[ elemType ] ).includes( elemSubtype ) )
-        throw new Error( game.i18n.format( "ED.Notifications.Error.invalidElementSubtype" ) );
+        throw new Error( _loc( "ED.Notifications.Error.invalidElementSubtype" ) );
     }
 
     // continue validation
@@ -461,7 +461,7 @@ export default class SpellData extends ItemDataModel.mixin(
       "spendings",
       {
         amount:      learn === "spendLp" ? item.system.requiredLpToLearn : 0,
-        description: game.i18n.format(
+        description: _loc(
           "ED.Actor.LpTracking.Spendings.learnSpell", {
             name: item.name,
           }
@@ -912,7 +912,7 @@ export default class SpellData extends ItemDataModel.mixin(
       `ED.Data.Item.Spell.FIELDS.effect.details.${ this.effect.type }.stepModifier.label`
     );
     const disciplineName = MAGIC.spellcastingTypes[ this.spellcastingType ];
-    const circleLabel = game.i18n.format(
+    const circleLabel = _loc(
       "ED.Rolls.Modifiers.spellEffectOrDamageStepCircle",
       { discipline: disciplineName }
     );

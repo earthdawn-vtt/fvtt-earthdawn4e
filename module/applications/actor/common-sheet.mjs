@@ -196,9 +196,9 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
 
     const type = `${_loc( "ED.Dialogs.DeleteFavorite.favorite" )}`;
     const reallyDelete = await DialogEd.confirm( {
-      title:   `${game.i18n.format( "DOCUMENT.Delete", { type } )}`,
+      title:   `${_loc( "DOCUMENT.Delete", { type } )}`,
       content: `<h4>${_loc( "AreYouSure" )}</h4>
-              <p>${game.i18n.format( "SIDEBAR.DeleteWarning", { type } )}</p>
+              <p>${_loc( "SIDEBAR.DeleteWarning", { type } )}</p>
               <p>${_loc( "ED.Dialogs.DeleteFavorite.alsoDeletesMacro" )}</p>`,
       options: {
         top:   Math.min( event.clientY - 80, window.innerHeight - 350 ),

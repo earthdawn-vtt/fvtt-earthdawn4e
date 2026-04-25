@@ -280,7 +280,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     const actor = this.parent?.actor;
     if ( ( actor?.type !== SYSTEM_TYPES.Actor.pc ) || !this.metadata?.singleton ) return;
     if ( actor.itemTypes[data.type]?.length ) {
-      ui.notifications.error( game.i18n.format( "ED.Notifications.Error.actorWarningSingleton", {
+      ui.notifications.error( _loc( "ED.Notifications.Error.actorWarningSingleton", {
         itemType:  _loc( CONFIG.Item.typeLabels[data.type] ),
         actorType: _loc( CONFIG.Actor.typeLabels[actor.type] )
       } ) );

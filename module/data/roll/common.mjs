@@ -514,7 +514,7 @@ export default class EdRollOptions extends SparseDataModel {
    * @returns {string} The formatted chat flavor text for this roll.
    */
   _getChatFlavor() {
-    return game.i18n.format(
+    return _loc(
       `ED.Chat.Flavor.${lowerCaseFirstLetter( this.constructor.name )}`,
       this._getChatFlavorData( this.source ),
     );

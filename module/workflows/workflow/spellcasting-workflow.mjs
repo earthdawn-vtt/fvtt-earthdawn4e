@@ -242,7 +242,7 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
       } else {
         throw new WorkflowInterruptError(
           this,
-          game.i18n.format( "ED.Notifications.Error.spellcastingWorkflowFailed", {
+          _loc( "ED.Notifications.Error.spellcastingWorkflowFailed", {
             error: error.message
           } )
         );

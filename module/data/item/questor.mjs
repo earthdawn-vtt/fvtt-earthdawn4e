@@ -89,9 +89,9 @@ export default class QuestorData extends ClassTemplate.mixin(
     // "Do you want to become a questor of <passion>? This will grant you the following devotion automatically:"
     const questorDevotionLink = questorDevotion
       ? createContentLink( questorDevotion.uuid, questorDevotion.name )
-      : game.i18n.format( "ED.Dialogs.Legend.questorDevotionNotFound", { edid: edidQuestorDevotion } );
+      : _loc( "ED.Dialogs.Legend.questorDevotionNotFound", { edid: edidQuestorDevotion } );
     const content = ` 
-      <p>${game.i18n.format( "ED.Dialogs.Legend.learnQuestorPrompt", {passion: item.name,} ) }</p>
+      <p>${_loc( "ED.Dialogs.Legend.learnQuestorPrompt", {passion: item.name,} ) }</p>
       <p>${ questorDevotionLink }</p>
       `;
 

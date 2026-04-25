@@ -171,7 +171,7 @@ export default class WeaveThreadWorkflow extends Rollable( ActorWorkflow ) {
   async #createThread() {
     if ( this._thread ) return;
     const createdItems = await this._actor.createEmbeddedDocuments( "Item", [ {
-      name:   game.i18n.format(
+      name:   _loc(
         "ED.Item.Thread.defaultName",
         {
           fromActor:    this._actor.name,

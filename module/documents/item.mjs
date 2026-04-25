@@ -62,7 +62,7 @@ export default class ItemEd extends Item {
    */
   get lpLearningDescription() {
     return this.system.learnable
-      ? game.i18n.format(
+      ? _loc(
         "ED.Actor.LpTracking.Spendings.learningTransactionDescription",
         {
           itemName: this.name,

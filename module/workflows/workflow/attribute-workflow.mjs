@@ -60,7 +60,7 @@ export default class AttributeWorkflow extends Rollable( ActorWorkflow ) {
         target:      {
           base:      undefined,
         },
-        chatFlavor: game.i18n.format(
+        chatFlavor: _loc(
           "ED.Chat.Flavor.rollAttribute",
           {
             actor:     this._actor.name,

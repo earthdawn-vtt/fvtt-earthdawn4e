@@ -89,7 +89,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     const classes = options.classes || [];
     classes.push( `create-${documentType.toLowerCase()}` );
     const window = options.window || {};
-    window.title ??= game.i18n.format( "ED.Document.create", {
+    window.title ??= _loc( "ED.Document.create", {
       type: documentType,
     } );
 
@@ -145,7 +145,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     const buttons = [
       {
         type:  "button",
-        label: game.i18n.format( "ED.Document.create", {
+        label: _loc( "ED.Document.create", {
           type: this.documentType,
         } ),
         cssClass: "finish",

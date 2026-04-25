@@ -136,7 +136,7 @@ export default class LearnSpellPrompt extends ApplicationEd {
       ),
       {
         target:     { base: this.spell.system.learningDifficulty },
-        chatFlavor: game.i18n.format(
+        chatFlavor: _loc(
           "ED.Dialogs.Legend.LearnSpell.chatFlavorTeacherTest",
           { name: this.actor.name, spell: this.spell.name },
         ),
@@ -168,7 +168,7 @@ export default class LearnSpellPrompt extends ApplicationEd {
       {
         target:     { base: this.spell.system.learningDifficulty },
         step:       { modifiers },
-        chatFlavor: game.i18n.format(
+        chatFlavor: _loc(
           "ED.Dialogs.Legend.LearnSpell.chatFlavorPatterncraft",
           { name: this.actor.name, spell: this.spell.name },
         ),

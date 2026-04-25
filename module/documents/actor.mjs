@@ -575,7 +575,7 @@ export default class ActorEd extends Actor {
     await this.update( updates );
 
     let chatFlavor;
-    chatFlavor = game.i18n.format( !strainOrigin ? "ED.Chat.Flavor.takeDamage" : "ED.Chat.Flavor.takeStrainDamage", {
+    chatFlavor = _loc( !strainOrigin ? "ED.Chat.Flavor.takeDamage" : "ED.Chat.Flavor.takeStrainDamage", {
       ability: strainOrigin?.name,
       actor:   this.name,
       amount:  damageTaken,
@@ -1130,7 +1130,7 @@ export default class ActorEd extends Actor {
     }
 
     const difficultyFinal = { base: difficulty };
-    const chatFlavor = game.i18n.format( "ED.Chat.Flavor.rollEquipment", {
+    const chatFlavor = _loc( "ED.Chat.Flavor.rollEquipment", {
       sourceActor: this.name,
       equipment:   equipment.name,
       step:        arbitraryStep

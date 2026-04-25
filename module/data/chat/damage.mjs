@@ -79,7 +79,7 @@ export default class DamageMessageData extends BaseMessageData {
     for ( let transaction of this.transactions ) {
       const dealtTo = await fromUuid( transaction.dealtTo );
       const dealtToName = dealtTo ? dealtTo.name : _loc( "TODO.Unknown Actor" );
-      const message = game.i18n.format( "ED.Chat.Flavor.actorTookDamage", { dealtTo: dealtToName } );
+      const message = _loc( "ED.Chat.Flavor.actorTookDamage", { dealtTo: dealtToName } );
 
       const transactionDiv = document.createElement( "div" );
       transactionDiv.classList.add( "damage-transaction" );

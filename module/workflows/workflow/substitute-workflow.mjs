@@ -159,7 +159,7 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
         target:      {
           base:      undefined,
         },
-        chatFlavor: game.i18n.format(
+        chatFlavor: _loc(
           "ED.Chat.Flavor.rollSubstitute",
           {
             actor:         this._actor.name,

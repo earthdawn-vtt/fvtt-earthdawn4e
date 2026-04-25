@@ -68,7 +68,7 @@ export default class HalfMagicWorkflow extends Rollable( ActorWorkflow ) {
         target:      {
           base:      undefined,
         },
-        chatFlavor: game.i18n.format(
+        chatFlavor: _loc(
           "ED.Chat.Flavor.rollHalfMagic",
           {
             actor:      this._actor.name,

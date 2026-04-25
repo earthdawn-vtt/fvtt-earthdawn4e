@@ -495,7 +495,7 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
    * @param {string} type - The type of equipment to retrieve (e.g., "armor", "weapon").
    */
   _displayValidationError( level, type ) {
-    if ( level ) ui.notifications[level]( game.i18n.format( this.constructor.ERROR_MESSAGES[type] ) );
+    if ( level ) ui.notifications[level]( _loc( this.constructor.ERROR_MESSAGES[type] ) );
   }
 
   /**

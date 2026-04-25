@@ -269,7 +269,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
         const progressRequest  = await DialogClass.confirm( {
           content: `<p>${ _loc( "ED.Dialogs.versatilityTalentLimit" ) }</p>`,
           window:      {
-            title:       game.i18n.format( "ED.Dialogs.Title.versatilityLimit" ),
+            title:       _loc( "ED.Dialogs.Title.versatilityLimit" ),
           },
         } );
         if ( !progressRequest ) {

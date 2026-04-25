@@ -228,13 +228,13 @@ export default class PromptFactory {
     if ( checkQuickDelete && getSetting( "quickDeleteEmbeddedOnShiftClick" ) ) return true;
 
     const question = _loc( "AreYouSure" );
-    const warning = game.i18n.format( "SIDEBAR.DeleteWarning", { type: name } );
+    const warning = _loc( "SIDEBAR.DeleteWarning", { type: name } );
     const content = `<p><strong>${question}</strong><br>${warning}</p>`;
     return DialogClass.confirm( {
       content,
       window:      {
         icon:  "fa-solid fa-trash",
-        title: game.i18n.format( "DOCUMENT.Delete", { type: name } ),
+        title: _loc( "DOCUMENT.Delete", { type: name } ),
       }
     } );
   }
@@ -546,7 +546,7 @@ class ActorPromptFactory extends PromptFactory {
   async _drawWeaponPrompt() {
     const buttons = await this._getItemButtons( this.document.itemTypes.weapon, "weapon" );
     if ( buttons.length === 0 ) {
-      ui.notifications.info( game.i18n.format( "ED.Notifications.Info.noWeaponAvailable" ) );
+      ui.notifications.info( _loc( "ED.Notifications.Info.noWeaponAvailable" ) );
       return;
     }
     return DialogClass.wait( {
@@ -581,7 +581,7 @@ class ActorPromptFactory extends PromptFactory {
 
     const useWillforce = await DialogClass.confirm( {
       rejectClose: false,
-      content:     game.i18n.format(
+      content:     _loc(
         "ED.Dialogs.doYouWantToUseWillforce",
         {
           contentLinkWillforce: createContentAnchor( willforce ).outerHTML
@@ -662,7 +662,7 @@ class ItemPromptFactory extends PromptFactory {
       uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:  [ "earthdawn4e", "learn-ability-prompt" ],
       window:   {
-        title:       game.i18n.format( "ED.Dialogs.Title.learnAbility", {
+        title:       _loc( "ED.Dialogs.Title.learnAbility", {
           abilityName: this.document.name,
         } ),
         minimizable: false
@@ -710,7 +710,7 @@ class ItemPromptFactory extends PromptFactory {
       uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:  [ "earthdawn4e", "lp-learn-knack-prompt" ],
       window:   {
-        title:       game.i18n.format( "ED.Dialogs.Title.lpLearnKnack", {
+        title:       _loc( "ED.Dialogs.Title.lpLearnKnack", {
           abilityName: this.document.name,
         } ),
         minimizable: false
@@ -750,7 +750,7 @@ class ItemPromptFactory extends PromptFactory {
       uniqueId:    String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:     [ "earthdawn4e", "choose-tier-prompt", "flexcol" ],
       window:      {
-        title:       game.i18n.format( "ED.Dialogs.Title.chooseTier", {
+        title:       _loc( "ED.Dialogs.Title.chooseTier", {
           abilityName: this.document.name,
         } ),
         minimizable: false
@@ -784,7 +784,7 @@ class ItemPromptFactory extends PromptFactory {
       uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:  [ "earthdawn4e", "lp-increase-prompt" ],
       window:   {
-        title:       game.i18n.format( "ED.Dialogs.Title.lpIncrease", {
+        title:       _loc( "ED.Dialogs.Title.lpIncrease", {
           abilityName: this.document.name,
         } ),
         minimizable: false
@@ -828,7 +828,7 @@ class ItemPromptFactory extends PromptFactory {
       uniqueId:    String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:     [ "earthdawn4e", "talent-category-prompt", "flexcol" ],
       window:      {
-        title:       game.i18n.format( "ED.Dialogs.Title.talentCategory", {
+        title:       _loc( "ED.Dialogs.Title.talentCategory", {
           abilityName: this.document.name,
         } ),
         minimizable: false
@@ -850,7 +850,7 @@ class ItemPromptFactory extends PromptFactory {
       uniqueId:    String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:     [ "earthdawn4e", "continue-weaving-spell-prompt" ],
       window:      {
-        title: game.i18n.format( "ED.Dialogs.Title.continueWeavingSpell", {
+        title: _loc( "ED.Dialogs.Title.continueWeavingSpell", {
           spellName: this.document.name
         } ),
         minimizable: false

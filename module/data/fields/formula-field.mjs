@@ -54,7 +54,7 @@ export default class FormulaField extends foundry.data.fields.StringField {
       foundry.utils.setProperty( model, keyPath, roll.evaluateSync().total );
     } catch ( err ) {
       if ( item.isEmbedded ) {
-        const message = game.i18n.format( "ED.Notifications.Error.formulaMalformedError", {
+        const message = _loc( "ED.Notifications.Error.formulaMalformedError", {
           property,
           name: model.name ?? item.name
         } );
@@ -90,7 +90,7 @@ export default class FormulaField extends foundry.data.fields.StringField {
     const newActor = actor ?? item?.parent;
     if ( ( missingReferences.size > 0 ) && newActor && property ) {
       const listFormatter = new Intl.ListFormat( game.i18n.lang, { style: "long", type: "conjunction" } );
-      const message = game.i18n.format( "ED.Notifications.Error.formulaMissingReferenceWarn", {
+      const message = _loc( "ED.Notifications.Error.formulaMissingReferenceWarn", {
         property, name: item?.name ?? newActor.name, references: listFormatter.format( missingReferences )
       } );
       newActor._preparationWarnings.push( { message, link: item?.uuid ?? newActor.uuid, type: "warning" } );

@@ -171,7 +171,7 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
 
     const content =  `
         <p>
-          ${game.i18n.format( "ED.Dialogs.Legend.increaseQuestorPrompt.Do you wanna increase this corresponding questor:" )}
+          ${_loc( "ED.Dialogs.Legend.increaseQuestorPrompt.Do you wanna increase this corresponding questor:" )}
         </p>
         <p>
           ${createContentLink( questorItem.uuid, questorItem.name )}

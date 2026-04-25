@@ -87,7 +87,7 @@ export default class SkillData extends IncreasableAbilityTemplate.mixin(
    */
   get increaseRules() {
     const trainingTime = LEGEND.trainingTime[this.unmodifiedLevel];
-    return game.i18n.format(
+    return _loc(
       "ED.Dialogs.Legend.Rules.skillIncreaseShortRequirements",
       { trainingTime: trainingTime }
     );

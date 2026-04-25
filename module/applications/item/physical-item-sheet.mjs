@@ -106,7 +106,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
     const threadRankTabs = threadRanks.map( levelData => {
       return {
         id:    `level-${ levelData.level }`,
-        label: game.i18n.format( "ED.Tabs.TruePattern.rankLevel", { level: levelData.level } ),
+        label: _loc( "ED.Tabs.TruePattern.rankLevel", { level: levelData.level } ),
       };
     } );
     tabsConfig.tabs.push( ...threadRankTabs );

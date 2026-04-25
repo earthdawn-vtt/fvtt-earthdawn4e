@@ -63,7 +63,7 @@ export default class LpIncreaseTemplate extends SystemDataModel {
    * @type {string}
    */
   get lpSpendingDescription() {
-    return game.i18n.format(
+    return _loc(
       "ED.Actor.LpTracking.Spendings.spendingTransactionDescription",
       {
         previousLevel: this.unmodifiedLevel,

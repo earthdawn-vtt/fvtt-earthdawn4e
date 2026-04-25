@@ -181,7 +181,7 @@ export default class ThreadData extends ItemDataModel.mixin(
   /** @inheritdoc */
   get lpSpendingDescription() {
     return this.unmodifiedLevel <= 0
-      ?  game.i18n.format(
+      ?  _loc(
         "ED.Actor.LpTracking.Spendings.newThread",
         { threadTarget: fromUuidSync( this.wovenToUuid ).name },
       )

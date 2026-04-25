@@ -168,7 +168,7 @@ export default class ItemHistoryWorkflow extends Rollable( ActorWorkflow ) {
   async _processRoll() {
     if ( !this._roll ) return;
 
-    this._roll.options.chatFlavor = game.i18n.format(
+    this._roll.options.chatFlavor = _loc(
       "ED.Chat.Flavor.itemHistory",
       {
         numKeyKnowledgeObtained:  this._numObtainedKnowledge,
