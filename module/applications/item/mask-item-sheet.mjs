@@ -151,9 +151,9 @@ export default class MaskItemSheetEd extends ItemSheetEd {
       const confirmDelete = await DialogEd.confirm( {
         rejectClose: false,
         content:     `<p>${
-          game.i18n.format(
+          _loc(
             "ED.Dialogs.DeletePower.confirmRemove",
-            { type: game.i18n.localize( `ED.Dialogs.DeletePower.${ target.dataset.type }` ) }
+            { type: _loc( `ED.Dialogs.DeletePower.${ target.dataset.type }` ) }
           )
         }</p>`,
       } );

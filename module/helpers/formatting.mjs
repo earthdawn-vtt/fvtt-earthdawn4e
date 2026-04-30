@@ -24,7 +24,7 @@ export function createContentAnchor( document ) {
       uuid:        document.uuid,
       id:          document.id,
       type:        document.type,
-      tooltip:     game.i18n.localize( `DOCUMENT.${ document.documentName }` ),
+      tooltip:     _loc( `DOCUMENT.${ document.documentName }` ),
       tooltipText: document.type
     },
     classes: [ "content-link" ],
@@ -52,7 +52,7 @@ export function linkForUuidSync( uuid ) {
   const doc = fromUuidSync( uuid, { strict: false } );
   const name = doc?.name ?? "";
   const packId = parsedUuid?.collection?.metadata?.id ?? "";
-  const tooltipType = game.i18n.localize(
+  const tooltipType = _loc(
     CONFIG[parsedUuid?.type]?.typeLabels[doc?.type]
   );
 

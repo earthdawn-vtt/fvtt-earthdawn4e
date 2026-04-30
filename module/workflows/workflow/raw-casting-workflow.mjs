@@ -102,7 +102,7 @@ export default class RawCastingWorkflow extends BaseCastingWorkflow {
         } ),
         "ed-button-select-astral-space-pollution",
         {
-          title: game.i18n.localize( "ED.Dialogs.Title.selectAstralSpacePollution" ),
+          title: _loc( "ED.Dialogs.Title.selectAstralSpacePollution" ),
         },
       );
     }

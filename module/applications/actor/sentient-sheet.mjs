@@ -185,7 +185,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     const matrix = await fromUuid( firstMatrixUuid );
 
     if ( !matrix.system?.matrixSpellId ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cantCastNoSpellInMatrix" ) );
+      ui.notifications.warn( _loc( "ED.Notifications.Warn.cantCastNoSpellInMatrix" ) );
       return;
     }
 

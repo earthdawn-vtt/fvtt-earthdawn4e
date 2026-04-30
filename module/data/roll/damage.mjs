@@ -458,7 +458,7 @@ export default class DamageRollOptions extends EdRollOptions {
       }
 
       const extraSuccesses = data.attackRoll?.numExtraSuccesses || 0;
-      modifiers[game.i18n.localize( "ED.Rolls.Modifiers.bonusDamageFromExtraSuccesses" )] = extraSuccesses * COMBAT.bonusDamagePerExtraSuccess;
+      modifiers[_loc( "ED.Rolls.Modifiers.bonusDamageFromExtraSuccesses" )] = extraSuccesses * COMBAT.bonusDamagePerExtraSuccess;
 
       return modifiers;
     }

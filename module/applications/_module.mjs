@@ -30,10 +30,10 @@ export function buildSelectOptionsFromModel( fields ) {
       options.push( ...buildSelectOptionsFromModel( field.fields ) );
     } else {
       const groupName = field.parent?.label || field.parent?.name;
-      const group = groupName === "system" ? "" : game.i18n.localize( groupName ) || "";
+      const group = groupName === "system" ? "" : _loc( groupName ) || "";
       const option = {
         value:    field.fieldPath,
-        label:    game.i18n.localize( field.label ),
+        label:    _loc( field.label ),
         group:    group,
         disabled: false,
         selected: false,

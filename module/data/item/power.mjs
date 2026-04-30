@@ -215,7 +215,7 @@ export default class PowerData extends ActionTemplate.mixin(
     // if power has a damage step, rollType must be "attack" or "damage"
     if ( Number.isNumeric( newDamageStep ) && !isAttackOrDamage( newRollType ) ) {
       ui.notifications.info(
-        game.i18n.localize( "ED.Notifications.Info.damageStepRequiresAttackOrDamage" )
+        _loc( "ED.Notifications.Info.damageStepRequiresAttackOrDamage" )
       );
       changes.system.rollType = "attack";
     }

@@ -76,7 +76,7 @@ export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
    */
   async _checkKnockdownStatus() {
     if ( this._actor.statuses.has( "knockedDown" ) ) {
-      ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.alreadyKnockedDown" ) );
+      ui.notifications.info( _loc( "ED.Notifications.Info.alreadyKnockedDown" ) );
       this.cancel();
     }
   }

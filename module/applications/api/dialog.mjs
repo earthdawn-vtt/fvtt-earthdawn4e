@@ -30,7 +30,7 @@ export default class DialogEd extends foundry.applications.api.DialogV2 {
       uniqueId:    String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:     [ "ed-button-select" ],
       window:      {
-        title:       game.i18n.localize( "ED.Dialogs.Title.buttonSelect" ),
+        title:       _loc( "ED.Dialogs.Title.buttonSelect" ),
         minimizable: false,
       },
       modal:       false,

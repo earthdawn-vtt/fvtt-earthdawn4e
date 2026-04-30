@@ -514,7 +514,7 @@ export default class EdRollOptions extends SparseDataModel {
    * @returns {string} The formatted chat flavor text for this roll.
    */
   _getChatFlavor() {
-    return game.i18n.format(
+    return _loc(
       `ED.Chat.Flavor.${lowerCaseFirstLetter( this.constructor.name )}`,
       this._getChatFlavorData( this.source ),
     );
@@ -571,7 +571,7 @@ export default class EdRollOptions extends SparseDataModel {
 
     const wounds = actor.system.characteristics.health.wounds;
     if ( this.constructor.ROLL_TYPE !== "recovery" && wounds > 0 ) {
-      stepData.modifiers[game.i18n.localize( "ED.Data.Actor.Sentient.FIELDS.characteristics.health.wounds.label" )] = -wounds;
+      stepData.modifiers[_loc( "ED.Data.Actor.Sentient.FIELDS.characteristics.health.wounds.label" )] = -wounds;
     }
 
     this.constructor.GLOBAL_MODIFIERS.forEach( modifier => {

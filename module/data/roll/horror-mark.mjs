@@ -96,7 +96,7 @@ export default class HorrorMarkRollOptions extends EdRollOptions {
   _getChatFlavorData() {
     const horror = this.horrorUuid
       ? createContentAnchor( fromUuidSync( this.horrorUuid ) ).outerHTML
-      : game.i18n.localize( "ED.Chat.Flavor.aHorror" );
+      : _loc( "ED.Chat.Flavor.aHorror" );
     return {
       caster:   createContentAnchor( fromUuidSync( this.casterUuid ) ).outerHTML,
       horror,

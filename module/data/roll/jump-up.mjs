@@ -83,7 +83,7 @@ export default class JumpUpRollOptions extends EdRollOptions {
     const modifiers = {};
     if ( actor.statuses.has( "knockedDown" ) ) {
       modifiers[
-        game.i18n.localize( "ED.Rolls.Modifiers.jumpUpNoKnockdownPenalty" )
+        _loc( "ED.Rolls.Modifiers.jumpUpNoKnockdownPenalty" )
       ] = -this.#getKnockedDownModifier();
     }
     return {

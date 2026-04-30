@@ -71,7 +71,7 @@ export default class EdIdField extends foundry.data.fields.StringField {
   _toInput( config ) {
     config.choices ??= game.ed4e.edIdsByType[ this.documentSubtype || "all" ];
     config.dataset ??= {};
-    config.dataset.tooltip ??= game.i18n.localize( "ED.Data.Fields.Tooltips.edid" );
+    config.dataset.tooltip ??= _loc( "ED.Data.Fields.Tooltips.edid" );
 
     const listId = `${config.id ?? ""}-edid.list`;
     const textInput = foundry.applications.fields.createTextInput( config );

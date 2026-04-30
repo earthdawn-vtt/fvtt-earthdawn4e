@@ -62,7 +62,7 @@ export default class WeaveThreadWorkflow extends Rollable( ActorWorkflow ) {
     this._newThreadRank = this._thread ? this._thread.system.level + 1 : 1;
 
     this._rollToMessage = true;
-    this._rollPromptTitle = game.i18n.localize( "ED.Dialogs.RollPrompt.Title.weaveThread" );
+    this._rollPromptTitle = _loc( "ED.Dialogs.RollPrompt.Title.weaveThread" );
 
     this._steps.push(
       this.#initialize.bind( this ),
@@ -100,7 +100,7 @@ export default class WeaveThreadWorkflow extends Rollable( ActorWorkflow ) {
       if ( !this._threadWeavingAbility ) {
         throw new WorkflowInterruptError(
           this,
-          game.i18n.localize( "ED.Notifications.Error.missingThreadWeavingAbilityConfirm" ),
+          _loc( "ED.Notifications.Error.missingThreadWeavingAbilityConfirm" ),
           "Weaving actor does not have a thread weaving ability.",
         );
       }
@@ -120,9 +120,9 @@ export default class WeaveThreadWorkflow extends Rollable( ActorWorkflow ) {
 
     if ( !this._thread && !this._target.system.truePattern.canHaveMoreThreads ) {
       const continueWorkflow = await DialogEd.confirm( {
-        content: game.i18n.localize( "ED.Dialogs.cannotWeaveMoreThreadsConfirm" ),
+        content: _loc( "ED.Dialogs.cannotWeaveMoreThreadsConfirm" ),
         window:  {
-          title:   game.i18n.localize( "ED.Dialogs.Title.cannotWeaveMoreThreadsConfirm" ),
+          title:   _loc( "ED.Dialogs.Title.cannotWeaveMoreThreadsConfirm" ),
         },
       } );
       if ( continueWorkflow === false ) this.cancel();
@@ -133,9 +133,9 @@ export default class WeaveThreadWorkflow extends Rollable( ActorWorkflow ) {
     const threadWeavingAbilityRank = this._threadWeavingAbility?.system.rankFinal ?? 0;
     if ( this._newThreadRank > threadWeavingAbilityRank ) {
       const continueWorkflow = await DialogEd.confirm( {
-        content: game.i18n.localize( "ED.Dialogs.threadRankExceedsWeavingAbilityConfirm" ),
+        content: _loc( "ED.Dialogs.threadRankExceedsWeavingAbilityConfirm" ),
         window:  {
-          title:   game.i18n.localize( "ED.Dialogs.Title.threadRankExceedsWeavingAbilityConfirm" ),
+          title:   _loc( "ED.Dialogs.Title.threadRankExceedsWeavingAbilityConfirm" ),
         },
       } );
       if ( continueWorkflow !== true ) this.cancel();
@@ -148,9 +148,9 @@ export default class WeaveThreadWorkflow extends Rollable( ActorWorkflow ) {
 
     if ( !this._target.system.truePattern.threadItemLevels[this._newThreadRank]?.keyKnowledge.isKnown ) {
       const continueWorkflow = await DialogEd.confirm( {
-        content: game.i18n.localize( "ED.Dialogs.unknownPatternKeyKnowledgeConfirm" ),
+        content: _loc( "ED.Dialogs.unknownPatternKeyKnowledgeConfirm" ),
         window:  {
-          title:   game.i18n.localize( "ED.Dialogs.Title.unknownPatternKeyKnowledgeConfirm" ),
+          title:   _loc( "ED.Dialogs.Title.unknownPatternKeyKnowledgeConfirm" ),
         },
       } );
       if ( continueWorkflow !== true ) this.cancel();
@@ -171,7 +171,7 @@ export default class WeaveThreadWorkflow extends Rollable( ActorWorkflow ) {
   async #createThread() {
     if ( this._thread ) return;
     const createdItems = await this._actor.createEmbeddedDocuments( "Item", [ {
-      name:   game.i18n.format(
+      name:   _loc(
         "ED.Item.Thread.defaultName",
         {
           fromActor:    this._actor.name,

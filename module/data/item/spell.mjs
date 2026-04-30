@@ -273,7 +273,7 @@ export default class SpellData extends ItemDataModel.mixin(
       if ( !elemSubtype ) return undefined;
 
       if ( !Object.keys( MAGIC.elementSubtypes[ elemType ] ).includes( elemSubtype ) )
-        throw new Error( game.i18n.format( "ED.Notifications.Error.invalidElementSubtype" ) );
+        throw new Error( _loc( "ED.Notifications.Error.invalidElementSubtype" ) );
     }
 
     // continue validation
@@ -461,7 +461,7 @@ export default class SpellData extends ItemDataModel.mixin(
       "spendings",
       {
         amount:      learn === "spendLp" ? item.system.requiredLpToLearn : 0,
-        description: game.i18n.format(
+        description: _loc(
           "ED.Actor.LpTracking.Spendings.learnSpell", {
             name: item.name,
           }
@@ -474,7 +474,7 @@ export default class SpellData extends ItemDataModel.mixin(
 
     if ( foundry.utils.isEmpty( updatedActor ) )
       ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.addLpTransactionProblems" )
+        _loc( "ED.Notifications.Warn.addLpTransactionProblems" )
       );
 
     return learnedItem;
@@ -506,7 +506,7 @@ export default class SpellData extends ItemDataModel.mixin(
    */
   async cast( spellcastingAbility, options = {} ) {
     if ( !this.isWeavingComplete ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.spellNotReadyToCast" ) );
+      ui.notifications.warn( _loc( "ED.Notifications.Warn.spellNotReadyToCast" ) );
       return;
     }
 
@@ -583,7 +583,7 @@ export default class SpellData extends ItemDataModel.mixin(
     const castingMethod = this._getThreadWeavingCastingMethod( { grimoire, matrix } );
 
     if ( matrix && !matrix?.system?.canWeave() ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.matrixBrokenCannotWeave" ) );
+      ui.notifications.warn( _loc( "ED.Notifications.Warn.matrixBrokenCannotWeave" ) );
       return;
     }
 
@@ -592,7 +592,7 @@ export default class SpellData extends ItemDataModel.mixin(
     const system = await this._ensureWeavingInitialized( caster, matrix );
 
     if ( system.missingThreads <= 0 ) {
-      ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.noWeavingNecessary" ) );
+      ui.notifications.info( _loc( "ED.Notifications.Info.noWeavingNecessary" ) );
       return;
     }
 
@@ -908,11 +908,11 @@ export default class SpellData extends ItemDataModel.mixin(
       : undefined;
 
     const modifiers = {};
-    const stepModifierLabel = game.i18n.localize(
+    const stepModifierLabel = _loc(
       `ED.Data.Item.Spell.FIELDS.effect.details.${ this.effect.type }.stepModifier.label`
     );
     const disciplineName = MAGIC.spellcastingTypes[ this.spellcastingType ];
-    const circleLabel = game.i18n.format(
+    const circleLabel = _loc(
       "ED.Rolls.Modifiers.spellEffectOrDamageStepCircle",
       { discipline: disciplineName }
     );

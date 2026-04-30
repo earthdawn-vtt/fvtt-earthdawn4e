@@ -63,7 +63,7 @@ export default class LpIncreaseTemplate extends SystemDataModel {
    * @type {string}
    */
   get lpSpendingDescription() {
-    return game.i18n.format(
+    return _loc(
       "ED.Actor.LpTracking.Spendings.spendingTransactionDescription",
       {
         previousLevel: this.unmodifiedLevel,
@@ -133,7 +133,7 @@ export default class LpIncreaseTemplate extends SystemDataModel {
 
     if ( foundry.utils.isEmpty( updatedItem ) ) {
       ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.abilityIncreaseProblems" )
+        _loc( "ED.Notifications.Warn.abilityIncreaseProblems" )
       );
       return;
     }

@@ -120,7 +120,7 @@ export default class RollableTemplate extends SystemDataModel {
       case "threadWeaving": rollFunc = this.rollAbility.bind( this ); break;
     }
     if ( !rollFunc ) {
-      ui.notifications.error( game.i18n.localize( "ED.Notifications.Error.invalidRollType" ) );
+      ui.notifications.error( _loc( "ED.Notifications.Error.invalidRollType" ) );
     }
     return rollFunc();
   }

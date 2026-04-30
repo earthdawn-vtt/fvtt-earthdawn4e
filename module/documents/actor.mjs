@@ -575,7 +575,7 @@ export default class ActorEd extends Actor {
     await this.update( updates );
 
     let chatFlavor;
-    chatFlavor = game.i18n.format( !strainOrigin ? "ED.Chat.Flavor.takeDamage" : "ED.Chat.Flavor.takeStrainDamage", {
+    chatFlavor = _loc( !strainOrigin ? "ED.Chat.Flavor.takeDamage" : "ED.Chat.Flavor.takeStrainDamage", {
       ability: strainOrigin?.name,
       actor:   this.name,
       amount:  damageTaken,
@@ -678,10 +678,10 @@ export default class ActorEd extends Actor {
       weapon => requiredWeaponTypes.has( weapon.system.weaponType )
     );
     if ( !ownedWeaponByStatus ) {
-      ui.notifications.error( game.i18n.localize( "ED.Notifications.Warn.noWeaponToAttackWith" ) );
+      ui.notifications.error( _loc( "ED.Notifications.Warn.noWeaponToAttackWith" ) );
       return;
     }
-    ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.switchWeapon" ) );
+    ui.notifications.info( _loc( "ED.Notifications.Info.switchWeapon" ) );
     if ( equippedWeapon ) await this._updateItemStates( equippedWeapon, "carried" );
     else {
       for ( const weapon of this.equippedWeapons ) {
@@ -769,7 +769,7 @@ export default class ActorEd extends Actor {
         if ( nextStatus === "equipped" ) {
           // check if namegiver item allows only living armor/shields
           if ( this.namegiver?.system.livingArmorOnly && itemToUpdate.system.isLiving === false && enforceLivingArmor === true ) {
-            ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.livingArmorOnly" ) );
+            ui.notifications.warn( _loc( "ED.Notifications.Warn.livingArmorOnly" ) );
             break;
           }
           if ( itemToUpdate.system.piecemeal?.isPiecemeal ) {
@@ -792,7 +792,7 @@ export default class ActorEd extends Actor {
                   sum( equippedArmor.map( armor => armor.system.piecemeal.size ) )
                   + itemToUpdate.system.piecemeal.size > 5
                 ) {
-                  ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.piecemealArmorSizeExceeded" ) );
+                  ui.notifications.warn( _loc( "ED.Notifications.Warn.piecemealArmorSizeExceeded" ) );
                   break;
                 }
               }
@@ -834,7 +834,7 @@ export default class ActorEd extends Actor {
         if ( nextStatus === "equipped" ) {
           // check if namegiver item allows only living armor/shields
           if ( this.namegiver?.system.livingArmorOnly && itemToUpdate.system.isLiving === false && enforceLivingArmor === true  ) {
-            ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.livingArmorOnly" ) );
+            ui.notifications.warn( _loc( "ED.Notifications.Warn.livingArmorOnly" ) );
             break;
           }
           // Unequip other shields
@@ -1017,7 +1017,7 @@ export default class ActorEd extends Actor {
 
     if ( availableGrimoires.length === 0 ) {
       ui.notifications.error(
-        game.i18n.localize( "ED.Notifications.Error.noGrimoiresAvailableToAttune" ),
+        _loc( "ED.Notifications.Error.noGrimoiresAvailableToAttune" ),
       );
       return null;
 
@@ -1028,7 +1028,7 @@ export default class ActorEd extends Actor {
         availableGrimoires,
         "ed-button-select-grimoire",
         {
-          title: game.i18n.localize( "ED.Dialogs.Title.selectGrimoireToAttune" ),
+          title: _loc( "ED.Dialogs.Title.selectGrimoireToAttune" ),
         },
       ),
     );
@@ -1130,7 +1130,7 @@ export default class ActorEd extends Actor {
     }
 
     const difficultyFinal = { base: difficulty };
-    const chatFlavor = game.i18n.format( "ED.Chat.Flavor.rollEquipment", {
+    const chatFlavor = _loc( "ED.Chat.Flavor.rollEquipment", {
       sourceActor: this.name,
       equipment:   equipment.name,
       step:        arbitraryStep

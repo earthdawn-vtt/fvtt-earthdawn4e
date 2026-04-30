@@ -72,7 +72,7 @@ function triggerCharGen( argString ) {
  * @returns {boolean} Always returns false to prevent further processing.
  */
 function triggerCoinAward( argString ) {
-  ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.notImplementedYet" ) );
+  ui.notifications.warn( _loc( "ED.Notifications.Warn.notImplementedYet" ) );
   return false;
 }
 
@@ -84,7 +84,7 @@ function triggerCoinAward( argString ) {
  * @returns {boolean} Always returns false to prevent further processing.
  */
 function triggerCrCalc( argString ) {
-  ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.notImplementedYet" ) );
+  ui.notifications.warn( _loc( "ED.Notifications.Warn.notImplementedYet" ) );
   return false;
 }
 
@@ -98,15 +98,15 @@ function triggerCrCalc( argString ) {
 function triggerHelp( argString ) {
   const helpText
     = CONFIG.ED4E.chatCommands[argString.toLowerCase()]
-    ?? `${ game.i18n.localize( "ED.Chat.Commands.helpHeader" ) }<br>
-    /char - ${ game.i18n.localize( "ED.Chat.Commands.char" ) }<br>
-    /coin - ${ game.i18n.localize( "ED.Chat.Commands.coin" ) }<br>
-    /group - ${ game.i18n.localize( "ED.Chat.Commands.group" ) }<br>
-    /help - ${ game.i18n.localize( "ED.Chat.Commands.help" ) }<br>
-    /lp - ${ game.i18n.localize( "ED.Chat.Commands.lp" ) }<br>
-    /r - ${ game.i18n.localize( "ED.Chat.Commands.r" ) }<br>
-    /roll - ${ game.i18n.localize( "ED.Chat.Commands.roll" ) }<br>
-    /s - ${ game.i18n.localize( "ED.Chat.Commands.s" ) }<br>
+    ?? `${ _loc( "ED.Chat.Commands.helpHeader" ) }<br>
+    /char - ${ _loc( "ED.Chat.Commands.char" ) }<br>
+    /coin - ${ _loc( "ED.Chat.Commands.coin" ) }<br>
+    /group - ${ _loc( "ED.Chat.Commands.group" ) }<br>
+    /help - ${ _loc( "ED.Chat.Commands.help" ) }<br>
+    /lp - ${ _loc( "ED.Chat.Commands.lp" ) }<br>
+    /r - ${ _loc( "ED.Chat.Commands.r" ) }<br>
+    /roll - ${ _loc( "ED.Chat.Commands.roll" ) }<br>
+    /s - ${ _loc( "ED.Chat.Commands.s" ) }<br>
     `;
 
   ChatMessage.create( {
@@ -163,7 +163,7 @@ function triggerRollStep( argString ) {
  */
 function triggerRollDice( argString ) {
   if ( !argString.trim() ) {
-    ui.notifications.warn( game.i18n.localize( "ED.Chat.Flavor.provideDiceFormula" ) );
+    ui.notifications.warn( _loc( "ED.Chat.Flavor.provideDiceFormula" ) );
     return false;
   }
 
@@ -171,10 +171,10 @@ function triggerRollDice( argString ) {
     // Create a standard Foundry roll with the dice formula
     const roll = new Roll( argString.trim() );
     roll.toMessage( {
-      flavor: game.i18n.localize( "ED.Chat.Flavor.standardDiceRoll" )
+      flavor: _loc( "ED.Chat.Flavor.standardDiceRoll" )
     } );
   } catch ( error ) {
-    ui.notifications.error( `${ game.i18n.localize( "ED.Chat.Flavor.invalidDiceFormula" ) }: ${ argString }` );
+    ui.notifications.error( `${ _loc( "ED.Chat.Flavor.invalidDiceFormula" ) }: ${ argString }` );
     console.error( "Dice roll error:", error );
   }
   

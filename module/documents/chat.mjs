@@ -19,7 +19,7 @@ export default class ChatMessageEd extends ChatMessage {
     }
     else {
       ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.couldNotScrollToSourceMessage" )
+        _loc( "ED.Notifications.Warn.couldNotScrollToSourceMessage" )
       );
     }
   }

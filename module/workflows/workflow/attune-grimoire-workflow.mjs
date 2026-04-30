@@ -38,7 +38,7 @@ export default class AttuneGrimoireWorkflow extends Rollable( ActorWorkflow ) {
   constructor( attuningActor, options ) {
     super( attuningActor, options );
 
-    this._rollPromptTitle = game.i18n.localize( "ED.Dialogs.RollPrompt.Title.attuneGrimoire" );
+    this._rollPromptTitle = _loc( "ED.Dialogs.RollPrompt.Title.attuneGrimoire" );
 
     this._grimoire = options.grimoire || null;
     this._spell = options.spell || null;
@@ -84,7 +84,7 @@ export default class AttuneGrimoireWorkflow extends Rollable( ActorWorkflow ) {
     if ( availableSpells.length === 0 ) {
       throw new WorkflowInterruptError(
         this,
-        game.i18n.localize( "ED.Notifications.Error.noSpellsAvailableToAttune" ),
+        _loc( "ED.Notifications.Error.noSpellsAvailableToAttune" ),
       );
     }
 
@@ -93,7 +93,7 @@ export default class AttuneGrimoireWorkflow extends Rollable( ActorWorkflow ) {
         availableSpells,
         "ed-button-select-spell",
         {
-          title: game.i18n.localize( "ED.Dialogs.Title.selectSpellToAttuneToGrimoire" ),
+          title: _loc( "ED.Dialogs.Title.selectSpellToAttuneToGrimoire" ),
         },
       )
     );
@@ -105,7 +105,7 @@ export default class AttuneGrimoireWorkflow extends Rollable( ActorWorkflow ) {
 
     if ( spell.uuid === this._grimoire.system.grimoire.attunedSpell ) {
       ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.spellAlreadyAttunedInGrimoire" ),
+        _loc( "ED.Notifications.Warn.spellAlreadyAttunedInGrimoire" ),
       );
       this.cancel();
       return;
@@ -123,7 +123,7 @@ export default class AttuneGrimoireWorkflow extends Rollable( ActorWorkflow ) {
     if ( !this._attuneAbility ) {
       throw new WorkflowInterruptError(
         this,
-        game.i18n.localize( "ED.Notifications.Error.grimoireAttuneAbilityNotFound" ),
+        _loc( "ED.Notifications.Error.grimoireAttuneAbilityNotFound" ),
       );
     }
   }

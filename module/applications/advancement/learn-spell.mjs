@@ -136,7 +136,7 @@ export default class LearnSpellPrompt extends ApplicationEd {
       ),
       {
         target:     { base: this.spell.system.learningDifficulty },
-        chatFlavor: game.i18n.format(
+        chatFlavor: _loc(
           "ED.Dialogs.Legend.LearnSpell.chatFlavorTeacherTest",
           { name: this.actor.name, spell: this.spell.name },
         ),
@@ -158,7 +158,7 @@ export default class LearnSpellPrompt extends ApplicationEd {
    */
   static async _patterncraftTest( _ ) {
     const modifiers = {};
-    if ( this.dataModel.teacherTestSuccessful ) modifiers[ game.i18n.localize( "ED.Dialogs.Legend.LearnSpell.teacherBonusModifier" ) ] = this.dataModel.teacherRank;
+    if ( this.dataModel.teacherTestSuccessful ) modifiers[ _loc( "ED.Dialogs.Legend.LearnSpell.teacherBonusModifier" ) ] = this.dataModel.teacherRank;
 
     const roll = await this.actor.rollAbility(
       this.actor.getSingleItemByEdid(
@@ -168,7 +168,7 @@ export default class LearnSpellPrompt extends ApplicationEd {
       {
         target:     { base: this.spell.system.learningDifficulty },
         step:       { modifiers },
-        chatFlavor: game.i18n.format(
+        chatFlavor: _loc(
           "ED.Dialogs.Legend.LearnSpell.chatFlavorPatterncraft",
           { name: this.actor.name, spell: this.spell.name },
         ),

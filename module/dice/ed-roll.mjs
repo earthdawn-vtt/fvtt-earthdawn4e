@@ -38,7 +38,7 @@ export default class EdRoll extends Roll {
 
       return formula
         ? formula
-        : `(${getDice( edRollOptions.step.total )})[${game.i18n.localize( "ED.Rolls.step" )} ${
+        : `(${getDice( edRollOptions.step.total )})[${_loc( "ED.Rolls.step" )} ${
           edRollOptions.step.total
         }]`;
     };
@@ -228,7 +228,7 @@ export default class EdRoll extends Roll {
       for ( let i = 1; i <= pointsUsed; i++ ) {
         diceTerm = getDice( this.options[type].step );
         newTerms = Roll.parse(
-          `(${diceTerm})[${game.i18n.localize( `ED.Rolls.${type}` )} ${i}]`,
+          `(${diceTerm})[${_loc( `ED.Rolls.${type}` )} ${i}]`,
           {}
         );
         this.terms.push( new foundry.dice.terms.OperatorTerm( {operator: "+"} ), ...newTerms );
@@ -307,7 +307,7 @@ export default class EdRoll extends Roll {
   }
 
   _getSuccessesTooltip() {
-    let tooltip = [ game.i18n.format(
+    let tooltip = [ _loc(
       "ED.Rolls.successesAchieved",
       {
         numSuccesses:      this.numSuccesses ?? 0,
@@ -318,25 +318,25 @@ export default class EdRoll extends Roll {
 
     const numBasicSuccesses = this.isBasicSuccess ? 1 : 0;
     if ( numBasicSuccesses < 1 && this.numGuaranteedSuccesses > 0 ) {
-      tooltip.push( `<li>${ game.i18n.format(
+      tooltip.push( `<li>${ _loc(
         "ED.Rolls.numBasicSuccesses",
         { numBasicSuccesses, },
       ) }</li>` );
     }
     if ( this.numGuaranteedSuccesses > 0 ) {
-      tooltip.push( `<li>${ game.i18n.format(
+      tooltip.push( `<li>${ _loc(
         "ED.Rolls.numGuaranteedSuccesses",
         { numGuaranteedSuccesses: this.numGuaranteedSuccesses, },
       ) }</li>` );
     }
     if ( this.numBasicExtraSuccesses > 0 ) {
-      tooltip.push( `<li>${ game.i18n.format(
+      tooltip.push( `<li>${ _loc(
         "ED.Rolls.numBasicExtraSuccesses",
         { numBasicExtraSuccesses: this.numBasicExtraSuccesses, },
       ) }</li>` );
     }
     if ( this.numAdditionalExtraSuccesses > 0 ) {
-      tooltip.push( `<li>${ game.i18n.format(
+      tooltip.push( `<li>${ _loc(
         "ED.Rolls.numAdditionalExtraSuccesses",
         { numAdditionalExtraSuccesses: this.numAdditionalExtraSuccesses, },
       ) }</li>` );
@@ -448,14 +448,14 @@ export default class EdRoll extends Roll {
     if ( this.isDummy ) return "---";
 
     const formulaParts = [
-      game.i18n.format(
+      _loc(
         "ED.Rolls.formulaStep", {
           step: this.options.step.total
         }
       ),
     ];
     if ( this.options.karma?.pointsUsed > 0 ) formulaParts.push(
-      game.i18n.format(
+      _loc(
         "ED.Rolls.formulaKarma",
         {
           step:   this.options.karma.step,
@@ -464,7 +464,7 @@ export default class EdRoll extends Roll {
       )
     );
     if ( this.options.devotion?.pointsUsed > 0 ) formulaParts.push(
-      game.i18n.format(
+      _loc(
         "ED.Rolls.formulaDevotion",
         {
           step:   this.options.devotion.step,
@@ -476,7 +476,7 @@ export default class EdRoll extends Roll {
     formulaParts.push( ...Object.entries(
       this.options.extraDice
     ).map(
-      ( [ label, step ] ) => game.i18n.format(
+      ( [ label, step ] ) => _loc(
         "ED.Rolls.formulaExtraStep",
         {
           label,

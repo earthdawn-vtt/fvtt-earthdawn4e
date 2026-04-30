@@ -96,7 +96,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
    * @inheritDoc
    */
   get increaseRules() {
-    return game.i18n.localize( "ED.Dialogs.Legend.Rules.disciplineIncreaseShortRequirements" );
+    return _loc( "ED.Dialogs.Legend.Rules.disciplineIncreaseShortRequirements" );
   }
 
   /** @inheritDoc */
@@ -126,7 +126,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
 
   /** @inheritDoc */
   get learnRules() {
-    return game.i18n.localize( "ED.Dialogs.Legend.Rules.disciplineLearnShortRequirements" );
+    return _loc( "ED.Dialogs.Legend.Rules.disciplineLearnShortRequirements" );
   }
 
   /** @inheritDoc */
@@ -149,7 +149,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
     const disciplineTalents = this.getTalentsByCategory( "discipline" );
     const unfulfilledTalents = disciplineTalents.filter( talent => talent.system.level < nextLevel );
     const fulfilled = unfulfilledTalents.length === 0;
-    const requirementValue = game.i18n.format(
+    const requirementValue = _loc(
       `ED.Dialogs.Legend.Validation.${
         fulfilled
           ? "talentsRequirementFulfilled"
@@ -198,7 +198,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
     return [
       {
         name:      "ED.Dialogs.Legend.Validation.hasTalentFromCurrentCircle",
-        value:     game.i18n.format(
+        value:     _loc(
           hasTalentFromCurrentCircle
             ? "ED.Dialogs.Legend.Validation.talentFromCurrentCircleOnNewLevel"
             : "ED.Dialogs.Legend.Validation.noTalentFromCurrentCircleOnNewLevel",
@@ -208,7 +208,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
       },
       {
         name:      "ED.Dialogs.Legend.Validation.hasTalentsOnMinRank",
-        value:     game.i18n.format(
+        value:     _loc(
           hasEnoughTalents
             ? "ED.Dialogs.Legend.Validation.enoughTalentsOnMinRank"
             : "ED.Dialogs.Legend.Validation.notEnoughTalentsOnMinRank",
@@ -252,7 +252,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
     return [
       {
         name:  "ED.Dialogs.Legend.Validation.hasRequiredNoviceTalents",
-        value: game.i18n.format(
+        value: _loc(
           hasRequiredNoviceTalents
             ? "ED.Dialogs.Legend.Validation.enoughTalentsOfTier"
             : "ED.Dialogs.Legend.Validation.notEnoughTalentsOfTier",
@@ -262,7 +262,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
       },
       {
         name:  "ED.Dialogs.Legend.Validation.hasRequiredJourneymanTalents",
-        value: game.i18n.format(
+        value: _loc(
           hasRequiredJourneymanTalents
             ? "ED.Dialogs.Legend.Validation.enoughTalentsOfTier"
             : "ED.Dialogs.Legend.Validation.notEnoughTalentsOfTier",
@@ -272,7 +272,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
       },
       {
         name:  "ED.Dialogs.Legend.Validation.hasRequiredWardenTalents",
-        value: game.i18n.format(
+        value: _loc(
           hasRequiredWardenTalents
             ? "ED.Dialogs.Legend.Validation.enoughTalentsOfTier"
             : "ED.Dialogs.Legend.Validation.notEnoughTalentsOfTier",
@@ -282,7 +282,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
       },
       {
         name:  "ED.Dialogs.Legend.Validation.hasRequiredMasterTalents",
-        value: game.i18n.format(
+        value: _loc(
           hasRequiredMasterTalents
             ? "ED.Dialogs.Legend.Validation.enoughTalentsOfTier"
             : "ED.Dialogs.Legend.Validation.notEnoughTalentsOfTier",
@@ -292,7 +292,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
       },
       {
         name:  "ED.Dialogs.Legend.Validation.hasTalentFromCurrentCircle",
-        value: game.i18n.format(
+        value: _loc(
           hasTalentFromCurrentCircle
             ? "ED.Dialogs.Legend.Validation.talentFromCurrentCircleOnNewLevel"
             : "ED.Dialogs.Legend.Validation.noTalentFromCurrentCircleOnNewLevel",
@@ -328,7 +328,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
   /** @inheritDoc */
   static async learn( actor, item, createData = {} ) {
     if ( isEmpty( actor.disciplines ) && isEmpty( actor.itemTypes.questor ) ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.firstClassViaCharGen" ) );
+      ui.notifications.warn( _loc( "ED.Notifications.Warn.firstClassViaCharGen" ) );
     }
 
     const disciplineCreateData = foundry.utils.mergeObject(

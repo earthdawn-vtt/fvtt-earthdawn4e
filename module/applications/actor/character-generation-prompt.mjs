@@ -495,7 +495,7 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
    * @param {string} type - The type of equipment to retrieve (e.g., "armor", "weapon").
    */
   _displayValidationError( level, type ) {
-    if ( level ) ui.notifications[level]( game.i18n.format( this.constructor.ERROR_MESSAGES[type] ) );
+    if ( level ) ui.notifications[level]( _loc( this.constructor.ERROR_MESSAGES[type] ) );
   }
 
   /**
@@ -523,13 +523,13 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
    */
   async _getFinishButtonTooltip() {
     const invalidCategoryKeys = await this._getInvalidCategoryKeys();
-    if ( !invalidCategoryKeys.length ) return `<p>${ game.i18n.localize( "ED.Dialogs.CharGen.ToolTips.finish" ) }</p>`;
+    if ( !invalidCategoryKeys.length ) return `<p>${ _loc( "ED.Dialogs.CharGen.ToolTips.finish" ) }</p>`;
 
     return invalidCategoryKeys.map( categoryKey => {
       return `<h6>${
-        game.i18n.localize( "ED.Dialogs.CharGen.Validation.Categories." + categoryKey )
+        _loc( "ED.Dialogs.CharGen.Validation.Categories." + categoryKey )
       }</h6><div>${
-        game.i18n.localize( this.constructor.ERROR_MESSAGES[
+        _loc( this.constructor.ERROR_MESSAGES[
           this.constructor.VALIDATION_CATEGORIES[categoryKey].errorKey
         ] )
       }</div>`;
@@ -556,8 +556,8 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     context.schema = this.charGenData.schema;
 
     // Rules
-    context.charGenRules = game.i18n.localize( "ED.Dialogs.CharGen.charGenRules" );
-    context.chooseEquipmentRules = game.i18n.localize( "ED.Dialogs.CharGen.chooseEquipmentRules" );
+    context.charGenRules = _loc( "ED.Dialogs.CharGen.charGenRules" );
+    context.chooseEquipmentRules = _loc( "ED.Dialogs.CharGen.chooseEquipmentRules" );
 
     // Namegiver
     context.namegivers = this.namegivers;

@@ -113,7 +113,7 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
     if ( !( this._recoveryMode in WORKFLOWS.recoveryModes ) ) {
       throw new WorkflowInterruptError(
         this,
-        game.i18n.localize( "ED.Notifications.Warn.invalidRecoveryMode" ),
+        _loc( "ED.Notifications.Warn.invalidRecoveryMode" ),
       );
     }
 
@@ -121,7 +121,7 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
       ( this._isRecovery || this._isStunRecovery )
       && !this._actor.hasDamage( "standard" )
     ) {
-      ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.noDamageNoRecoveryNeeded" ) );
+      ui.notifications.info( _loc( "ED.Notifications.Info.noDamageNoRecoveryNeeded" ) );
       this.cancel();
       return;
 
@@ -131,7 +131,7 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
       this._isStunRecovery
       && !this._actor.hasDamage( "stun" )
     ) {
-      ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.noDamageNoRecoveryNeeded" ) );
+      ui.notifications.info( _loc( "ED.Notifications.Info.noDamageNoRecoveryNeeded" ) );
       this.cancel();
       return;
     }
@@ -140,7 +140,7 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
       this._needsNoRoll()
       && !this._actor.hasWounds( "standard" )
     ) {
-      ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.noFullRestRecoveryNeeded" ) );
+      ui.notifications.info( _loc( "ED.Notifications.Info.noFullRestRecoveryNeeded" ) );
       this.cancel();
       return;
     }
@@ -149,7 +149,7 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
       !this._isFullRest
       && this._actorCharacteristics.recoveryTestsResource.value < 1
     ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.noRecoveryTestsAvailable" ) );
+      ui.notifications.warn( _loc( "ED.Notifications.Warn.noRecoveryTestsAvailable" ) );
       this.cancel();
     }
   }

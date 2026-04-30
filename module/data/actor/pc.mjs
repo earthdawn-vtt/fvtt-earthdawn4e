@@ -294,7 +294,7 @@ export default class PcData extends NamegiverTemplate {
     const currentIncrease = attributeField.timesIncreased;
     if ( currentIncrease >= 3 ) {
       ui.notifications.warn(
-        game.i18n.localize( `X.Localize: Cannot increase attribute "${attribute}" for actor "${actor.name}" (${actor.id}). Maximum increase reached.` )
+        _loc( `X.Localize: Cannot increase attribute "${attribute}" for actor "${actor.name}" (${actor.id}). Maximum increase reached.` )
       );
       return;
     }
@@ -311,7 +311,7 @@ export default class PcData extends NamegiverTemplate {
 
     // placeholder, will be localized based on the selected rules for attribute increases
     const content = `
-    <p>${ game.i18n.format( "ED.Dialogs.Legend.Rules.attributeIncreaseShortRequirements", {trainingsTimeAttribute: attributeEnhanceStep, learningTime: attributeField.step, trainingCost: attributeField.step * 10 } ) }</p>
+    <p>${ _loc( "ED.Dialogs.Legend.Rules.attributeIncreaseShortRequirements", {trainingsTimeAttribute: attributeEnhanceStep, learningTime: attributeField.step, trainingCost: attributeField.step * 10 } ) }</p>
     ${ Object.entries( increaseValidationData ).map( ( [ key, value ] ) => {
     return `<div class="flex-row">${ key }: <i class="fa-solid ${ value ? "fa-hexagon-check" : "fa-hexagon-xmark" }"></i></div>`;
   } ).join( "" ) }
@@ -345,7 +345,7 @@ export default class PcData extends NamegiverTemplate {
         amount:      spendLp === "spendLp" ? lpCost : 0,
         entityType:  "attribute",
         name:        ACTORS.attributes[attribute].label,
-        description: game.i18n.format( "ED.Actor.LpTracking.Spendings.attributeIncrease", {
+        description: _loc( "ED.Actor.LpTracking.Spendings.attributeIncrease", {
           name:           ACTORS.attributes[attribute].label,
           timesIncreased: currentIncrease + 1
         } ),

@@ -71,13 +71,13 @@ export default class QuestorData extends ClassTemplate.mixin(
 
   /** @inheritDoc */
   get learnRules() {
-    return game.i18n.localize( "ED.Dialogs.Legend.Rules.questorLearnShortRequirements" );
+    return _loc( "ED.Dialogs.Legend.Rules.questorLearnShortRequirements" );
   }
 
   /** @inheritDoc */
   static async learn( actor, item, createData = {} ) {
     if ( isEmpty ( actor.itemTypes.discipline ) ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.firstClassViaCharGen" ) );
+      ui.notifications.warn( _loc( "ED.Notifications.Warn.firstClassViaCharGen" ) );
     }
 
     // get the questor devotion
@@ -89,9 +89,9 @@ export default class QuestorData extends ClassTemplate.mixin(
     // "Do you want to become a questor of <passion>? This will grant you the following devotion automatically:"
     const questorDevotionLink = questorDevotion
       ? createContentLink( questorDevotion.uuid, questorDevotion.name )
-      : game.i18n.format( "ED.Dialogs.Legend.questorDevotionNotFound", { edid: edidQuestorDevotion } );
+      : _loc( "ED.Dialogs.Legend.questorDevotionNotFound", { edid: edidQuestorDevotion } );
     const content = ` 
-      <p>${game.i18n.format( "ED.Dialogs.Legend.learnQuestorPrompt", {passion: item.name,} ) }</p>
+      <p>${_loc( "ED.Dialogs.Legend.learnQuestorPrompt", {passion: item.name,} ) }</p>
       <p>${ questorDevotionLink }</p>
       `;
 
@@ -131,7 +131,7 @@ export default class QuestorData extends ClassTemplate.mixin(
 
   /** @inheritDoc */
   get increaseRules() {
-    return game.i18n.localize( "ED.Dialogs.Legend.Rules.questorIncreaseShortRequirements" );
+    return _loc( "ED.Dialogs.Legend.Rules.questorIncreaseShortRequirements" );
   }
 
   /** @inheritDoc */
@@ -156,7 +156,7 @@ export default class QuestorData extends ClassTemplate.mixin(
     const updatedQuestor = await super.increase();
     if ( updatedQuestor?.system.level !== nextLevel ) {
       ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.classIncreaseProblems" )
+        _loc( "ED.Notifications.Warn.classIncreaseProblems" )
       );
       return;
     }
@@ -190,7 +190,7 @@ export default class QuestorData extends ClassTemplate.mixin(
 
     if ( foundry.utils.isEmpty( updatedActor ) )
       ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.couldNotAddLpTransaction" )
+        _loc( "ED.Notifications.Warn.couldNotAddLpTransaction" )
       );
 
     return this.parentDocument;

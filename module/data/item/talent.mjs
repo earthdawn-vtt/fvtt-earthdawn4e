@@ -143,7 +143,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
    * @inheritDoc
    */
   get increaseRules() {
-    return game.i18n.localize( "ED.Dialogs.Legend.Rules.talentIncreaseShortRequirements" );
+    return _loc( "ED.Dialogs.Legend.Rules.talentIncreaseShortRequirements" );
   }
 
   /**
@@ -217,12 +217,12 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
       [LEGEND.validationCategories.health]:    [
         {
           name:      "ED.Dialogs.Legend.Validation.hasDamage",
-          value:     increaseData.hasDamage ? game.i18n.localize( "ED.Dialogs.Legend.Validation.hasDamage" ) : game.i18n.localize( "ED.Dialogs.Legend.Validation.hasNoDamage" ),
+          value:     increaseData.hasDamage ? _loc( "ED.Dialogs.Legend.Validation.hasDamage" ) : _loc( "ED.Dialogs.Legend.Validation.hasNoDamage" ),
           fulfilled: !increaseData.hasDamage,
         },
         {
           name:      "ED.Dialogs.Legend.Validation.hasWounds",
-          value:     increaseData.hasWounds ? game.i18n.localize( "ED.Dialogs.Legend.Validation.hasWounds" ) : game.i18n.localize( "ED.Dialogs.Legend.Validation.hasNoWounds" ),
+          value:     increaseData.hasWounds ? _loc( "ED.Dialogs.Legend.Validation.hasWounds" ) : _loc( "ED.Dialogs.Legend.Validation.hasNoWounds" ),
           fulfilled: !increaseData.hasWounds,
         },
       ],
@@ -267,9 +267,9 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
       const versatility = actor?.getSingleItemByEdid( "versatility" );
       if ( versatilityTalents.length >= versatility?.system.level ) {
         const progressRequest  = await DialogClass.confirm( {
-          content: `<p>${ game.i18n.localize( "ED.Dialogs.versatilityTalentLimit" ) }</p>`,
+          content: `<p>${ _loc( "ED.Dialogs.versatilityTalentLimit" ) }</p>`,
           window:      {
-            title:       game.i18n.format( "ED.Dialogs.Title.versatilityLimit" ),
+            title:       _loc( "ED.Dialogs.Title.versatilityLimit" ),
           },
         } );
         if ( !progressRequest ) {

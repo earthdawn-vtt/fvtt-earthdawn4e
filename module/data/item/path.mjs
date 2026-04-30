@@ -95,7 +95,7 @@ export default class PathData extends ClassTemplate.mixin(
 
   /** @inheritDoc */
   get increaseRules() {
-    return game.i18n.localize( "ED.Dialogs.Legend.Rules.pathIncreaseShortRequirements" );
+    return _loc( "ED.Dialogs.Legend.Rules.pathIncreaseShortRequirements" );
   }
 
   /** @inheritDoc */
@@ -121,7 +121,7 @@ export default class PathData extends ClassTemplate.mixin(
 
   /** @inheritDoc */
   get learnRules() {
-    return game.i18n.localize( "ED.Dialogs.Legend.Rules.pathLearnShortRequirements" );
+    return _loc( "ED.Dialogs.Legend.Rules.pathLearnShortRequirements" );
   }
 
   // endregion
@@ -135,14 +135,14 @@ export default class PathData extends ClassTemplate.mixin(
     const pathKnack = await getSingleGlobalItemByEdid( item.system.edid, SYSTEM_TYPES.Item.knackAbility );
     const pathKnackLink = pathKnack 
       ? createContentLink( pathKnack.uuid, pathKnack.name ) 
-      : game.i18n.localize( "ED.Dialogs.Legend.pathKnackNotFound" );
+      : _loc( "ED.Dialogs.Legend.pathKnackNotFound" );
     const pathTalent = await getSingleGlobalItemByEdid( item.system.edid, SYSTEM_TYPES.Item.talent );
     const pathTalentLink = pathTalent 
       ? createContentLink( pathTalent.uuid, pathTalent.name ) 
-      : game.i18n.localize( "ED.Dialogs.Legend.pathKnackNotFound" );
+      : _loc( "ED.Dialogs.Legend.pathKnackNotFound" );
 
     if ( !pathKnack || !pathTalent ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cannotLearn" ) );
+      ui.notifications.warn( _loc( "ED.Notifications.Warn.cannotLearn" ) );
       return;
     }
 
@@ -150,7 +150,7 @@ export default class PathData extends ClassTemplate.mixin(
     let learnedPathTalent;
     if ( !actor.items.find( talent => talent.type === SYSTEM_TYPES.Item.talent && talent.system.edid === item.system.edid ) ) {
       const content = ` 
-      <p>${game.i18n.format( "ED.Dialogs.Legend.learnPathTalentPrompt", {pathTalent: item.name,} ) }</p>
+      <p>${_loc( "ED.Dialogs.Legend.learnPathTalentPrompt", {pathTalent: item.name,} ) }</p>
       <p>${ pathTalentLink }</p>
       `;
 
@@ -168,7 +168,7 @@ export default class PathData extends ClassTemplate.mixin(
     let learnedPathKnack;
     if ( !actor.items.find( knack => knack.type === SYSTEM_TYPES.Item.knackAbility && knack.system.edid === item.system.edid ) ) {
       const content = ` 
-      <p>${game.i18n.format( "ED.Dialogs.Legend.learnPathKnackPrompt", {pathKnack: item.name,} ) }</p>
+      <p>${_loc( "ED.Dialogs.Legend.learnPathKnackPrompt", {pathKnack: item.name,} ) }</p>
       <p>${ pathKnackLink }</p>
       `;
 
@@ -215,7 +215,7 @@ export default class PathData extends ClassTemplate.mixin(
     if ( pathTalent.system.level < nextLevel ) {
       const content =  `
           <p>
-            ${game.i18n.format( "ED.Dialogs.Legend.increasePathTalentPrompt" )}
+            ${_loc( "ED.Dialogs.Legend.increasePathTalentPrompt" )}
           </p>
           <p>
             ${createContentLink( pathTalent.uuid, pathTalent.name )}
@@ -233,7 +233,7 @@ export default class PathData extends ClassTemplate.mixin(
     const updatedPath = await super.increase();
     if ( updatedPath?.system.level !== nextLevel ) {
       ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.classIncreaseProblems" )
+        _loc( "ED.Notifications.Warn.classIncreaseProblems" )
       );
       return;
     }

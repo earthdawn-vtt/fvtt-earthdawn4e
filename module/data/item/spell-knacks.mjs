@@ -205,7 +205,7 @@ export default class SpellKnackData extends SpellData.mixin(
   /** @inheritDoc */
   static async learn( actor, item, createData = {} ) {
     if ( !item.system.canBeLearned ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cannotLearnSpellKnack" ) );
+      ui.notifications.warn( _loc( "ED.Notifications.Warn.cannotLearnSpellKnack" ) );
       return;
     }
 

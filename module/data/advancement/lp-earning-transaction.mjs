@@ -26,7 +26,7 @@ export default class LpEarningTransactionData extends LpTransactionData {
    * @inheritDoc
    */
   get displayString() {
-    return game.i18n.format( "X.LP-Reward: ", this.amount );
+    return _loc( "X.LP-Reward: ", this.amount );
   }
 
 

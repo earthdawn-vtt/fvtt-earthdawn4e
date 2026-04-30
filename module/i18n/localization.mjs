@@ -44,7 +44,7 @@ function _localizeObject( obj, keys ) {
   for ( const [ k, v ] of Object.entries( obj ) ) {
     const type = typeof v;
     if ( type === "string" ) {
-      obj[k] = game.i18n.localize( v );
+      obj[k] = _loc( v );
       continue;
     }
 
@@ -63,7 +63,7 @@ function _localizeObject( obj, keys ) {
 
     for ( const key of keys ) {
       if ( !v[key] ) continue;
-      v[key] = game.i18n.localize( v[key] );
+      v[key] = _loc( v[key] );
     }
   }
 }

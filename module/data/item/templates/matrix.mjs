@@ -453,7 +453,7 @@ export default class MatrixTemplate extends SystemDataModel {
     if ( this.matrixHasMultipleSpells ) {
       newActiveSpell = await fromUuid( await DialogEd.waitButtonSelect( this.matrixSpells ) );
       if ( !newActiveSpell ) {
-        ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.noActiveSpellSelected" ) );
+        ui.notifications.warn( _loc( "ED.Notifications.Warn.noActiveSpellSelected" ) );
         return false;
       }
     } else if ( this.matrixSpell ) {

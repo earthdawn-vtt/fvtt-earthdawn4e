@@ -137,7 +137,7 @@ export default class AssignLpPrompt extends ApplicationEd {
     event.preventDefault();
     await this.submit( { preventRender: true } );
     
-    if ( !this._data.amount ) return ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.noLp" ) );
+    if ( !this._data.amount ) return ui.notifications.warn( _loc( "ED.Notifications.Warn.noLp" ) );
 
     // Ensure selectedActors is always an array
     const amount = this._data.amount;

@@ -134,7 +134,7 @@ export default class ItemDataModel extends SystemDataModel {
     uses = this.hasLimitedUses && ( game.user.isGM || identified ) ? uses : null;
     price = game.user.isGM || identified ? price : null;
 
-    const subtitle = [ this.type?.label ?? game.i18n.localize( CONFIG.Item.typeLabels[this.parent.type] ) ];
+    const subtitle = [ this.type?.label ?? _loc( CONFIG.Item.typeLabels[this.parent.type] ) ];
     const context = {
       name, type, img, price, weight, uses, materials, activation,
       config:       CONFIG.ED4E,

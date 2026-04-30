@@ -84,13 +84,13 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
         <thead>
           <tr>
             <th>
-              ${ game.i18n.localize( "ED.Actor.LpTracking.Header.date" ) }
+              ${ _loc( "ED.Actor.LpTracking.Header.date" ) }
             </th>
             <th>
-              ${ game.i18n.localize( "ED.Actor.LpTracking.Header.description" ) }
+              ${ _loc( "ED.Actor.LpTracking.Header.description" ) }
             </th>
             <th>
-              ${ game.i18n.localize( "ED.Actor.LpTracking.Header.legendPoints" ) }
+              ${ _loc( "ED.Actor.LpTracking.Header.legendPoints" ) }
             </th>
           </tr>
         </thead>
@@ -125,7 +125,7 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
              ${ ( new Date( transaction.date ) ).toLocaleDateString() }
           </td>
           <td>
-            ${ game.i18n.localize( "ED.Dialogs.Legend.LpHistory." + transaction.type ) }
+            ${ _loc( "ED.Dialogs.Legend.LpHistory." + transaction.type ) }
           </td>
           <td>
             ${ transaction.name ?? "" }
@@ -148,19 +148,19 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
         <thead>
           <tr>
             <th class="lp-history__date">
-              ${ game.i18n.localize( "ED.Actor.LpTracking.Header.date" ) }
+              ${ _loc( "ED.Actor.LpTracking.Header.date" ) }
             </th>
             <th class="lp-history__type">
-              ${ game.i18n.localize( "ED.Actor.LpTracking.Header.type" ) }
+              ${ _loc( "ED.Actor.LpTracking.Header.type" ) }
             </th>
             <th class="lp-history__name">
-              ${ game.i18n.localize( "ED.Actor.LpTracking.Header.name" ) }
+              ${ _loc( "ED.Actor.LpTracking.Header.name" ) }
             </th>
             <th class="lp-history__description">
-              ${ game.i18n.localize( "ED.Actor.LpTracking.Header.description" ) }
+              ${ _loc( "ED.Actor.LpTracking.Header.description" ) }
             </th>
             <th class="lp-history__amount">
-              ${ game.i18n.localize( "ED.Actor.LpTracking.Header.legendPoints" ) }
+              ${ _loc( "ED.Actor.LpTracking.Header.legendPoints" ) }
             </th>
             <th></th>
           </tr>
@@ -243,7 +243,7 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
         // Show raw category name when sorting by "item", but localized when sorting by "type"
         const displayCategory = categoryType === "name" 
           ? category 
-          : game.i18n.localize( "ED.Dialogs.Legend.LpHistory." + category );
+          : _loc( "ED.Dialogs.Legend.LpHistory." + category );
         return `
         <thead>
           <tr class="group-header" data-group="${category}" data-action="toggleDetail">
@@ -268,16 +268,16 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
         <thead>
           <tr>
             <th class="lp-history__date">
-              ${ game.i18n.localize( "ED.Actor.LpTracking.Header.date" ) }
+              ${ _loc( "ED.Actor.LpTracking.Header.date" ) }
             </th>
             <th class="lp-history__name">
-              ${ game.i18n.localize( "ED.Actor.LpTracking.Header.name" ) }
+              ${ _loc( "ED.Actor.LpTracking.Header.name" ) }
             </th>
             <th class="lp-history__description">
-              ${ game.i18n.localize( "ED.Actor.LpTracking.Header.description" ) }
+              ${ _loc( "ED.Actor.LpTracking.Header.description" ) }
             </th>
             <th class="lp-history__amount">
-              ${ game.i18n.localize( "ED.Actor.LpTracking.Header.legendPoints" ) }
+              ${ _loc( "ED.Actor.LpTracking.Header.legendPoints" ) }
             </th>
           </tr>
         </thead>

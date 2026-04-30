@@ -219,7 +219,7 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
     if ( await super._preCreate( data, options, user ) === false ) return false;
 
     if ( this._shouldPreventCreation( data ) ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cantHaveEffectFromSameSource" ) );
+      ui.notifications.warn( _loc( "ED.Notifications.Warn.cantHaveEffectFromSameSource" ) );
       return false;
     }
 

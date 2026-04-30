@@ -65,7 +65,7 @@ export default class CombatantEd extends foundry.documents.Combatant {
     const data = {
       testType:   "effect",
       rollType:   "initiative",
-      chatFlavor: game.i18n.format( "ED.Chat.Flavor.rollInitiative", { sourceActor: this.actor.name } ),
+      chatFlavor: _loc( "ED.Chat.Flavor.rollInitiative", { sourceActor: this.actor.name } ),
       step:       {
         base:      initiativeStep,
         modifiers: stepModifiers,

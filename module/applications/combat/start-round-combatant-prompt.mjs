@@ -74,7 +74,7 @@ export default class StartRoundCombatantPrompt extends ApplicationEd {
    * @returns {string} The combatant to show the prompt for.
    */
   get title() {
-    return game.i18n.format( "ED.Dialogs.Title.startRoundCombatantPrompt", {
+    return _loc( "ED.Dialogs.Title.startRoundCombatantPrompt", {
       name: this.combatant.name
     } );
   }

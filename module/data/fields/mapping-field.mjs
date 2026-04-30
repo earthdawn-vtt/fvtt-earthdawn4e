@@ -120,12 +120,12 @@ export default class MappingField extends foundry.data.fields.TypedObjectField {
     const fieldset = document.createElement( "fieldset" );
 
     const legend = document.createElement( "legend" );
-    legend.textContent = localize ? game.i18n.localize( label ) : label;
+    legend.textContent = localize ? _loc( label ) : label;
     fieldset.appendChild( legend );
     if ( hint ) {
       const span = document.createElement( "p" );
       span.classList.add( "hint" );
-      span.textContent = localize ? game.i18n.localize( hint ) : hint;
+      span.textContent = localize ? _loc( hint ) : hint;
       fieldset.appendChild( span );
     }
 

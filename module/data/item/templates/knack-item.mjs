@@ -182,12 +182,12 @@ export default class KnackTemplate extends SystemDataModel.mixin(
       [LEGEND.validationCategories.health]:    [
         {
           name:      "ED.Dialogs.Legend.Validation.hasDamage",
-          value:     learnData.hasDamage ? game.i18n.localize( "ED.Dialogs.Legend.Validation.hasDamage" ) : game.i18n.localize( "ED.Dialogs.Legend.Validation.hasNoDamage" ),
+          value:     learnData.hasDamage ? _loc( "ED.Dialogs.Legend.Validation.hasDamage" ) : _loc( "ED.Dialogs.Legend.Validation.hasNoDamage" ),
           fulfilled: !learnData.hasDamage,
         },
         {
           name:      "ED.Dialogs.Legend.Validation.hasWounds",
-          value:     learnData.hasWounds ? game.i18n.localize( "ED.Dialogs.Legend.Validation.hasWounds" ) : game.i18n.localize( "ED.Dialogs.Legend.Validation.hasNoWounds" ),
+          value:     learnData.hasWounds ? _loc( "ED.Dialogs.Legend.Validation.hasWounds" ) : _loc( "ED.Dialogs.Legend.Validation.hasNoWounds" ),
           fulfilled: !learnData.hasWounds,
         },
       ],
@@ -197,7 +197,7 @@ export default class KnackTemplate extends SystemDataModel.mixin(
   /** @inheritDoc */
   static async learn( actor, item, createData = {} ) {
     if ( !item.system.canBeLearned ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cannotLearn" ) );
+      ui.notifications.warn( _loc( "ED.Notifications.Warn.cannotLearn" ) );
       return;
     }
 
@@ -205,7 +205,7 @@ export default class KnackTemplate extends SystemDataModel.mixin(
       item.system.sourceItem,
       this.SOURCE_ITEM_TYPE ?? SYSTEM_TYPES.Item.talent,
     ) ) {
-      ui.notifications.warn( game.i18n.format(
+      ui.notifications.warn( _loc(
         "ED.Notifications.Warn.learningKnackNoSourceItem",
         { sourceItemEdid: item.system.sourceItem },
       ) );
@@ -229,7 +229,7 @@ export default class KnackTemplate extends SystemDataModel.mixin(
       "spendings",
       {
         amount:      learn === "spendLp" ? item.system.requiredLpForLearning : 0,
-        description: game.i18n.format(
+        description: _loc(
           "ED.Actor.LpTracking.Spendings.learnKnack", {
             name: item.name,
           }
@@ -242,7 +242,7 @@ export default class KnackTemplate extends SystemDataModel.mixin(
 
     if ( foundry.utils.isEmpty( updatedActor ) )
       ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.addLpTransactionProblems" )
+        _loc( "ED.Notifications.Warn.addLpTransactionProblems" )
       );
 
     return learnedItem;

@@ -84,7 +84,7 @@ export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
 
     if ( !this.tier ) {
       ui.notifications.error(
-        game.i18n.localize( "ED.Notifications.Error.abilityIncreaseNoTier" )
+        _loc( "ED.Notifications.Error.abilityIncreaseNoTier" )
       );
       return;
     }

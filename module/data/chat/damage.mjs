@@ -78,8 +78,8 @@ export default class DamageMessageData extends BaseMessageData {
     div.classList.add( "damage-transactions" );
     for ( let transaction of this.transactions ) {
       const dealtTo = await fromUuid( transaction.dealtTo );
-      const dealtToName = dealtTo ? dealtTo.name : game.i18n.localize( "TODO.Unknown Actor" );
-      const message = game.i18n.format( "ED.Chat.Flavor.actorTookDamage", { dealtTo: dealtToName } );
+      const dealtToName = dealtTo ? dealtTo.name : _loc( "TODO.Unknown Actor" );
+      const message = _loc( "ED.Chat.Flavor.actorTookDamage", { dealtTo: dealtToName } );
 
       const transactionDiv = document.createElement( "div" );
       transactionDiv.classList.add( "damage-transaction" );
@@ -87,7 +87,7 @@ export default class DamageMessageData extends BaseMessageData {
 
       const undoButton = document.createElement( "i" );
       undoButton.classList.add( "fa-light", "fa-undo" );
-      undoButton.title = game.i18n.localize( "ED.Chat.Flavor.undoDamage" );
+      undoButton.title = _loc( "ED.Chat.Flavor.undoDamage" );
       undoButton.dataset.action = "undo-damage";
       undoButton.dataset.damageDealt = transaction.damage;
       undoButton.dataset.dealtTo = transaction.dealtTo;
@@ -114,7 +114,7 @@ export default class DamageMessageData extends BaseMessageData {
 
     const targets = Array.from( game.user.targets.map( target => target.document.actor ) );
     if ( targets.length === 0 ) {
-      ui.notifications.warn( game.i18n.localize(
+      ui.notifications.warn( _loc(
         "ED.Notifications.Warn.needTargetsToApplyFromChat",
       ) );
       return;

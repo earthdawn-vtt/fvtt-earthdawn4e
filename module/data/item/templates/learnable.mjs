@@ -61,11 +61,11 @@ export default class LearnableTemplate extends SystemDataModel {
    * @type {string}
    */
   get lpLearningDescription() {
-    return game.i18n.format(
+    return _loc(
       "ED.Actor.LpTracking.Spendings.learningTransactionDescription",
       {
         itemName: this.parent?.name || "",
-        itemType: game.i18n.localize( `TYPES.Item.${ this.parent?.type }` ) || "",
+        itemType: _loc( `TYPES.Item.${ this.parent?.type }` ) || "",
       }
     );
   }
@@ -89,7 +89,7 @@ export default class LearnableTemplate extends SystemDataModel {
   static async learn( actor, item, createData = {} ) {
     if ( !item.system.canBeLearned ) {
       ui.notifications.warn(
-        game.i18n.format( "ED.Notifications.Warn.cannotLearn", {itemType: item.type} )
+        _loc( "ED.Notifications.Warn.cannotLearn", {itemType: item.type} )
       );
       return;
     }

@@ -62,11 +62,11 @@ export default class ItemEd extends Item {
    */
   get lpLearningDescription() {
     return this.system.learnable
-      ? game.i18n.format(
+      ? _loc(
         "ED.Actor.LpTracking.Spendings.learningTransactionDescription",
         {
           itemName: this.name,
-          itemType: game.i18n.localize( `TYPES.Item.${ this.type }` ),
+          itemType: _loc( `TYPES.Item.${ this.type }` ),
         }
       )
       : "";
@@ -352,7 +352,7 @@ export default class ItemEd extends Item {
       await this.update( updateData );
       this.render( true );
     } else if ( this.system.weight.calculated ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cantUpdateItemWeight" ) );
+      ui.notifications.warn( _loc( "ED.Notifications.Warn.cantUpdateItemWeight" ) );
     }
   }
 

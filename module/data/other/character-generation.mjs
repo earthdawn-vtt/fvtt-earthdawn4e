@@ -461,7 +461,7 @@ export default class CharacterGenerationData extends SparseDataModel {
     const isOptionalTalent = abilityType === "optional";
 
     if ( isOptionalTalent && !this.abilities.optional.hasOwnProperty( abilityUuid ) ) {
-      ui.notifications.warn( game.i18n.localize(
+      ui.notifications.warn( _loc(
         "ED.Dialogs.CharGen.Errors.optionalTalentNotSelected"
       ) );
       return;
@@ -493,7 +493,7 @@ export default class CharacterGenerationData extends SparseDataModel {
     const costDifference = newRank - oldRank;
     const availabilityType = this._getAvailabilityType( abilityType, costDifference );
     if ( !( ( this.availableRanks[availabilityType] - costDifference ) >= 0 ) || !isRankValid ) {
-      ui.notifications.warn( game.i18n.localize(
+      ui.notifications.warn( _loc(
         "ED.Dialogs.CharGen.Errors.noMoreSkillRanks"
       ) );
       return ;
@@ -533,7 +533,7 @@ export default class CharacterGenerationData extends SparseDataModel {
     const newCost = LEGEND.attributePointsCost[newModifier];
     // Add old cost, otherwise they're included in the calculation of available points
     if ( ( newCost > ( this.availableAttributePoints + oldCost ) ) || !isModifierValid ) {
-      ui.notifications.warn( game.i18n.localize(
+      ui.notifications.warn( _loc(
         "ED.Dialogs.CharGen.Errors.noMoreAttributeChange"
       ) );
       return ;
@@ -594,7 +594,7 @@ export default class CharacterGenerationData extends SparseDataModel {
         spells: ( new Set( this.spells ) ).add( spellUuid )
       } );
     } else {
-      ui.notifications.warn( game.i18n.localize(
+      ui.notifications.warn( _loc(
         "ED.Dialogs.CharGen.Errors.noMoreSpellPoints"
       ) );
       return {};

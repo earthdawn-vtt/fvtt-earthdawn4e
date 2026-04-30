@@ -136,7 +136,7 @@ export default class CombatDamageWorkflow extends Rollable( ActorWorkflow ) {
     this._damageRollOptions = options.damageRollOptions || null;
     this._promptForModifierAbilities = options.promptForModifierAbilities ?? true;
 
-    this._rollPromptTitle = game.i18n.format(
+    this._rollPromptTitle = _loc(
       "ED.Dialogs.RollPrompt.Title.damage",
       {
         damageSourceType: COMBAT.damageSourceConfig[ this._damageSourceType ].label,

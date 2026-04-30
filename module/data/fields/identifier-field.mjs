@@ -21,7 +21,7 @@ export default class IdentifierField extends foundry.data.fields.StringField {
    */
   _validateType( value ) {
     if ( !this.constructor.isValidIdentifier( value ) ) {
-      throw new Error( game.i18n.localize( "ED.Notifications.Error.identifierError" ) );
+      throw new Error( _loc( "ED.Notifications.Error.identifierError" ) );
     }
   }
 }

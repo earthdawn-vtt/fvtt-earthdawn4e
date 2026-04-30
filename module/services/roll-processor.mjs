@@ -101,9 +101,9 @@ export default class RollProcessor {
     }
 
     if ( !karmaOk )
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.notEnoughKarmaUsedAll" ) );
+      ui.notifications.warn( _loc( "ED.Notifications.Warn.notEnoughKarmaUsedAll" ) );
     if ( !devotionOk )
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.notEnoughDevotionUsedAll" ) );
+      ui.notifications.warn( _loc( "ED.Notifications.Warn.notEnoughDevotionUsedAll" ) );
 
     return updateData;
   }

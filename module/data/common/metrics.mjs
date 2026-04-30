@@ -98,7 +98,7 @@ export class MetricData extends TypedEntryData {
     if ( this.isScalarUnit ) summary.push( this.value );
     if ( this.isSpecialUnit && this.special ) summary.push( this.special );
     if ( localizedUnit ) summary.push( localizedUnit );
-    if ( summary.length === 2 ) summary.push( game.i18n.localize( "ED.Data.placeholderBlankSelectOption" ) );
+    if ( summary.length === 2 ) summary.push( _loc( "ED.Data.placeholderBlankSelectOption" ) );
     return summary.join( " " );
   }
 
@@ -144,7 +144,7 @@ export class MetricData extends TypedEntryData {
     return Object.entries( configEnum ).map( ( [ label, value ] ) => {
       return {
         value:    label,
-        label:    game.i18n.localize( value ),
+        label:    _loc( value ),
         group:    group,
         disabled: false,
         selected: false,
@@ -231,7 +231,7 @@ export class AreaMetricData extends MetricData {
         summary.push( `${areaType.label}: (l x w x t) ${this.length} ${this.unit} x ${this.width} ${this.unit} x ${this.thickness} ${this.unit}` );
         break;
       default:
-        summary.push( game.i18n.localize( "ED.Data.placeholderBlankSelectOption" ) );
+        summary.push( _loc( "ED.Data.placeholderBlankSelectOption" ) );
     }
 
     return summary.join( " " );
