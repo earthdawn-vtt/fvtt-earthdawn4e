@@ -427,23 +427,19 @@ export default class DamageRollOptions extends EdRollOptions {
    * @returns { RollModifiers | undefined } The modifiers for the step of the damage roll, or undefined if no
    * modifiers are found.
    */
-  // eslint-disable-next-line complexity
+   
   static _getModifiersFromSource( sourceDocument, data ) {
     const modifiers = {};
 
     const isUnarmedOrWeapon = [ "unarmed", "weapon", ].includes( data.damageSourceType );
+    const rollingActor = fromUuidSync( data.rollingActorUuid );
 
     if ( isUnarmedOrWeapon ) {
-      const weaponType = sourceDocument.system.weaponType || "unarmed";
-      const globalModifierKey = ITEMS.weaponTypeModifier[ weaponType ]?.damage;
-      const actor = fromUuidSync( data.rollingActorUuid );
-      if ( !actor ) throw new Error( "DamageRollOptions | _getModifiersFromSource: Could not find rolling actor." );
-      modifiers[ EFFECTS.globalModifiers[ globalModifierKey ].label ] = actor.system.globalModifiers[ globalModifierKey ].value || 0;
+      const { label, modifier } = this._getGlobalWeaponTypeModifierFromActor( rollingActor, sourceDocument.system.weaponType );
+      modifiers[ label ] = modifier;
     }
 
-    if ( [ "arbitrary", "poison", ].includes( data.damageSourceType ) ) {
-      return undefined;
-    }
+    if ( [ "arbitrary", "poison", ].includes( data.damageSourceType ) ) return undefined;
 
     if ( isUnarmedOrWeapon ) {
       const increaseAbilities = data.increaseAbilities || ( data.increaseAbilityUuids || [] ).map( uuid => fromUuidSync( uuid ) );
@@ -464,7 +460,7 @@ export default class DamageRollOptions extends EdRollOptions {
     }
 
     if ( data.damageSourceType === "spell" ) {
-      const caster = data.caster || fromUuidSync( data.rollingActorUuid );
+      const caster = data.caster || rollingActor;
 
       const spellModifiers = sourceDocument.system.getEffectDetailsRollStepData( {
         caster,
@@ -480,6 +476,23 @@ export default class DamageRollOptions extends EdRollOptions {
     }
 
     return undefined;
+  }
+
+  /**
+   * Retrieves the global weapon type modifier for a specific actor and weapon type.
+   * @param {object} rollingActor - The actor object from which to fetch the global weapon type modifier.
+   * @param {string} [weaponType] - The type of weapon for which the modifier is being retrieved.
+   * @returns {ModifierRecord} The label and modifier value for the given weapon type.
+   * @throws {Error} Throws an error if the `rollingActor` is not provided.
+   */
+  static _getGlobalWeaponTypeModifierFromActor( rollingActor, weaponType = "unarmed" ) {
+    if ( !rollingActor ) throw new Error( "DamageRollOptions | _getModifiersFromSource: Could not find rolling actor." );
+
+    const globalModifierKey = ITEMS.weaponTypeModifier[ weaponType ]?.damage;
+    return {
+      label:    EFFECTS.globalModifiers[ globalModifierKey ]?.label ?? "",
+      modifier: rollingActor.system.globalModifiers[globalModifierKey].value || 0,
+    };
   }
 
   /**
