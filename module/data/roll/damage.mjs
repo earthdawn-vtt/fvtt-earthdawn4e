@@ -419,6 +419,8 @@ export default class DamageRollOptions extends EdRollOptions {
     return baseStep;
   }
 
+  // region Step Modifiers
+
   /**
    * Retrieves modifiers for the step of the damage roll based on the damage source type and associated source document.
    * @template { EdDamageRollOptionsInitializationData } T
@@ -427,30 +429,28 @@ export default class DamageRollOptions extends EdRollOptions {
    * @returns { RollModifiers | undefined } The modifiers for the step of the damage roll, or undefined if no
    * modifiers are found.
    */
-
-  // region Step Modifiers
-
   static _getModifiersFromSource( sourceDocument, data ) {
-    const isUnarmedOrWeapon = [ "unarmed", "weapon", ].includes( data.damageSourceType );
     const rollingActor = fromUuidSync( data.rollingActorUuid );
 
-    if ( [ "arbitrary", "poison", ].includes( data.damageSourceType ) ) return undefined;
-
-    if ( isUnarmedOrWeapon ) return this._getUnarmedOrWeaponModifiers(
-      rollingActor,
-      sourceDocument.system.weaponType,
-      data.attackRoll,
-    );
-
-    if ( data.damageSourceType === "spell" ) return this._getSpellModifiers(
-      data.caster || rollingActor,
-      sourceDocument,
-      data.willforce,
-    );
-
-    if ( data.damageSourceType === "warping" ) return this._getWarpingModifiers( data.astralSpacePollution );
-
-    return undefined;
+    switch ( data.damageSourceType ) {
+      case "unarmed":
+      case "weapon":
+        return this._getUnarmedOrWeaponModifiers(
+          rollingActor,
+          sourceDocument.system.weaponType,
+          data.attackRoll,
+        );
+      case "spell":
+        return this._getSpellModifiers(
+          data.caster || rollingActor,
+          sourceDocument,
+          data.willforce,
+        );
+      case "warping":
+        return this._getWarpingModifiers( data.astralSpacePollution );
+      default:
+        return undefined;
+    }
   }
 
   /**
