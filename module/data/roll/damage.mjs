@@ -431,8 +431,6 @@ export default class DamageRollOptions extends EdRollOptions {
   // region Step Modifiers
 
   static _getModifiersFromSource( sourceDocument, data ) {
-    const modifiers = {};
-
     const isUnarmedOrWeapon = [ "unarmed", "weapon", ].includes( data.damageSourceType );
     const rollingActor = fromUuidSync( data.rollingActorUuid );
 
@@ -450,11 +448,7 @@ export default class DamageRollOptions extends EdRollOptions {
       data.willforce,
     );
 
-    if ( data.damageSourceType === "warping" ) {
-      const pollutionData = MAGIC.astralSpacePollution[ data.astralSpacePollution || "safe" ];
-      modifiers[pollutionData.label] = pollutionData.rawMagic.damageModifier;
-      return modifiers;
-    }
+    if ( data.damageSourceType === "warping" ) return this._getWarpingModifiers( data.astralSpacePollution );
 
     return undefined;
   }
@@ -552,6 +546,18 @@ export default class DamageRollOptions extends EdRollOptions {
       caster,
       willforce: willforce
     } ).modifiers;
+  }
+
+  /**
+   * Retrieves warping modifiers based on the given astral space pollution level.
+   * @param {string} [astralSpacePollution] - The level of astral space pollution.
+   * @returns {RollModifiers} An object containing the pollution label as the key and the associated damage modifier as the value.
+   */
+  static _getWarpingModifiers( astralSpacePollution = "safe" ) {
+    const pollutionData = MAGIC.astralSpacePollution[ astralSpacePollution ];
+    return {
+      [pollutionData.label]: pollutionData.rawMagic.damageModifier,
+    };
   }
 
   // endregion
