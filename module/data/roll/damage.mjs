@@ -442,15 +442,8 @@ export default class DamageRollOptions extends EdRollOptions {
     if ( [ "arbitrary", "poison", ].includes( data.damageSourceType ) ) return undefined;
 
     if ( isUnarmedOrWeapon ) {
-      const increaseAbilities = data.increaseAbilities || ( data.increaseAbilityUuids || [] ).map( uuid => fromUuidSync( uuid ) );
-
-      if ( increaseAbilities.length > 0 ) {
-        for ( const ability of increaseAbilities ) {
-          if ( !ability ) throw new Error( "DamageRollOptions | _getModifiersFromSource: One of the increase abilities could not be found." );
-          if ( ability?.system?.rankFinal ) {
-            modifiers[ability.name] = ability.system.rankFinal;
-          }
-        }
+      for ( const increaseAbilityModifier of this._getWeaponIncreaseAbilityModifiers() ) {
+        modifiers[ increaseAbilityModifier.label ] = increaseAbilityModifier.modifier;
       }
 
       const extraSuccesses = data.attackRoll?.numExtraSuccesses || 0;
@@ -493,6 +486,30 @@ export default class DamageRollOptions extends EdRollOptions {
       label:    EFFECTS.globalModifiers[ globalModifierKey ]?.label ?? "",
       modifier: rollingActor.system.globalModifiers[globalModifierKey].value || 0,
     };
+  }
+
+  /**
+   * Retrieves the ability modifiers from the provided weapon increase ability items or UUIDs.
+   * @param {ItemEd[]} increaseAbilityItems - An array of ability items containing data
+   * such as the name and rankFinal of each ability. This parameter is optional and can
+   * be omitted if UUIDs are provided.
+   * @param {string[]} [increaseAbilityUuids] - An array of UUIDs representing
+   * increase ability items. If `increaseAbilityItems` is not passed, these UUIDs
+   * will be resolved to retrieve the corresponding ability items.
+   * @returns {ModifierRecord[]} The weapon increase ability modifiers.
+   * @throws {Error} If an ability cannot be found, or if a found ability does not have a `rankFinal`.
+   */
+  static _getWeaponIncreaseAbilityModifiers( increaseAbilityItems, increaseAbilityUuids = [] ) {
+    const increaseAbilities = increaseAbilityItems || ( increaseAbilityUuids ).map( uuid => fromUuidSync( uuid ) );
+
+    return increaseAbilities.map( ability => {
+      if ( !ability ) throw new Error( "DamageRollOptions | _getModifiersFromSource: One of the increase abilities could not be found." );
+      if ( !ability.system?.rankFinal ) throw new Error( `DamageRollOptions | _getModifiersFromSource: Increase ability "${ ability.name }" does not have a rank.` );
+      return {
+        label:    ability.name,
+        modifier: ability.system.rankFinal,
+      };
+    } );
   }
 
   /**
