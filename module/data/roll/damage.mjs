@@ -427,7 +427,9 @@ export default class DamageRollOptions extends EdRollOptions {
    * @returns { RollModifiers | undefined } The modifiers for the step of the damage roll, or undefined if no
    * modifiers are found.
    */
-   
+
+  // region Step Modifiers
+
   static _getModifiersFromSource( sourceDocument, data ) {
     const modifiers = {};
 
@@ -436,18 +438,17 @@ export default class DamageRollOptions extends EdRollOptions {
 
     if ( [ "arbitrary", "poison", ].includes( data.damageSourceType ) ) return undefined;
 
-    if ( isUnarmedOrWeapon )
-      return this._getUnarmedOrWeaponModifiers( rollingActor, sourceDocument.system.weaponType, data.attackRoll );
+    if ( isUnarmedOrWeapon ) return this._getUnarmedOrWeaponModifiers(
+      rollingActor,
+      sourceDocument.system.weaponType,
+      data.attackRoll,
+    );
 
-    if ( data.damageSourceType === "spell" ) {
-      const caster = data.caster || rollingActor;
-
-      const spellModifiers = sourceDocument.system.getEffectDetailsRollStepData( {
-        caster,
-        willforce: data.willforce
-      } ).modifiers;
-      return { ...modifiers, ...spellModifiers };
-    }
+    if ( data.damageSourceType === "spell" ) return this._getSpellModifiers(
+      data.caster || rollingActor,
+      sourceDocument,
+      data.willforce,
+    );
 
     if ( data.damageSourceType === "warping" ) {
       const pollutionData = MAGIC.astralSpacePollution[ data.astralSpacePollution || "safe" ];
@@ -538,6 +539,22 @@ export default class DamageRollOptions extends EdRollOptions {
       };
     } );
   }
+
+  /**
+   * Retrieves the spell modifiers for a given caster, spell, and willforce parameter.
+   * @param {ActorEd} caster - The entity casting the spell.
+   * @param {ItemEd} spell - The spell object containing details about the spell being cast.
+   * @param {ItemEd} [willforce] - The willforce ability, if used.
+   * @returns {RollModifiers} An array of modifiers affecting the spell based on the input parameters.
+   */
+  static _getSpellModifiers( caster, spell, willforce ) {
+    return spell.system.getEffectDetailsRollStepData( {
+      caster,
+      willforce: willforce
+    } ).modifiers;
+  }
+
+  // endregion
 
   /**
    * @inheritDoc
