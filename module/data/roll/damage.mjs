@@ -434,23 +434,10 @@ export default class DamageRollOptions extends EdRollOptions {
     const isUnarmedOrWeapon = [ "unarmed", "weapon", ].includes( data.damageSourceType );
     const rollingActor = fromUuidSync( data.rollingActorUuid );
 
-    if ( isUnarmedOrWeapon ) {
-      const { label, modifier } = this._getGlobalWeaponTypeModifierFromActor( rollingActor, sourceDocument.system.weaponType );
-      modifiers[ label ] = modifier;
-    }
-
     if ( [ "arbitrary", "poison", ].includes( data.damageSourceType ) ) return undefined;
 
-    if ( isUnarmedOrWeapon ) {
-      for ( const increaseAbilityModifier of this._getWeaponIncreaseAbilityModifiers() ) {
-        modifiers[ increaseAbilityModifier.label ] = increaseAbilityModifier.modifier;
-      }
-
-      const extraSuccesses = data.attackRoll?.numExtraSuccesses || 0;
-      modifiers[_loc( "ED.Rolls.Modifiers.bonusDamageFromExtraSuccesses" )] = extraSuccesses * COMBAT.bonusDamagePerExtraSuccess;
-
-      return modifiers;
-    }
+    if ( isUnarmedOrWeapon )
+      return this._getUnarmedOrWeaponModifiers( rollingActor, sourceDocument.system.weaponType, data.attackRoll );
 
     if ( data.damageSourceType === "spell" ) {
       const caster = data.caster || rollingActor;
@@ -472,6 +459,46 @@ export default class DamageRollOptions extends EdRollOptions {
   }
 
   /**
+   * Computes and retrieves the modifiers associated with unarmed attacks or specific weapon types.
+   * @param {ActorEd} rollingActor - The actor performing the roll, containing the relevant attributes and abilities.
+   * @param {string} weaponType - The type of weapon being used in the attack (e.g., "sword", "bow", "unarmed").
+   * @param {EdRoll} attackRoll - The details of the attack roll, used to calculate relevant modifiers such as extra successes.
+   * @returns {RollModifiers} An object containing modifier labels as keys and their corresponding values.
+   */
+  static _getUnarmedOrWeaponModifiers( rollingActor, weaponType, attackRoll ) {
+    const modifiers = {};
+
+    // global weapon modifiers
+    const globalWeaponTypeModifier = this._getGlobalWeaponTypeModifierFromActor( rollingActor, weaponType );
+    modifiers[ globalWeaponTypeModifier.label ] = globalWeaponTypeModifier.modifier;
+
+    // increase abilities
+    for ( const increaseAbilityModifier of this._getWeaponIncreaseAbilityModifiers() ) {
+      modifiers[ increaseAbilityModifier.label ] = increaseAbilityModifier.modifier;
+    }
+
+    // extra successes
+    const extraSuccessesModifier = this._getExtraSuccessesModifier( attackRoll );
+    modifiers[ extraSuccessesModifier.label ] = extraSuccessesModifier.modifier;
+
+    return modifiers;
+  }
+
+  /**
+   * Calculates the extra successes modifier for an attack roll.
+   * @param {EdRoll} attackRoll - The attack roll object containing the number of extra successes.
+   * @param {number} attackRoll.numExtraSuccesses - The number of extra successes in the attack roll.
+   * @returns {ModifierRecord} An object containing the label and calculated modifier for extra successes.
+   */
+  static _getExtraSuccessesModifier( attackRoll ) {
+    const extraSuccesses = attackRoll?.numExtraSuccesses || 0;
+    return {
+      label:    _loc( "ED.Rolls.Modifiers.bonusDamageFromExtraSuccesses" ),
+      modifier: extraSuccesses * COMBAT.bonusDamagePerExtraSuccess,
+    };
+  }
+
+  /**
    * Retrieves the global weapon type modifier for a specific actor and weapon type.
    * @param {object} rollingActor - The actor object from which to fetch the global weapon type modifier.
    * @param {string} [weaponType] - The type of weapon for which the modifier is being retrieved.
@@ -490,7 +517,7 @@ export default class DamageRollOptions extends EdRollOptions {
 
   /**
    * Retrieves the ability modifiers from the provided weapon increase ability items or UUIDs.
-   * @param {ItemEd[]} increaseAbilityItems - An array of ability items containing data
+   * @param {ItemEd[]} [increaseAbilityItems] - An array of ability items containing data
    * such as the name and rankFinal of each ability. This parameter is optional and can
    * be omitted if UUIDs are provided.
    * @param {string[]} [increaseAbilityUuids] - An array of UUIDs representing
