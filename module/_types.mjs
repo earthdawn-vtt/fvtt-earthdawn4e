@@ -16,12 +16,12 @@
  * @typedef {object} ModifierRecord
  * @description A single modifier applied to a roll.
  * @property {string} label The localized label describing the source of the modifier.
- * @property {number} value The numeric modifier value that will be applied to the roll.
+ * @property {number} modifier The numeric modifier value that will be applied to the roll.
  * @example
  * // Example ModifierRecord object:
  * {
  *   label: "Wounds",
- *   value: -2
+ *   modifier: -2
  * }
  */
 
