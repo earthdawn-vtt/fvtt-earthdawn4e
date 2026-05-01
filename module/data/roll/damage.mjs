@@ -157,37 +157,7 @@ import { createContentAnchor } from "../../helpers/formatting.mjs";
  */
 export default class DamageRollOptions extends EdRollOptions {
 
-  // region Static Properties
-
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Other.DamageRollOptions",
-  ];
-
-  /** @inheritdoc */
-  static TEST_TYPE = "effect";
-
-  /** @inheritdoc */
-  static ROLL_TYPE = "damage";
-
-  /** @inheritdoc */
-  static GLOBAL_MODIFIERS = [
-    "allDamage",
-    ...super.GLOBAL_MODIFIERS,
-  ];
-
-  static _SYSTEM_KEYS_BASE_STEP = {
-    poison:    "effect.damageStep",
-    power:     "damageStep",
-    unarmed:   "attributes.str.step",
-    warping:   "level",
-    weapon:    "damageTotal",
-  };
-
-  // endregion
-
-  // region Static Methods
+  // region Schema
 
   static defineSchema() {
     const fields = foundry.data.fields;
@@ -237,6 +207,44 @@ export default class DamageRollOptions extends EdRollOptions {
     } );
   }
 
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.DamageRollOptions",
+  ];
+
+  /** @inheritdoc */
+  static TEST_TYPE = "effect";
+
+  /** @inheritdoc */
+  static ROLL_TYPE = "damage";
+
+  /** @inheritdoc */
+  static GLOBAL_MODIFIERS = [
+    "allDamage",
+    ...super.GLOBAL_MODIFIERS,
+  ];
+
+  /**
+   * A mapping of damage source typ to their corresponding field path in the system data to find their base step.
+   * @type {Record<string, string>}
+   */
+  static _SYSTEM_KEYS_BASE_STEP = {
+    poison:    "effect.damageStep",
+    power:     "damageStep",
+    unarmed:   "attributes.str.step",
+    warping:   "level",
+    weapon:    "damageTotal",
+  };
+
+  // endregion
+
+  // region Static Methods
+
   /**
    * @inheritDoc
    * @template { EdDamageRollOptionsInitializationData } T
@@ -276,6 +284,8 @@ export default class DamageRollOptions extends EdRollOptions {
       armorType:    ACTORS.armor[ this.armorType ] || "",
     };
   }
+
+  // region Step
 
   /**
    * @inheritDoc
@@ -562,6 +572,10 @@ export default class DamageRollOptions extends EdRollOptions {
 
   // endregion
 
+  // endregion
+
+  // region Strain
+
   /**
    * @inheritDoc
    * @template { EdDamageRollOptionsInitializationData } T
@@ -591,6 +605,10 @@ export default class DamageRollOptions extends EdRollOptions {
         throw new Error( `Invalid damage source type: ${data.damageSourceType}` );
     }
   }
+
+  // endregion
+
+  // region Roll Option Preparation
 
   /**
    * Used when initializing this data model. Retrieves the armor type based on the `damageSourceType`.
@@ -749,6 +767,8 @@ export default class DamageRollOptions extends EdRollOptions {
   }
 
   // No need for target difficulty since damage rolls are effect tests
+
+  // endregion
 
   // endregion
 
