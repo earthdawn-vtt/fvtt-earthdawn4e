@@ -157,37 +157,7 @@ import { createContentAnchor } from "../../helpers/formatting.mjs";
  */
 export default class DamageRollOptions extends EdRollOptions {
 
-  // region Static Properties
-
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Other.DamageRollOptions",
-  ];
-
-  /** @inheritdoc */
-  static TEST_TYPE = "effect";
-
-  /** @inheritdoc */
-  static ROLL_TYPE = "damage";
-
-  /** @inheritdoc */
-  static GLOBAL_MODIFIERS = [
-    "allDamage",
-    ...super.GLOBAL_MODIFIERS,
-  ];
-
-  static _SYSTEM_KEYS_BASE_STEP = {
-    poison:    "effect.damageStep",
-    power:     "damageStep",
-    unarmed:   "attributes.str.step",
-    warping:   "level",
-    weapon:    "damageTotal",
-  };
-
-  // endregion
-
-  // region Static Methods
+  // region Schema
 
   static defineSchema() {
     const fields = foundry.data.fields;
@@ -237,6 +207,44 @@ export default class DamageRollOptions extends EdRollOptions {
     } );
   }
 
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.DamageRollOptions",
+  ];
+
+  /** @inheritdoc */
+  static TEST_TYPE = "effect";
+
+  /** @inheritdoc */
+  static ROLL_TYPE = "damage";
+
+  /** @inheritdoc */
+  static GLOBAL_MODIFIERS = [
+    "allDamage",
+    ...super.GLOBAL_MODIFIERS,
+  ];
+
+  /**
+   * A mapping of damage source typ to their corresponding field path in the system data to find their base step.
+   * @type {Record<string, string>}
+   */
+  static _SYSTEM_KEYS_BASE_STEP = {
+    poison:    "effect.damageStep",
+    power:     "damageStep",
+    unarmed:   "attributes.str.step",
+    warping:   "level",
+    weapon:    "damageTotal",
+  };
+
+  // endregion
+
+  // region Static Methods
+
   /**
    * @inheritDoc
    * @template { EdDamageRollOptionsInitializationData } T
@@ -276,6 +284,8 @@ export default class DamageRollOptions extends EdRollOptions {
       armorType:    ACTORS.armor[ this.armorType ] || "",
     };
   }
+
+  // region Step
 
   /**
    * @inheritDoc
@@ -419,6 +429,8 @@ export default class DamageRollOptions extends EdRollOptions {
     return baseStep;
   }
 
+  // region Step Modifiers
+
   /**
    * Retrieves modifiers for the step of the damage roll based on the damage source type and associated source document.
    * @template { EdDamageRollOptionsInitializationData } T
@@ -427,60 +439,142 @@ export default class DamageRollOptions extends EdRollOptions {
    * @returns { RollModifiers | undefined } The modifiers for the step of the damage roll, or undefined if no
    * modifiers are found.
    */
-  // eslint-disable-next-line complexity
   static _getModifiersFromSource( sourceDocument, data ) {
+    const rollingActor = fromUuidSync( data.rollingActorUuid );
+
+    switch ( data.damageSourceType ) {
+      case "unarmed":
+      case "weapon":
+        return this._getUnarmedOrWeaponModifiers(
+          rollingActor,
+          sourceDocument.system.weaponType,
+          data.attackRoll,
+        );
+      case "spell":
+        return this._getSpellModifiers(
+          data.caster || rollingActor,
+          sourceDocument,
+          data.willforce,
+        );
+      case "warping":
+        return this._getWarpingModifiers( data.astralSpacePollution );
+      default:
+        return undefined;
+    }
+  }
+
+  /**
+   * Computes and retrieves the modifiers associated with unarmed attacks or specific weapon types.
+   * @param {ActorEd} rollingActor - The actor performing the roll, containing the relevant attributes and abilities.
+   * @param {string} weaponType - The type of weapon being used in the attack (e.g., "sword", "bow", "unarmed").
+   * @param {EdRoll} attackRoll - The details of the attack roll, used to calculate relevant modifiers such as extra successes.
+   * @returns {RollModifiers} An object containing modifier labels as keys and their corresponding values.
+   */
+  static _getUnarmedOrWeaponModifiers( rollingActor, weaponType, attackRoll ) {
     const modifiers = {};
 
-    const isUnarmedOrWeapon = [ "unarmed", "weapon", ].includes( data.damageSourceType );
+    // global weapon modifiers
+    const globalWeaponTypeModifier = this._getGlobalWeaponTypeModifierFromActor( rollingActor, weaponType );
+    modifiers[ globalWeaponTypeModifier.label ] = globalWeaponTypeModifier.modifier;
 
-    if ( isUnarmedOrWeapon ) {
-      const weaponType = sourceDocument.system.weaponType || "unarmed";
-      const globalModifierKey = ITEMS.weaponTypeModifier[ weaponType ]?.damage;
-      const actor = fromUuidSync( data.rollingActorUuid );
-      if ( !actor ) throw new Error( "DamageRollOptions | _getModifiersFromSource: Could not find rolling actor." );
-      modifiers[ EFFECTS.globalModifiers[ globalModifierKey ].label ] = actor.system.globalModifiers[ globalModifierKey ].value || 0;
+    // increase abilities
+    for ( const increaseAbilityModifier of this._getWeaponIncreaseAbilityModifiers() ) {
+      modifiers[ increaseAbilityModifier.label ] = increaseAbilityModifier.modifier;
     }
 
-    if ( [ "arbitrary", "poison", ].includes( data.damageSourceType ) ) {
-      return undefined;
-    }
+    // extra successes
+    const extraSuccessesModifier = this._getExtraSuccessesModifier( attackRoll );
+    modifiers[ extraSuccessesModifier.label ] = extraSuccessesModifier.modifier;
 
-    if ( isUnarmedOrWeapon ) {
-      const increaseAbilities = data.increaseAbilities || ( data.increaseAbilityUuids || [] ).map( uuid => fromUuidSync( uuid ) );
-
-      if ( increaseAbilities.length > 0 ) {
-        for ( const ability of increaseAbilities ) {
-          if ( !ability ) throw new Error( "DamageRollOptions | _getModifiersFromSource: One of the increase abilities could not be found." );
-          if ( ability?.system?.rankFinal ) {
-            modifiers[ability.name] = ability.system.rankFinal;
-          }
-        }
-      }
-
-      const extraSuccesses = data.attackRoll?.numExtraSuccesses || 0;
-      modifiers[_loc( "ED.Rolls.Modifiers.bonusDamageFromExtraSuccesses" )] = extraSuccesses * COMBAT.bonusDamagePerExtraSuccess;
-
-      return modifiers;
-    }
-
-    if ( data.damageSourceType === "spell" ) {
-      const caster = data.caster || fromUuidSync( data.rollingActorUuid );
-
-      const spellModifiers = sourceDocument.system.getEffectDetailsRollStepData( {
-        caster,
-        willforce: data.willforce
-      } ).modifiers;
-      return { ...modifiers, ...spellModifiers };
-    }
-
-    if ( data.damageSourceType === "warping" ) {
-      const pollutionData = MAGIC.astralSpacePollution[ data.astralSpacePollution || "safe" ];
-      modifiers[pollutionData.label] = pollutionData.rawMagic.damageModifier;
-      return modifiers;
-    }
-
-    return undefined;
+    return modifiers;
   }
+
+  /**
+   * Calculates the extra successes modifier for an attack roll.
+   * @param {EdRoll} attackRoll - The attack roll object containing the number of extra successes.
+   * @param {number} attackRoll.numExtraSuccesses - The number of extra successes in the attack roll.
+   * @returns {ModifierRecord} An object containing the label and calculated modifier for extra successes.
+   */
+  static _getExtraSuccessesModifier( attackRoll ) {
+    const extraSuccesses = attackRoll?.numExtraSuccesses || 0;
+    return {
+      label:    _loc( "ED.Rolls.Modifiers.bonusDamageFromExtraSuccesses" ),
+      modifier: extraSuccesses * COMBAT.bonusDamagePerExtraSuccess,
+    };
+  }
+
+  /**
+   * Retrieves the global weapon type modifier for a specific actor and weapon type.
+   * @param {object} rollingActor - The actor object from which to fetch the global weapon type modifier.
+   * @param {string} [weaponType] - The type of weapon for which the modifier is being retrieved.
+   * @returns {ModifierRecord} The label and modifier value for the given weapon type.
+   * @throws {Error} Throws an error if the `rollingActor` is not provided.
+   */
+  static _getGlobalWeaponTypeModifierFromActor( rollingActor, weaponType = "unarmed" ) {
+    if ( !rollingActor ) throw new Error( "DamageRollOptions | _getModifiersFromSource: Could not find rolling actor." );
+
+    const globalModifierKey = ITEMS.weaponTypeModifier[ weaponType ]?.damage;
+    return {
+      label:    EFFECTS.globalModifiers[ globalModifierKey ]?.label ?? "",
+      modifier: rollingActor.system.globalModifiers[globalModifierKey].value || 0,
+    };
+  }
+
+  /**
+   * Retrieves the ability modifiers from the provided weapon increase ability items or UUIDs.
+   * @param {ItemEd[]} [increaseAbilityItems] - An array of ability items containing data
+   * such as the name and rankFinal of each ability. This parameter is optional and can
+   * be omitted if UUIDs are provided.
+   * @param {string[]} [increaseAbilityUuids] - An array of UUIDs representing
+   * increase ability items. If `increaseAbilityItems` is not passed, these UUIDs
+   * will be resolved to retrieve the corresponding ability items.
+   * @returns {ModifierRecord[]} The weapon increase ability modifiers.
+   * @throws {Error} If an ability cannot be found, or if a found ability does not have a `rankFinal`.
+   */
+  static _getWeaponIncreaseAbilityModifiers( increaseAbilityItems, increaseAbilityUuids = [] ) {
+    const increaseAbilities = increaseAbilityItems || ( increaseAbilityUuids ).map( uuid => fromUuidSync( uuid ) );
+
+    return increaseAbilities.map( ability => {
+      if ( !ability ) throw new Error( "DamageRollOptions | _getModifiersFromSource: One of the increase abilities could not be found." );
+      if ( !ability.system?.rankFinal ) throw new Error( `DamageRollOptions | _getModifiersFromSource: Increase ability "${ ability.name }" does not have a rank.` );
+      return {
+        label:    ability.name,
+        modifier: ability.system.rankFinal,
+      };
+    } );
+  }
+
+  /**
+   * Retrieves the spell modifiers for a given caster, spell, and willforce parameter.
+   * @param {ActorEd} caster - The entity casting the spell.
+   * @param {ItemEd} spell - The spell object containing details about the spell being cast.
+   * @param {ItemEd} [willforce] - The willforce ability, if used.
+   * @returns {RollModifiers} An array of modifiers affecting the spell based on the input parameters.
+   */
+  static _getSpellModifiers( caster, spell, willforce ) {
+    return spell.system.getEffectDetailsRollStepData( {
+      caster,
+      willforce: willforce
+    } ).modifiers;
+  }
+
+  /**
+   * Retrieves warping modifiers based on the given astral space pollution level.
+   * @param {string} [astralSpacePollution] - The level of astral space pollution.
+   * @returns {RollModifiers} An object containing the pollution label as the key and the associated damage modifier as the value.
+   */
+  static _getWarpingModifiers( astralSpacePollution = "safe" ) {
+    const pollutionData = MAGIC.astralSpacePollution[ astralSpacePollution ];
+    return {
+      [pollutionData.label]: pollutionData.rawMagic.damageModifier,
+    };
+  }
+
+  // endregion
+
+  // endregion
+
+  // region Strain
 
   /**
    * @inheritDoc
@@ -511,6 +605,10 @@ export default class DamageRollOptions extends EdRollOptions {
         throw new Error( `Invalid damage source type: ${data.damageSourceType}` );
     }
   }
+
+  // endregion
+
+  // region Roll Option Preparation
 
   /**
    * Used when initializing this data model. Retrieves the armor type based on the `damageSourceType`.
@@ -669,6 +767,8 @@ export default class DamageRollOptions extends EdRollOptions {
   }
 
   // No need for target difficulty since damage rolls are effect tests
+
+  // endregion
 
   // endregion
 

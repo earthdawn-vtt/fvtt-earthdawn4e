@@ -13,6 +13,19 @@
  */
 
 /**
+ * @typedef {object} ModifierRecord
+ * @description A single modifier applied to a roll.
+ * @property {string} label The localized label describing the source of the modifier.
+ * @property {number} modifier The numeric modifier value that will be applied to the roll.
+ * @example
+ * // Example ModifierRecord object:
+ * {
+ *   label: "Wounds",
+ *   modifier: -2
+ * }
+ */
+
+/**
  * @typedef { object } RollStepData
  * @description Data for a roll step.
  * @property { number } base The base step that is used to determine the dice that are rolled.
