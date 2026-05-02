@@ -120,20 +120,4 @@
 
 </div>
 
-<!-- Rule of One Check -->
-{{#if (eq  ruleOfOne true)}}
-  <div class="roll-failure">{{localize "ED.Rolls.ruleOfOne"}}</div>
-{{else}}
-
-  <!-- Roll Successes -->
-  {{> "systems/ed4e/templates/chat/dice-partials/roll-successes.hbs"}}
-
-  <!-- Modifier Lists -->
-  <div class="modifier-lists flexrow">
-    {{> "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs"}}
-    {{#if (or target.public isGM)}}
-      {{> "systems/ed4e/templates/chat/dice-partials/roll-target-modifier.hbs"}}
-    {{/if}}
-  </div>
-
-{{/if}}
+{{> "systems/ed4e/templates/chat/dice-partials/roll-summary.hbs" }}
