@@ -14,7 +14,7 @@ export default class ItemWorkflow extends Workflow {
   _item = null;
 
   /**
-   * @override
+   * @inheritdoc
    * @param {ItemEd} item The item that this workflow is associated with.
    * @param {WorkflowOptions} [options] See {@link Workflow#constructor}.
    */

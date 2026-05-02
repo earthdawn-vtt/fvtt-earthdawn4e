@@ -73,7 +73,7 @@ export default class RawCastingWorkflow extends BaseCastingWorkflow {
     this._spellCircle = this._spell.system.level;
   }
 
-  /** @override */
+  /** @inheritdoc */
   async _postCastSpell() {
     await super._postCastSpell();
 

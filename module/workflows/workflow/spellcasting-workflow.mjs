@@ -73,7 +73,7 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
   _stopOnWeaving;
 
   /**
-   * @override
+   * @inheritdoc
    * @param {ActorEd} caster The actor casting the spell
    * @param {WorkflowOptions & SpellcastingWorkflowOptions} options Options for the spellcasting workflow
    */

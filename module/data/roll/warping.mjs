@@ -74,7 +74,7 @@ export default class WarpingRollOptions extends EdRollOptions {
 
   /**
    * This method is not applicable for warping rolls and will throw an error if called.
-   * @override
+   * @inheritdoc
    * @throws Error Warping rolls do not use rolling actors. Use {@link WarpingRollOptions~fromData} instead, and supply the target as `caster` or `casterUuid` in the data.
    */
   static fromActor( data, actor, options = {} ) {

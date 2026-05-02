@@ -27,7 +27,7 @@ export default class ActorDataModel extends SystemDataModel {
   /*  Properties                                  */
   /* -------------------------------------------- */
 
-  /** @override */
+  /** @inheritdoc */
   get embeddedDescriptionKeyPath() {
     return "description.value";
   }

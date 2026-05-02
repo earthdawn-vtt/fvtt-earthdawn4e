@@ -18,7 +18,7 @@ export default class CheckboxElement extends AdoptedStyleSheetMixin(
 
   /* -------------------------------------------- */
 
-  /** @override */
+  /** @inheritdoc */
   static tagName = "dnd5e-checkbox";
 
   /* -------------------------------------------- */
@@ -30,7 +30,7 @@ export default class CheckboxElement extends AdoptedStyleSheetMixin(
 
   /* -------------------------------------------- */
 
-  /** @override */
+  /** @inheritdoc */
   static CSS = `
     :host {
       cursor: var(--cursor-pointer);
@@ -135,7 +135,7 @@ export default class CheckboxElement extends AdoptedStyleSheetMixin(
 
   /* -------------------------------------------- */
 
-  /** @override */
+  /** @inheritdoc */
   get value() {
     return super.value;
   }
@@ -143,13 +143,13 @@ export default class CheckboxElement extends AdoptedStyleSheetMixin(
   /**
    * Override AbstractFormInputElement#value setter because we want to emit input/change events when the checked state
    * changes, and not when the value changes.
-   * @override
+   * @inheritdoc
    */
   set value( value ) {
     this._setValue( value );
   }
 
-  /** @override */
+  /** @inheritdoc */
   _getValue() {
     // Workaround for FormElementExtended only checking the value property and not the checked property.
     if ( typeof this._value === "string" ) return this._value;
@@ -160,7 +160,7 @@ export default class CheckboxElement extends AdoptedStyleSheetMixin(
   /*  Element Lifecycle                           */
   /* -------------------------------------------- */
 
-  /** @override */
+  /** @inheritdoc */
   connectedCallback() {
     this._adoptStyleSheet( this._getStyleSheet() );
     const elements = this._buildElements();
@@ -172,21 +172,21 @@ export default class CheckboxElement extends AdoptedStyleSheetMixin(
 
   /* -------------------------------------------- */
 
-  /** @override */
+  /** @inheritdoc */
   disconnectedCallback() {
     this._controller.abort();
   }
 
   /* -------------------------------------------- */
 
-  /** @override */
+  /** @inheritdoc */
   _adoptStyleSheet( sheet ) {
     this.#shadowRoot.adoptedStyleSheets = [ sheet ];
   }
 
   /* -------------------------------------------- */
 
-  /** @override */
+  /** @inheritdoc */
   _buildElements() {
     const container = document.createElement( "div" );
     container.innerHTML = `
@@ -217,7 +217,7 @@ export default class CheckboxElement extends AdoptedStyleSheetMixin(
 
   /* -------------------------------------------- */
 
-  /** @override */
+  /** @inheritdoc */
   _activateListeners() {
     const { signal } = this._controller = new AbortController();
     this.addEventListener( "click", this._onClick.bind( this ), { signal } );
@@ -226,7 +226,7 @@ export default class CheckboxElement extends AdoptedStyleSheetMixin(
 
   /* -------------------------------------------- */
 
-  /** @override */
+  /** @inheritdoc */
   _refresh() {
     super._refresh();
     this._internals.ariaChecked = `${this.hasAttribute( "checked" )}`;
@@ -234,7 +234,7 @@ export default class CheckboxElement extends AdoptedStyleSheetMixin(
 
   /* -------------------------------------------- */
 
-  /** @override */
+  /** @inheritdoc */
   _onClick( event ) {
     event.preventDefault();
     this.checked = !this.checked;

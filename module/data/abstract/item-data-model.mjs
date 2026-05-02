@@ -45,7 +45,7 @@ export default class ItemDataModel extends SystemDataModel {
 
   // region Getters
 
-  /** @override */
+  /** @inheritdoc */
   get embeddedDescriptionKeyPath() {
     return game.user.isGM || ( this.identified !== false ) ? "description.value" : "unidentified.description";
   }

@@ -17,7 +17,7 @@ export default class IdentifierField extends foundry.data.fields.StringField {
   // endregion
 
   /**
-   * @override
+   * @inheritdoc
    */
   _validateType( value ) {
     if ( !this.constructor.isValidIdentifier( value ) ) {
