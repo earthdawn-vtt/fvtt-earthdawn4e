@@ -675,7 +675,7 @@
         "attribute":                              "Attribute",
         "attuning":                               "Abstimmung",
         "damage":                                 "Schaden",
-        "halfmagic":                              "Halbmagie",
+        "halfMagic":                              "Halbmagie",
         "horrorMark":                             "Dämonenmal",
         "initiative":                             "Initiative",
         "jumpUp":                                 "Aufspringen",
@@ -2608,6 +2608,18 @@
             "weaponUuid": {
               "hint":                             "UUID der Waffe auf die sich diese Option bezieht",
               "label":                            "Waffen-UUID"
+            }
+          }
+        },
+        "HalfMagicRollOptions": {
+          "FIELDS": {
+            "attribute": {
+              "hint":                             "Das Kürzel des Attributs auf dem die Halbmagie-Probe basiert",
+              "label":                            "Attribut-Kürzel"
+            },
+            "disciplineUuid": {
+              "hint":                             "UUID der Disizipline für die Halbmagie gewürfelt wird",
+              "label":                            "Disziplin-UUID"
             }
           }
         },

@@ -41,9 +41,9 @@ export const rollTypes = {
     label:            "ED.Config.RollTypes.damage",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/damage-roll-flavor.hbs",
   },
-  halfmagic: {
-    label:            "ED.Config.RollTypes.halfmagic",
-    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/halfmagic-roll-flavor.hbs",
+  halfMagic: {
+    label:            "ED.Config.RollTypes.halfMagic",
+    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/half-magic-roll-flavor.hbs",
   },
   horrorMark: {
     label:            "ED.Config.RollTypes.horrorMark",
