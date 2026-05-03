@@ -14,7 +14,7 @@ export default class ActorWorkflow extends Workflow {
   _actor = null;
 
   /**
-   * @override
+   * @inheritdoc
    * @param {ActorEd} actor The actor that this workflow is associated with.
    * @param {WorkflowOptions} [options] See {@link Workflow#constructor}.
    */

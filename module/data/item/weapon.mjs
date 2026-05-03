@@ -176,7 +176,7 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
 
   // region Getters
 
-  /** @override */
+  /** @inheritdoc */
   get ammoAmount() {
     if ( !this.isRanged ) return null;
     if ( this.isActorEmbedded ) {
@@ -201,7 +201,7 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
     );
   }
 
-  /** @override */
+  /** @inheritdoc */
   get damageTotal() {
     if ( this.isActorEmbedded ) {
       const damageAttribute = this.damage.attribute;
@@ -237,7 +237,7 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
     return false;
   }
 
-  /** @override */
+  /** @inheritdoc */
   get nextItemStatus() {
     const namegiver = this.parent.parent?.namegiver;
     const weaponSizeLimits = namegiver?.system.weaponSize;
@@ -247,7 +247,7 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
     return this._rotateValidItemStatus( this.statusIndex, false );
   }
 
-  /** @override */
+  /** @inheritdoc */
   get previousItemStatus() {
     const namegiver = this.parent.parent?.namegiver;
     const weaponSizeLimits = namegiver?.system.weaponSize;

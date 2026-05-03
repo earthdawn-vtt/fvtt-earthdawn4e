@@ -415,7 +415,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 
   // region Methods
 
-  /** @override */
+  /** @inheritdoc */
   async toEmbed( config, options={} ) {
     const keyPath = this.embeddedDescriptionKeyPath;
     if ( !keyPath || !foundry.utils.hasProperty( this, keyPath ) ) return null;

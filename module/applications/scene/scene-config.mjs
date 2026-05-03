@@ -15,7 +15,7 @@ export default class SceneConfigEd extends foundry.applications.sheets.SceneConf
     footer:      { ...super.PARTS.footer },
   };
 
-  /** @override */
+  /** @inheritdoc */
   static TABS = {
     ...super.TABS,
     sheet: {
@@ -27,7 +27,7 @@ export default class SceneConfigEd extends foundry.applications.sheets.SceneConf
     },
   };
 
-  /** @override */
+  /** @inheritdoc */
   async _onRender( context, options ) {
     await super._onRender( context, options );
     this._addAstralPollutionToScene( context, options );
