@@ -35,8 +35,8 @@ export default class AbilityRollOptions extends EdRollOptions {
 
   /** @inheritdoc */
   static GLOBAL_MODIFIERS = [
-    "allActions",
     ...super.GLOBAL_MODIFIERS,
+    "allActions",
   ];
 
   // endregion
