@@ -675,7 +675,7 @@
         "attribute":                              "TODO: Add translation",
         "attuning":                               "TODO: Add translation",
         "damage":                                 "TODO: Add translation",
-        "halfmagic":                              "TODO: Add translation",
+        "halfMagic":                              "TODO: Add translation",
         "horrorMark":                             "TODO: Add translation",
         "initiative":                             "TODO: Add translation",
         "jumpUp":                                 "TODO: Add translation",
@@ -2606,6 +2606,18 @@
               "label":                            "TODO: Add translation"
             },
             "weaponUuid": {
+              "hint":                             "TODO: Add translation",
+              "label":                            "TODO: Add translation"
+            }
+          }
+        },
+        "HalfMagicRollOptions": {
+          "FIELDS": {
+            "attribute": {
+              "hint":                             "TODO: Add translation",
+              "label":                            "TODO: Add translation"
+            },
+            "disciplineUuid": {
               "hint":                             "TODO: Add translation",
               "label":                            "TODO: Add translation"
             }
