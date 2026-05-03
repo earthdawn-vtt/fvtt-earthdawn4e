@@ -30,7 +30,7 @@ export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
     super( actor, options );
     this._damageTaken = options.damageTaken || 0;
     this._knockdownAbility = options.knockdownAbility || null;
-    this._rollToMessage = true;
+    this._rollToMessage = options.rollToMessage ?? true;
 
     this._steps.push(
       this.#validate.bind( this ),
