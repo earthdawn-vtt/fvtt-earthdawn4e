@@ -675,7 +675,7 @@
         "attribute":                              "Attribut",
         "attuning":                               "Harmonisation",
         "damage":                                 "Dégâts",
-        "halfmagic":                              "Demi-magie",
+        "halfMagic":                              "Demi-magie",
         "horrorMark":                             "Marque d'Horreur",
         "initiative":                             "Initiative",
         "jumpUp":                                 "Se redresser",
@@ -2608,6 +2608,18 @@
             "weaponUuid": {
               "hint":                             "UUID d'arme",
               "label":                            "UUID d'arme"
+            }
+          }
+        },
+        "HalfMagicRollOptions": {
+          "FIELDS": {
+            "attribute": {
+              "hint":                             "TODO: Add translation",
+              "label":                            "TODO: Add translation"
+            },
+            "disciplineUuid": {
+              "hint":                             "TODO: Add translation",
+              "label":                            "TODO: Add translation"
             }
           }
         },
