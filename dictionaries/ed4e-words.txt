@@ -4,7 +4,6 @@ namegiver
 vasgothia
 edid
 edids
-halfmagic
 tskrang
 obsidiman
 spellcaster
