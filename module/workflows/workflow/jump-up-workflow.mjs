@@ -27,9 +27,7 @@ export default class JumpUpWorkflow extends Rollable( ActorWorkflow ) {
     this._jumpUpAbility = options.jumpUpAbility ?? null;
 
     this._rollToMessage = true;
-    this._rollPromptTitle = _loc(
-
-    );
+    this._rollPromptTitle = _loc( "ED.Dialogs.RollPrompt.Title.jumpUp" );
 
     this._steps.push(
       this.#validate.bind( this ),
