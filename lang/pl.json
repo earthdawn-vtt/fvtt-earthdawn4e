@@ -391,6 +391,7 @@
         "damageRollOptions":                      "TODO: Add translation",
         "edRollOptions":                          "TODO: Add translation",
         "fullRestRecovery":                       "TODO: Add translation",
+        "halfMagicRollOptions":                   "TODO: Add translation",
         "horrorMarkRollOptions":                  "TODO: Add translation",
         "ignoresArmor":                           "TODO: Add translation",
         "invalidDiceFormula":                     "TODO: Add translation",
@@ -402,7 +403,6 @@
         "rollAbility":                            "TODO: Add translation",
         "rollAttribute":                          "TODO: Add translation",
         "rollEquipment":                          "TODO: Add translation",
-        "rollHalfMagic":                          "TODO: Add translation",
         "rollInitiative":                         "TODO: Add translation",
         "rollRecovery":                           "TODO: Add translation",
         "rollSubstitute":                         "TODO: Add translation",
@@ -3328,6 +3328,7 @@
         "Title": {
           "attuneGrimoire":                       "TODO: Add translation",
           "damage":                               "TODO: Add translation",
+          "halfMagic":                            "TODO: Add translation",
           "itemHistory":                          "TODO: Add translation",
           "jumpUp":                               "TODO: Add translation",
           "rollAttribute":                        "TODO: Add translation",
