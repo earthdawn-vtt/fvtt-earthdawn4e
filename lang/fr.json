@@ -391,6 +391,7 @@
         "damageRollOptions":                      "Options de jet de dégâts",
         "edRollOptions":                          "Options de jet ED",
         "fullRestRecovery":                       "Récupération après repos complet",
+        "halfMagicRollOptions":                   "Jet de Demi-magie",
         "horrorMarkRollOptions":                  "Options de jet de Marque d'Horreur",
         "ignoresArmor":                           "Ignore l'armure",
         "invalidDiceFormula":                     "Formule de dés invalide",
@@ -402,7 +403,6 @@
         "rollAbility":                            "Jet de capacité",
         "rollAttribute":                          "Jet d'attribut",
         "rollEquipment":                          "Jet d'équipement",
-        "rollHalfMagic":                          "Jet de Demi-magie",
         "rollInitiative":                         "Jet d'Initiative",
         "rollRecovery":                           "Jet de Récupération",
         "rollSubstitute":                         "Jet de substitution",
@@ -3328,6 +3328,7 @@
         "Title": {
           "attuneGrimoire":                       "Harmoniser au Grimoire",
           "damage":                               "Dégâts",
+          "halfMagic":                            "TODO: Add translation",
           "itemHistory":                          "Historique de l'Objet",
           "jumpUp":                               "Se redresser",
           "rollAttribute":                        "Jeter l'Attribut",
