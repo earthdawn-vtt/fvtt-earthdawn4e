@@ -1,7 +1,9 @@
 import ActorWorkflow from "./actor-workflow.mjs";
 import Rollable from "./rollable.mjs";
 import HalfMagicRollOptions from "../../data/roll/half-magic.mjs";
-import { ACTORS } from "../../config/_module.mjs";
+import * as ACTORS from "../../config/actors.mjs";
+import * as ROLLS from "../../config/rolls.mjs";
+
 
 /**
  * Workflow for handling actor half-magic tests
@@ -9,6 +11,7 @@ import { ACTORS } from "../../config/_module.mjs";
  * @property {string} attributeId - The ID of the attribute to use for the half-magic roll.
  * See {@link ACTORS#attributes}.
  * @property {ItemEd} [discipline] - The discipline to use for the half-magic roll.
+ * @property {number} [difficulty] - The difficulty for the half-magic test.
  */
 
 /**
@@ -24,6 +27,12 @@ export default class HalfMagicWorkflow extends Rollable( ActorWorkflow ) {
   _attributeId;
 
   /**
+   * The difficulty for the half-magic test
+   * @type {number}
+   */
+  _difficulty;
+
+  /**
    * The discipline used for the half-magic roll
    * @type {ItemEd|null}
    */
@@ -36,6 +45,7 @@ export default class HalfMagicWorkflow extends Rollable( ActorWorkflow ) {
   constructor( actor, options = {} ) {
     super( actor, options );
     this._attributeId = options.attributeId;
+    this._difficulty = options.difficulty ?? ROLLS.minDifficulty;
     this._discipline = options.discipline ?? null;
 
     this._rollToMessage = options.rollToMessage ?? true;
@@ -70,6 +80,9 @@ export default class HalfMagicWorkflow extends Rollable( ActorWorkflow ) {
       {
         attribute:  this._attributeId,
         discipline: this._discipline,
+        target:     {
+          base: this._difficulty,
+        },
       },
       this._actor,
     );
