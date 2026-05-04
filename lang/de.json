@@ -3328,6 +3328,7 @@
         "Title": {
           "attuneGrimoire":                       "Struktur Verstehen um Grimoire abzustimmen",
           "damage":                               "Schaden würfeln ({damageSourceType})",
+          "halfMagic":                            "Halbmagie auf {attribute} würfeln",
           "itemHistory":                          "Artefaktgeschichte würfeln",
           "jumpUp":                               "Aufspringen würfeln",
           "rollAttribute":                        "Attributsprobe würfeln",
