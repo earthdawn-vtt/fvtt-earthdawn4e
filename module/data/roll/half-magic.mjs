@@ -98,18 +98,10 @@ export default class HalfMagicRollOptions extends EdRollOptions {
   }
 
   /** @inheritDoc */
-  _getChatFlavor() {
-    const discipline = fromUuidSync( this.disciplineUuid );
-    return discipline.system.summary?.value ?? super._getChatFlavor();
-  }
-
-  /** @inheritDoc */
   _getChatFlavorData() {
-    const actor = fromUuidSync( this.rollingActorUuid );
     return {
       attribute:   ACTORS.attributes[ this.attribute ].label,
-      actor:       actor.name,
-      sourceActor: createContentAnchor( actor ).outerHTML,
+      actor:       createContentAnchor( fromUuidSync( this.rollingActorUuid ) ).outerHTML,
       discipline:  createContentAnchor( fromUuidSync( this.disciplineUuid ) ).outerHTML,
       step:        this.step.total,
     };
