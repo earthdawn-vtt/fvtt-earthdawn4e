@@ -1,6 +1,7 @@
 import ActorWorkflow from "./actor-workflow.mjs";
 import Rollable from "./rollable.mjs";
 import HalfMagicRollOptions from "../../data/roll/half-magic.mjs";
+import { ACTORS } from "../../config/_module.mjs";
 
 /**
  * Workflow for handling actor half-magic tests
@@ -38,6 +39,12 @@ export default class HalfMagicWorkflow extends Rollable( ActorWorkflow ) {
     this._discipline = options.discipline ?? null;
 
     this._rollToMessage = options.rollToMessage ?? true;
+    this._rollPromptTitle = _loc(
+      "ED.Dialogs.RollPrompt.Title.halfMagic",
+      {
+        attribute: ACTORS.attributes[this._attributeId].label,
+      }
+    );
 
     this._steps.push(
       this.#chooseDiscipline.bind( this ),
