@@ -1,13 +1,13 @@
 import ActorWorkflow from "./actor-workflow.mjs";
 import Rollable from "./rollable.mjs";
-import EdRollOptions from "../../data/roll/common.mjs";
-import * as ACTORS from "../../config/actors.mjs";
-import * as EFFECTS from "../../config/effects.mjs";
+import AttributeRollOptions from "../../data/roll/attribute.mjs";
+import * as ROLLS from "../../config/rolls.mjs";
 
 /**
  * Workflow for handling actor attribute tests
  * @typedef {object} AttributeWorkflowOptions
  * @property {string} attributeId - The attribute ID to use for the attribute roll.
+ * @property {difficulty} difficulty - The difficulty to use for the roll.
  */
 
 /**
@@ -24,6 +24,12 @@ export default class AttributeWorkflow extends Rollable( ActorWorkflow ) {
   _attributeId;
 
   /**
+   * Difficulty for the roll
+   * @type {difficulty}
+   */
+  _difficulty;
+   
+  /**
    * @param {ActorEd} actor The actor performing the attribute
    * @param {AttributeWorkflowOptions & RollableWorkflowOptions & WorkflowOptions} [options] Options for the attribute workflow
    */
@@ -31,6 +37,7 @@ export default class AttributeWorkflow extends Rollable( ActorWorkflow ) {
     super( actor, options );
 
     this._attributeId = options.attributeId;
+    this._difficulty = options.difficulty ?? ROLLS.minDifficulty;
 
     this._rollToMessage = options.rollToMessage ?? true;
     this._rollPromptTitle = _loc( "ED.Dialogs.RollPrompt.Title.rollAttribute" );
@@ -40,36 +47,12 @@ export default class AttributeWorkflow extends Rollable( ActorWorkflow ) {
 
   /** @inheritDoc */
   async _prepareRollOptions() {
-    const stepModifiers = {};
-    const allTestsModifiers = this._actor.system.globalModifiers?.allTests.value ?? 0;
-    const allActionsModifiers = this._actor.system.globalModifiers?.allActions.value ?? 0;
-    if ( allTestsModifiers ) {
-      stepModifiers[EFFECTS.globalModifiers.allTests.label] = allTestsModifiers;
-    }
-    if ( allActionsModifiers ) {
-      stepModifiers[EFFECTS.globalModifiers.allActions.label] = allActionsModifiers;
-    }
-    const attribute = this._actor.system.attributes[this._attributeId];
-    this._rollOptions = EdRollOptions.fromActor(
+    this._rollOptions = AttributeRollOptions.fromActor(
       {
-        step:         {
-          base:      attribute.step,
-          modifiers: stepModifiers
-        },
-        
+        attribute:   this._attributeId,
         target:      {
-          base:      undefined,
+          base:      this._difficulty,
         },
-        chatFlavor: _loc(
-          "ED.Chat.Flavor.rollAttribute",
-          {
-            actor:     this._actor.name,
-            step:      attribute.step,
-            attribute: ACTORS.attributes[this._attributeId].label,
-          },
-        ),
-        rollType: "attribute",
-        testType: "action",
       },
       this._actor,
     );
