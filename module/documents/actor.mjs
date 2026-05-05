@@ -692,16 +692,6 @@ export default class ActorEd extends Actor {
   }
 
   /**
-   * Returns the knockdown ability item for this actor, if any.
-   * @returns {Promise<ItemEd|undefined>} The knockdown ability item, or undefined if none was found.
-   */
-  async knockdownAbility() {
-    return await fromUuid(
-      await this.getPrompt( "knockdown" )
-    );
-  }
-
-  /**
    * Perform a knockdown test for this actor.
    * @param {number} damageTaken The amount of damage that triggered the knockdown test.
    * @param {object} [options] Additional options for the knockdown test.

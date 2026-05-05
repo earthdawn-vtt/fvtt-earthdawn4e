@@ -5,27 +5,10 @@ import Rollable from "./rollable.mjs";
 /**
  * @typedef {object} KnockdownWorkflowOptions
  * @property {object} [knockdownAbility] - The ability used for the knockdown test (optional).
- * @property {number} [difficulty] - The difficulty for the knockdown test (optional).
+ * @property {number} [damageTaken] - The amount of damage taken (optional).
  */
 
 export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
-  /**
-   * The step used to withstand the knockdown.
-   * @type {number}
-   */
-  _knockdownStep;
-
-  /**
-   * The wound threshold of the Actor.
-   * @type {number}
-   */
-  _woundThreshold;
-
-  /**
-   * Knockdown test difficulty.
-   * @type {number}
-   */
-  _difficulty;
 
   /**
    * Damage taken.
@@ -40,67 +23,41 @@ export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
   _knockdownAbility;
 
   /**
-   * Knockdown strain.
-   * @type {number}
-   */
-  _strain;
-
-  /**
    * @param {foundry.documents.Actor} actor - The actor that is performing the knockdown.
    * @param {KnockdownWorkflowOptions} [options] - The options for the knockdown workflow.
    */
   constructor( actor, options = {} ) {
     super( actor, options );
     this._damageTaken = options.damageTaken || 0;
-    this._woundThreshold = actor.system.characteristics.health.woundThreshold;
-    this._strain = options.knockdownAbility?.system?.strain || 0;
-    this._knockdownStep = this._knockdownAbility ? this._knockdownAbility.system.rankFinal : actor.system.knockdownStep;
-    // include option to set difficulty to full damage taken
-    this._difficulty = options.difficulty || game.settings.get( "ed4e", "minimumDifficulty" );
+    this._knockdownAbility = options.knockdownAbility || null;
+    this._rollToMessage = options.rollToMessage ?? true;
 
-    this._steps = [
-      this._checkKnockdownStatus.bind( this ),
-      this.getKnockdownAbility.bind( this ),
-      this._prepareKnockdownRollOptions.bind( this ),
-      this._createRoll.bind( this ),
-      this._evaluateResultRoll.bind( this ),
-      this._processRoll.bind( this ),
-      this._rollToChat.bind( this ),
-    ];
+    this._steps.push(
+      this.#validate.bind( this ),
+      this.#chooseKnockdownAbility.bind( this ),
+    );
+    this._initRollableSteps();
   }
 
-  /**
-   * Check if the actor is already knocked down.
-   * @returns {Promise<void>}
-   * @private
-   */
-  async _checkKnockdownStatus() {
+  async #validate() {
     if ( this._actor.statuses.has( "knockedDown" ) ) {
-      ui.notifications.info( _loc( "ED.Notifications.Info.alreadyKnockedDown" ) );
+      ui.notifications.info(
+        "ED.Notifications.Info.alreadyKnockedDown",
+        { localize: true },
+      );
       this.cancel();
     }
   }
 
-  /**
-   * Fetch the knockdown ability item for the actor.
-   * @returns {Promise<void>}
-   * @private
-   */
-  async getKnockdownAbility() {
-    this._knockdownAbility = await this._actor.knockdownAbility();
+  async #chooseKnockdownAbility() {
+    if ( this._knockdownAbility ) return;
+
+    const abilityUuid = await this._actor.getPrompt( "knockdown" );
+    this._knockdownAbility = await fromUuid( abilityUuid ) ?? null;
   }
 
-  /**
-   * Prepare the roll options for the knockdown test.
-   * @returns {Promise<void>}
-   * @private
-   */
-  async _prepareKnockdownRollOptions() {
-    const stepModifiers = {};
-    const knockdownModifier = this._actor.system.globalModifiers?.allKnockdownTests.value ?? 0;
-    if ( knockdownModifier ) {
-      stepModifiers.knockdown = knockdownModifier;
-    }
+  /** @inheritDoc */
+  async _prepareRollOptions() {
     this._rollOptions = KnockdownRollOptions.fromActor(
       {
         knockdownAbility: this._knockdownAbility,
