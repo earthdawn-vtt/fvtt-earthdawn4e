@@ -386,6 +386,7 @@
         "abilityRollOptions":                     "{sourceActor} rolls {ability} with Step {step}",
         "actorTookDamage":                        "{dealtTo} has taken damage.",
         "arbitraryRollOptions":                   "Roll",
+        "attributeRollOptions":                   "<p>{actor}</p><p>makes a {attribute} test</p>",
         "attuningRollOptions":                    "{sourceActor} attempts \"{attuningItem}\" using {attuningAbility}",
         "damageAfterRecovery":                    "Standard: {initialStandardDamage} → {newStandardDamage}<br>Stun: {initialStunDamage} → {newStunDamage}",
         "damageRollOptions":                      "Damage from {damageSource}:",
@@ -400,7 +401,6 @@
         "knockdownTest":                          "{sourceActor} makes a knockdown test with step {step}.",
         "provideDiceFormula":                     "Please provide a die formula (e.g., 1d6, 2d10+3)",
         "rollAbility":                            "{sourceActor} rolls {ability} ({step})",
-        "rollAttribute":                          "{actor} rolls {attribute} ({step})",
         "rollEquipment":                          "{sourceActor} rolls {equipment} ({step})",
         "rollHalfMagic":                          "{actor} rolls half-magic for the discipline {discipline}, based on {attribute} with step {step}",
         "rollInitiative":                         "{sourceActor} rolls {initiative} ({step})",
@@ -2494,6 +2494,14 @@
             "weaponUuid": {
               "hint":                             "UUID of the weapon this option refers to",
               "label":                            "Weapon UUID"
+            }
+          }
+        },
+        "AttributeRollOptions": {
+          "FIELDS": {
+            "attribute": {
+              "hint":                             "TODO: Add translation",
+              "label":                            "TODO: Add translation"
             }
           }
         },
