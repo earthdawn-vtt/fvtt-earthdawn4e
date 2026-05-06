@@ -61,6 +61,11 @@
  */
 
 /**
+ * @typedef {"attribute"|"halfMagic"|"substitute"} AttributeBasedRollType
+ * Roll types that are based on an attribute step. One of the keys in {@link rollTypes}.
+ */
+
+/**
  * @typedef {object} WorkflowOptions
  * @property {string} [name] The name of the workflow.
  */
