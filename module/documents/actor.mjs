@@ -27,6 +27,7 @@ import ItemHistoryWorkflow from "../workflows/workflow/item-history-workflow.mjs
 import { SYSTEM_TYPES } from "../constants/constants.mjs";
 import * as DOCUMENT_DATA from "../config/document-data.mjs";
 import * as ITEMS from "../config/items.mjs";
+import * as ROLLS from "../config/rolls.mjs";
 import * as TOKEN from "../config/token.mjs";
 import { sum } from "../utils/math.mjs";
 import { createStaticStatusId } from "../helpers/document.mjs";
@@ -1057,6 +1058,31 @@ export default class ActorEd extends Actor {
       amount - ( ignoreWounds ? 0 : this.system.characteristics.health.wounds ),
       1
     );
+  }
+
+  /**
+   * @typedef {import('../_types.mjs').AttributeBasedRollType} AttributeBasedRollType
+   */
+
+  /**
+   * Make a test based on an attribute step.
+   * @param {string} attribute The ID of the attribute the roll is based on. One of {@link ACTORS#attributes}.
+   * @param {AttributeBasedRollType} [mode] The mode of the roll. Will be prompted if not provided.
+   * @returns {Promise<any>} A promise that resolves when the corresponding workflow execution is complete.
+   */
+  async rollAttributeBased( attribute, mode ) {
+    if ( mode && !ROLLS.attributeBasedRollTypes.includes( mode ) )
+      throw new Error( `ActorEd.rollAttributeBased: Invalid roll mode '${ mode }' provided.` );
+
+    const rollMode = mode ?? await this.getPrompt( "attribute" );
+    switch ( rollMode ) {
+      case "attribute":
+        return this.rollAttribute( attribute );
+      case "halfMagic":
+        return this.rollHalfMagic( attribute );
+      case "substitute":
+        return this.rollSubstitute( attribute );
+    }
   }
 
   /**
