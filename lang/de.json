@@ -386,6 +386,7 @@
         "abilityRollOptions":                     "{sourceActor} würfelt {ability} mit Stufe {step}",
         "actorTookDamage":                        "{dealtTo} hat Schaden erlitten.",
         "arbitraryRollOptions":                   "Würfelwurf",
+        "attributeRollOptions":                   "<p>{actor}</p><p>macht einen Test auf {attribute}</p>",
         "attuningRollOptions":                    "{sourceActor} versucht \"{attuningItem}\" und benutzt dafür {attuningAbility}",
         "damageAfterRecovery":                    "Standard: {initialStandardDamage} &rArr; {newStandardDamage}<br>Betäubung: {initialStunDamage} &rArr; {newStunDamage}",
         "damageRollOptions":                      "Schaden durch {damageSource}:",
@@ -400,7 +401,6 @@
         "knockdownTest":                          "{sourceActor} macht eine Niederschlagsprobe mit Stufe {step}.",
         "provideDiceFormula":                     "Bitte gib eine Würfelformel an (z.B. 1d6, 2d10+3)",
         "rollAbility":                            "{sourceActor} würfelt {ability} ({step})",
-        "rollAttribute":                          "{actor} würfelt {attribute} ({step})",
         "rollEquipment":                          "{sourceActor} würfelt {equipment} ({step})",
         "rollHalfMagic":                          "{actor} würfelt Halbmagie für die Disziplin {discipline}, basierend auf {attribute} mit Stufe {step}",
         "rollInitiative":                         "{sourceActor} würfelt {initiative} ({step})",
@@ -2494,6 +2494,14 @@
             "weaponUuid": {
               "hint":                             "UUID der Waffe auf die sich diese Option bezieht",
               "label":                            "Waffen-UUID"
+            }
+          }
+        },
+        "AttributeRollOptions": {
+          "FIELDS": {
+            "attribute": {
+              "hint":                             "Das Attribut auf dem der Wurf basiert",
+              "label":                            "Attribut"
             }
           }
         },
