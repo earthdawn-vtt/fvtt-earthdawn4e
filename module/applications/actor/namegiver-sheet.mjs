@@ -27,9 +27,6 @@ export default class ActorSheetEdNamegiver extends ActorSheetEdSentient {
     form: {
       submitOnChange: true,
     },
-    actions:  {
-      halfmagic:           ActorSheetEdNamegiver.rollHalfMagic,
-    },
   };
 
   /** @inheritdoc */
@@ -58,15 +55,4 @@ export default class ActorSheetEdNamegiver extends ActorSheetEdSentient {
     return super._onDropItem( event, item );
   }
 
-  // region Actions
-  /**
-   * This function triggers the half magic roll of an adept.
-   * @param {Event} event - The event that triggered the form submission.
-   * @param {HTMLElement} target - The HTML element that triggered the action.
-   */
-  static async rollHalfMagic( event, target ) {
-    event.preventDefault();
-    ui.notifications.info( "Half magic not done yet" );
-    this.document.rollHalfMagic( { event: event } );
-  }
 }

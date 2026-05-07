@@ -391,6 +391,7 @@
         "damageRollOptions":                      "Schaden durch {damageSource}:",
         "edRollOptions":                          "Earthdawn Würfelwurf",
         "fullRestRecovery":                       "Erholungsproben aufgefüllt",
+        "halfMagicRollOptions":                   "<p>{actor}</p><p>nutzt Halbmagie als</p><p>{discipline},</p><p>basierend auf {attribute}</p>",
         "horrorMarkRollOptions":                  "{horror} versucht ein Dämonenmal auf {caster} zu platzieren.",
         "ignoresArmor":                           "Ignoriert Rüstung",
         "invalidDiceFormula":                     "Ungültige Würfelformel",
@@ -402,7 +403,6 @@
         "rollAbility":                            "{sourceActor} würfelt {ability} ({step})",
         "rollAttribute":                          "{actor} würfelt {attribute} ({step})",
         "rollEquipment":                          "{sourceActor} würfelt {equipment} ({step})",
-        "rollHalfMagic":                          "{actor} würfelt Halbmagie für die Disziplin {discipline}, basierend auf {attribute} mit Stufe {step}",
         "rollInitiative":                         "{sourceActor} würfelt {initiative} ({step})",
         "rollRecovery":                           "{sourceActor} nutzt Erholungsproben für {recoveryMode}",
         "rollSubstitute":                         "{actor} würfelt {attribute} ({step}) um {substitute} zu ersetzen",
@@ -675,7 +675,7 @@
         "attribute":                              "Attribute",
         "attuning":                               "Abstimmung",
         "damage":                                 "Schaden",
-        "halfmagic":                              "Halbmagie",
+        "halfMagic":                              "Halbmagie",
         "horrorMark":                             "Dämonenmal",
         "initiative":                             "Initiative",
         "jumpUp":                                 "Aufspringen",
@@ -2611,6 +2611,18 @@
             }
           }
         },
+        "HalfMagicRollOptions": {
+          "FIELDS": {
+            "attribute": {
+              "hint":                             "Das Kürzel des Attributs auf dem die Halbmagie-Probe basiert",
+              "label":                            "Attribut-Kürzel"
+            },
+            "disciplineUuid": {
+              "hint":                             "UUID der Disizipline für die Halbmagie gewürfelt wird",
+              "label":                            "Disziplin-UUID"
+            }
+          }
+        },
         "InitiativeRollOptions": {
           "FIELDS": {
             "increaseAbilities": {
@@ -3316,6 +3328,7 @@
         "Title": {
           "attuneGrimoire":                       "Struktur Verstehen um Grimoire abzustimmen",
           "damage":                               "Schaden würfeln ({damageSourceType})",
+          "halfMagic":                            "Halbmagie auf {attribute} würfeln",
           "itemHistory":                          "Artefaktgeschichte würfeln",
           "jumpUp":                               "Aufspringen würfeln",
           "rollAttribute":                        "Attributsprobe würfeln",

@@ -391,6 +391,7 @@
         "damageRollOptions":                      "Damage from {damageSource}:",
         "edRollOptions":                          "Earthdawn Roll",
         "fullRestRecovery":                       "Recovery tests refilled",
+        "halfMagicRollOptions":                   "<p>{actor}</p><p>uses half-magic as</p><p>{discipline},</p><p>based on {attribute}</p>",
         "horrorMarkRollOptions":                  "{horror} attempts to place a horror mark on {caster}.",
         "ignoresArmor":                           "Ignores armor",
         "invalidDiceFormula":                     "Invalid die formula",
@@ -402,7 +403,6 @@
         "rollAbility":                            "{sourceActor} rolls {ability} ({step})",
         "rollAttribute":                          "{actor} rolls {attribute} ({step})",
         "rollEquipment":                          "{sourceActor} rolls {equipment} ({step})",
-        "rollHalfMagic":                          "{actor} rolls half-magic for the discipline {discipline}, based on {attribute} with step {step}",
         "rollInitiative":                         "{sourceActor} rolls {initiative} ({step})",
         "rollRecovery":                           "{sourceActor} uses a recovery test for {recoveryMode}",
         "rollSubstitute":                         "{actor} rolls {attribute} ({step}) to replace {substitute}",
@@ -675,7 +675,7 @@
         "attribute":                              "Attribute",
         "attuning":                               "Attuning",
         "damage":                                 "Damage",
-        "halfmagic":                              "Half-Magic",
+        "halfMagic":                              "Half-Magic",
         "horrorMark":                             "Horror Mark",
         "initiative":                             "Initiative",
         "jumpUp":                                 "Jump Up",
@@ -2611,6 +2611,18 @@
             }
           }
         },
+        "HalfMagicRollOptions": {
+          "FIELDS": {
+            "attribute": {
+              "hint":                             "The ID of the attribute the half magic is based on",
+              "label":                            "Attribute ID"
+            },
+            "disciplineUuid": {
+              "hint":                             "UUID of the discipline for which half magic is rolled",
+              "label":                            "Discipline UUID"
+            }
+          }
+        },
         "InitiativeRollOptions": {
           "FIELDS": {
             "increaseAbilities": {
@@ -3316,6 +3328,7 @@
         "Title": {
           "attuneGrimoire":                       "Patterncraft to Attune Grimoire",
           "damage":                               "Roll Damage ({damageSourceType})",
+          "halfMagic":                            "Roll Half-Magic on {attribute}",
           "itemHistory":                          "Roll Item History",
           "jumpUp":                               "Roll Jump Up",
           "rollAttribute":                        "TODO: Add translation",

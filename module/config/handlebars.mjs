@@ -205,7 +205,7 @@ export const partials = [
   "systems/ed4e/templates/chat/chat-flavor/attribute-roll-flavor.hbs",
   "systems/ed4e/templates/chat/chat-flavor/damage-roll-flavor.hbs",
   "systems/ed4e/templates/chat/chat-flavor/effect-roll-flavor.hbs",
-  "systems/ed4e/templates/chat/chat-flavor/halfmagic-roll-flavor.hbs",
+  "systems/ed4e/templates/chat/chat-flavor/half-magic-roll-flavor.hbs",
   "systems/ed4e/templates/chat/chat-flavor/initiative-roll-flavor.hbs",
   "systems/ed4e/templates/chat/chat-flavor/recovery-roll-flavor.hbs",
   "systems/ed4e/templates/chat/chat-flavor/spellcasting-roll-flavor.hbs",

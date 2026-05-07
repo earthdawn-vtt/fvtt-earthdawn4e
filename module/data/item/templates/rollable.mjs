@@ -28,7 +28,7 @@ export default class RollableTemplate extends SystemDataModel {
         initial:  "",
         choices:  filterObject(
           ROLLS.rollTypes,
-          ( key, _ ) => ![ "attribute", "attuning", "halfmagic" ].includes( key )
+          ( key, _ ) => ![ "attribute", "attuning", "halfMagic" ].includes( key )
         ),
       } ),
       rollTypeDetails: new fields.SchemaField( {

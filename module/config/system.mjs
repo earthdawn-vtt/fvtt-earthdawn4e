@@ -116,7 +116,7 @@ export const icons = {
   eyeSlash:          "fa-eye-slash",
   favoritable:       "fa-star",
   finishCharGen:     "fa-thin fa-check-double",
-  halfmagic:         "fa-hat-wizard",
+  halfMagic:         "fa-hat-wizard",
   initiative:        "fa-running",
   itemHistory:       "fa-history",
   nextCharGen:       "fa-thin fa-arrow-right",

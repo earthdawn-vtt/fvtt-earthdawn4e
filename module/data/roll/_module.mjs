@@ -3,6 +3,7 @@ export {default as AbilityRollOptions} from "./ability.mjs";
 export {default as AttackRollOptions} from "./attack.mjs";
 export {default as AttuningRollOptions} from "./attuning.mjs";
 export {default as DamageRollOptions} from "./damage.mjs";
+export {default as HalfMagicRollOptions} from "./half-magic.mjs";
 export {default as HorrorMarkRollOptions} from "./horror-mark.mjs";
 export {default as InitiativeRollOptions} from "./initiative.mjs";
 export {default as JumpUpRollOptions} from "./jump-up.mjs";
