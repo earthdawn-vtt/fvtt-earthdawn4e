@@ -84,9 +84,9 @@
             {{/each}}
 
             <!-- Effects -->
-            {{formGroup levelData.schema.fields.effects.element
+            {{formGroup levelData.schema.fields.effects
                         name=(concat "system.advancement.levels." level ".effects")
-                        value=(ed-commaList levelData.effects)
+                        value=levelData.effects
                         label=(localize "ED.Advancement.Pools.effects")
                         hint=(localize "ED.Advancement.Pools.effectsHint")
             }}
