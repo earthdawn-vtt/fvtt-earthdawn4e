@@ -119,3 +119,12 @@ export const stepTables = {
   fourth:  "ED.Settings.StepTable.editionFourth"
 };
 preLocalize( "stepTables", );
+
+/**
+ * @typedef {import('../_types.mjs').AttributeBasedRollType} AttributeBasedRollType
+ */
+
+/**
+ * @type {AttributeBasedRollType[]}
+ */
+export const attributeBasedRollTypes = [ "attribute", "halfMagic", "substitute" ];

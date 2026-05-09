@@ -279,21 +279,21 @@ class ActorPromptFactory extends PromptFactory {
   async _attributePrompt() {
     const buttons = [
       {
-        action:  "rollAttribute",
+        action:  "attribute",
         label:   "ED.Dialogs.Buttons.attribute",
         icon:    "fa-solid fa-dice",
         class:   "rollAttribute default",
         default: true
       },
       {
-        action:  "rollHalfMagic",
+        action:  "halfMagic",
         label:   "ED.Dialogs.Buttons.halfMagic",
         icon:    "fa-solid fa-dice-two",
         class:   "rollHalfMagic",
         default: false
       },
       {
-        action:  "rollSubstitute",
+        action:  "substitute",
         label:   "ED.Dialogs.Buttons.substitute",
         icon:    "fa-solid fa-dice-three",
         class:   "rollSubstitute",
