@@ -1,6 +1,7 @@
 export {default as EdRollOptions} from "./common.mjs";
 export {default as AbilityRollOptions} from "./ability.mjs";
 export {default as AttackRollOptions} from "./attack.mjs";
+export {default as AttributeRollOptions} from "./attribute.mjs";
 export {default as AttuningRollOptions} from "./attuning.mjs";
 export {default as DamageRollOptions} from "./damage.mjs";
 export {default as HalfMagicRollOptions} from "./half-magic.mjs";

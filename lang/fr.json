@@ -386,6 +386,7 @@
         "abilityRollOptions":                     "Options de jet de capacité",
         "actorTookDamage":                        "L'acteur a pris des dégâts",
         "arbitraryRollOptions":                   "Options de jet arbitraire",
+        "attributeRollOptions":                   "Jet d'attribut",
         "attuningRollOptions":                    "Options de jet d'harmonisation",
         "damageAfterRecovery":                    "Dégâts après récupération",
         "damageRollOptions":                      "Options de jet de dégâts",
@@ -401,7 +402,6 @@
         "knockdownTest":                          "Test de renversement",
         "provideDiceFormula":                     "Veuillez fournir une formule de dés",
         "rollAbility":                            "Jet de capacité",
-        "rollAttribute":                          "Jet d'attribut",
         "rollEquipment":                          "Jet d'équipement",
         "rollInitiative":                         "Jet d'Initiative",
         "rollRecovery":                           "Jet de Récupération",
@@ -2494,6 +2494,14 @@
             "weaponUuid": {
               "hint":                             "UUID d'arme",
               "label":                            "UUID d'arme"
+            }
+          }
+        },
+        "AttributeRollOptions": {
+          "FIELDS": {
+            "attribute": {
+              "hint":                             "TODO: Add translation",
+              "label":                            "TODO: Add translation"
             }
           }
         },

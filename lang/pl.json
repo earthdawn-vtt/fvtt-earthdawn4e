@@ -386,6 +386,7 @@
         "abilityRollOptions":                     "TODO: Add translation",
         "actorTookDamage":                        "TODO: Add translation",
         "arbitraryRollOptions":                   "TODO: Add translation",
+        "attributeRollOptions":                   "TODO: Add translation",
         "attuningRollOptions":                    "TODO: Add translation",
         "damageAfterRecovery":                    "TODO: Add translation",
         "damageRollOptions":                      "TODO: Add translation",
@@ -401,7 +402,6 @@
         "knockdownTest":                          "TODO: Add translation",
         "provideDiceFormula":                     "TODO: Add translation",
         "rollAbility":                            "TODO: Add translation",
-        "rollAttribute":                          "TODO: Add translation",
         "rollEquipment":                          "TODO: Add translation",
         "rollInitiative":                         "TODO: Add translation",
         "rollRecovery":                           "TODO: Add translation",
@@ -2492,6 +2492,14 @@
               "label":                            "TODO: Add translation"
             },
             "weaponUuid": {
+              "hint":                             "TODO: Add translation",
+              "label":                            "TODO: Add translation"
+            }
+          }
+        },
+        "AttributeRollOptions": {
+          "FIELDS": {
+            "attribute": {
               "hint":                             "TODO: Add translation",
               "label":                            "TODO: Add translation"
             }
