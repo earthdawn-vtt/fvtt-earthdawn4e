@@ -11,10 +11,10 @@ import { createContentAnchor } from "../../helpers/formatting.mjs";
  * Can be omitted if `weaponUuid` is provided.
  * @property { string } [weaponUuid] The UUID of the weapon used for the attack.
  * Must be an embedded Item. Can be omitted if `weapon` is provided.
- * @property { ItemEd } [attackAbility] The ability used for the attack.
- * Can be omitted if `attackAbilityUuid` is provided.
- * @property { string } [attackAbilityUuid] The UUID of the ability used for the attack.
- * Must be an embedded Item. Can be omitted if `attackAbility` is provided.
+ * @property { ItemEd|null } [attackAbility] The ability used for the attack.
+ * Can be null if no ability is used (substitute via attribute) or omitted if `attackAbilityUuid` is provided.
+ * @property { string|null } [attackAbilityUuid] The UUID of the ability used for the attack.
+ * Must be an embedded Item. Can be null if no ability is used (substitute via attribute) or omitted if `attackAbility` is provided.
  * @property { ActorEd } [attacker] The actor performing the attack.
  * Can be omitted if `rollingActorUuid` is provided.
  * @property { string } [rollingActorUuid] The UUID of the actor performing the attack.
@@ -177,7 +177,7 @@ export default class AttackRollOptions extends EdRollOptions {
     newContext.reactionsByTarget = await this._getDefendantItems(
       "",
       "reaction",
-      { defenseType: newContext.attackAbility.system.difficulty.target },
+      { defenseType: newContext.attackAbility?.system.difficulty.target ?? "" },
     );
     newContext.maneuversByTarget = await this._getDefendantItems(
       SYSTEM_TYPES.Item.maneuver,
