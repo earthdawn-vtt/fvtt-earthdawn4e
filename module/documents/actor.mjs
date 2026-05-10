@@ -485,7 +485,10 @@ export default class ActorEd extends Actor {
     if ( !effect ) throw new Error( "ActorEd.manualOverride: Could not create manual override effect." );
 
     const newValue = ( Number( effect.system.changes.find( c => c.key === changeKey )?.value ) || 0 ) + changeValue;
-    return effect.updateSystemChange( changeKey, newValue );
+    return effect.updateSystemChange( {
+      key:   changeKey,
+      value: newValue,
+    } );
   }
 
   /**
