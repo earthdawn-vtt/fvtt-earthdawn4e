@@ -309,6 +309,19 @@ export const eaeChangeKeysActor = [
     group:          "ED.ActiveEffect.ChangeKeys.Groups.encumbrance",
     phase:          "derived",
   },
+  // movement
+  {
+    value:          "system.jumpUpStep",
+    label:          "ED.Data.Actor.Sentient.FIELDS.jumpUpStep.label",
+    group:          "ED.ActiveEffect.ChangeKeys.Groups.movement",
+    phase:          "final",
+  },
+  {
+    value:          "system.knockdownStep",
+    label:          "ED.Data.Actor.Sentient.FIELDS.knockdownStep.label",
+    group:          "ED.ActiveEffect.ChangeKeys.Groups.movement",
+    phase:          "final",
+  },
   // health
   {
     value:          "system.durabilityBonus",
