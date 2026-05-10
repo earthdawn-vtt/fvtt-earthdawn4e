@@ -1252,6 +1252,10 @@
               "hint":                             "Initiative Penalty of the actor",
               "label":                            "Initiative Penalty"
             },
+            "jumpUpStep": {
+              "hint":                             "TODO: Add translation",
+              "label":                            "TODO: Add translation"
+            },
             "karma": {
               "freeAttributePoints": {
                 "hint":                           "Free attribute points of the actor",
@@ -1273,6 +1277,10 @@
                 "hint":                           "Current Karma Points",
                 "label":                          "Current"
               }
+            },
+            "knockdownStep": {
+              "hint":                             "TODO: Add translation",
+              "label":                            "TODO: Add translation"
             },
             "relations": {
               "attitude": {
