@@ -87,7 +87,7 @@ export default class JumpUpRollOptions extends EdRollOptions {
       ] = -this.#getKnockedDownModifier();
     }
     return {
-      base:      jumpUpAbility?.system.rankFinal ?? actor.system.attributes.dex.step,
+      base:      jumpUpAbility?.system.rankFinal ?? actor.system.jumpUpStep,
       modifiers,
     };
   }
