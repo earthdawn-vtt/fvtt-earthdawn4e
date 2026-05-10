@@ -11,7 +11,7 @@
 				<div class="attribute-card__grid--container container__header">
 					<div class="attribute-card__grid--item"></div>
 					<div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attributeName"}}</div>
-					{{#if (eq this.actor.type "character")}}
+					{{#if isPc}}
 						<div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attributeValue"}}</div>
 						<div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.increaseAbbr"}}</div>
 					{{else}}
@@ -20,7 +20,7 @@
 					{{/if}}
 					<div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attributeStep"}}</div>
 				</div>
-				{{#if (eq this.actor.type "character")}}
+				{{#if isPc}}
 					{{> "systems/ed4e/templates/actor/cards/attribute-card.hbs"}}
 				{{else}}
 					{{> "systems/ed4e/templates/actor/cards/attributes-none-pc-card.hbs"}}
@@ -42,7 +42,7 @@
 						aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.karma.useAlways.hint'}}">
 				</span>
 				<span class="karma-devotion__header-icons">
-					{{#if (eq this.actor.type "character")}}
+					{{#if isPc}}
 						<a class="karma__ritual">
 							<button
 								class="button__Karma-refresh icon--button"
@@ -75,9 +75,9 @@
 					<div class="karma-devotion__grid--item">
 						<input
 							class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
-							{{#unless (eq this.actor.type "character")}}name="system.karma.max"{{/unless}}
+							{{#unless isPc}}name="system.karma.max"{{/unless}}
 							value="{{actor.system.karma.max}}"
-							{{#if (eq this.actor.type "character")}}readonly{{/if}}
+							{{#if isPc}}readonly{{/if}}
 							data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.karma.max.hint'}}"
 							data-tooltip-direction="UP"
 							aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.karma.max.hint'}}">
@@ -117,9 +117,9 @@
 					<div class="karma-devotion__grid--item">
 						<input
 							class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
-							{{#unless (eq this.actor.type "character")}}name="system.devotion.max"{{/unless}}
+							{{#unless isPc}}name="system.devotion.max"{{/unless}}
 							value="{{actor.system.devotion.max}}"
-							{{#if (eq this.actor.type "character")}}readonly{{/if}}
+							{{#if isPc}}readonly{{/if}}
 							data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.devotion.max.hint'}}"
 							data-tooltip-direction="UP"
 							aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.devotion.max.hint'}}">
@@ -161,7 +161,7 @@
 					<div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.step.label"}}</div>
 				</div>
 				<div class="recovery__grid--container">
-					{{#if (eq this.actor.type "character")}}
+					{{#if isPc}}
 						<div class="recovery__grid--item">
 							<input
 								class="input__rectangle-input--centered"
@@ -253,7 +253,7 @@
 			</h2>
 
 			<div class="container__block container__custom">
-				{{#if (eq this.actor.type "character")}}
+				{{#if isPc}}
 					<div class="initiative__grid--container container__header">
 						<div class="initiative__grid--item">{{localize "ED.Actor.Initiative.step"}}</div>
 						<div class="initiative__grid--item">{{localize "ED.Actor.Initiative.penalty"}}</div>
@@ -473,13 +473,13 @@
 						data-tooltip="{{localize 'ED.Actor.Buttons.jumpUp'}}"
 						data-tooltip-direction="DOWN"
 						aria-label="{{localize 'ED.Actor.Buttons.jumpUp'}}">
-						{{#unless (and @root.editable (ne this.actor.type "character"))}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
-						<input
-							id="movement-jump-up"
-							class="{{#if (and @root.editable (ne this.actor.type "character"))}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
-							type="number"
-							value="{{actor.system.attributes.dex.step}}">
-						{{#unless (and @root.editable (ne this.actor.type "character"))}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+						{{#unless (and @root.editable (not isPc))}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+            {{formInput systemFields.jumpUpStep
+                        classes=(ifThen (and @root.editable (not isPc)) "input__rectangle-input--centered" "input__clear-input--centered")
+                        value=actor.system.jumpUpStep
+                        readonly=isPc
+            }}
+						{{#unless (and @root.editable (not isPc))}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
 					</div>
 
 					<div
@@ -487,14 +487,13 @@
 						data-tooltip="{{localize 'ED.Actor.Buttons.knockdownTest'}}"
 						data-tooltip-direction="DOWN"
 						aria-label="{{localize 'ED.Actor.Buttons.knockdownTest'}}">
-						{{#unless (and @root.editable (ne this.actor.type "character"))}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
-						<input
-							id="movement-knockdown"
-							class="{{#if (and @root.editable (ne this.actor.type "character"))}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
-							name="system.knockdownStep"
-							type="number"
-							value="{{actor.system.knockdownStep}}" {{#if (eq this.actor.type "character")}}readonly{{/if}}>
-						{{#unless (and @root.editable (ne this.actor.type "character"))}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+						{{#unless (and @root.editable (not isPc))}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+            {{formInput systemFields.knockdownStep
+                        classes=(ifThen (and @root.editable (not isPc)) "input__rectangle-input--centered" "input__clear-input--centered")
+                        value=actor.system.knockdownStep
+                        readonly=isPc
+            }}
+						{{#unless (and @root.editable (not isPc))}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
 					</div>
 
 				</div>

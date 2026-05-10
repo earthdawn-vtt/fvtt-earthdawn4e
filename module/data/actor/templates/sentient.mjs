@@ -277,6 +277,14 @@ export default class SentientTemplate extends CommonTemplate {
         initial:  0,
         integer:  true,
       } ),
+      jumpUpStep: new fields.NumberField( {
+        required: true,
+        nullable: false,
+        min:      0,
+        step:     1,
+        initial:  0,
+        integer:  true,
+      } ),
       karma: new fields.SchemaField( {
         useAlways: new fields.BooleanField( {
           required: true,

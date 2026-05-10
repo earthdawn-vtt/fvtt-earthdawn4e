@@ -51,6 +51,7 @@ export default [
         DragDrop:               false,
         DocumentSheetV2:        false,
         DurationData:           false,
+        ED4E_CONSTANTS:         false,
         EdRoll:                 false,
         Folder:                 false,
         FormApplication:        false,

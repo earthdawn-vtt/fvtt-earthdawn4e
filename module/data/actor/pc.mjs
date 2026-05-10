@@ -403,6 +403,7 @@ export default class PcData extends NamegiverTemplate {
     this.#prepareRollResources();
     this.#prepareCharacteristics();
     this.#prepareKnockdown();
+    this.#prepareJumpUp();
 
     const actor = /** @type {ActorEd} */ this.parentDocument;
     actor.applyActiveEffects( "derived" );
@@ -547,6 +548,11 @@ export default class PcData extends NamegiverTemplate {
   #prepareKnockdown() {
     this.knockdownStep = this.attributes.str.step;
   }
+
+  #prepareJumpUp() {
+    this.jumpUpStep = this.attributes.dex.step;
+  }
+
   /**
    * Prepare the derived movement values based on namegiver items.
    * @private

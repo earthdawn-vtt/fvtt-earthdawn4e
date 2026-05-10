@@ -120,6 +120,7 @@ const DocumentSheetMixinEd = Base => {
       const context = await super._prepareContext( options );
       foundry.utils.mergeObject( context, {
         config:       CONFIG.ED4E,
+        ed4eConst:    ED4E_CONSTANTS,
         editable:     this.isEditable && ( this._sheetMode === this.constructor.SHEET_MODES.EDIT ),
         isGM:         game.user.isGM,
         options:      this.options,

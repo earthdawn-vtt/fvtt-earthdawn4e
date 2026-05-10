@@ -117,6 +117,7 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
       items:                  this.document.items,
       icons:                  SYSTEM.icons,
       favoriteItems:          favoriteResults,
+      isPc:                   this.document.type === SYSTEM_TYPES.Actor.pc,
     }, {
       recursive: false,
     }, );
