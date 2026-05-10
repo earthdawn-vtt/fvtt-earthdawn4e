@@ -474,11 +474,11 @@
 						data-tooltip-direction="DOWN"
 						aria-label="{{localize 'ED.Actor.Buttons.jumpUp'}}">
 						{{#unless (and @root.editable (ne this.actor.type "character"))}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
-						<input
-							id="movement-jump-up"
-							class="{{#if (and @root.editable (ne this.actor.type "character"))}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
-							type="number"
-							value="{{actor.system.attributes.dex.step}}">
+            {{formInput systemFields.jumpUpStep
+                        classes=(ifThen (and @root.editable (ne this.actor.type "character")) "input__rectangle-input--centered" "input__clear-input--centered")
+                        value=actor.system.jumpUpStep
+                        readonly=(eq this.actor.type "character")
+            }}
 						{{#unless (and @root.editable (ne this.actor.type "character"))}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
 					</div>
 
@@ -488,12 +488,11 @@
 						data-tooltip-direction="DOWN"
 						aria-label="{{localize 'ED.Actor.Buttons.knockdownTest'}}">
 						{{#unless (and @root.editable (ne this.actor.type "character"))}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
-						<input
-							id="movement-knockdown"
-							class="{{#if (and @root.editable (ne this.actor.type "character"))}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
-							name="system.knockdownStep"
-							type="number"
-							value="{{actor.system.knockdownStep}}" {{#if (eq this.actor.type "character")}}readonly{{/if}}>
+            {{formInput systemFields.knockdownStep
+                        classes=(ifThen (and @root.editable (ne this.actor.type "character")) "input__rectangle-input--centered" "input__clear-input--centered")
+                        value=actor.system.knockdownStep
+                        readonly=(eq this.actor.type "character")
+            }}
 						{{#unless (and @root.editable (ne this.actor.type "character"))}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
 					</div>
 
