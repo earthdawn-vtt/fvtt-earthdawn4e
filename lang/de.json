@@ -1252,6 +1252,10 @@
               "hint":                             "Initiativemalus des Akteurs",
               "label":                            "Initiativemalus"
             },
+            "jumpUpStep": {
+              "hint":                             "Stufe die bei Aufspringen-Proben verwendet werden soll",
+              "label":                            "Aufspringen-Stufe"
+            },
             "karma": {
               "freeAttributePoints": {
                 "hint":                           "Freie Attributspunkte des Akteurs",
@@ -1273,6 +1277,10 @@
                 "hint":                           "Aktuelle Karma des Akteurs",
                 "label":                          "Aktuell"
               }
+            },
+            "knockdownStep": {
+              "hint":                             "Stufe die Niederschlagsproben verwendet werden soll",
+              "label":                            "Niederschlagsstufe"
             },
             "relations": {
               "attitude": {

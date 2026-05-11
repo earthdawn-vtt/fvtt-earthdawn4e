@@ -473,13 +473,13 @@
 						data-tooltip="{{localize 'ED.Actor.Buttons.jumpUp'}}"
 						data-tooltip-direction="DOWN"
 						aria-label="{{localize 'ED.Actor.Buttons.jumpUp'}}">
-						{{#unless (and @root.editable (not isPc))}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+						{{#unless (and @root.editable (not isPc))}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
             {{formInput systemFields.jumpUpStep
                         classes=(ifThen (and @root.editable (not isPc)) "input__rectangle-input--centered" "input__clear-input--centered")
                         value=actor.system.jumpUpStep
                         readonly=isPc
             }}
-						{{#unless (and @root.editable (not isPc))}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+						{{#unless (and @root.editable (not isPc))}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
 					</div>
 
 					<div
@@ -487,13 +487,13 @@
 						data-tooltip="{{localize 'ED.Actor.Buttons.knockdownTest'}}"
 						data-tooltip-direction="DOWN"
 						aria-label="{{localize 'ED.Actor.Buttons.knockdownTest'}}">
-						{{#unless (and @root.editable (not isPc))}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+						{{#unless (and @root.editable (not isPc))}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
             {{formInput systemFields.knockdownStep
                         classes=(ifThen (and @root.editable (not isPc)) "input__rectangle-input--centered" "input__clear-input--centered")
                         value=actor.system.knockdownStep
                         readonly=isPc
             }}
-						{{#unless (and @root.editable (not isPc))}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+						{{#unless (and @root.editable (not isPc))}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
 					</div>
 
 				</div>
