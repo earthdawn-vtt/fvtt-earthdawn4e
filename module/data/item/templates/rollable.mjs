@@ -1,6 +1,5 @@
 import EdRollOptions from "../../roll/common.mjs";
 import SystemDataModel from "../../abstract/system-data-model.mjs";
-import { SYSTEM_TYPES } from "../../../constants/constants.mjs";
 import * as ACTIONS from "../../../config/actions.mjs";
 import * as ITEMS from "../../../config/items.mjs";
 import * as MAGIC from "../../../config/magic.mjs";
@@ -129,11 +128,7 @@ export default class RollableTemplate extends SystemDataModel {
 
   /** @inheritDoc */
   getDefaultMacroCommand( item, options = {} ) {
-    const physicalItemTypes = [ SYSTEM_TYPES.Item.armor, SYSTEM_TYPES.Item.equipment, SYSTEM_TYPES.Item.shield, SYSTEM_TYPES.Item.weapon, ];
-    if ( physicalItemTypes.includes( item.type ) ) {
-      // Physical items have to use actor.rollEquipment() instead of item.system.roll()
-      return `const item = await fromUuid("${this.parent.uuid}");\nawait item.actor.rollEquipment(item);`;
-    } else {
+    if ( item.system?.roll instanceof Function ) {
       return `const item = await fromUuid("${this.parent.uuid}");\nawait item.system.roll()`;
     }
   }
