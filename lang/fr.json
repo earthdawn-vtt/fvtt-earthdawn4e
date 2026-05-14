@@ -1647,6 +1647,10 @@
             "consumable": {
               "hint":                             "Consommable",
               "label":                            "Consommable"
+            },
+            "equipmentMacro": {
+              "hint":                             "TODO: Add translation",
+              "label":                            "TODO: Add translation"
             }
           }
         },
