@@ -1140,7 +1140,7 @@ export default class ActorEd extends Actor {
    * @returns {Promise<EdRoll>}   The processed Roll.
    */
   async rollEquipment( equipment, options = {} ) {
-    const macro = /** @type {Macro} */ await fromUuid( equipment.system.macro );
+    const macro = /** @type {Macro} */ await fromUuid( equipment.system.equipmentMacro );
     return macro.execute( {} );
   }
 
