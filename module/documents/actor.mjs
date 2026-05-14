@@ -1,6 +1,4 @@
 /* eslint-disable complexity */
-import EdRollOptions from "../data/roll/common.mjs";
-import RollPrompt from "../applications/global/roll-prompt.mjs";
 import DocumentCreateDialog from "../applications/global/document-creation.mjs";
 import LegendPointHistory from "../applications/advancement/lp-history.mjs";
 import LpEarningTransactionData from "../data/advancement/lp-earning-transaction.mjs";
@@ -1142,34 +1140,8 @@ export default class ActorEd extends Actor {
    * @returns {Promise<EdRoll>}   The processed Roll.
    */
   async rollEquipment( equipment, options = {} ) {
-    const arbitraryStep = equipment.system.usableItem.arbitraryStep;
-    const difficulty = equipment.system.getDifficulty();
-    if ( !difficulty ) {
-      throw new Error( "ED | ActorEd.rollEquipment | Ability is not part of Targeting Template, please call your Administrator!" );
-    }
-
-    const difficultyFinal = { base: difficulty };
-    const chatFlavor = _loc( "ED.Chat.Flavor.rollEquipment", {
-      sourceActor: this.name,
-      equipment:   equipment.name,
-      step:        arbitraryStep
-    } );
-
-    const arbitraryFinalStep = { base: arbitraryStep };
-    const edRollOptions = EdRollOptions.fromActor(
-      {
-        testType:         "action",
-        rollType:         "arbitrary",
-        strain:           0,
-        target:           difficultyFinal,
-        step:             arbitraryFinalStep,
-        devotionRequired: false,
-        chatFlavor:       chatFlavor
-      },
-      this
-    );
-    const roll = await RollPrompt.waitPrompt( edRollOptions, options );
-    return this.processRoll( roll, { rollToMessage: true } );
+    const macro = /** @type {Macro} */ await fromUuid( equipment.system.macro );
+    return macro.execute( {} );
   }
 
   /**
