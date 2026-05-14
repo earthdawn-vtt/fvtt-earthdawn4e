@@ -77,4 +77,22 @@ export default class EquipmentData extends PhysicalItemTemplate.mixin(
 
   // endregion
 
+  // region Methods
+
+  /**
+   * Execute the macro attached to an equipment Item, if available.
+   * @param {object} scope        Additional variables that should be passed to the macro scope.
+   * @returns {Promise<unknown>|void} A promise containing a created {@link foundry.documents.ChatMessage}
+   *                                  (or `undefined`) if a chat macro or the return value if a script macro.
+   *                                  A void return is possible if the user is not permitted to execute macros
+   *                                  or a script macro execution fails.
+   * @throws {Error}               If the macro document referenced by this item does not exist.
+   */
+  async executeEquipmentMacro( scope = {} ) {
+    const macro = /** @type {foundry.documents.Macro} */ await fromUuid( this.equipmentMacro );
+    return macro.execute( { actor: this.containingActor, item: this.parentDocument, ...scope } );
+  }
+
+  // endregion
+
 }
