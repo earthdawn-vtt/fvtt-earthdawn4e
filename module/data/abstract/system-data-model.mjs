@@ -387,6 +387,31 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     return `await foundry.applications.ui.Hotbar.toggleDocumentSheet("${this.parent.uuid}");`;
   }
 
+  /**
+   * Retrieves the default macro associated with the parent document or creates one if it does not exist.
+   * @param {object} [options] - Optional parameters for the `Macro.create` method.
+   * @returns {Promise<Macro|null>} A promise resolving to the default macro object if found,
+   *                                    or undefined if no macro is associated or created.
+   */
+  async getDefaultMacro( options = {} ) {
+    return game.macros.getName( this.parentDocument?.name )
+      ?? ( await this.parentDocument?.toMacro( options ) )
+      ?? null;
+  }
+
+  /**
+   * Executes the default macro command associated with this object.
+   * @param {object} [scope]    Optional additional context to pass to the macro execution.
+   *                            This will be merged with the default context. Contains
+   *                            the containing actor and parent document by default.
+   * @returns {Promise<*>}      A promise resolving to the result of the macro execution, see {@link Macro#execute}.
+   * @throws {Error}            If the macro document referenced by this item does not exist.
+   */
+  async executeMacro( scope = {} ) {
+    const macro = await this.getDefaultMacro();
+    return macro.execute( { actor: this.containingActor, item: this.parentDocument, ...scope } );
+  }
+
   // endregion
 
   // region Rolling
