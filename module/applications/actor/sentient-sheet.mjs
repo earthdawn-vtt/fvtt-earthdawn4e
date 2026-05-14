@@ -46,6 +46,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
       },
       changeItemStatus: ActorSheetEdSentient.changeItemStatus,
       downgradeItem:    ActorSheetEdSentient._onAdjustItemLevel,
+      executable:       ActorSheetEdSentient.executable,
       initiative:       ActorSheetEdSentient.rollInitiative,
       jumpUp:           ActorSheetEdSentient.jumpUp,
       knockdown:        ActorSheetEdSentient.knockdownTest,
@@ -305,11 +306,18 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     const rollType = target.dataset.rollType;
     if ( rollType === "attribute" ) {
       this.document.rollAttributeBased( target.dataset.attribute, );
-    } else if ( rollType === "equipment" ) {
-      const li = target.closest( ".item-id" );
-      const equipment = this.document.items.get( li.dataset.itemId );
-      this.document.executeEquipmentMacro( equipment, { event: event } );
     }
+  }
+
+  /**
+   * For documents that have a macro to execute, execute it.
+   * @type {ApplicationClickAction}
+   */
+  static async executable( event, target ) {
+    event.preventDefault();
+    const li = target.closest( ".item-id" );
+    const document = this.document.items.get( li?.dataset?.itemId );
+    return document.system.executeMacro( { event: event } );
   }
 
   /**
