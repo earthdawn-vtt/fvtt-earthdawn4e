@@ -37,6 +37,10 @@ export default class EquipmentData extends PhysicalItemTemplate.mixin(
         initial:  0,
         integer:  true,
       } ),
+      macro: new fields.DocumentUUIDField( {
+        type:     "Macro",
+        embedded: false,
+      } )
     } );
   }
 
