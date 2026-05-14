@@ -1133,14 +1133,14 @@ export default class ActorEd extends Actor {
   }
 
   /**
-   * @summary                     Equipment rolls are a subset of Action test resembling non-attack actions like Talents, skills etc.
-   * @description                 Roll an Equipment item. use {@link RollPrompt} for further input data.
+   * Execute the macro attached to an equipment Item, if available.
    * @param {ItemEd} equipment    Equipment must be of type EquipmentTemplate & TargetingTemplate
    * @param {object} scope        Additional variables that should be passed to the macro scope.
    * @returns {Promise<unknown>|void} A promise containing a created {@link foundry.documents.ChatMessage}
-   *                                  (or `undefined`) if a chat  macro or the return value if a script macro.
+   *                                  (or `undefined`) if a chat macro or the return value if a script macro.
    *                                  A void return is possible if the user is not permitted to execute macros
    *                                  or a script macro execution fails.
+   * @throws {Error}               If the macro document referenced by this item does not exist.
    */
   async executeEquipmentMacro( equipment, scope = {} ) {
     const macro = /** @type {Macro} */ await fromUuid( equipment.system.equipmentMacro );
