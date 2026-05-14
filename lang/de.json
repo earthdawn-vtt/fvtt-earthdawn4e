@@ -1647,6 +1647,10 @@
             "consumable": {
               "hint":                             "Ist dieser Ausrüstungsgegenstand verbrauchbar?",
               "label":                            "Verbrauchbar"
+            },
+            "equipmentMacro": {
+              "hint":                             "Ein Macro das verwendet wird um Ausrüstung 'ausführen' zu können.",
+              "label":                            "Ausführungsmacro"
             }
           }
         },
@@ -2022,8 +2026,8 @@
               "label":                            "Schadensstufe"
             },
             "damageType": {
-              "hint":                             "TODO: Add translation",
-              "label":                            "TODO: Add translation"
+              "hint":                             "Art des Schadens der durch den Spruch verursacht wird",
+              "label":                            "Schadensart"
             },
             "element": {
               "subtype": {
@@ -3875,7 +3879,7 @@
       },
       "TruePattern": {
         "details":                                "Details",
-        "rank":                                   "TODO: Add translation",
+        "rank":                                   "Rang",
         "rankLevel":                              "Rang {level}"
       }
     },
