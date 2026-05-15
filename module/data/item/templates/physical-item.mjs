@@ -1,9 +1,7 @@
-import TargetTemplate from "./targeting.mjs";
 import MatrixTemplate from "./matrix.mjs";
 import GrimoireTemplate from "./grimoire.mjs";
 import ItemDataModel from "../../abstract/item-data-model.mjs";
 import TruePatternData from "../../thread/true-pattern.mjs";
-import * as ACTIONS from "../../../config/actions.mjs";
 import * as ITEMS from "../../../config/items.mjs";
 
 
@@ -24,7 +22,6 @@ import * as ITEMS from "../../../config/items.mjs";
 export default class PhysicalItemTemplate extends ItemDataModel.mixin(
   GrimoireTemplate,
   MatrixTemplate,
-  TargetTemplate,
 ) {
 
   // region Static Properties
@@ -108,34 +105,6 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-      } ),
-      usableItem: new fields.SchemaField( {
-        isUsableItem: new fields.BooleanField( {
-          required: true,
-        } ),
-        arbitraryStep: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
-          integer:  true,
-        } ),
-        action: new fields.StringField( {
-          required: true,
-          nullable: true,
-          blank:    true,
-          choices:  ACTIONS.action,
-          initial:  "standard",
-        } ),
-        recoveryPropertyValue: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          max:      5,
-          initial:  0,
-          choices:  ITEMS.recoveryProperty,
-          integer:  true,
-        } ),
       } ),
       itemStatus: new fields.StringField( {
         required: true,
@@ -266,16 +235,6 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
     return this.parent.update( {
       "system.itemStatus": "owned"
     } );
-  }
-
-  // endregion
-
-  // region Migration
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    return super.migrateData( source );
-    // specific migration functions
   }
 
   // endregion

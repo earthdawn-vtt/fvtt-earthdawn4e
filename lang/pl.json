@@ -1647,6 +1647,10 @@
             "consumable": {
               "hint":                             "TODO: Add translation",
               "label":                            "TODO: Add translation"
+            },
+            "equipmentMacro": {
+              "hint":                             "TODO: Add translation",
+              "label":                            "TODO: Add translation"
             }
           }
         },

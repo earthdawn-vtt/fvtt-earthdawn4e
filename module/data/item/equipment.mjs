@@ -37,6 +37,10 @@ export default class EquipmentData extends PhysicalItemTemplate.mixin(
         initial:  0,
         integer:  true,
       } ),
+      equipmentMacro: new fields.DocumentUUIDField( {
+        type:     "Macro",
+        embedded: false,
+      } )
     } );
   }
 
@@ -69,6 +73,16 @@ export default class EquipmentData extends PhysicalItemTemplate.mixin(
     const rollData = super.getRollData();
     Object.assign( rollData, super.getTemplatesRollData() );
     return Object.assign( rollData, {} );
+  }
+
+  // endregion
+
+  // region Methods
+
+  /** @inheritDoc */
+  async getDefaultMacro( options = {} ) {
+    if ( !this.equipmentMacro ) return;
+    return fromUuid( this.equipmentMacro );
   }
 
   // endregion

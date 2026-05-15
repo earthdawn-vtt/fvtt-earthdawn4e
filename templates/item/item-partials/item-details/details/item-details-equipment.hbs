@@ -1,20 +1,18 @@
 <div id="base-details-equipment-item" class="item-details__equipment" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
-    
-    <fieldset>
-        <legend></legend>
-        {{formField systemFields.equipmentType name="system.equipmentType" value=item.system.equipmentType localize=true}}    {{formField systemFields.consumable name="system.consumable" value=item.system.consumable localize=true}}
-        {{#if (eq item.system.consumable true)}}
-            {{!-- ammunition --}}
-            {{formField systemFields.ammunition.fields.type name="system.ammunition.type" value=item.system.ammunition.type localize=true}}
-            {{!-- bundleSize --}}
-            {{formField systemFields.bundleSize name="system.bundleSize" value=item.system.bundleSize localize=true}}
-        {{/if}}
-    </fieldset>
 
-    {{!-- usable Item ?--}}
-    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/usable-items.hbs"}}
-    {{#if (eq item.system.usableItem.isUsableItem true)}}
-        {{> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"}}
+  <fieldset>
+    <legend></legend>
+    {{formField systemFields.equipmentType name="system.equipmentType" value=item.system.equipmentType localize=true}}
+    {{formField systemFields.consumable name="system.consumable" value=item.system.consumable localize=true}}
+    {{#if (eq item.system.consumable true)}}
+    {{!-- ammunition --}}
+      {{formField systemFields.ammunition.fields.type name="system.ammunition.type" value=item.system.ammunition.type localize=true}}
+      {{!-- bundleSize --}}
+      {{formField systemFields.bundleSize name="system.bundleSize" value=item.system.bundleSize localize=true}}
     {{/if}}
-    {{> "systems/ed4e/templates/item/item-partials/item-details/details/item-details-physicalItems.hbs"}}
+  </fieldset>
+
+  {{!-- usable Item ?--}}
+  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/usable-items.hbs"}}
+  {{> "systems/ed4e/templates/item/item-partials/item-details/details/item-details-physicalItems.hbs"}}
 </div>

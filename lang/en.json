@@ -1647,6 +1647,10 @@
             "consumable": {
               "hint":                             "Is this equipment consumable?",
               "label":                            "Consumable"
+            },
+            "equipmentMacro": {
+              "hint":                             "A macro that can be used to make the equipment executable.",
+              "label":                            "Execution Macro"
             }
           }
         },

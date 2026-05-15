@@ -804,6 +804,10 @@ h3.label--rail .label__text::after {
 .actor .icon--button.icon.icon--blood:focus-visible {
   color: var(--color-text-lt);
 }
+.actor .icon--button.icon.icon--target {
+  --icon-mask: url("/icons/svg/target.svg");
+  mask-mode: alpha;
+}
 .actor .ability-card__grid--container .icons__dice {
   --icon-cell: 25px;
   position: relative;

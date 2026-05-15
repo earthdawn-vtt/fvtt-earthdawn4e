@@ -1,13 +1,12 @@
-<div class="card__equipment {{#if (eq this.system.usableItem.isUsableItem true)}}favoritable{{/if}}" data-uuid="{{uuid}}">
-    <div class="equipment-card__grid--container" data-item-id="{{_id}}">
-        {{#if (eq this.system.usableItem.isUsableItem true)}}
+<div class="card__equipment {{#if this.system.equipmentMacro}}favoritable{{/if}}" data-uuid="{{uuid}}">
+    <div class="equipment-card__grid--container item-id" data-item-id="{{_id}}">
+        {{#if this.system.equipmentMacro}}
         <div class="equipment-card__grid--item icons__dice">
             <img class="equipment-icon" src="{{img}}" alt="{{name}}">
             <button
                 type="button"
-                class="icon--button icon icon--d20 rollable icon--overlay"
-                data-action="rollable"
-                data-roll-type="equipment"
+                class="icon--button icon icon--target icon--overlay"
+                data-action="executable"
                 aria-label="{{localize 'ED.Roll.Equipment'}}">
             </button>
         </div>
