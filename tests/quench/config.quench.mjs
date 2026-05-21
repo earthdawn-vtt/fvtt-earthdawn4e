@@ -1,0 +1,1 @@
+export const QUENCH_FLAG = "quench";
