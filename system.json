@@ -26,7 +26,8 @@
     }
   ],
   "esmodules": [
-    "earthdawn4e.mjs"
+    "earthdawn4e.mjs",
+    "tests/quench/index.mjs"
   ],
   "styles": [
     "earthdawn4e.css"
