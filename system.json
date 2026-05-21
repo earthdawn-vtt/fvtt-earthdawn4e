@@ -4,8 +4,8 @@
   "description": "A system for playing the 4th edition of Earthdawn in Foundry VTT.",
   "version": "0.2.0",
   "compatibility": {
-    "minimum": "13.340",
-    "verified": "13.340"
+    "minimum": "14.362",
+    "verified": "14.362"
   },
   "url": "https://github.com/earthdawn-vtt/fvtt-earthdawn4e",
   "manifest": "https://raw.githubusercontent.com/earthdawn-vtt/fvtt-earthdawn4e/refs/heads/dev/system.json",
