@@ -410,4 +410,10 @@ export default [
       } ],
     },
   },
+  {
+    files: [ "**/*.quench.mjs", ],
+    rules: {
+      "max-nested-callbacks": [ "warn", 5, ],
+    },
+  },
 ];
