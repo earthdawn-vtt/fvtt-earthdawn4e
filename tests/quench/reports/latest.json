@@ -1,0 +1,432 @@
+{
+  "stats": {
+    "suites": 19,
+    "tests": 23,
+    "passes": 23,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-05-22T17:10:48.881Z",
+    "end": "2026-05-22T17:10:48.955Z",
+    "duration": 74
+  },
+  "tests": [
+    {
+      "title": "should create a basic PC actor",
+      "fullTitle": "ed4e.actor_root Actor Creation should create a basic PC actor",
+      "file": null,
+      "duration": 20,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should create a basic NPC actor",
+      "fullTitle": "ed4e.actor_root Actor Creation should create a basic NPC actor",
+      "file": null,
+      "duration": 10,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 1d4 - 2 for Step 1",
+      "fullTitle": "ed4e.dice_root Step Tables 1st Edition Sample Steps should return 1d4 - 2 for Step 1",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 1d8 for Step 5",
+      "fullTitle": "ed4e.dice_root Step Tables 1st Edition Sample Steps should return 1d8 for Step 5",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 1d10 + 1d6 for Step 10",
+      "fullTitle": "ed4e.dice_root Step Tables 1st Edition Sample Steps should return 1d10 + 1d6 for Step 10",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 4d20 + 6d10 + 4d8 for Step 100",
+      "fullTitle": "ed4e.dice_root Step Tables 1st Edition Sample Steps should return 4d20 + 6d10 + 4d8 for Step 100",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return a valid dice string for all steps in [1, 100]",
+      "fullTitle": "ed4e.dice_root Step Tables 1st Edition Range Validation (Property-based) should return a valid dice string for all steps in [1, 100]",
+      "file": null,
+      "duration": 3,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should throw for any step outside [1, 100]",
+      "fullTitle": "ed4e.dice_root Step Tables 1st Edition Range Validation (Property-based) should throw for any step outside [1, 100]",
+      "file": null,
+      "duration": 3,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 1d6 - 3 for Step 1",
+      "fullTitle": "ed4e.dice_root Step Tables 3rd Edition Sample Steps should return 1d6 - 3 for Step 1",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 1d8 for Step 5",
+      "fullTitle": "ed4e.dice_root Step Tables 3rd Edition Sample Steps should return 1d8 for Step 5",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 2d8 for Step 10",
+      "fullTitle": "ed4e.dice_root Step Tables 3rd Edition Sample Steps should return 2d8 for Step 10",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 13d12 + 1d8 + 1d6 for Step 100",
+      "fullTitle": "ed4e.dice_root Step Tables 3rd Edition Sample Steps should return 13d12 + 1d8 + 1d6 for Step 100",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return a valid dice string for all steps in [1, 100]",
+      "fullTitle": "ed4e.dice_root Step Tables 3rd Edition Range Validation (Property-based) should return a valid dice string for all steps in [1, 100]",
+      "file": null,
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should throw for any step outside [1, 100]",
+      "fullTitle": "ed4e.dice_root Step Tables 3rd Edition Range Validation (Property-based) should throw for any step outside [1, 100]",
+      "file": null,
+      "duration": 3,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 1d4 - 2 for Step 1",
+      "fullTitle": "ed4e.dice_root Step Tables Classic Edition Sample Steps should return 1d4 - 2 for Step 1",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 1d8 for Step 5",
+      "fullTitle": "ed4e.dice_root Step Tables Classic Edition Sample Steps should return 1d8 for Step 5",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 1d10 + 1d6 for Step 10",
+      "fullTitle": "ed4e.dice_root Step Tables Classic Edition Sample Steps should return 1d10 + 1d6 for Step 10",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 4d20 + 6d10 + 4d8 for Step 100",
+      "fullTitle": "ed4e.dice_root Step Tables Classic Edition Sample Steps should return 4d20 + 6d10 + 4d8 for Step 100",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return a valid dice string for all steps in [1, 100]",
+      "fullTitle": "ed4e.dice_root Step Tables Classic Edition Range Validation (Property-based) should return a valid dice string for all steps in [1, 100]",
+      "file": null,
+      "duration": 2,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should throw for any step outside [1, 100]",
+      "fullTitle": "ed4e.dice_root Step Tables Classic Edition Range Validation (Property-based) should throw for any step outside [1, 100]",
+      "file": null,
+      "duration": 2,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should be implemented",
+      "fullTitle": "ed4e.effects_root Effects should be implemented",
+      "file": null,
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should be implemented",
+      "fullTitle": "ed4e.item_root Items should be implemented",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should be initialized",
+      "fullTitle": "ed4e.system_root System should be initialized",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    }
+  ],
+  "pending": [],
+  "failures": [],
+  "passes": [
+    {
+      "title": "should create a basic PC actor",
+      "fullTitle": "ed4e.actor_root Actor Creation should create a basic PC actor",
+      "file": null,
+      "duration": 20,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should create a basic NPC actor",
+      "fullTitle": "ed4e.actor_root Actor Creation should create a basic NPC actor",
+      "file": null,
+      "duration": 10,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 1d4 - 2 for Step 1",
+      "fullTitle": "ed4e.dice_root Step Tables 1st Edition Sample Steps should return 1d4 - 2 for Step 1",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 1d8 for Step 5",
+      "fullTitle": "ed4e.dice_root Step Tables 1st Edition Sample Steps should return 1d8 for Step 5",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 1d10 + 1d6 for Step 10",
+      "fullTitle": "ed4e.dice_root Step Tables 1st Edition Sample Steps should return 1d10 + 1d6 for Step 10",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 4d20 + 6d10 + 4d8 for Step 100",
+      "fullTitle": "ed4e.dice_root Step Tables 1st Edition Sample Steps should return 4d20 + 6d10 + 4d8 for Step 100",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return a valid dice string for all steps in [1, 100]",
+      "fullTitle": "ed4e.dice_root Step Tables 1st Edition Range Validation (Property-based) should return a valid dice string for all steps in [1, 100]",
+      "file": null,
+      "duration": 3,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should throw for any step outside [1, 100]",
+      "fullTitle": "ed4e.dice_root Step Tables 1st Edition Range Validation (Property-based) should throw for any step outside [1, 100]",
+      "file": null,
+      "duration": 3,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 1d6 - 3 for Step 1",
+      "fullTitle": "ed4e.dice_root Step Tables 3rd Edition Sample Steps should return 1d6 - 3 for Step 1",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 1d8 for Step 5",
+      "fullTitle": "ed4e.dice_root Step Tables 3rd Edition Sample Steps should return 1d8 for Step 5",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 2d8 for Step 10",
+      "fullTitle": "ed4e.dice_root Step Tables 3rd Edition Sample Steps should return 2d8 for Step 10",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 13d12 + 1d8 + 1d6 for Step 100",
+      "fullTitle": "ed4e.dice_root Step Tables 3rd Edition Sample Steps should return 13d12 + 1d8 + 1d6 for Step 100",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return a valid dice string for all steps in [1, 100]",
+      "fullTitle": "ed4e.dice_root Step Tables 3rd Edition Range Validation (Property-based) should return a valid dice string for all steps in [1, 100]",
+      "file": null,
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should throw for any step outside [1, 100]",
+      "fullTitle": "ed4e.dice_root Step Tables 3rd Edition Range Validation (Property-based) should throw for any step outside [1, 100]",
+      "file": null,
+      "duration": 3,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 1d4 - 2 for Step 1",
+      "fullTitle": "ed4e.dice_root Step Tables Classic Edition Sample Steps should return 1d4 - 2 for Step 1",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 1d8 for Step 5",
+      "fullTitle": "ed4e.dice_root Step Tables Classic Edition Sample Steps should return 1d8 for Step 5",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 1d10 + 1d6 for Step 10",
+      "fullTitle": "ed4e.dice_root Step Tables Classic Edition Sample Steps should return 1d10 + 1d6 for Step 10",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return 4d20 + 6d10 + 4d8 for Step 100",
+      "fullTitle": "ed4e.dice_root Step Tables Classic Edition Sample Steps should return 4d20 + 6d10 + 4d8 for Step 100",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should return a valid dice string for all steps in [1, 100]",
+      "fullTitle": "ed4e.dice_root Step Tables Classic Edition Range Validation (Property-based) should return a valid dice string for all steps in [1, 100]",
+      "file": null,
+      "duration": 2,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should throw for any step outside [1, 100]",
+      "fullTitle": "ed4e.dice_root Step Tables Classic Edition Range Validation (Property-based) should throw for any step outside [1, 100]",
+      "file": null,
+      "duration": 2,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should be implemented",
+      "fullTitle": "ed4e.effects_root Effects should be implemented",
+      "file": null,
+      "duration": 1,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should be implemented",
+      "fullTitle": "ed4e.item_root Items should be implemented",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    },
+    {
+      "title": "should be initialized",
+      "fullTitle": "ed4e.system_root System should be initialized",
+      "file": null,
+      "duration": 0,
+      "currentRetry": 0,
+      "speed": "fast",
+      "err": {}
+    }
+  ]
+}
