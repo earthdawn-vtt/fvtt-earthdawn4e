@@ -23,7 +23,7 @@
     "pushLDBtoJSON": "node ./tools/pushLDBtoJSON.mjs",
     "pullJSONtoLDB": "node ./tools/pullJSONtoLDB.mjs",
     "prepare": "husky",
-    "test": "vitest",
+    "test": "vitest --passWithNoTests",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui"
   },
