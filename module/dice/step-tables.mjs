@@ -178,7 +178,7 @@ export function get3eDice( step ) {
  * @param { number } step The step that is to be rolled.
  * @returns { string } A dice term that can be used in for a Roll in the Foundry api.
  */
-function get1eDice( step ) {
+export function get1eDice( step ) {
   const stepsTable = [
     "0",
     "1d4 - 2",
