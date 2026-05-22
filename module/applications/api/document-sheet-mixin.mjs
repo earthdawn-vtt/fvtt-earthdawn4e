@@ -161,32 +161,29 @@ const DocumentSheetMixinEd = Base => {
     // region Event Handlers
 
     /**
-     * Falls back to nearest row data-item-id when no UUID is available in template context.
+     * Resolves an embedded document from UUID or typed document ID on the event target.
      * @param {HTMLElement} target - The HTML element that triggered the event.
      * @returns {Promise<foundry.abstract.Document|null>} - The resolved child document, or null if not found.
      * @protected
      */
     async _resolveChildDocument( target ) {
       const uuid
-        = target.dataset.uuid
-        ?? target.dataset.effectUuid
-        ?? target.closest( "[data-uuid]" )?.dataset.uuid;
+        = target.dataset.uuid;
 
       if ( uuid ) {
         const document = await fromUuid( uuid );
         if ( document ) return document;
       }
 
-      const embeddedId
-        = target.dataset.itemId
-        ?? target.dataset.effectId
-        ?? target.closest( "[data-item-id]" )?.dataset.itemId;
+      const embeddedId = target.dataset.documentId;
+      const documentType = target.dataset.documentType;
 
       if ( !embeddedId ) return null;
+      if ( !documentType ) return null;
 
-      return this.document.items?.get( embeddedId )
-        ?? this.document.effects?.get( embeddedId )
-        ?? null;
+      if ( documentType === "Item" ) return this.document.items?.get( embeddedId ) ?? null;
+      if ( documentType === "ActiveEffect" || documentType === "effect" ) return this.document.effects?.get( embeddedId ) ?? null;
+      return null;
     }
 
     /**
