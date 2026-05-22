@@ -1,4 +1,5 @@
 import * as suites from "./suites/_module.mjs";
+import { registerQuenchReporter } from "./reporter.mjs";
 
 /**
  * Register all Quench test batches.
@@ -20,3 +21,6 @@ function registerBatches( quench ) {
 Hooks.once( "quenchReady", ( quench ) => {
   registerBatches( quench );
 } );
+
+// Generate a JUnit XML report after each batch run for CI consumption.
+registerQuenchReporter();
