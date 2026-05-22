@@ -3,7 +3,7 @@ import { registerQuenchReporter } from "./reporter.mjs";
 
 /**
  * Register all Quench test batches.
- * @param quench
+ * @param quench {Quench} The Quench instance.
  */
 function registerBatches( quench ) {
   for ( const [ name, suite ] of Object.entries( suites ) ) {
