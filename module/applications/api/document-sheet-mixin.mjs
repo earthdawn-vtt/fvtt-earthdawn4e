@@ -161,6 +161,32 @@ const DocumentSheetMixinEd = Base => {
     // region Event Handlers
 
     /**
+     * Resolves an embedded document from UUID or typed document ID on the event target.
+     * @param {HTMLElement} target - The HTML element that triggered the event.
+     * @returns {Promise<foundry.abstract.Document|null>} - The resolved child document, or null if not found.
+     * @protected
+     */
+    async _resolveChildDocument( target ) {
+      const uuid
+        = target.dataset.uuid;
+
+      if ( uuid ) {
+        const document = await fromUuid( uuid );
+        if ( document ) return document;
+      }
+
+      const embeddedId = target.dataset.documentId;
+      const documentType = target.dataset.documentType;
+
+      if ( !embeddedId ) return null;
+      if ( !documentType ) return null;
+
+      if ( documentType === "Item" ) return this.document.items?.get( embeddedId ) ?? null;
+      if ( documentType === "ActiveEffect" || documentType === "effect" ) return this.document.effects?.get( embeddedId ) ?? null;
+      return null;
+    }
+
+    /**
      * Handle the user toggling the sheet mode.
      * @param {Event} event  The triggering event.
      * @protected
@@ -239,9 +265,13 @@ const DocumentSheetMixinEd = Base => {
      * @returns {Promise<foundry.abstract.Document>} - A promise that resolves when the child is deleted.
      */
     static async _onDeleteChild( event, target ) {
-      const document = await fromUuid( target.dataset.uuid );
+      const document = await this._resolveChildDocument( target );
+      if ( !document ) return;
+
       if ( getSetting( "quickDeleteEmbeddedOnShiftClick" ) && event.shiftKey ) return document.delete();
-      else document.deleteDialog();
+
+      if ( typeof document.deleteDialog === "function" ) return document.deleteDialog();
+      return document.delete();
     }
 
     /**
@@ -261,7 +291,8 @@ const DocumentSheetMixinEd = Base => {
      * @returns {Promise<foundry.abstract.Document>} - A promise that resolves when the child is displayed in chat.
      */
     static async _onEditChild( event, target ) {
-      ( await fromUuid( target.dataset.uuid ) ).sheet?.render( { force: true } );
+      const document = await this._resolveChildDocument( target );
+      document?.sheet?.render( { force: true } );
     }
 
     /**
