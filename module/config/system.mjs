@@ -1,7 +1,5 @@
 import { SYSTEM_TYPES } from "../constants/constants.mjs";
 
-export const SYSTEM_ID = "ed4e";
-
 export const ASCII = `_______________________________
 ________  _____       _____ _______
 |  _____| |    \     / _  | |  ____|
