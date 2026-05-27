@@ -1,0 +1,1 @@
+export { default as BaseSettingsConfig } from "./base-settings.mjs";
