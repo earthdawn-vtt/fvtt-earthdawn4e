@@ -7,6 +7,9 @@ import * as ROLLS from "../config/rolls.mjs";
 import * as SYSTEM from "../config/system.mjs";
 import { SYSTEM_ID } from "../constants/constants.mjs";
 import GameMechanicsSettingsConfig from "../applications/settings/game-mechanics-settings.mjs";
+import EdidSettingsConfig from "../applications/settings/edid-settings.mjs";
+import CharacterGenerationSettingsConfig from "../applications/settings/character-generation-settings.mjs";
+import LpTrackingSettingsConfig from "../applications/settings/lp-tracking-settings.mjs";
 
 const { BooleanField, NumberField, SetField, StringField } = foundry.data.fields;
 
@@ -30,14 +33,14 @@ const { BooleanField, NumberField, SetField, StringField } = foundry.data.fields
  */
 export const settingGroups = [
   {
-    key:        "gameMechanics",
-    submenu:    true,
-    hint:       "ED.Settings.Groups.GameMechanics.hint",
-    icon:       `fa-solid ${ SYSTEM.icons.configure }`,
-    label:      "ED.Settings.Groups.GameMechanics.label",
-    name:       "ED.Settings.Groups.GameMechanics.name",
-    restricted: true,
-    type:       GameMechanicsSettingsConfig,
+    key:         "gameMechanics",
+    submenu:     true,
+    hint:        "ED.Settings.Groups.GameMechanics.hint",
+    icon:        `fa-solid ${ SYSTEM.icons.configure }`,
+    label:       "ED.Settings.Groups.GameMechanics.label",
+    name:        "ED.Settings.Groups.GameMechanics.name",
+    restricted:  true,
+    type:        GameMechanicsSettingsConfig,
   },
   {
     key:     "updates",
@@ -47,13 +50,14 @@ export const settingGroups = [
     name:    "ED.Settings.Groups.Updates.name",
   },
   {
-    key:        "edid",
-    submenu:    true,
-    hint:       "ED.Settings.Groups.Edid.hint",
-    icon:       `fa-solid ${ SYSTEM.icons.configure }`,
-    label:      "ED.Settings.Groups.Edid.label",
-    name:       "ED.Settings.Groups.Edid.name",
-    restricted: false,
+    key:         "edid",
+    submenu:     true,
+    hint:        "ED.Settings.Groups.Edid.hint",
+    icon:        `fa-solid ${ SYSTEM.icons.configure }`,
+    label:       "ED.Settings.Groups.Edid.label",
+    name:        "ED.Settings.Groups.Edid.name",
+    restricted:  false,
+    type:        EdidSettingsConfig,
   },
   {
     key:        "controls",
@@ -63,22 +67,24 @@ export const settingGroups = [
     name:       "ED.Settings.Groups.Controls.name",
   },
   {
-    key:        "characterGeneration",
-    submenu:    true,
-    hint:       "ED.Settings.Groups.CharGen.hint",
-    icon:       `fa-solid ${ SYSTEM.icons.character }`,
-    label:      "ED.Settings.Groups.CharGen.label",
-    name:       "ED.Settings.Groups.CharGen.name",
-    restricted: false,
+    key:         "characterGeneration",
+    submenu:     true,
+    hint:        "ED.Settings.Groups.CharGen.hint",
+    icon:        `fa-solid ${ SYSTEM.icons.character }`,
+    label:       "ED.Settings.Groups.CharGen.label",
+    name:        "ED.Settings.Groups.CharGen.name",
+    restricted:  false,
+    type:        CharacterGenerationSettingsConfig,
   },
   {
-    key:        "lpTracking",
-    submenu:    true,
-    hint:       "ED.Settings.Groups.LpTracking.hint",
-    icon:       `fa-solid ${ SYSTEM.icons.lpTracking }`,
-    label:      "ED.Settings.Groups.LpTracking.label",
-    name:       "ED.Settings.Groups.LpTracking.name",
-    restricted: true,
+    key:         "lpTracking",
+    submenu:     true,
+    hint:        "ED.Settings.Groups.LpTracking.hint",
+    icon:        `fa-solid ${ SYSTEM.icons.lpTracking }`,
+    label:       "ED.Settings.Groups.LpTracking.label",
+    name:        "ED.Settings.Groups.LpTracking.name",
+    restricted:  true,
+    type:        LpTrackingSettingsConfig,
   },
   {
     key:        "chat",
@@ -140,9 +146,9 @@ export const systemSettings = [
     return {
       group:  settingGroupsByKey.edid.key,
       key:    getEdidSettingKey( name ),
-      config:  true,
-      scope:   "world",
-      type:    new EdIdField( {
+      config: false,
+      scope:  "world",
+      type:   new EdIdField( {
         initial:  edid,
         label:   `ED.Settings.Edid.${ name }`,
         hint:    `ED.Settings.Edid.${ name }Hint`,
@@ -173,7 +179,7 @@ export const systemSettings = [
   {
     group:  settingGroupsByKey.characterGeneration.key,
     key:    "autoOpenCharGen",
-    config:  true,
+    config:  false,
     scope:   "world",
     type:    new BooleanField( {
       initial: true,
@@ -186,7 +192,7 @@ export const systemSettings = [
   {
     group:  settingGroupsByKey.characterGeneration.key,
     key:    "charGenAttributePoints",
-    config:  true,
+    config:  false,
     scope:   "world",
     type:    new NumberField( {
       initial: 25,
@@ -201,7 +207,7 @@ export const systemSettings = [
   {
     group:  settingGroupsByKey.characterGeneration.key,
     key:    "charGenMaxRank",
-    config:  true,
+    config:  false,
     scope:   "world",
     type:    new NumberField( {
       initial:  3,
@@ -216,7 +222,7 @@ export const systemSettings = [
   {
     group:  settingGroupsByKey.characterGeneration.key,
     key:    "charGenMaxSpellCircle",
-    config: true,
+    config: false,
     scope:  "world",
     type:   new NumberField( {
       required: true,
@@ -239,7 +245,7 @@ export const systemSettings = [
   {
     group:  settingGroupsByKey.lpTracking.key,
     key:    "lpTrackingUsed",
-    config:  true,
+    config:  false,
     scope:   "world",
     type:    new BooleanField( {
       initial: true,
@@ -252,7 +258,7 @@ export const systemSettings = [
   {
     group:  settingGroupsByKey.lpTracking.key,
     key:    "lpTrackingAttributes",
-    config:  true,
+    config:  false,
     scope:   "world",
     type:    new StringField( {
       choices:  LEGEND.attributeIncreaseRules,
@@ -267,7 +273,7 @@ export const systemSettings = [
     group:  settingGroupsByKey.lpTracking.key,
     key:    "lpTrackingCircleTalentRequirements",
     scope:   "world",
-    config:  true,
+    config:  false,
     type:    new StringField( {
       choices: LEGEND.circleTalentRequirements,
       initial: "disciplineTalents",
@@ -280,7 +286,7 @@ export const systemSettings = [
   {
     group:  settingGroupsByKey.lpTracking.key,
     key:    "lpTrackingRemoveSilver",
-    config:  true,
+    config:  false,
     scope:   "world",
     type:    new BooleanField( {
       initial: true,
@@ -293,7 +299,7 @@ export const systemSettings = [
   {
     group:  settingGroupsByKey.lpTracking.key,
     key:    "lpTrackingMaxRankTalent",
-    config:  true,
+    config:  false,
     scope:   "world",
     type:    new NumberField( {
       initial: 15,
@@ -309,7 +315,7 @@ export const systemSettings = [
   {
     group:  settingGroupsByKey.lpTracking.key,
     key:    "lpTrackingMaxRankSkill",
-    config:  true,
+    config:  false,
     scope:   "world",
     type:    new NumberField( {
       initial: 10,
@@ -325,7 +331,7 @@ export const systemSettings = [
   {
     group:  settingGroupsByKey.lpTracking.key,
     key:    "lpTrackingMaxRankDevotion",
-    config:  true,
+    config:  false,
     scope:   "world",
     type:    new NumberField( {
       min:     0,
@@ -341,7 +347,7 @@ export const systemSettings = [
   {
     group:  settingGroupsByKey.lpTracking.key,
     key:    "lpTrackingSpellCost",
-    config:  true,
+    config:  false,
     scope:   "world",
     type:    new StringField( {
       required: true,
@@ -358,7 +364,7 @@ export const systemSettings = [
   {
     group:  settingGroupsByKey.lpTracking.key,
     key:    "lpTrackingLearnSpellUsePatterncraft",
-    config:  true,
+    config:  false,
     scope:   "world",
     type:    new BooleanField( {
       required: true,
@@ -373,7 +379,7 @@ export const systemSettings = [
   {
     group:  settingGroupsByKey.lpTracking.key,
     key:    "lpTrackingLearnSpellsOnCircleUp",
-    config:  true,
+    config:  false,
     scope:   "world",
     type:    new BooleanField( {
       required: true,
@@ -392,7 +398,7 @@ export const systemSettings = [
   {
     group:  settingGroupsByKey.gameMechanics.key,
     key:    "stepTable",
-    config:  true,
+    config:  false,
     scope:   "world",
     type:    new StringField( {
       initial: "fourth",
@@ -406,7 +412,7 @@ export const systemSettings = [
   {
     group:  settingGroupsByKey.gameMechanics.key,
     key:    "encumbrance",
-    config:  true,
+    config:  false,
     scope:   "world",
     type:    new BooleanField( {
       initial: true,
@@ -419,7 +425,7 @@ export const systemSettings = [
   {
     group:          settingGroupsByKey.gameMechanics.key,
     key:            "languages",
-    config:         true,
+    config:         false,
     scope:          "world",
     requiresReload: true,
     type:           new SetField(
@@ -439,7 +445,7 @@ export const systemSettings = [
   {
     group:  settingGroupsByKey.gameMechanics.key,
     key:    "spellcastingTypes",
-    config:  true,
+    config:  false,
     scope:   "world",
     type:    new SetField(
       new StringField( {
@@ -458,7 +464,7 @@ export const systemSettings = [
   {
     group:   settingGroupsByKey.gameMechanics.key,
     key:     "talentsSplit",
-    config:  true,
+    config:  false,
     scope:   "world",
     default: true,
     type:    new BooleanField( {
@@ -472,7 +478,7 @@ export const systemSettings = [
   {
     group:  settingGroupsByKey.gameMechanics.key,
     key:    "minimumDifficulty",
-    config:  true,
+    config:  false,
     scope:   "world",
     type:    new NumberField( {
       required: true,
@@ -490,7 +496,7 @@ export const systemSettings = [
   {
     group:  settingGroupsByKey.gameMechanics.key,
     key:    "jumpUpStrainCost",
-    config:  true,
+    config:  false,
     scope:   "world",
     type:    new NumberField( {
       required: true,
@@ -508,7 +514,7 @@ export const systemSettings = [
   {
     group:  settingGroupsByKey.gameMechanics.key,
     key:    "jumpUpBaseDifficulty",
-    config:  true,
+    config:  false,
     scope:   "world",
     type:    new NumberField( {
       required: true,
@@ -526,7 +532,7 @@ export const systemSettings = [
   {
     group:  settingGroupsByKey.gameMechanics.key,
     key:    "enforceLivingArmor",
-    config:  true,
+    config:  false,
     scope:   "world",
     type:    new BooleanField( {
       initial: true,
@@ -664,21 +670,17 @@ export function getEdidSettingKey( edidName ) {
  */
 export default function registerSystemSettings() {
 
-  game.settings.registerMenu(
-    SYSTEM_ID,
-    "gameMechanics",
-    {
-      hint:       "ED.Settings.Groups.GameMechanics.hint",
-      icon:       `fa-solid ${ SYSTEM.icons.configure }`,
-      label:      "ED.Settings.Groups.GameMechanics.label",
-      name:       "ED.Settings.Groups.GameMechanics.name",
-      restricted: true,
-      type:       GameMechanicsSettingsConfig,
-    },
-  );
-
   for ( const systemSetting of systemSettings ) {
     game.settings.register( SYSTEM_ID, systemSetting.key, systemSetting );
+  }
+
+  for ( const [ group, groupConfig ] of Object.entries( settingGroupsByKey ) ) {
+    if ( !groupConfig.submenu ) continue;
+    game.settings.registerMenu(
+      SYSTEM_ID,
+      group,
+      groupConfig,
+    );
   }
 
 }
