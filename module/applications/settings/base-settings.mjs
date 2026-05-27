@@ -12,6 +12,9 @@ export default class BaseSettingsConfig extends ApplicationEd {
       closeOnSubmit: true,
       handler:       BaseSettingsConfig.#onCommitChanges,
     },
+    position: {
+      width: "auto",
+    },
     settingsGroup: undefined,
   };
 
@@ -34,9 +37,7 @@ export default class BaseSettingsConfig extends ApplicationEd {
 
     switch ( partId ) {
       case "config":
-        newContext.category = {
-          fields: this._generateFieldEntries(),
-        };
+        newContext.fields = this._generateFieldEntries();
         break;
       case "footer":
         newContext.buttons = [
@@ -49,7 +50,14 @@ export default class BaseSettingsConfig extends ApplicationEd {
 
   _generateFieldEntries() {
     return groupedSystemSettings[ this.options.settingsGroup ]?.map(
-      settingConfig => settingConfig.type
+      settingConfig => {
+        const field = settingConfig.type;
+        return {
+          field,
+          value:    getSetting( settingConfig.key ),
+          localize: true,
+        };
+      }
     );
   }
 
