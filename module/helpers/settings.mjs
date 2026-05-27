@@ -523,7 +523,7 @@ export function getSetting( settingKey ) {
  *                             See {@link https://foundryvtt.com/api/classes/client.ClientSettings.html#set}
  * @returns {*}                The assigned value of the setting.
  */
-export function setSetting( settingKey, value, options={} ) {
+export async function setSetting( settingKey, value, options={} ) {
   return game.settings.set( SYSTEM_ID, settingKey, value, options );
 }
 
