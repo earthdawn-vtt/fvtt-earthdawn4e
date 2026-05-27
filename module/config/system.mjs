@@ -127,6 +127,7 @@ export const icons = {
   recovery:          "fa-heartbeat",
   research:          "fa-thin fa-search",
   resetPoints:       "fa-arrows-rotate",
+  saveChanges:       "fa-floppy-disk",
   spellcasting:      "fa-thin fa-sparkles",
   threadWeaving:     "fa-thin fa-chart-network",
   undo:              "fa-arrow-rotate-left",
