@@ -1,4 +1,4 @@
-<fieldset {{ disabled disabled }}>
+<fieldset class="scrollable" {{ disabled disabled }}>
   <legend>{{ ifThen legend legend (localize "SETUP.Configuration") }}</legend>
   {{#if message}}<p class="note {{ message.level }}">{{ message.text }}</p>{{/if}}
   {{> "systems/ed4e/templates/global/form-group-fields.hbs" fields}}
