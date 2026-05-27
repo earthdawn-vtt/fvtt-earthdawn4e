@@ -1,6 +1,7 @@
 import ApplicationEd from "../api/application.mjs";
 import { getSetting, getSettingConfig, groupedSystemSettings, setSetting } from "../../helpers/settings.mjs";
 import PromptFactory from "../global/prompt-factory.mjs";
+import { SYSTEM_ID } from "../../constants/constants.mjs";
 
 export default class BaseSettingsConfig extends ApplicationEd {
 
@@ -69,9 +70,9 @@ export default class BaseSettingsConfig extends ApplicationEd {
     let requiresClientReload = false;
     let requiresWorldReload = false;
 
-    for ( const [ settingKey, settingValue ] of Object.entries(
-      this._processSubmitData( event, form, formData, submitOptions )
-    ) ) {
+    const submitData = this._processSubmitData( event, form, formData, submitOptions );
+
+    for ( const [ settingKey, settingValue ] of Object.entries( submitData[ SYSTEM_ID ] ) ) {
       const settingConfig = getSettingConfig( settingKey );
       const oldValue = getSetting( settingKey );
       const newValue = await setSetting( settingKey, settingValue );
