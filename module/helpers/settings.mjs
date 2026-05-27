@@ -6,11 +6,103 @@ import * as MAGIC from "../config/magic.mjs";
 import * as ROLLS from "../config/rolls.mjs";
 import * as SYSTEM from "../config/system.mjs";
 import { SYSTEM_ID } from "../constants/constants.mjs";
+import GameMechanicsSettingsConfig from "../applications/settings/game-mechanics-settings.mjs";
 
 const { BooleanField, NumberField, SetField, StringField } = foundry.data.fields;
 
 
 // region Setting Data
+
+/**
+ * @typedef {
+ *   SettingSubMenuConfig | {
+ *     key: string;
+ *     submenu: boolean;
+ *   }
+ * } SystemSettingGroupConfig
+ * @property {string} key The key of the setting group/menu
+ * @property {boolean} submenu Whether this group should have its own submenu in the settings config
+ */
+
+/**
+ *
+ * @type {SystemSettingGroupConfig[]}
+ */
+export const settingGroups = [
+  {
+    key:        "gameMechanics",
+    submenu:    true,
+    hint:       "ED.Settings.Groups.GameMechanics.hint",
+    icon:       `fa-solid ${ SYSTEM.icons.configure }`,
+    label:      "ED.Settings.Groups.GameMechanics.label",
+    name:       "ED.Settings.Groups.GameMechanics.name",
+    restricted: true,
+    type:       GameMechanicsSettingsConfig,
+  },
+  {
+    key:     "updates",
+    submenu: false,
+    hint:    "ED.Settings.Groups.Updates.hint",
+    label:   "ED.Settings.Groups.Updates.label",
+    name:    "ED.Settings.Groups.Updates.name",
+  },
+  {
+    key:        "edid",
+    submenu:    true,
+    hint:       "ED.Settings.Groups.Edid.hint",
+    icon:       `fa-solid ${ SYSTEM.icons.configure }`,
+    label:      "ED.Settings.Groups.Edid.label",
+    name:       "ED.Settings.Groups.Edid.name",
+    restricted: false,
+  },
+  {
+    key:        "controls",
+    submenu:    false,
+    hint:       "ED.Settings.Groups.Controls.hint",
+    label:      "ED.Settings.Groups.Controls.label",
+    name:       "ED.Settings.Groups.Controls.name",
+  },
+  {
+    key:        "characterGeneration",
+    submenu:    true,
+    hint:       "ED.Settings.Groups.CharGen.hint",
+    icon:       `fa-solid ${ SYSTEM.icons.character }`,
+    label:      "ED.Settings.Groups.CharGen.label",
+    name:       "ED.Settings.Groups.CharGen.name",
+    restricted: false,
+  },
+  {
+    key:        "lpTracking",
+    submenu:    true,
+    hint:       "ED.Settings.Groups.LpTracking.hint",
+    icon:       `fa-solid ${ SYSTEM.icons.lpTracking }`,
+    label:      "ED.Settings.Groups.LpTracking.label",
+    name:       "ED.Settings.Groups.LpTracking.name",
+    restricted: true,
+  },
+  {
+    key:        "chat",
+    submenu:    false,
+    hint:       "ED.Settings.Groups.Chat.hint",
+    label:      "ED.Settings.Groups.Chat.label",
+    name:       "ED.Settings.Groups.Chat.name",
+  },
+  {
+    key:        "debug",
+    submenu:    false,
+    hint:       "ED.Settings.Groups.Debug.hint",
+    label:      "ED.Settings.Groups.Debug.label",
+    name:       "ED.Settings.Groups.Debug.name",
+  },
+];
+
+/**
+ * The {@link settingGroups} indexed by their group/menu key.
+ * @type {Record<string, SystemSettingGroupConfig>}
+ */
+export const settingGroupsByKey = Object.fromEntries(
+  settingGroups.map( group => [ group.key, group ] )
+);
 
 /**
  * @typedef {SettingConfig & {
@@ -27,10 +119,10 @@ const { BooleanField, NumberField, SetField, StringField } = foundry.data.fields
  */
 export const systemSettings = [
 
-  // region News
+  // region Updates
 
   {
-    group:  "ED.Settings.Groups.updates",
+    group:  settingGroupsByKey.updates.key,
     key:    "hideUpdateNews",
     config:  true,
     scope:   "user",
@@ -46,7 +138,7 @@ export const systemSettings = [
 
   ...Object.entries( SYSTEM.defaultEdIds ).map( ( [ name, edid ] ) => {
     return {
-      group:  "ED.Settings.Groups.edid",
+      group:  settingGroupsByKey.edid.key,
       key:    getEdidSettingKey( name ),
       config:  true,
       scope:   "world",
@@ -62,7 +154,7 @@ export const systemSettings = [
   // region Controls
 
   {
-    group:  "ED.Settings.Groups.controls",
+    group:  settingGroupsByKey.controls.key,
     key:    "quickDeleteEmbeddedOnShiftClick",
     config:  true,
     scope:   "world",
@@ -75,27 +167,11 @@ export const systemSettings = [
 
   // endregion
 
-  // region Owned Items
-
-  {
-    group:  "ED.Settings.Groups.items",
-    key:    "enforceLivingArmor",
-    config:  true,
-    scope:   "world",
-    type:    new BooleanField( {
-      initial: true,
-      label:   "ED.Settings.Label.enforceLivingArmor",
-      hint:    "ED.Settings.Hint.enforceLivingArmor",
-    } ),
-  },
-
-  // endregion
-
   // region Character Generation
 
   // Auto-open char gen on PC document creation
   {
-    group:  "ED.Settings.Groups.charGen",
+    group:  settingGroupsByKey.characterGeneration.key,
     key:    "autoOpenCharGen",
     config:  true,
     scope:   "world",
@@ -108,7 +184,7 @@ export const systemSettings = [
 
   // Starting attribute points to spend
   {
-    group:  "ED.Settings.Groups.charGen",
+    group:  settingGroupsByKey.characterGeneration.key,
     key:    "charGenAttributePoints",
     config:  true,
     scope:   "world",
@@ -123,7 +199,7 @@ export const systemSettings = [
 
   // Maximum rank that can be assigned to a talent or skill on character generation
   {
-    group:  "ED.Settings.Groups.charGen",
+    group:  settingGroupsByKey.characterGeneration.key,
     key:    "charGenMaxRank",
     config:  true,
     scope:   "world",
@@ -138,7 +214,7 @@ export const systemSettings = [
 
   // Maximum circle for learnable spells at character generation
   {
-    group:  "ED.Settings.Groups.charGen",
+    group:  settingGroupsByKey.characterGeneration.key,
     key:    "charGenMaxSpellCircle",
     config: true,
     scope:  "world",
@@ -161,7 +237,7 @@ export const systemSettings = [
 
   // LP Tracking On/Off
   {
-    group:  "ED.Settings.Groups.lpTracking",
+    group:  settingGroupsByKey.lpTracking.key,
     key:    "lpTrackingUsed",
     config:  true,
     scope:   "world",
@@ -174,7 +250,7 @@ export const systemSettings = [
 
   // LP Tracking Option Attributes
   {
-    group:  "ED.Settings.Groups.lpTracking",
+    group:  settingGroupsByKey.lpTracking.key,
     key:    "lpTrackingAttributes",
     config:  true,
     scope:   "world",
@@ -188,7 +264,7 @@ export const systemSettings = [
 
   // LP Tracking Option Talents
   {
-    group:  "ED.Settings.Groups.lpTracking",
+    group:  settingGroupsByKey.lpTracking.key,
     key:    "lpTrackingCircleTalentRequirements",
     scope:   "world",
     config:  true,
@@ -202,7 +278,7 @@ export const systemSettings = [
 
   // LP Tracking Option Skill Training
   {
-    group:  "ED.Settings.Groups.lpTracking",
+    group:  settingGroupsByKey.lpTracking.key,
     key:    "lpTrackingRemoveSilver",
     config:  true,
     scope:   "world",
@@ -215,7 +291,7 @@ export const systemSettings = [
 
   // LP Tracking Max Rank Talent
   {
-    group:  "ED.Settings.Groups.lpTracking",
+    group:  settingGroupsByKey.lpTracking.key,
     key:    "lpTrackingMaxRankTalent",
     config:  true,
     scope:   "world",
@@ -231,7 +307,7 @@ export const systemSettings = [
 
   // LP Tracking Max Rank Skill
   {
-    group:  "ED.Settings.Groups.lpTracking",
+    group:  settingGroupsByKey.lpTracking.key,
     key:    "lpTrackingMaxRankSkill",
     config:  true,
     scope:   "world",
@@ -247,7 +323,7 @@ export const systemSettings = [
 
   // LP Tracking Max Rank Devotion
   {
-    group:  "ED.Settings.Groups.lpTracking",
+    group:  settingGroupsByKey.lpTracking.key,
     key:    "lpTrackingMaxRankDevotion",
     config:  true,
     scope:   "world",
@@ -263,7 +339,7 @@ export const systemSettings = [
 
   // LP Tracking Spell Cost
   {
-    group:  "ED.Settings.Groups.lpTracking",
+    group:  settingGroupsByKey.lpTracking.key,
     key:    "lpTrackingSpellCost",
     config:  true,
     scope:   "world",
@@ -280,7 +356,7 @@ export const systemSettings = [
 
   // LP Tracking Use Patterncraft to Learn Spell
   {
-    group:  "ED.Settings.Groups.lpTracking",
+    group:  settingGroupsByKey.lpTracking.key,
     key:    "lpTrackingLearnSpellUsePatterncraft",
     config:  true,
     scope:   "world",
@@ -295,7 +371,7 @@ export const systemSettings = [
 
   // LP Tracking Learn Spells on Circle Up
   {
-    group:  "ED.Settings.Groups.lpTracking",
+    group:  settingGroupsByKey.lpTracking.key,
     key:    "lpTrackingLearnSpellsOnCircleUp",
     config:  true,
     scope:   "world",
@@ -314,7 +390,7 @@ export const systemSettings = [
 
   // Step Table used for step-to-dice conversion
   {
-    group:  "ED.Settings.Groups.gameMechanics",
+    group:  settingGroupsByKey.gameMechanics.key,
     key:    "stepTable",
     config:  true,
     scope:   "world",
@@ -328,7 +404,7 @@ export const systemSettings = [
 
   // Encumbrance options
   {
-    group:  "ED.Settings.Groups.gameMechanics",
+    group:  settingGroupsByKey.gameMechanics.key,
     key:    "encumbrance",
     config:  true,
     scope:   "world",
@@ -341,7 +417,7 @@ export const systemSettings = [
 
   // Languages
   {
-    group:          "ED.Settings.Groups.gameMechanics",
+    group:          settingGroupsByKey.gameMechanics.key,
     key:            "languages",
     config:         true,
     scope:          "world",
@@ -361,7 +437,7 @@ export const systemSettings = [
 
   // Spellcasting / Thread Weaving Types
   {
-    group:  "ED.Settings.Groups.gameMechanics",
+    group:  settingGroupsByKey.gameMechanics.key,
     key:    "spellcastingTypes",
     config:  true,
     scope:   "world",
@@ -380,7 +456,7 @@ export const systemSettings = [
 
   // Split Talents
   {
-    group:   "ED.Settings.Groups.gameMechanics",
+    group:   settingGroupsByKey.gameMechanics.key,
     key:     "talentsSplit",
     config:  true,
     scope:   "world",
@@ -394,7 +470,7 @@ export const systemSettings = [
 
   // Minimum difficulty for tests
   {
-    group:  "ED.Settings.Groups.gameMechanics",
+    group:  settingGroupsByKey.gameMechanics.key,
     key:    "minimumDifficulty",
     config:  true,
     scope:   "world",
@@ -412,7 +488,7 @@ export const systemSettings = [
 
   // Strain cost for jump up tests
   {
-    group:  "ED.Settings.Groups.gameMechanics",
+    group:  settingGroupsByKey.gameMechanics.key,
     key:    "jumpUpStrainCost",
     config:  true,
     scope:   "world",
@@ -430,7 +506,7 @@ export const systemSettings = [
 
   // Base difficulty for jump up tests
   {
-    group:  "ED.Settings.Groups.gameMechanics",
+    group:  settingGroupsByKey.gameMechanics.key,
     key:    "jumpUpBaseDifficulty",
     config:  true,
     scope:   "world",
@@ -446,14 +522,27 @@ export const systemSettings = [
     } ),
   },
 
+  // Enforce Living Armor
+  {
+    group:  settingGroupsByKey.gameMechanics.key,
+    key:    "enforceLivingArmor",
+    config:  true,
+    scope:   "world",
+    type:    new BooleanField( {
+      initial: true,
+      label:   "ED.Settings.Label.enforceLivingArmor",
+      hint:    "ED.Settings.Hint.enforceLivingArmor",
+    } ),
+  },
+
   // endregion
 
   // region Chat
 
   // Chat Avatar Options
   {
-    group:  "ED.Settings.Groups.chat",
-    key:    "chatAvatar",
+    group:   settingGroupsByKey.chat.key,
+    key:     "chatAvatar",
     config:  true,
     scope:   "world",
     type:    new StringField( {
@@ -470,7 +559,7 @@ export const systemSettings = [
   // region Debug
 
   {
-    group:  "ED.Settings.Groups.debug",
+    group:  settingGroupsByKey.debug.key,
     key:    "debugMode",
     config: true,
     scope:  "user",
@@ -528,6 +617,15 @@ export async function setSetting( settingKey, value, options={} ) {
 }
 
 /**
+ * Gets the setting config for a given setting key.
+ * @param {string} settingKey The key of the setting in the system's namespace.
+ * @returns {SettingConfig} The setting configuration object.
+ */
+export function getSettingConfig( settingKey ) {
+  return game.settings.settings.get( `${ SYSTEM_ID }.${ settingKey }` );
+}
+
+/**
  * Get all available ed-ids from the system settings.
  * @returns {string[]} - A list of all available ed-ids.
  */
@@ -565,6 +663,19 @@ export function getEdidSettingKey( edidName ) {
  * Register all the system's settings.
  */
 export default function registerSystemSettings() {
+
+  game.settings.registerMenu(
+    SYSTEM_ID,
+    "gameMechanics",
+    {
+      hint:       "ED.Settings.Groups.GameMechanics.hint",
+      icon:       `fa-solid ${ SYSTEM.icons.configure }`,
+      label:      "ED.Settings.Groups.GameMechanics.label",
+      name:       "ED.Settings.Groups.GameMechanics.name",
+      restricted: true,
+      type:       GameMechanicsSettingsConfig,
+    },
+  );
 
   for ( const systemSetting of systemSettings ) {
     game.settings.register( SYSTEM_ID, systemSetting.key, systemSetting );
