@@ -122,7 +122,7 @@ export default class ApplicationEd extends HandlebarsApplicationMixin( Applicati
 
   // endregion
 
-  constructor( options ) {
+  constructor( options = {} ) {
     super( options );
     this.resolve = options.resolve;
     this._data = options.data ?? {};
