@@ -11,7 +11,7 @@
           </h4>
           {{#each levelGroup.spells as |uuid|}}
             <div class="spell-option flexrow">
-              <input type="checkbox" name="selectedSpells" value="{{uuid}}" id="spell-{{../levelGroup.level}}-{{@index}}" {{#if (ed-includes ../../selectedSpells uuid)}}checked{{/if}}>
+              <input type="checkbox" name="selectedSpells" value="{{_uuid}}" id="spell-{{../levelGroup.level}}-{{@index}}" {{#if (ed-includes ../../selectedSpells uuid)}}checked{{/if}}>
               <label for="spell-{{../levelGroup.level}}-{{@index}}" class="spell-label">
                 {{{ed-linkForUuid uuid}}}
               </label>

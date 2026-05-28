@@ -81,7 +81,7 @@
   <fieldset>
     <legend>{{localize "ED.Item.Header.powers"}}</legend>
     {{#each powerItems}}
-      <div class="power-item embedded-item flexrow" data-item-id="{{id}}" data-type="power">
+      <div class="power-item embedded-item flexrow" data-item-id="{{_id}}" data-type="power">
         <div class="power-name">
           {{{this.enrichedLink.outerHTML}}}
           {{#if @root.editable}}
