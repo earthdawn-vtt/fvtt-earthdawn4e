@@ -300,7 +300,7 @@ export default class PcData extends NamegiverTemplate {
     }
 
     const attributeEnhanceStep = getAttributeStepFromValue( attributeField.value + 1 ) > attributeField.step ? attributeField.step + 1 : attributeField.step;
-    const rule = game.settings.get( "ed4e", "lpTrackingAttributes" );
+    const rule = getSetting( "lpTrackingAttributes" );
     const lpCost = onCircleIncrease && rule === "freePerCircle" ? 0 : LEGEND.legendPointsCost[currentIncrease + 1 + 4];
     const increaseValidationData = {
       requiredLp:  actor.currentLp >= lpCost,

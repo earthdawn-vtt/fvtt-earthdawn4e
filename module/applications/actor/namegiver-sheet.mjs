@@ -1,4 +1,5 @@
 import ActorSheetEdSentient from "./sentient-sheet.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 
 /**
  * Extend the basic ActorSheet with modifications
@@ -33,7 +34,7 @@ export default class ActorSheetEdNamegiver extends ActorSheetEdSentient {
   async _prepareContext( options ) {
     const context = await super._prepareContext( options );
     foundry.utils.mergeObject( context, {
-      splitTalents:           game.settings.get( "ed4e", "talentsSplit" ),
+      splitTalents:           getSetting( "talentsSplit" ),
     }, {
       recursive: false,
     }, );

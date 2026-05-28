@@ -1,4 +1,5 @@
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 
 /**
  * Type Transformation Manager for handling document type transformations during migrations.
@@ -215,7 +216,7 @@ export default class TypeTransformationManager {
     try {
       return transformHandler( source );
     } catch ( error ) {
-      if ( game.settings.get( "ed4e", "debug" ) === true ) {
+      if ( getSetting( "debug" ) === true ) {
         console.error( `TypeTransformationManager: Error in complex type transformation for ${sourceSystem}:`, error );
       }
       return false;

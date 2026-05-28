@@ -4,6 +4,7 @@ import ApplicationEd from "../api/application.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as SYSTEM from "../../config/system.mjs";
 import { getAllDocuments } from "../../helpers/document.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 
 const { isEmpty } = foundry.utils;
 
@@ -319,12 +320,12 @@ export default class ClassAdvancementDialog extends ApplicationEd {
    * @param {HTMLElement} target The target element.
    */
   static async _continue( event, target ) {
-    if ( this.currentStep === 0 ) this.currentStep++;
-    else if (
-      this.castingType
-      && game.settings.get( "ed4e", "lpTrackingLearnSpellsOnCircleUp" )
-    ) this.currentStep++;
-    else this.currentStep = this.STEPS.length - 1;
+    if ( this.currentStep === 0 )
+      this.currentStep++;
+    else if ( this.castingType && getSetting( "lpTrackingLearnSpellsOnCircleUp" ) )
+      this.currentStep++;
+    else
+      this.currentStep = this.STEPS.length - 1;
 
     this.render();
   }

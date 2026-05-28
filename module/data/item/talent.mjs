@@ -7,6 +7,7 @@ import DialogEd from "../../applications/api/dialog.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as LEGEND from "../../config/legend.mjs";
 import SiblingDocumentField from "../fields/sibling-document-field.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 
 const DialogClass = DialogEd;
 
@@ -199,7 +200,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
         {
           name:      "ED.Dialogs.Legend.Validation.maxLevel",
           value:     increaseData.newLevel,
-          fulfilled: increaseData.newLevel <= game.settings.get( "ed4e", "lpTrackingMaxRankTalent" ),
+          fulfilled: increaseData.newLevel <= getSetting( "lpTrackingMaxRankTalent" ),
         },
       ],
       [LEGEND.validationCategories.resources]: [

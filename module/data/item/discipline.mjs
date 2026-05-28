@@ -3,6 +3,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as LEGEND from "../../config/legend.mjs";
 import { linkForUuidSync } from "../../helpers/formatting.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 
 const { isEmpty } = foundry.utils;
 
@@ -68,7 +69,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
     const nextLevel = this.unmodifiedLevel + 1;
     let talentRequirements = [];
 
-    switch ( game.settings.get( "ed4e", "lpTrackingCircleTalentRequirements" ) ) {
+    switch ( getSetting( "lpTrackingCircleTalentRequirements" ) ) {
       case "disciplineTalents": {
         talentRequirements.push( ...this._talentRequirementsStandard );
         break;
@@ -165,7 +166,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
     return [
       {
         name:      LEGEND.circleTalentRequirements[
-          game.settings.get( "ed4e", "lpTrackingCircleTalentRequirements" )
+          getSetting( "lpTrackingCircleTalentRequirements" )
         ],
         value:     requirementValue,
         fulfilled,

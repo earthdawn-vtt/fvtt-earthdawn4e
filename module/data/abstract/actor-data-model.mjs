@@ -1,4 +1,5 @@
 import SystemDataModel from "./system-data-model.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 
 /**
  * Variant of the SystemDataModel with some extra actor-specific handling.
@@ -39,7 +40,7 @@ export default class ActorDataModel extends SystemDataModel {
    * @type {ActorEd[]}
    */
   get transferDestinations() {
-    const primaryParty = game.settings.get( "ed4e", "primaryParty" )?.actor;
+    const primaryParty = getSetting( "primaryParty" )?.actor;
     if ( !primaryParty?.system.members.ids.has( this.parent.id ) ) return [];
     const destinations = primaryParty.system.members.map( m => m.actor ).filter( a => a.isOwner && a !== this.parent );
     if ( primaryParty.isOwner ) destinations.unshift( primaryParty );

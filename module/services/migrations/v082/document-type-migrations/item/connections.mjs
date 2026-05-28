@@ -3,6 +3,7 @@
  * connections items need to be converted from Items to group Actors
  */
 import BaseMigration from "../../../common/base-migration.mjs";
+import { getSetting } from "../../../../../helpers/settings.mjs";
 
 export default class connectionsMigration extends BaseMigration {
   /**
@@ -13,7 +14,7 @@ export default class connectionsMigration extends BaseMigration {
    * @returns {object} - The migrated data (still as Item structure)
    */
   static async migrateEarthdawnData( source ) {
-    if ( game.settings.get( "ed4e", "debug" ) === true ) {
+    if ( getSetting( "debug" ) === true ) {
       console.log( `ED Migration | Processing connections item "${source.name || "Unnamed"}"` );
     }
 
@@ -25,7 +26,7 @@ export default class connectionsMigration extends BaseMigration {
     }
     source.system.migrationNotes.push( "REQUIRES_ITEM_TO_ACTOR_CONVERSION:group" );
     
-    if ( game.settings.get( "ed4e", "debug" ) === true ) {
+    if ( getSetting( "debug" ) === true ) {
       console.warn( `ED Migration | connections item "${source.name}" marked for Item→Actor conversion - this requires special handling` );
     }
     
