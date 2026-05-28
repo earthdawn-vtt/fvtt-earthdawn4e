@@ -3770,6 +3770,48 @@
         "spellcastingTypes":                      "Spruchzauberei Typen",
         "spellcastingTypesHint":                  "Welche Spruchzauberei Typen sollen verwendet werden?"
       },
+      "Groups": {
+        "CharGen": {
+          "hint":                                 "Einstellungen zur Charaktererstellung",
+          "label":                                "Charaktererstellung",
+          "name":                                 "Charaktererstellung"
+        },
+        "Chat": {
+          "hint":                                 "Einstellungen zum Chat und Chatnachrichten",
+          "label":                                "Chat",
+          "name":                                 "Chat"
+        },
+        "Controls": {
+          "hint":                                 "Einstellungen zur Bedienung des Systems",
+          "label":                                "Steuerung",
+          "name":                                 "Steuerung"
+        },
+        "Debug": {
+          "hint":                                 "Einstellungen zum Debuggen",
+          "label":                                "Debug",
+          "name":                                 "Debug"
+        },
+        "Edid": {
+          "hint":                                 "Die Namen der vom System verwendeten ED-IDs",
+          "label":                                "ED-IDs anpassen",
+          "name":                                 "ED-ID"
+        },
+        "GameMechanics": {
+          "hint":                                 "Einstellungen zu Regeln, Standardwerte und alles was die Spielmechanik betrifft.",
+          "label":                                "Spielmechaniken konfigurieren",
+          "name":                                 "Spielmechanik"
+        },
+        "LpTracking": {
+          "hint":                                 "Einstellungen zur Verwaltung von Legendenpunkten",
+          "label":                                "LP-Tracking",
+          "name":                                 "Legendenpunkte"
+        },
+        "Updates": {
+          "hint":                                 "Einstellungen zu Updates des Systems",
+          "label":                                "Updates",
+          "name":                                 "Updates"
+        }
+      },
       "Hint": {
         "debugMode":                              "Soll Debugging im ed4e System aktiviert werden?",
         "enforceLivingArmor":                     "Prüft ob ausschließlich legendige Rüstung getragen werden kann."

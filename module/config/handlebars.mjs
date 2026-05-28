@@ -1,14 +1,15 @@
 export const partials = [
   // region Global Templates
 
-  "systems/ed4e/templates/global/editor.hbs",
-  "systems/ed4e/templates/global/editor-brief.hbs",
+  "systems/ed4e/templates/global/button.hbs",
   "systems/ed4e/templates/global/card-options-chat.hbs",
+  "systems/ed4e/templates/global/card-options-class-upgrade.hbs",
   "systems/ed4e/templates/global/card-options-effect.hbs",
   "systems/ed4e/templates/global/card-options-enhance.hbs",
+  "systems/ed4e/templates/global/editor.hbs",
+  "systems/ed4e/templates/global/editor-brief.hbs",
   "systems/ed4e/templates/global/effect-card.hbs",
-  "systems/ed4e/templates/global/card-options-class-upgrade.hbs",
-  "systems/ed4e/templates/global/button.hbs",
+  "systems/ed4e/templates/global/form-group-fields.hbs",
 
   // endregion
 

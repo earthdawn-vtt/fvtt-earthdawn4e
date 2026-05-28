@@ -3770,6 +3770,48 @@
         "spellcastingTypes":                      "Types d'Incantation",
         "spellcastingTypesHint":                  "Types d'incantation autorisés"
       },
+      "Groups": {
+        "CharGen": {
+          "hint":                                 "TODO: Add translation",
+          "label":                                "TODO: Add translation",
+          "name":                                 "TODO: Add translation"
+        },
+        "Chat": {
+          "hint":                                 "TODO: Add translation",
+          "label":                                "TODO: Add translation",
+          "name":                                 "TODO: Add translation"
+        },
+        "Controls": {
+          "hint":                                 "TODO: Add translation",
+          "label":                                "TODO: Add translation",
+          "name":                                 "TODO: Add translation"
+        },
+        "Debug": {
+          "hint":                                 "TODO: Add translation",
+          "label":                                "TODO: Add translation",
+          "name":                                 "TODO: Add translation"
+        },
+        "Edid": {
+          "hint":                                 "TODO: Add translation",
+          "label":                                "TODO: Add translation",
+          "name":                                 "TODO: Add translation"
+        },
+        "GameMechanics": {
+          "hint":                                 "TODO: Add translation",
+          "label":                                "TODO: Add translation",
+          "name":                                 "TODO: Add translation"
+        },
+        "LpTracking": {
+          "hint":                                 "TODO: Add translation",
+          "label":                                "TODO: Add translation",
+          "name":                                 "TODO: Add translation"
+        },
+        "Updates": {
+          "hint":                                 "TODO: Add translation",
+          "label":                                "TODO: Add translation",
+          "name":                                 "TODO: Add translation"
+        }
+      },
       "Hint": {
         "debugMode":                              "Activer pour voir les logs de débogage avancés.",
         "enforceLivingArmor":                     "Forcer les restrictions des armures vivantes."

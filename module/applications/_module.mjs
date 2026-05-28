@@ -10,6 +10,7 @@ export * as hud from "./hud/_module.mjs";
 export * as item from "./item/_module.mjs";
 export * as journal from "./journal/_module.mjs";
 export * as scene from "./scene/_module.mjs";
+export * as settings from "./settings/_module.mjs";
 export * as workflow from "./workflow/_module.mjs";
 
 

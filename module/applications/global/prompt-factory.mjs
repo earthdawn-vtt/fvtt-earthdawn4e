@@ -7,6 +7,7 @@ import ChooseAdderSubstitutePrompt from "./choose-adder-substitute.mjs";
 import { getSetting } from "../../helpers/settings.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as LEGEND from "../../config/legend.mjs";
+import * as SYSTEM from "../../config/system.mjs";
 import { createContentAnchor } from "../../helpers/formatting.mjs";
 
 const { renderTemplate } = foundry.applications.handlebars;
@@ -32,6 +33,20 @@ export default class PromptFactory {
   }
 
   _promptTypeMapping = {};
+
+  /**
+   * A {@link foundry.applications.api.DialogV2Button} object for a submit button.
+   * @type {foundry.applications.api.DialogV2Button}
+   */
+  static get saveChangesButton() {
+    return {
+      type:    "submit",
+      action:  "saveChanges",
+      label:   "SETTINGS.Save",
+      icon:    `fa-solid ${ SYSTEM.icons.saveChanges }`,
+      class:   "saveChanges button-saveChanges",
+    };
+  }
 
   /**
    * A {@link foundry.applications.api.DialogV2Button} object for a button with data action "cancel".
