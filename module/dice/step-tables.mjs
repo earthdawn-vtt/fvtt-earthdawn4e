@@ -178,7 +178,7 @@ export function get3eDice( step ) {
  * @param { number } step The step that is to be rolled.
  * @returns { string } A dice term that can be used in for a Roll in the Foundry api.
  */
-function get1eDice( step ) {
+export function get1eDice( step ) {
   const stepsTable = [
     "0",
     "1d4 - 2",
@@ -282,10 +282,8 @@ function get1eDice( step ) {
     "4d20 + 5d10 + 5d8",
     "4d20 + 6d10 + 4d8",
   ];
-  if ( step > 100 || step < 1 ) {
-    ui.notifications.error( "This Step Table Does Not Support That Number" );
-    return false;
-  }
+  if ( step > 100 || step < 1 ) throw new Error( `The 1e step table only supports steps between 1 and 100. You provided: ${step}` );
+
   return stepsTable[step];
 }
 
@@ -398,9 +396,7 @@ export function getCeDice( step ) {
     "4d20 + 5d10 + 5d8",
     "4d20 + 6d10 + 4d8",
   ];
-  if ( step > 100 || step < 1 ) {
-    ui.notifications.error( "This Step Table Does Not Support That Number" );
-    return false;
-  }
+  if ( step > 100 || step < 1 ) throw new Error( `The Classic Edition step table only supports steps between 1 and 100. You provided: ${step}` );
+
   return stepsTable[step];
 }

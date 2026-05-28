@@ -139,6 +139,7 @@ jobs:
           files: 'system.json'
         env:
           flags.hotReload: false
+          esmodules: '[ "earthdawn4e.mjs" ]'
 
       - name: Set up Node.js {{ env.NODE_VERSION }}
         uses: actions/setup-node@v4

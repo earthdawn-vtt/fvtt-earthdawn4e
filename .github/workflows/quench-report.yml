@@ -1,0 +1,46 @@
+name: Quench Report
+
+env:
+  NODE_VERSION: 22
+
+on:
+  pull_request:
+    branches:
+      - main
+  merge_group:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
+jobs:
+  quench-report:
+    name: Verify committed Quench report
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Ensure Quench report exists
+        run: |
+          report="tests/quench/reports/latest.json"
+          if [ ! -s "$report" ]; then
+            echo "::error file=$report::Quench report is missing or empty. Run the Quench tests locally and commit tests/quench/reports/latest.xml before merging."
+            exit 1
+          fi
+
+      - name: Publish Quench results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: (!cancelled())
+        with:
+          files: tests/quench/reports/latest.json
+          check_name: Quench Tests
+          comment_mode: off
+          compare_to_earlier_commit: false
+          fail_on: "test failures"
+          action_fail: true
+          action_fail_on_inconclusive: true
