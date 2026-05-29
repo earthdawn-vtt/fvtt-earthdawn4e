@@ -75,13 +75,13 @@ export default class BaseSettingsConfig extends ApplicationEd {
 
     const submitData = this._processSubmitData( event, form, formData, submitOptions );
 
-    for ( const [ settingKey, settingValue ] of Object.entries( submitData[ SYSTEM_ID ] ) ) {
+    for ( const [ settingKey, settingValue ] of Object.entries( submitData[ SYSTEM_ID ] ?? {} ) ) {
       const settingConfig = getSettingConfig( settingKey );
       const oldValue = getSetting( settingKey );
       const newValue = await setSetting( settingKey, settingValue );
 
-      // we ignore complex types like the `SetField`s for languages and spellcastingTypes to keep it simple;
-      // the code still works since nothing is true
+      // Simple equality is enough for current reload-tracked settings.
+      // Complex settings are still saved correctly; this only affects whether a reload prompt is shown.
       if ( oldValue === newValue ) continue;
 
       requiresClientReload ||= ( settingConfig.scope !== "world" ) && settingConfig.requiresReload;
