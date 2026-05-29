@@ -448,7 +448,7 @@ export default class DamageRollOptions extends EdRollOptions {
         return this._getUnarmedOrWeaponModifiers(
           rollingActor,
           sourceDocument.system.weaponType,
-          data.attackRoll,
+          data,
         );
       case "spell":
         return this._getSpellModifiers(
@@ -467,18 +467,19 @@ export default class DamageRollOptions extends EdRollOptions {
    * Computes and retrieves the modifiers associated with unarmed attacks or specific weapon types.
    * @param {ActorEd} rollingActor - The actor performing the roll, containing the relevant attributes and abilities.
    * @param {string} weaponType - The type of weapon being used in the attack (e.g., "sword", "bow", "unarmed").
-   * @param {EdRoll} attackRoll - The details of the attack roll, used to calculate relevant modifiers such as extra successes.
+   * @param { T & Partial<DamageRollOptions> } data The input data object
    * @returns {RollModifiers} An object containing modifier labels as keys and their corresponding values.
    */
-  static _getUnarmedOrWeaponModifiers( rollingActor, weaponType, attackRoll ) {
+  static _getUnarmedOrWeaponModifiers( rollingActor, weaponType, data ) {
     const modifiers = {};
+    const { attackRoll } = data;
 
     // global weapon modifiers
     const globalWeaponTypeModifier = this._getGlobalWeaponTypeModifierFromActor( rollingActor, weaponType );
     modifiers[ globalWeaponTypeModifier.label ] = globalWeaponTypeModifier.modifier;
 
     // increase abilities
-    for ( const increaseAbilityModifier of this._getWeaponIncreaseAbilityModifiers() ) {
+    for ( const increaseAbilityModifier of this._getWeaponIncreaseAbilityModifiers( data.increaseAbilities, data.increaseAbilityUuids ) ) {
       modifiers[ increaseAbilityModifier.label ] = increaseAbilityModifier.modifier;
     }
 
