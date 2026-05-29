@@ -604,7 +604,7 @@ export const groupedSystemSettings = systemSettings.reduce( ( acc, setting ) => 
 /**
  * Register all the system's settings.
  */
-export default function registerSystemSettings() {
+export function registerSystemSettings() {
 
   for ( const systemSetting of systemSettings ) {
     game.settings.register( SYSTEM_ID, systemSetting.key, systemSetting );

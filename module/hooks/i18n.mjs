@@ -1,6 +1,6 @@
 import * as data from "../data/_module.mjs";
 import { performPreLocalization } from "../i18n/localization.mjs";
-import registerSystemSettings from "../system/settings.mjs";
+import { registerSystemSettings } from "../system/settings.mjs";
 
 /**
  *
