@@ -30,15 +30,6 @@ export default class BaseSettingsConfig extends ApplicationEd {
 
   // endregion
 
-  // region Properties
-
-  /**
-   * @type {SystemSettingConfig[]}
-   */
-  groupSettings;
-
-  // endregion
-
   // region Rendering
 
   /** @inheritdoc */
@@ -59,19 +50,19 @@ export default class BaseSettingsConfig extends ApplicationEd {
   }
 
   _generateFieldEntries() {
+    if ( !this.options.settingsGroup ) return [];
+
     return [ ...game.settings.settings.values() ].filter(
       settingConfig =>
-        ( settingConfig.namespace === SYSTEM_ID ) && ( settingConfig.group === this.options.settingsGroup )
-    ).map(
-      settingConfig => {
-        const field = settingConfig.type;
-        return {
-          field,
-          value:    getSetting( settingConfig.key ),
-          localize: true,
-        };
-      }
-    );
+        settingConfig.namespace === SYSTEM_ID
+        && settingConfig.group === this.options.settingsGroup
+    ).map( settingConfig => {
+      return {
+        field:    settingConfig.type,
+        value:    getSetting( settingConfig.key ),
+        localize: true,
+      };
+    } );
   }
 
   // endregion
@@ -89,6 +80,8 @@ export default class BaseSettingsConfig extends ApplicationEd {
       const oldValue = getSetting( settingKey );
       const newValue = await setSetting( settingKey, settingValue );
 
+      // we ignore complex types like the `SetField`s for languages and spellcastingTypes to keep it simple;
+      // the code still works since nothing is true
       if ( oldValue === newValue ) continue;
 
       requiresClientReload ||= ( settingConfig.scope !== "world" ) && settingConfig.requiresReload;
