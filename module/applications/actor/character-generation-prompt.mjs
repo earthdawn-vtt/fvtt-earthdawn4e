@@ -267,7 +267,11 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
           [skillLanguageRW.uuid]:    LEGEND.availableRanks.readWrite,
         }
       }
-    } );
+    }, {
+      clean: {
+        expand: false,
+      },
+    }, );
 
     // create the prompt
     return new Promise( ( resolve ) => {
@@ -727,7 +731,7 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
 
     // Set namegiver specifics
     if ( data.namegiver ) {
-      this.charGenData.namegiverAbilities = await fromUuid( data.namegiver );
+      this.charGenData.setNamegiverAbilities( await fromUuid( data.namegiver ) );
     }
 
     // Reset selected class if class type changed
@@ -738,10 +742,10 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
       if ( this.charGenData.selectedClass ) {
         if ( data.selectedClass !== this.charGenData.selectedClass ) {   
           this.element.querySelector( "button#char-gen-clear-talent-ranks-button" ).click(); 
-          this.charGenData.classAbilities = await fromUuid( data.selectedClass );
+          this.charGenData.setClassAbilities( await fromUuid( data.selectedClass ) );
         } 
       } else {
-        this.charGenData.classAbilities = await fromUuid( data.selectedClass );
+        this.charGenData.setClassAbilities( await fromUuid( data.selectedClass ) );
       }
     } else {
       this.charGenData.updateSource( {
@@ -757,7 +761,7 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     if ( data.abilityOption && data.abilityOption !== this.charGenData.abilityOption ) {
       const oldOptionLevel = Object.values( this.charGenData.abilities.optional )[0];
       this.resetOptionalPoints( oldOptionLevel );
-      this.charGenData.abilityOption = data.abilityOption;
+      this.charGenData.setAbilityOption( data.abilityOption );
     }
 
     // Check the maximum selectable number of languages by comparing the array length

@@ -259,53 +259,12 @@ export default class CharacterGenerationData extends SparseDataModel {
     return Object.keys( this.abilities.optional )[0];
   }
 
-  set abilityOption( abilityUuid ) {
-    this.updateSource( {
-      abilities: {
-        optional: {
-          [ abilityUuid ]:                                      0,
-          [ Object.keys( this.abilities.optional )[ 0 ] ]:      _del,
-        },
-      },
-    } );
-  }
-
   get classAbilities() {
     return this.abilities.class;
   }
 
-  set classAbilities( selectedClassDocument ) {
-    // Only update data if namegiver changes
-    if ( !selectedClassDocument || ( this.selectedClass === selectedClassDocument.uuid ) ) return;
-
-    const firstLevelAbilities = selectedClassDocument.system?.advancement?.levels?.[1]?.abilities ?? {};
-
-    this.updateSource( {
-      abilities: {
-        "class":   _replace( Object.fromEntries( firstLevelAbilities.class.map( ability => [ ability, 0 ] ) ) ),
-        "free":    _replace( Object.fromEntries( firstLevelAbilities.free.map( ability => [ ability, 0 ] ) ) ),
-        "special": _replace( Object.fromEntries( firstLevelAbilities.special.map( ability => [ ability, 0 ] ) ) ),
-      }
-    } );
-  }
-
   get namegiverAbilities() {
     return this.abilities.namegiver;
-  }
-
-  // endregion
-
-  // region Setters
-
-  set namegiverAbilities( namegiverDocument ) {
-    // Only update data if namegiver changes
-    if ( !namegiverDocument || ( this.namegiver === namegiverDocument.uuid ) ) return;
-
-    this.updateSource( {
-      abilities: {
-        namegiver: Object.fromEntries( namegiverDocument.system.abilities.map( ability => [ ability, 0 ] ) ),
-      }
-    } );
   }
 
   // endregion
@@ -426,12 +385,86 @@ export default class CharacterGenerationData extends SparseDataModel {
 
   // endregion
 
+  // region Set-Methods
+
+  /**
+   * Updates the {@link CharacterGenerationData.abilities } object to set the chosen ability option while removing the
+   * existing one, if it exists.
+   * @param {string} abilityUuid - The unique identifier of the ability to be set as optional.
+   * @returns {void} This method does not return any value.
+   */
+  setAbilityOption( abilityUuid ) {
+    this.updateSource( {
+      abilities: {
+        optional: {
+          [ abilityUuid ]:                                      0,
+          [ Object.keys( this.abilities.optional )[ 0 ] ]:      _del,
+        },
+      },
+    }, {
+      clean: {
+        expand: false,
+      },
+    } );
+  }
+
+  /**
+   * Updates the abilities available for the selected class.
+   * @param {ItemEd} selectedClassDocument - The document representing the selected class.
+   * The class needs to have {@link AdvancementData}.
+   * @returns {void}
+   */
+  setClassAbilities( selectedClassDocument ) {
+    // only update if selected class changes
+    if ( !selectedClassDocument || ( this.selectedClass === selectedClassDocument.uuid ) ) return;
+
+    const firstLevelAbilities = selectedClassDocument.system?.advancement?.levels?.[1]?.abilities ?? {};
+
+    this.updateSource( {
+      abilities: {
+        "class":   _replace( Object.fromEntries( firstLevelAbilities.class.map( ability => [ ability, 0 ] ) ) ),
+        "free":    _replace( Object.fromEntries( firstLevelAbilities.free.map( ability => [ ability, 0 ] ) ) ),
+        "special": _replace( Object.fromEntries( firstLevelAbilities.special.map( ability => [ ability, 0 ] ) ) ),
+      }
+    }, {
+      clean: {
+        expand: false,
+      },
+    } );
+  }
+
+  /**
+   * Updates the abilities for a namegiver based on the provided namegiver document.
+   * Only updates when the namegiver changes.
+   * @param {ItemEd} namegiverDocument - The document representing the namegiver.
+   * @returns {void}
+   */
+  setNamegiverAbilities( namegiverDocument ) {
+    // Only update data if namegiver changes
+    if ( !namegiverDocument || ( this.namegiver === namegiverDocument.uuid ) ) return;
+
+    this.updateSource( {
+      abilities: {
+        namegiver: Object.fromEntries( namegiverDocument.system.abilities.map( ability => [ ability, 0 ] ) ),
+      }
+    }, {
+      clean: {
+        expand: false,
+      },
+    } );
+  }
+
+  // endregion
+
   // region Abilities
 
   async addAbility( abilityUuid, abilityType ) {
     const abilityData = this.abilities[abilityType];
     abilityData[abilityUuid] = 0;
-    return this.updateSource( { abilities: { [abilityType]: abilityData } } );
+    return this.updateSource(
+      { abilities: { [abilityType]: abilityData } },
+      { clean: { expand: false } },
+    );
   }
 
   async removeRankZeroSkills() {
@@ -454,6 +487,10 @@ export default class CharacterGenerationData extends SparseDataModel {
         knowledge: knowledgeData,
         general:   generalData,
       }
+    }, {
+      clean: {
+        expand: false,
+      },
     } );
   }
 
@@ -509,6 +546,10 @@ export default class CharacterGenerationData extends SparseDataModel {
       availableRanks: {
         [availabilityType]: this.availableRanks[availabilityType] - costDifference
       }
+    }, {
+      clean: {
+        expand: false,
+      },
     } );
     await this.removeRankZeroSkills();
     return updateDiff;
@@ -633,7 +674,7 @@ export default class CharacterGenerationData extends SparseDataModel {
 
   async resetPoints( type ) {
     const updateData = await this.getResetData( type );
-    this.updateSource( updateData );
+    this.updateSource( updateData, { clean: { expand: false } } );
     return this.removeRankZeroSkills();
   }
 
