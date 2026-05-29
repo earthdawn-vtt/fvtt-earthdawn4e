@@ -1,5 +1,5 @@
 import ApplicationEd from "../api/application.mjs";
-import { getSetting, getSettingConfig, groupedSystemSettings, setSetting } from "../../helpers/settings.mjs";
+import { getSetting, getSettingConfig, setSetting } from "../../helpers/settings.mjs";
 import PromptFactory from "../global/prompt-factory.mjs";
 import { SYSTEM_ID } from "../../constants/constants.mjs";
 
@@ -30,6 +30,15 @@ export default class BaseSettingsConfig extends ApplicationEd {
 
   // endregion
 
+  // region Properties
+
+  /**
+   * @type {SystemSettingConfig[]}
+   */
+  groupSettings;
+
+  // endregion
+
   // region Rendering
 
   /** @inheritdoc */
@@ -50,7 +59,10 @@ export default class BaseSettingsConfig extends ApplicationEd {
   }
 
   _generateFieldEntries() {
-    return groupedSystemSettings[ this.options.settingsGroup ]?.map(
+    return [ ...game.settings.settings.values() ].filter(
+      settingConfig =>
+        ( settingConfig.namespace === SYSTEM_ID ) && ( settingConfig.group === this.options.settingsGroup )
+    ).map(
       settingConfig => {
         const field = settingConfig.type;
         return {
