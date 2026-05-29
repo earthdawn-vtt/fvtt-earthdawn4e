@@ -41,7 +41,7 @@ const { BooleanField, NumberField, SetField, StringField } = foundry.data.fields
  *
  * @type {SystemSettingGroupConfig[]}
  */
-export const settingGroups = [
+const settingGroups = [
   {
     key:        "gameMechanics",
     submenu:    true,
@@ -116,7 +116,7 @@ export const settingGroups = [
  * The {@link settingGroups} indexed by their group/menu key.
  * @type {Record<string, SystemSettingGroupConfig>}
  */
-export const settingGroupsByKey = Object.fromEntries(
+const settingGroupsByKey = Object.fromEntries(
   settingGroups.map( group => [ group.key, group ] )
 );
 
@@ -124,7 +124,7 @@ export const settingGroupsByKey = Object.fromEntries(
  * The data for all settings associated with the system.
  * @type {SystemSettingConfig[]}
  */
-export const systemSettings = [
+const systemSettings = [
 
   // region Updates
 
@@ -581,30 +581,12 @@ export const systemSettings = [
 
 ];
 
-/**
- * The {@link systemSettings} indexed by the setting key.
- * @type {Record<string, SystemSettingConfig>}
- */
-export const systemSettingsByKey = Object.fromEntries(
-  systemSettings.map( setting => [ setting.key, setting ] )
-);
-
-/**
- * The {@link systemSettings} indexed by the setting group.
- * @type {Record<string, SystemSettingConfig[]>}
- */
-export const groupedSystemSettings = systemSettings.reduce( ( acc, setting ) => {
-  if ( !acc[setting.group] ) acc[setting.group] = [];
-  acc[setting.group].push( setting );
-  return acc;
-}, {} );
-
 // endregion
 
 /**
  * Register all the system's settings.
  */
-export function registerSystemSettings() {
+export default function registerSystemSettings() {
 
   for ( const systemSetting of systemSettings ) {
     game.settings.register( SYSTEM_ID, systemSetting.key, systemSetting );

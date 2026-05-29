@@ -11,10 +11,10 @@ import * as enrichers from "./module/helpers/enrichers.mjs";
 import * as helpers from "./module/helpers/_module.mjs";
 import * as hooks from "./module/hooks/_module.mjs";
 import * as services from "./module/services/_module.mjs";
-import * as system from "./module/system/_module.mjs";
 import * as tours from "./module/tours/_module.mjs";
 import * as utils from "./module/utils/_module.mjs";
 import * as workflows from "./module/workflows/_module.mjs";
+import registerHooks from "./module/system/hooks.mjs";
 
 /* -------------------------------------------- */
 /*  Define Module Structure                     */
@@ -31,7 +31,6 @@ globalThis.ed4e = {
   helpers,
   hooks,
   services,
-  system,
   tours,
   utils,
   workflows,
@@ -41,7 +40,7 @@ globalThis.ed4e = {
 /*  Hooks                                       */
 /* -------------------------------------------- */
 
-system.registerHooks();
+registerHooks();
 
 
 /* -------------------------------------------- */
@@ -57,7 +56,6 @@ export {
   enrichers,
   hooks,
   // migrations,
-  system,
   utils,
   workflows,
   ED4E
