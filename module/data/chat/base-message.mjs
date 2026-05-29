@@ -1,5 +1,6 @@
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 
 export default class BaseMessageData extends SystemDataModel {
 
@@ -263,7 +264,7 @@ export default class BaseMessageData extends SystemDataModel {
    */
   _addUserPortrait( element ) {
 
-    const chatAvatarSetting = game.settings.get( "ed4e", "chatAvatar" );
+    const chatAvatarSetting = getSetting( "chatAvatar" );
     const isGM = this.parent.author.isGM;
     const avatar_img = this.parent.author.avatar;
     const token = canvas.tokens?.controlled[0];

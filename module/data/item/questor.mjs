@@ -9,6 +9,7 @@ import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import SiblingDocumentField from "../fields/sibling-document-field.mjs";
 import { getSingleGlobalItemByEdid } from "../../helpers/document.mjs";
 import { createContentLink } from "../../helpers/formatting.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 
 const { isEmpty } = foundry.utils;
 
@@ -81,7 +82,7 @@ export default class QuestorData extends ClassTemplate.mixin(
     }
 
     // get the questor devotion
-    const edidQuestorDevotion = game.settings.get( "ed4e", "edidQuestorDevotion" );
+    const edidQuestorDevotion = getSetting( "edidQuestorDevotion" );
     let questorDevotion = actor.items.get( item.system.questorDevotionId );
     questorDevotion ??= await getSingleGlobalItemByEdid( edidQuestorDevotion, SYSTEM_TYPES.Item.devotion );
     questorDevotion ??= await Item.create( DOCUMENT_DATA.documentData.Item.devotion.questor );

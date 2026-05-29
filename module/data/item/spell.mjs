@@ -18,6 +18,7 @@ import * as LEGEND from "../../config/legend.mjs";
 import * as MAGIC from "../../config/magic.mjs";
 import * as ROLLS from "../../config/rolls.mjs";
 import TypedEntryManagerMixin from "../common/typed-entry-manager.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 
 const { fields } = foundry.data;
 
@@ -438,7 +439,7 @@ export default class SpellData extends ItemDataModel.mixin(
 
   /** @inheritDoc */
   get requiredLpToLearn() {
-    switch ( game.settings.get( "ed4e", "lpTrackingSpellCost" ) ) {
+    switch ( getSetting( "lpTrackingSpellCost" ) ) {
       case "noviceTalent": return LEGEND.legendPointsCost[ this.unmodifiedLevel ];
       case "circleX100": return this.unmodifiedLevel * 100;
       case "free":
@@ -490,7 +491,7 @@ export default class SpellData extends ItemDataModel.mixin(
    */
   getSpellcastingRank( ) {
     const spellcastingTalent = this.containingActor?.getSingleItemByEdid(
-      game.settings.get( "ed4e", "edidSpellcasting" ),
+      getSetting( "edidSpellcasting" ),
       SYSTEM_TYPES.Item.talent,
     );
     return spellcastingTalent?.system.level;

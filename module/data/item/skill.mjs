@@ -2,6 +2,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import IncreasableAbilityTemplate from "./templates/increasable-ability.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as LEGEND from "../../config/legend.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 
 /**
  * Data model template with information on Skill items.
@@ -126,7 +127,7 @@ export default class SkillData extends IncreasableAbilityTemplate.mixin(
         {
           name:      "ED.Dialogs.Legend.Validation.maxLevel",
           value:     increaseData.newLevel,
-          fulfilled: increaseData.newLevel <= game.settings.get( "ed4e", "lpTrackingMaxRankSkill" ),
+          fulfilled: increaseData.newLevel <= getSetting( "lpTrackingMaxRankSkill" ),
         },
       ],
       [LEGEND.validationCategories.resources]: [

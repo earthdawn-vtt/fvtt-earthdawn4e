@@ -1,6 +1,7 @@
 import PromptFactory from "../global/prompt-factory.mjs";
 import ApplicationEd from "../api/application.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 
 
 export default class LearnSpellPrompt extends ApplicationEd {
@@ -131,7 +132,7 @@ export default class LearnSpellPrompt extends ApplicationEd {
   static async _spellcastingTest( _ ) {
     const roll = await this.actor.rollAbility(
       this.actor.getSingleItemByEdid(
-        game.settings.get( "ed4e", "edidSpellcasting" ),
+        getSetting( "edidSpellcasting" ),
         SYSTEM_TYPES.Item.talent,
       ),
       {
@@ -162,7 +163,7 @@ export default class LearnSpellPrompt extends ApplicationEd {
 
     const roll = await this.actor.rollAbility(
       this.actor.getSingleItemByEdid(
-        game.settings.get( "ed4e", "edidPatterncraft" ),
+        getSetting( "edidPatterncraft" ),
         SYSTEM_TYPES.Item.talent,
       ),
       {
@@ -216,11 +217,11 @@ export default class LearnSpellPrompt extends ApplicationEd {
     context.config = CONFIG.ED4E;
 
     context.hasPatterncraft = !!this.actor.getSingleItemByEdid(
-      game.settings.get( "ed4e", "edidPatterncraft" ),
+      getSetting( "edidPatterncraft" ),
       SYSTEM_TYPES.Item.talent
     );
     context.hasSpellcasting = !!this.actor.getSingleItemByEdid(
-      game.settings.get( "ed4e", "edidSpellcasting" ),
+      getSetting( "edidSpellcasting" ),
       SYSTEM_TYPES.Item.talent
     );
 

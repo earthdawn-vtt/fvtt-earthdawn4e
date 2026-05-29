@@ -590,7 +590,7 @@ class ActorPromptFactory extends PromptFactory {
    */
   async _useWillforcePrompt() {
     const willforce = this.document.getSingleItemByEdid(
-      game.settings.get( "ed4e", "edidWillforce" ),
+      getSetting( "edidWillforce" ),
     );
     if ( !willforce ) return;
 
@@ -821,7 +821,7 @@ class ItemPromptFactory extends PromptFactory {
    */
   async _talentCategoryPrompt() {
 
-    const versatilityEdId = game.settings.get( "ed4e", "edidVersatility" );
+    const versatilityEdId = getSetting( "edidVersatility" );
 
     const versatilityItem = this.document.actor.getSingleItemByEdid( versatilityEdId, SYSTEM_TYPES.Item.talent );
     // eslint-disable-next-line no-unused-vars

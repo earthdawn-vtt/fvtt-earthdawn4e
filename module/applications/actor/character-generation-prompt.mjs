@@ -8,6 +8,7 @@ import * as SYSTEM from "../../config/system.mjs";
 import { getAllDocuments } from "../../helpers/document.mjs";
 import { documentsToSelectChoices } from "../../helpers/handlebars.mjs";
 import { filterObject } from "../../utils/object.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 
 
 /**
@@ -224,7 +225,7 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
         false,
         "OBSERVER",
         [ "system.level" ],
-        ( x ) => x.system.level <= game.settings.get( "ed4e", "charGenMaxSpellCircle" ),
+        ( x ) => x.system.level <= getSetting( "charGenMaxSpellCircle" ),
       ),
       equipment: {
         armor:     await this.getEquipmentItems( SYSTEM_TYPES.Item.armor ),
@@ -235,8 +236,8 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     };
 
     // add the language skills manually, so we can localize them and assert the correct edid
-    const edidLanguageSpeak = game.settings.get( "ed4e", "edidLanguageSpeak" );
-    const edidLanguageRW = game.settings.get( "ed4e", "edidLanguageRW" );
+    const edidLanguageSpeak = getSetting( "edidLanguageSpeak" );
+    const edidLanguageRW = getSetting( "edidLanguageRW" );
     let skillLanguageSpeak = docCollections.skills.find( skill => skill.system.edid === edidLanguageSpeak );
     let skillLanguageRW = docCollections.skills.find( skill => skill.system.edid === edidLanguageRW );
 
@@ -330,10 +331,10 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     this.spells = documentCollections.spells;
     this.equipment = documentCollections.equipment;
 
-    this.availableAttributePoints = game.settings.get( "ed4e", "charGenAttributePoints" );
+    this.availableAttributePoints = getSetting( "charGenAttributePoints" );
 
-    this.edidLanguageSpeak = game.settings.get( "ed4e", "edidLanguageSpeak" );
-    this.edidLanguageRW = game.settings.get( "ed4e", "edidLanguageRW" );
+    this.edidLanguageSpeak = getSetting( "edidLanguageSpeak" );
+    this.edidLanguageRW = getSetting( "edidLanguageRW" );
 
     this._steps = [
       "namegiver",
@@ -579,7 +580,7 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     };
 
     // Talents & Devotions
-    context.maxAssignableRanks = game.settings.get( "ed4e", "charGenMaxRank" );
+    context.maxAssignableRanks = getSetting( "charGenMaxRank" );
 
     // Abilities
     // remove language skills from general skills, otherwise they will be displayed twice
@@ -595,7 +596,7 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     // Attributes
     context.finalAttributeValues = await this.charGenData.getFinalAttributeValues();
     context.availableAttributePoints = this.charGenData.availableAttributePoints;
-    context.maxAttributePoints = game.settings.get( "ed4e", "charGenAttributePoints" );
+    context.maxAttributePoints = getSetting( "charGenAttributePoints" );
     context.previews = await this.charGenData.getCharacteristicsPreview();
 
     // Spells

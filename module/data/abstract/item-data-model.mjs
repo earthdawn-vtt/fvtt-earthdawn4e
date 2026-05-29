@@ -1,4 +1,5 @@
 import SystemDataModel from "./system-data-model.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 const { TextEditor } = foundry.applications.ux;
 
 /**
@@ -138,7 +139,7 @@ export default class ItemDataModel extends SystemDataModel {
     const context = {
       name, type, img, price, weight, uses, materials, activation,
       config:       CONFIG.ED4E,
-      controlHints: game.settings.get( "ed4e", "controlHints" ),
+      controlHints: getSetting( "controlHints" ),
       labels:       foundry.utils.deepClone( this.parent.labels ),
       tags:         this.parent.labels?.components?.tags,
       subtitle:     subtitle.filterJoin( " &bull; " ),

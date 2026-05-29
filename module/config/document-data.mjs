@@ -21,7 +21,7 @@ export const documentData = {
         system: {
           description: { value: "ED.SpeakLanguage Skill Description" },
           // edid needs to be set on creation since settings are not ready on init
-          // edid: game.settings.get( "ed4e", "edidLanguageSpeak" ),
+          // edid: getSetting( "edidLanguageSpeak" ),
           attribute:   "per",
         },
       },
@@ -31,7 +31,7 @@ export const documentData = {
         system: {
           description: { value: "ED.ReadWriteLanguage Skill Description" },
           // edid needs to be set on creation since settings are not ready on init
-          // edid: game.settings.get( "ed4e", "edidLanguageRW" ),
+          // edid: getSetting( "edidLanguageRW" ),
           attribute:   "per",
         },
       },

@@ -1,6 +1,7 @@
 import SystemDataModel from "../../abstract/system-data-model.mjs";
 import * as ACTIONS from "../../../config/actions.mjs";
 import * as SYSTEM from "../../../config/system.mjs";
+import { getSetting } from "../../../helpers/settings.mjs";
 
 /**
  * Data model template with information on Ability items.
@@ -150,7 +151,7 @@ export default class TargetTemplate extends SystemDataModel {
     let fixedDifficultySetting = this.difficulty.fixed;
 
     if ( numTargets <= 0 || !targetDifficultySetting ) {
-      difficulty = ( fixedDifficultySetting > 0 ) ? fixedDifficultySetting : game.settings.get( "ed4e", "minimumDifficulty" );
+      difficulty = ( fixedDifficultySetting > 0 ) ? fixedDifficultySetting : getSetting( "minimumDifficulty" );
     } else {
       let baseDifficulty;
       let additionalTargetDifficulty = 0;
@@ -172,7 +173,7 @@ export default class TargetTemplate extends SystemDataModel {
       difficulty = baseDifficulty + additionalTargetDifficulty;
     }
 
-    return Math.max( difficulty, game.settings.get( "ed4e", "minimumDifficulty" ) );
+    return Math.max( difficulty, getSetting( "minimumDifficulty" ) );
   }
 
   // endregion

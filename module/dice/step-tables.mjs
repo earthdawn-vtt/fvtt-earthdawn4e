@@ -1,3 +1,5 @@
+import { getSetting } from "../helpers/settings.mjs";
+
 /**
  * Return the dice term for a given step, based on the edition setting for step tables.
  * @param { number } step The step that is to be rolled.
@@ -10,7 +12,7 @@ export default function getDice( step ) {
     // eslint-disable-next-line no-param-reassign
     step = 1;
   }
-  const edition = game.settings.get( "ed4e", "stepTable" );
+  const edition = getSetting( "stepTable" );
 
   if ( edition === "fourth" ) {
     const stepTable = [

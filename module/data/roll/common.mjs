@@ -6,6 +6,7 @@ import * as ROLLS from "../../config/rolls.mjs";
 import SparseDataModel from "../abstract/sparse-data-model.mjs";
 import { lowerCaseFirstLetter } from "../../utils/string.mjs";
 import { sum } from "../../utils/math.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 
 /**
  * @typedef {import('../../_types.mjs').RollModifiers} RollModifiers
@@ -114,7 +115,7 @@ export default class EdRollOptions extends SparseDataModel {
           base: new fields.NumberField( {
             required: true,
             nullable: false,
-            initial:  () => game.settings.get( "ed4e", "minimumDifficulty" ),
+            initial:  () => getSetting( "minimumDifficulty" ),
             min:      0,
             step:     1,
           } ),
@@ -369,7 +370,7 @@ export default class EdRollOptions extends SparseDataModel {
   static getTotalFromTargetData( targetData ) {
     return Math.max(
       ( targetData.base ?? 0 ) + sum( Object.values( targetData.modifiers ?? {} ) ),
-      game.settings.get( "ed4e", "minimumDifficulty" ),
+      getSetting( "minimumDifficulty" ),
     );
   }
 
@@ -433,7 +434,7 @@ export default class EdRollOptions extends SparseDataModel {
     if ( !this.target ) return null;
     return Math.max(
       this.target.base + sum( Object.values( this.target.modifiers ) ),
-      game.settings.get( "ed4e", "minimumDifficulty" ),
+      getSetting( "minimumDifficulty" ),
     );
   }
 

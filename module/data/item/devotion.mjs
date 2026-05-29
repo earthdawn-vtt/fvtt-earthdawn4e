@@ -4,6 +4,7 @@ import DialogEd from "../../applications/api/dialog.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as LEGEND from "../../config/legend.mjs";
 import { createContentLink } from "../../helpers/formatting.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 
 
 /**
@@ -127,7 +128,7 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
         {
           name:      "ED.Dialogs.Legend.Validation.maxLevel",
           value:     increaseData.newLevel,
-          fulfilled: increaseData.newLevel <= game.settings.get( "ed4e", "lpTrackingMaxRankSkill" ),
+          fulfilled: increaseData.newLevel <= getSetting( "lpTrackingMaxRankSkill" ),
         },
       ],
       [LEGEND.validationCategories.resources]: [

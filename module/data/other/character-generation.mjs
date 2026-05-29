@@ -8,6 +8,7 @@ import { getAttributeStepFromValue } from "../../helpers/earthdawn.mjs";
 import { sum } from "../../utils/math.mjs";
 import { getSingleGlobalItemByEdid, prepareKeysForDeletion } from "../../helpers/document.mjs";
 import { filterObject, mapObject } from "../../utils/object.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 
 
 /**
@@ -93,7 +94,7 @@ export default class CharacterGenerationData extends SparseDataModel {
             required: true,
             initial:  0,
             min:      0,
-            max:      game.settings.get( "ed4e", "charGenMaxRank" ),
+            max:      getSetting( "charGenMaxRank" ),
             integer:  true,
           } ),
           {
@@ -203,7 +204,7 @@ export default class CharacterGenerationData extends SparseDataModel {
   }
 
   get availableAttributePoints() {
-    const startingPoints = game.settings.get( "ed4e", "charGenAttributePoints" );
+    const startingPoints = getSetting( "charGenAttributePoints" );
     return Object.values( this.attributes ).reduce(
       ( points, attributeProperties ) => {
         return points - attributeProperties.cost;
@@ -410,8 +411,8 @@ export default class CharacterGenerationData extends SparseDataModel {
   async getLanguageDocuments() {
     const languageSkills = await Promise.all( Object.keys( this.abilities.language ).map( async ( languageUuid ) => fromUuid( languageUuid ) ) );
     return {
-      speak:     languageSkills.find( skill => skill.system.edid === game.settings.get( "ed4e", "edidLanguageSpeak" ) ),
-      readWrite: languageSkills.find( skill => skill.system.edid === game.settings.get( "ed4e", "edidLanguageRW" ) ),
+      speak:     languageSkills.find( skill => skill.system.edid === getSetting( "edidLanguageSpeak" ) ),
+      readWrite: languageSkills.find( skill => skill.system.edid === getSetting( "edidLanguageRW" ) ),
     };
   }
 
@@ -483,11 +484,11 @@ export default class CharacterGenerationData extends SparseDataModel {
     }
 
     let isRankValid = newRank >= CharacterGenerationData.minAbilityRank
-      && newRank <= game.settings.get( "ed4e", "charGenMaxRank" );
+      && newRank <= getSetting( "charGenMaxRank" );
     if ( abilityType === "language" ) {
       const languageSkill = await fromUuid( abilityUuid );
-      if ( languageSkill.system.edid === game.settings.get( "ed4e", "edidLanguageSpeak" ) ) isRankValid &&= newRank >= LEGEND.availableRanks.speak;
-      else if ( languageSkill.system.edid === game.settings.get( "ed4e", "edidLanguageRW" ) ) isRankValid &&= newRank >= LEGEND.availableRanks.readWrite;
+      if ( languageSkill.system.edid === getSetting( "edidLanguageSpeak" ) ) isRankValid &&= newRank >= LEGEND.availableRanks.speak;
+      else if ( languageSkill.system.edid === getSetting( "edidLanguageRW" ) ) isRankValid &&= newRank >= LEGEND.availableRanks.readWrite;
     }
 
     const costDifference = newRank - oldRank;
@@ -688,11 +689,11 @@ export default class CharacterGenerationData extends SparseDataModel {
           );
         }
         const skillLanguageSpeak = await getSingleGlobalItemByEdid(
-          game.settings.get( "ed4e", "edidLanguageSpeak" ),
+          getSetting( "edidLanguageSpeak" ),
           SYSTEM_TYPES.Item.skill,
         );
         const skillLanguageRW = await getSingleGlobalItemByEdid(
-          game.settings.get( "ed4e", "edidLanguageRW" ),
+          getSetting( "edidLanguageRW" ),
           SYSTEM_TYPES.Item.skill,
         );
         skillsPayload.language = {

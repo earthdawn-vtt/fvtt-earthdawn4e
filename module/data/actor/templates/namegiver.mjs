@@ -1,4 +1,5 @@
 import SentientTemplate from "./sentient.mjs";
+import { getSetting } from "../../../helpers/settings.mjs";
 
 // eslint-disable-next-line no-unused-vars
 const { SetField } = foundry.data.fields;
@@ -40,7 +41,7 @@ export default class NamegiverTemplate extends SentientTemplate {
         // for the `formField` Handlebars helper to work correctly and have the name
         // as the value attribute of the option tag
         choices: () => {
-          const languages = game.settings.get( "ed4e", "languages" );
+          const languages = getSetting( "languages" );
           if ( futils.isEmpty( languages ) ) return {};
           return Object.fromEntries( languages.map( lang => [ lang, lang ] ) );
         }

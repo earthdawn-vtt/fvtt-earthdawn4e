@@ -743,7 +743,7 @@ export default class ActorEd extends Actor {
    */
   async _updateItemStates( itemToUpdate, nextStatus ) {
     const updates = [];
-    const enforceLivingArmor = game.settings.get( "ed4e", "enforceLivingArmor" );
+    const enforceLivingArmor = getSetting( "enforceLivingArmor" );
     const originalItemUpdate = { _id: itemToUpdate.id, "system.itemStatus": nextStatus };
     const equippedWeapons = this.itemTypes.weapon.filter(
       weapon => [ "mainHand", "offHand", "twoHands" ].includes( weapon.system.itemStatus )
