@@ -1,5 +1,5 @@
 import ApplicationEd from "../api/application.mjs";
-import { getSetting, getSettingConfig, groupedSystemSettings, setSetting } from "../../helpers/settings.mjs";
+import { getSetting, getSettingConfig, setSetting } from "../../helpers/settings.mjs";
 import PromptFactory from "../global/prompt-factory.mjs";
 import { SYSTEM_ID } from "../../constants/constants.mjs";
 
@@ -50,16 +50,19 @@ export default class BaseSettingsConfig extends ApplicationEd {
   }
 
   _generateFieldEntries() {
-    return groupedSystemSettings[ this.options.settingsGroup ]?.map(
-      settingConfig => {
-        const field = settingConfig.type;
-        return {
-          field,
-          value:    getSetting( settingConfig.key ),
-          localize: true,
-        };
-      }
-    );
+    if ( !this.options.settingsGroup ) return [];
+
+    return [ ...game.settings.settings.values() ].filter(
+      settingConfig =>
+        settingConfig.namespace === SYSTEM_ID
+        && settingConfig.group === this.options.settingsGroup
+    ).map( settingConfig => {
+      return {
+        field:    settingConfig.type,
+        value:    getSetting( settingConfig.key ),
+        localize: true,
+      };
+    } );
   }
 
   // endregion
@@ -72,11 +75,13 @@ export default class BaseSettingsConfig extends ApplicationEd {
 
     const submitData = this._processSubmitData( event, form, formData, submitOptions );
 
-    for ( const [ settingKey, settingValue ] of Object.entries( submitData[ SYSTEM_ID ] ) ) {
+    for ( const [ settingKey, settingValue ] of Object.entries( submitData[ SYSTEM_ID ] ?? {} ) ) {
       const settingConfig = getSettingConfig( settingKey );
       const oldValue = getSetting( settingKey );
       const newValue = await setSetting( settingKey, settingValue );
 
+      // Simple equality is enough for current reload-tracked settings.
+      // Complex settings are still saved correctly; this only affects whether a reload prompt is shown.
       if ( oldValue === newValue ) continue;
 
       requiresClientReload ||= ( settingConfig.scope !== "world" ) && settingConfig.requiresReload;
