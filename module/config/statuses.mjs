@@ -162,7 +162,7 @@ export const statusEffects = [
     id:   "aggressive",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.aggressive",
-    img:  "systems/ed4e/assets/icons/confrontation.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/aggressive.svg",
 
     combatOption: true,
     reference:    "TODO: Compendium UUID to explanation",
@@ -177,7 +177,7 @@ export const statusEffects = [
     id:   "attackKnockdown",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.attackKnockdown",
-    img:  "systems/ed4e/assets/icons/foot-trip.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/attack-knockdown.svg",
 
     combatOption: true,
     reference:    "TODO: Compendium UUID to explanation",
@@ -188,7 +188,7 @@ export const statusEffects = [
     id:   "attackStun",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.attackStun",
-    img:  "systems/ed4e/assets/icons/knockout.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/attack-stun.svg",
 
     combatOption: true,
     reference:    "TODO: Compendium UUID to explanation",
@@ -199,7 +199,7 @@ export const statusEffects = [
     id:   "attuningOnTheFly",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.attuningOnTheFly",
-    img:  "systems/ed4e/assets/icons/attune-on-fly.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/attune-on-the-fly.svg",
 
     reference: "TODO: Compendium UUID to explanation",
 
@@ -214,7 +214,7 @@ export const statusEffects = [
     id:    "blindness",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.blindness",
-    img:  "icons/svg/blind.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/blindness.svg",
 
     reference: "TODO: Compendium UUID to explanation",
 
@@ -230,7 +230,7 @@ export const statusEffects = [
     id:    "blindsided",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.blindsided",
-    img:  "systems/ed4e/assets/icons/backstab.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/blindsided.svg",
 
     reference: "TODO: Compendium UUID to explanation",
 
@@ -245,7 +245,7 @@ export const statusEffects = [
     id:   "calledShot",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.calledShot",
-    img:  "systems/ed4e/assets/icons/target-dummy.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/called-shot.svg",
 
     combatOption: true,
     reference:    "TODO: Compendium UUID to explanation",
@@ -260,7 +260,7 @@ export const statusEffects = [
     id:   "concentrating",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.concentrating",
-    img:  "systems/ed4e/assets/icons/concentrating.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/concentrating.svg",
 
     reference: "TODO: Compendium UUID to explanation",
 
@@ -270,7 +270,7 @@ export const statusEffects = [
     id:    "cover",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.cover",
-    img:  "systems/ed4e/assets/icons/broken-wall.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/cover.svg",
 
     levelNames: [ "", "ED.ActiveEffect.Status.coverPartial", "ED.ActiveEffect.Status.coverFull" ],
     levels:     2,
@@ -286,7 +286,7 @@ export const statusEffects = [
     id:    "darkness",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.darkness",
-    img:  "systems/ed4e/assets/icons/fog.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/darkness.svg",
 
     levelNames: [ "", "ED.ActiveEffect.Status.darknessPartial", "ED.ActiveEffect.Status.darknessFull" ],
     levels:     2,
@@ -302,7 +302,7 @@ export const statusEffects = [
     id:    "dazzled",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.dazzled",
-    img:  "systems/ed4e/assets/icons/laser-sparks.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/dazzled.svg",
 
     reference: "TODO: Compendium UUID to explanation",
 
@@ -317,7 +317,7 @@ export const statusEffects = [
     id:    "dead",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.dead",
-    img:  "icons/svg/skull.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/dead.svg",
 
     reference: "TODO: Compendium UUID to explanation",
   },
@@ -325,7 +325,7 @@ export const statusEffects = [
     id:    "defensive",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.defensive",
-    img:  "systems/ed4e/assets/icons/surrounded-shield.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/defensive.svg",
 
     combatOption: true,
     reference:    "TODO: Compendium UUID to explanation",
@@ -340,7 +340,7 @@ export const statusEffects = [
     id:   "fury",
     hud:  { actorTypes: [ SYSTEM_TYPES.Actor.creature, ] },
     name: "ED.ActiveEffect.Status.fury",
-    img:  "systems/ed4e/assets/icons/enraged.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/fury.svg",
 
     levels:    Number.POSITIVE_INFINITY, // no limit theoretically? or like an ability up to 15?
     reference: "TODO: Compendium UUID to explanation",
@@ -356,7 +356,7 @@ export const statusEffects = [
     id:    "grappled",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.grappled",
-    img:  "systems/ed4e/assets/icons/grab.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/grappled.svg",
 
     reference: "TODO: Compendium UUID to explanation",
 
@@ -372,7 +372,7 @@ export const statusEffects = [
     id:    "harried",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.harried",
-    img:  "systems/ed4e/assets/icons/meeple-army.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/harried.svg",
 
     reference: "TODO: Compendium UUID to explanation",
 
@@ -386,7 +386,7 @@ export const statusEffects = [
     id:    "impaired",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.impaired",
-    img:  "systems/ed4e/assets/icons/achilles-heel.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/impaired.svg",
 
     levelNames: [ "", "ED.ActiveEffect.Status.impairedLight", "ED.ActiveEffect.Status.impairedHeavy" ],
     levels:     2,
@@ -402,7 +402,7 @@ export const statusEffects = [
     id:   "jumpUp",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.jumpUp",
-    img:  "systems/ed4e/assets/icons/acrobatic.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/jump-up.svg",
 
     combatOption: true,
     reference:    "TODO: Compendium UUID to explanation",
@@ -413,7 +413,7 @@ export const statusEffects = [
     id:    "knockedDown",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.knockedDown",
-    img:  "icons/svg/falling.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/knocked-down.svg",
 
     reference: "TODO: Compendium UUID to explanation",
 
@@ -428,7 +428,7 @@ export const statusEffects = [
     id:    "overwhelmed",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.overwhelmed",
-    img:  "systems/ed4e/assets/icons/dozen.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/overwhelmed.svg",
 
     levels:    Number.POSITIVE_INFINITY, // no limit
     reference: "TODO: Compendium UUID to explanation",
@@ -443,7 +443,7 @@ export const statusEffects = [
     id:   "setAgainstCharge",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.setAgainstCharge",
-    img:  "systems/ed4e/assets/icons/set-against-charge.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/set-against-charge.svg",
 
     combatOption: true,
     reference:    "TODO: Compendium UUID to explanation",
@@ -454,7 +454,7 @@ export const statusEffects = [
     id:   "shatterShield",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.shatterShield",
-    img:  "systems/ed4e/assets/icons/shield-impact.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/shatter-shield.svg",
 
     combatOption: true,
     reference:    "TODO: Compendium UUID to explanation",
@@ -465,7 +465,7 @@ export const statusEffects = [
     id:   "splitMovement",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.splitMovement",
-    img:  "systems/ed4e/assets/icons/back-forth.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/split-movement.svg",
 
     combatOption: true,
     reference:    "TODO: Compendium UUID to explanation",
@@ -476,7 +476,7 @@ export const statusEffects = [
     id:    "surprised",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.surprised",
-    img:  "systems/ed4e/assets/icons/surprised.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/surprised.svg",
 
     reference: "TODO: Compendium UUID to explanation",
 
@@ -493,7 +493,7 @@ export const statusEffects = [
     id:   "tailAttack",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.tailAttack",
-    img:  "systems/ed4e/assets/icons/tail-attack.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/tail-attack.svg",
 
     combatOption: true,
     reference:    "TODO: Compendium UUID to explanation",
@@ -504,7 +504,7 @@ export const statusEffects = [
     id:    "unconscious",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.unconscious",
-    img:  "systems/ed4e/assets/icons/dead-head.svg",
+    img:  "systems/ed4e/assets/icons/status-effects/unconscious.svg",
 
     reference: "TODO: Compendium UUID to explanation",
 
