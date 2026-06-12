@@ -96,17 +96,14 @@ export default class SpellKnackData extends SpellData.mixin(
       : await getSingleGlobalItemByEdid( data.system.sourceItem, SYSTEM_TYPES.Item.spell );
     if ( !sourceSpell ) return;
 
-    const sourceData = sourceSpell.system.toObject( true );
-    delete sourceData.description;
-
     foundry.utils.mergeObject(
       data.system,
-      sourceData,
+      sourceSpell.system.toObject( true ),
       {
         inplace:          true,
         insertKeys:       true,
         insertValues:     true,
-        overwrite:        true,
+        overwrite:        false,
         performDeletions: false,
       }
     );
