@@ -103,7 +103,7 @@ export default class SpellKnackData extends SpellData.mixin(
         inplace:          true,
         insertKeys:       true,
         insertValues:     true,
-        overwrite:        true,
+        overwrite:        false,
         performDeletions: false,
       }
     );
