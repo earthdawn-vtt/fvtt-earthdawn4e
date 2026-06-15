@@ -7,7 +7,7 @@
       <fieldset>
         <legend>{{lookup ../config.tier @key}}</legend>
         {{#each this as |uuid|}}
-          <label class="checkbox">
+          <label>
             <input type="radio" name="selectedOption" value="{{uuid}}" {{checked (eq uuid @root/selectedOption)}}>
             {{{ed-linkForUuid uuid}}}
           </label>
