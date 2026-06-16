@@ -1963,6 +1963,9 @@ form.ed4e.character-generation nav a.disabled {
   pointer-events: none;
   cursor: default;
 }
+.class-advancement-dialog input[type="radio"] {
+  appearance: auto;
+}
 .app.window-app.form.earthdawn4e.roll-prompt header,
 .app.window-app.form.earthdawn4e.assign-legend header {
   position: relative;
