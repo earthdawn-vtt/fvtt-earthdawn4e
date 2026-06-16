@@ -1,7 +1,10 @@
 import EdRollOptions from "../data/roll/common.mjs";
 import PcData from "../data/actor/pc.mjs";
 import LpTransactionData from "../data/advancement/lp-transaction.mjs";
+import { LoggerEd } from "../logging/logger.mjs";
 
+
+const logger = LoggerEd.getInstance();
 
 const cmdMapping = {
   char:  triggerCharGen,
@@ -175,7 +178,7 @@ function triggerRollDice( argString ) {
     } );
   } catch ( error ) {
     ui.notifications.error( `${ _loc( "ED.Chat.Flavor.invalidDiceFormula" ) }: ${ argString }` );
-    console.error( "Dice roll error:", error );
+    logger.error( "Dice roll error:", error );
   }
   
   return false;

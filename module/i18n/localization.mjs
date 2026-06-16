@@ -1,4 +1,7 @@
 import { sortObjectEntries } from "../utils/object.mjs";
+import { LoggerEd } from "../logging/logger.mjs";
+
+const logger = LoggerEd.getInstance();
 
 /**
  * Storage for pre-localization configuration.
@@ -49,13 +52,13 @@ function _localizeObject( obj, keys ) {
     }
 
     if ( type !== "object" ) {
-      console.error( new Error(
+      logger.error( new Error(
         `Pre-localized configuration values must be a string or object, ${ type } found for "${ k }" instead.`
       ) );
       continue;
     }
     if ( !keys?.length ) {
-      console.error( new Error(
+      logger.error( new Error(
         "Localization keys must be provided for pre-localizing when target is an object."
       ) );
       continue;

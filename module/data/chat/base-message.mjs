@@ -1,6 +1,9 @@
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import { getSetting } from "../../helpers/settings.mjs";
+import { LoggerEd } from "../../logging/logger.mjs";
+
+const logger = LoggerEd.getInstance();
 
 export default class BaseMessageData extends SystemDataModel {
 
@@ -202,7 +205,7 @@ export default class BaseMessageData extends SystemDataModel {
    * @protected
    */
   _onClickAction( event, target ) {
-    console.warn( `The ${ target.dataset.action } action has not been implemented in ${ this.constructor.name }` );
+    logger.warn( `The ${ target.dataset.action } action has not been implemented in ${ this.constructor.name }` );
   }
 
   /**

@@ -1,3 +1,8 @@
+import { LoggerEd } from "../logging/logger.mjs";
+
+const logger = LoggerEd.getInstance();
+
+
 /**
  *
  */
@@ -38,7 +43,7 @@ function assignEffect( actor, effect ) {
  * @returns {object} The response data with the recipient user name
  */
 function heartbeat( data ) {
-  console.log( "Heartbeat" );
+  logger.log( "Heartbeat" );
   ui.notifications.info( `Socket Heartbeat\ncurrent user: ${game.user.name}\ncalled by: ${data.caller}` );
   return { recipient: game.user.name };
 }

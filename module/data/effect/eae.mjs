@@ -1,5 +1,8 @@
 import ActiveEffectDataModel from "../abstract/active-effect-data-model.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
+import { LoggerEd } from "../../logging/logger.mjs";
+
+const logger = LoggerEd.getInstance();
 
 export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
 
@@ -40,7 +43,7 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
       );
       await fn.call( globalThis, this.parentDocument, this.parentDocument.parent, options );
     } catch ( error ) {
-      console.error( error );
+      logger.error( error );
     }
   }
 
