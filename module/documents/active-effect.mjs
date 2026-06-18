@@ -485,18 +485,27 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
   }
 
   static _migrateTransfer( source ) {
-    const newTarget = source.system.transferToTarget === true
-      ? "target"
-      : source.system.abilityEdid
-        ? "ability"
-        : "owner";
-    const newAbilityEdid = source.system.abilityEdid ?? SYSTEM.reservedEdid.DEFAULT;
+    let newTarget;
+    if ( source.system.transferToTarget === true ) newTarget = "target";
+    else if ( source.system.abilityEdid && source.system.abilityEdid !== "" ) newTarget = "ability";
+    else if ( source.transfer === true ) newTarget = "owner";
 
-    source.transfer = [ "target", "ability" ].includes( newTarget ) || source.transfer;
+    // case if old effect is directly on actor or directly changes the item it lives on
+    if ( newTarget === undefined ) {
+      source.transfer = false;
+      source.system.transferring = {
+        transfer: false,
+      };
+      return;
+    }
+
+    // otherwise it always transfers to something
     source.system.transferring = {
+      transfer:    true,
       target:      newTarget,
-      abilityEdid: newAbilityEdid,
     };
+    if ( newTarget === "ability" )
+      source.system.transferring.abilityEdid = source.system.abilityEdid ?? SYSTEM.reservedEdid.DEFAULT;
   }
 
   static _migrateChanges( source ) {
