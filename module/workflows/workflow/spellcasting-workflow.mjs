@@ -8,6 +8,9 @@ import Rollable from "./rollable.mjs";
 import AttuneMatrixWorkflow from "./attune-matrix-workflow.mjs";
 import AttuneGrimoireWorkflow from "./attune-grimoire-workflow.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
+import { LoggerEd } from "../../logging/logger.mjs";
+
+const logger = LoggerEd.getInstance();
 
 /**
  * @typedef {object} SpellcastingWorkflowOptions
@@ -236,7 +239,7 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
     try {
       this._result = await castingWorkflow.execute();
     } catch ( error ) {
-      console.error( `Error in ${this._castingMethod} casting workflow:`, error );
+      logger.error( `Error in ${this._castingMethod} casting workflow:`, error );
       if ( error instanceof WorkflowInterruptError ) {
         throw error; // Re-throw workflow interruptions
       } else {

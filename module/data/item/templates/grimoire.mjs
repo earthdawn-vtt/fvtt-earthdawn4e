@@ -2,8 +2,10 @@ import { getSetting } from "../../../helpers/settings.mjs";
 import SystemDataModel from "../../abstract/system-data-model.mjs";
 import AttuneGrimoireWorkflow from "../../../workflows/workflow/attune-grimoire-workflow.mjs";
 import { SYSTEM_TYPES } from "../../../constants/constants.mjs";
+import { LoggerEd } from "../../../logging/logger.mjs";
 
 const { fields } = foundry.data;
+const logger = LoggerEd.getInstance();
 
 export default class GrimoireTemplate extends SystemDataModel {
 
@@ -179,7 +181,7 @@ export default class GrimoireTemplate extends SystemDataModel {
 
     const attunedSpell = await fromUuid( this.grimoire.attunedSpell );
     if ( !attunedSpell ) {
-      console.warn( "ED | GrimoireTemplate.getAttunedSpell: Attuned spell not found", this.grimoire.attunedSpell );
+      logger.warn( "ED | GrimoireTemplate.getAttunedSpell: Attuned spell not found", this.grimoire.attunedSpell );
       return null;
     }
 

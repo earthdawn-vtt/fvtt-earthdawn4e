@@ -1,3 +1,7 @@
+import { LoggerEd } from "../logging/logger.mjs";
+
+const logger = LoggerEd.getInstance();
+
 /**
  * Journal Builder Service - Buffer-style journal creation and management
  * Allows incremental building of journals with multiple pages and content
@@ -648,7 +652,7 @@ export default class JournalService {
 
       return this.journal;
     } catch ( error ) {
-      console.error( "ED4e | JournalService: Failed to commit journal:", error );
+      logger.error( "ED4e | JournalService: Failed to commit journal:", error );
       throw error;
     }
   }

@@ -1,4 +1,7 @@
 import { SYSTEM_TYPES } from "../constants/constants.mjs";
+import { LoggerEd } from "../logging/logger.mjs";
+
+const logger = LoggerEd.getInstance();
 
 /**
  * Adapted from ({@link https://gitlab.com/peginc/swade/-/wikis/Savage-Worlds-ID|SWADE system}).
@@ -90,7 +93,7 @@ export async function getAllDocuments(
     !( documentName in docTypes )
     || ( documentType && !docTypes[documentName].includes( documentType ) )
   ) {
-    console.error(
+    logger.error(
       `ED4E: Invalid documentName or documentType: ${ documentName }, ${ documentType }`
     );
     return [];

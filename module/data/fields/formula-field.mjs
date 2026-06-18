@@ -1,3 +1,7 @@
+import { LoggerEd } from "../../logging/logger.mjs";
+
+const logger = LoggerEd.getInstance();
+
 /**
  * @typedef {StringFieldOptions} FormulaFieldOptions
  * @property {boolean} [deterministic=false]  Is this formula not allowed to have dice values?
@@ -59,7 +63,7 @@ export default class FormulaField extends foundry.data.fields.StringField {
           name: model.name ?? item.name
         } );
         // item.actor._preparationWarnings.push( { message, link: item.uuid, type: "error" } );
-        console.error( message, err );
+        logger.error( message, err );
       }
     }
   }

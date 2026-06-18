@@ -1,4 +1,8 @@
 import { delay } from "../helpers/ui.mjs";
+import { LoggerEd } from "../logging/logger.mjs";
+
+const logger = LoggerEd.getInstance();
+
 export default class EdTour extends foundry.nue.Tour {
   static tours = [
     "systems/ed4e/module/tours/lang/actor-item-creation",
@@ -12,7 +16,7 @@ export default class EdTour extends foundry.nue.Tour {
 
   static async travelAgency(){
     const lang = game.i18n.lang === "de" ? "de" : "en";
-    console.log( "Adding ED Tours" );
+    logger.log( "Adding ED Tours" );
     for( let tour of this.tours ){
       const obj = await game.ed4e.tours.EdTour.fromJSON( `${tour.replace( "/lang/", `/${lang}/` ) }.json` );
       game.tours.register( obj.config.module, obj.id, obj );

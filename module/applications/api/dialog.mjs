@@ -1,3 +1,7 @@
+import { LoggerEd } from "../../logging/logger.mjs";
+
+const logger = LoggerEd.getInstance();
+
 /**
  * @augments DialogV2
  */
@@ -103,7 +107,7 @@ export default class DialogEd extends foundry.applications.api.DialogV2 {
       }
 
       // Fallback for unrecognized formats
-      console.warn( "Unexpected item format in createItemButtons:", item );
+      logger.warn( "Unexpected item format in createItemButtons:", item );
       return {
         action:  String( item ),
         label:   String( item ),

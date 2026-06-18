@@ -17,10 +17,14 @@ import * as documents from "../documents/_module.mjs";
 import * as enrichers from "../helpers/enrichers.mjs";
 
 import { createStaticStatusId } from "../helpers/document.mjs";
+import { LoggerEd } from "../logging/logger.mjs";
+import { SYSTEM_ID } from "../constants/constants.mjs";
 
 const { DocumentSheetConfig } = foundry.applications.apps;
 const { ActiveEffectConfig, CombatantConfig } = foundry.applications.sheets;
 const { Actors, Items, Journal, Scenes } = foundry.documents.collections;
+
+const logger = LoggerEd.getInstance();
 
 /**
  *
@@ -273,8 +277,8 @@ function setupActiveEffects() {
  */
 export default function () {
   Hooks.once( "init", () => {
-    globalThis.ed4e = game.ed4e = Object.assign( game.system, globalThis.ed4e );
-    console.log( "ED4e | Initializing the ED4e Game System" );
+    globalThis[ SYSTEM_ID ] = game[ SYSTEM_ID ] = Object.assign( game.system, globalThis[ SYSTEM_ID ] );
+    logger.log( `Initializing the ${ SYSTEM_ID } Game System` );
 
     setupConfigConstants();
     setupDocumentClasses();
