@@ -464,20 +464,7 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
   }
 
   static _getParentDocumentType( source ) {
-    if ( source.transfer ) return {
-      "ability": "Item",
-      "owner":   "Actor",
-      "target":  "Actor",
-    }[ foundry.utils.getProperty( source, "system.transferring.target" ) ]
-      ?? "Actor";
-
-    const changes = source.system?.changes;
-    if ( Array.isArray( changes ) && changes.length > 0 ) {
-      const isActor = changes.some( change => Object.keys( EFFECTS.eaeActorChangeConfigByKey ).includes( change.key ) );
-      return isActor ? "Actor" : "Item";
-    }
-
-    return "Actor";
+    return "Item";
   }
 
   static _migrateOrigin( source ) {
