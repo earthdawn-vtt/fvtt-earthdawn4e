@@ -20,6 +20,36 @@ import registerHooks from "./module/system/hooks.mjs";
 /*  Define Module Structure                     */
 /* -------------------------------------------- */
 
+/**
+ * Public Earthdawn 4th Edition system API exposed on {@link globalThis.ed4e}.
+ *
+ * This namespace contains links to the system's public modules, such as
+ * applications, data models, documents, dice helpers, workflows, and utilities.
+ * @category ed4e
+ */
+export const ed4e = {
+  applications,
+  canvas,
+  config: ED4E,
+  data,
+  dice,
+  documents,
+  enrichers,
+  helpers,
+  hooks,
+  services,
+  tours,
+  utils,
+  workflows,
+};
+
+/**
+ * Global Earthdawn 4th Edition system namespace.
+ * @global
+ * @name ed4e
+ * @type {typeof ed4e}
+ * @category ed4e
+ */
 globalThis.ed4e = {
   applications,
   canvas,
@@ -41,22 +71,3 @@ globalThis.ed4e = {
 /* -------------------------------------------- */
 
 registerHooks();
-
-
-/* -------------------------------------------- */
-/*  Bundled Module Exports                      */
-/* -------------------------------------------- */
-
-export {
-  applications,
-  canvas,
-  data,
-  dice,
-  documents,
-  enrichers,
-  hooks,
-  // migrations,
-  utils,
-  workflows,
-  ED4E
-};
