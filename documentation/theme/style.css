@@ -1,0 +1,32 @@
+:root {
+    --dmt-container-border-radius: 0.3rem;
+    --dmt-container-box-shadow: unset;
+    --dmt-container-floating-box-shadow: unset;
+    --dmt-nav-tree-padding-top: 0.75rem;
+    --dmt-header-height: ;
+}
+
+section.dmt-navigation-bar > button {
+    border: unset;
+    background: var(--dmt-container-background);
+}
+
+section.dmt-navigation-bar > button:hover {
+    background: var(--dmt-focus-visible-color);
+}
+
+div.dmt-toolbar-icon > button {
+    border: unset;
+}
+
+details.tjs-svg-folder {
+    border: unset;
+}
+
+header.tsd-page-toolbar {
+    padding: 0.5rem;
+}
+
+header > div.tsd-toolbar-contents {
+    font-family: "Roboto", system-ui, sans-serif;
+}
