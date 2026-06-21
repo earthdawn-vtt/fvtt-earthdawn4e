@@ -1,3 +1,11 @@
+/**
+ * Public API for the Earthdawn 4E Foundry VTT system.
+ *
+ * This module gathers the system's public submodules under the {@link ed4e}
+ * namespace-like object and also exposes it on {@link globalThis}.
+ * @module ed4e
+ */
+
 // Import configuration
 import ED4E from "./module/config/_module.mjs";
 
@@ -21,11 +29,10 @@ import registerHooks from "./module/system/hooks.mjs";
 /* -------------------------------------------- */
 
 /**
- * Public Earthdawn 4th Edition system API exposed on {@link globalThis.ed4e}.
+ * The public Earthdawn 4E API namespace.
  *
- * This namespace contains links to the system's public modules, such as
- * applications, data models, documents, dice helpers, workflows, and utilities.
- * @category ed4e
+ * This object mirrors the modules exposed on `globalThis.ed4e`.
+ * @namespace ed4e
  */
 export const ed4e = {
   applications,
@@ -43,13 +50,6 @@ export const ed4e = {
   workflows,
 };
 
-/**
- * Global Earthdawn 4th Edition system namespace.
- * @global
- * @name ed4e
- * @type {typeof ed4e}
- * @category ed4e
- */
 globalThis.ed4e = {
   applications,
   canvas,
