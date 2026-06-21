@@ -1,3 +1,5 @@
+/** @module data/item */
+
 import ArmorData from "./armor.mjs";
 import BindingSecretData from "./binding-secrets.mjs";
 import CurseHorrorMarkData from "./curse-horror-mark.mjs";

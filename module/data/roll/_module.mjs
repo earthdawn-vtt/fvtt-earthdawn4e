@@ -1,3 +1,5 @@
+/** @module data/roll */
+
 export {default as EdRollOptions} from "./common.mjs";
 export {default as AbilityRollOptions} from "./ability.mjs";
 export {default as AttackRollOptions} from "./attack.mjs";

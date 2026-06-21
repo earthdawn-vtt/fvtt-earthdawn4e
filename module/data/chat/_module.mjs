@@ -1,3 +1,5 @@
+/** @module data/chat */
+
 import AttackMessageData from "./attack.mjs";
 import BaseMessageData from "./base-message.mjs";
 import DamageMessageData from "./damage.mjs";

@@ -1,3 +1,5 @@
+/** @module utils */
+
 export * as earthdawn from "../helpers/earthdawn.mjs";
 export * as math from "./math.mjs";
 export * as object from "./object.mjs";

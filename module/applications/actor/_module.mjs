@@ -1,3 +1,5 @@
+/** @module applications/actor */
+
 export { default as ActorSheetEd } from "./common-sheet.mjs";
 export { default as ActorSheetEdCharacter } from "./character-sheet.mjs";
 export { default as ActorSheetEdNpc } from "./npc-sheet.mjs";

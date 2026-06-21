@@ -1,3 +1,5 @@
+/** @module data/abstract */
+
 export {default as ActiveEffectDataModel} from "./active-effect-data-model.mjs";
 export {default as ActorDataModel} from "./actor-data-model.mjs";
 export {default as ItemDataModel} from "./item-data-model.mjs";

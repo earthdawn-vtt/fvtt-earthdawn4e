@@ -1,3 +1,5 @@
+/** @module applications/global */
+
 export { default as RollPrompt } from "./roll-prompt.mjs";
 export { default as DocumentCreateDialog } from "./document-creation.mjs";
 export { default as LegendPointHistoryPrompt } from "../advancement/lp-history.mjs";

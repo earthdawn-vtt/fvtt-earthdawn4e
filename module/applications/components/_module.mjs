@@ -1,3 +1,5 @@
+/** @module applications/components */
+
 import AdoptedStyleSheetMixin from "./adopted-stylesheet-mixin.mjs";
 import CheckboxElement from "./checkbox.mjs";
 import SlideToggleElement from "./slide-toggle.mjs";
