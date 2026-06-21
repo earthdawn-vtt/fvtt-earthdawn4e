@@ -1,93 +1,55 @@
 {
   "$schema": "https://typedoc.org/schema.json",
   "entryPoints": [
-    "earthdawn4e.mjs",
-    "module/applications/_module.mjs",
-    "module/canvas/_module.mjs",
-    "module/config/_module.mjs",
-    "module/data/_module.mjs",
-    "module/dice/_module.mjs",
-    "module/documents/_module.mjs",
-    "module/helpers/_module.mjs",
-    "module/hooks/_module.mjs",
-    "module/services/_module.mjs",
-    "module/tours/_module.mjs",
-    "module/utils/_module.mjs",
-    "module/workflows/_module.mjs"
+    "module/**/_module.mjs"
   ],
+  "entryPointStrategy": "resolve",
   "tsconfig": "tsconfig.json",
   "readme": "README.md",
 
-  "plugin": ["@clean-jsdoc-theme/typedoc"],
   "outputs": [
     {
-      "name": "clean-jsdoc-theme",
-      "path": "documentation/dist"
+      "name": "html",
+      "path": "./documentation/dist"
     }
   ],
 
-  "cleanJsdocTheme": {
-    "siteName": "ED4E - Earthdawn 4th Edition Foundry VTT System",
-    "readme": "README.md",
-    "docs": "./documentation/docs",
-    "clubSidebarItems": true,
-    "menu": [
-      {
-        "id": "home",
-        "title": "Home",
-        "icon": "lucide:home"
-      },
-      {
-        "id": "GitHub",
-        "title": "GitHub",
-        "link": "https://github.com/earthdawn-vtt/fvtt-earthdawn4e",
-        "icon": "simpleicons:github"
-      },
-      {
-        "id": "Bug Report",
-        "title": "Bug Report",
-        "link": "https://github.com/earthdawn-vtt/fvtt-earthdawn4e/issues/new?template=01-bug-report.yml",
-        "icon": "lucide:bug"
-      },
-      {
-        "id": "Discord",
-        "title": "Discord",
-        "link": "https://discord.com/channels/170995199584108546/872191259471671346",
-        "icon": "simpleicons:discord"
-      },
-      {
-        "id": "Ko-fi",
-        "title": "Ko-fi",
-        "link": "https://ko-fi.com/qrizzl",
-        "icon": "simpleicons:kofi"
-      }
-    ],
-    "meta": [
-      {
-        "name": "description",
-        "content": "Documentation for Earthdawn 4th Edition Foundry VTT System"
-      },
-      {
-        "property": "og:title",
-        "content": "ED4E - Earthdawn 4th Edition Foundry VTT System"
-      }
-    ],
-    "copyPage": false,
-    "templates": {
-      "default": {
-        "outputSourceFiles": false
-      }
+  "navigation": {
+    "includeCategories": true,
+    "includeGroups": false,
+    "includeFolders":    true,
+    "compactFolders":    false,
+    "excludeReferences": false
+  },
+  "categorizeByGroup": true,
+
+  "projectDocuments": ["documentation/docs/**/*.md"],
+
+  "plugin": [
+    "@typhonjs-typedoc/typedoc-theme-dmt"
+  ],
+  "theme": "default-modern",
+  "dmtFavicon": "https://gitlab.com/earthdawn/progressive-web-app/-/blob/87ad8efbacdf5984ca83f13326eaf8cf97eba063/favicon.ico",
+  "dmtLinksIcon": [
+    {
+      "id": "home",
+      "title": "Home",
+      "icon": "lucide:home"
     },
-    "locales": [
-      {
-        "code": "en",
-        "name": "English"
-      },
-      {
-        "code": "de",
-        "name": "Deutsch"
-      }
-    ],
-    "defaultLocale": "en"
+    {
+      "id": "Bug Report",
+      "title": "Bug Report",
+      "url": "https://github.com/earthdawn-vtt/fvtt-earthdawn4e/issues/new?template=01-bug-report.yml",
+      "icon": "lucide:bug"
+    }
+  ],
+  "dmtLinksService": {
+    "discord": "https://discord.com/channels/170995199584108546/872191259471671346",
+    "github": "https://github.com/earthdawn-vtt/fvtt-earthdawn4e",
+    "ko-fi": "https://ko-fi.com/qrizzl"
+  },
+  "dmtNavigation": {
+    "moduleIcon": false,
+    "style": "compact"
   }
 }
