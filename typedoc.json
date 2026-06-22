@@ -32,7 +32,10 @@
   "customFooterHtml": "",
   "hideGenerator": true,
 
-  "projectDocuments": ["documentation/docs/**/*.md"],
+  "projectDocuments": [
+    "documentation/docs/**/*.md",
+    "documentation/docs.de/**/*.md"
+  ],
 
   "searchInDocuments": true,
 
