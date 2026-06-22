@@ -6,6 +6,7 @@
  * @module ed4e
  */
 
+
 // Import configuration
 import ED4E from "./module/config/_module.mjs";
 
@@ -24,9 +25,7 @@ import * as utils from "./module/utils/_module.mjs";
 import * as workflows from "./module/workflows/_module.mjs";
 import registerHooks from "./module/system/hooks.mjs";
 
-/* -------------------------------------------- */
-/*  Define Module Structure                     */
-/* -------------------------------------------- */
+// region Module Structure Definition
 
 /**
  * The public Earthdawn 4E API namespace.
@@ -66,8 +65,30 @@ globalThis.ed4e = {
   workflows,
 };
 
-/* -------------------------------------------- */
-/*  Hooks                                       */
-/* -------------------------------------------- */
+// endregion
+
+// region Hooks
 
 registerHooks();
+
+// endregion
+
+// region Bundled Module Exports
+
+export {
+  applications,
+  canvas,
+  ED4E as config,
+  data,
+  dice,
+  documents,
+  enrichers,
+  helpers,
+  hooks,
+  services,
+  tours,
+  utils,
+  workflows,
+};
+
+// endregion
