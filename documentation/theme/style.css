@@ -16,8 +16,8 @@ section.dmt-navigation-bar > button:hover {
 }
 
 section.dmt-document-index {
-    border: unset;
-    padding: 0.5rem;
+    border: unset !important;
+    padding: 0.5rem !important;
 }
 
 div.dmt-toolbar-icon > button {
