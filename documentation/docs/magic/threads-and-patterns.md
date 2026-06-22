@@ -1,16 +1,21 @@
+---
+title: Threads and Patterns
+category: English
+group: Magic
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Threads and Patterns</title>
-  <link rel="stylesheet" href="wiki.css">
+  <link rel="stylesheet" href="../wiki.css">
 </head>
 <body>
   <main>
     <section class="doc-card">
       <div class="doc-topbar">
-        <a class="doc-home-link" href="Inhaltsverzeichnis.html">Back to Table of Contents</a>
+        <a class="doc-home-link" href="../index.md">Back to Table of Contents</a>
       </div>
       <article class="doc-content">
 <h1>Threads and Patterns</h1>
@@ -112,7 +117,7 @@
     <div>
       <p>
         After a thread has been woven to an item initially, thread ranks can be increased directly on the actor in Edit mode
-        (see <a href="legend/Verbesserungen.html">Advancements</a>).
+        (see <a href="../legend/advancements.md">Advancements</a>).
       </p>
     </div>
   </section>

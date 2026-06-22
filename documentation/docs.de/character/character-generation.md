@@ -1,20 +1,25 @@
-﻿<!DOCTYPE html>
+﻿---
+title: Charaktererschaffung
+category: Deutsch
+group: Charakter
+---
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Character Generation</title>
-  <link rel="stylesheet" href="wiki.css">
+  <link rel="stylesheet" href="../wiki.css">
 </head>
 <body>
   <main>
     <section class="doc-card">
       <div class="doc-topbar">
-        <a class="doc-home-link" href="Inhaltsverzeichnis.html">Zurück zum Inhaltsverzeichnis</a>
+        <a class="doc-home-link" href="../index.md">Zurück zum Inhaltsverzeichnis</a>
       </div>
       <article class="doc-content">
 <div>
-    <p>Das Earthdawn System für Foundry VTT bietet eine umfangreiche Charaktererschaffung um Spielenden einen schnellen Start ins Spiel zu ermöglichen.</p>
+    <p>Das Earthdawn System für Foundry VTT bietet eine umfangreiche Charaktererschaffung, um Spielenden einen schnellen Start ins Spiel zu ermöglichen.</p>
     <p>Die Charaktererschaffung ist in mehrere Schritte aufgeteilt:</p>
     <ol>
         <li>@UUID[JournalEntry.cZBJj7ZA2IF8vepy.JournalEntryPage.0XFXQ0pS0kkZlIi6#namensgeber]{Auswahl der Namensgeber}</li>

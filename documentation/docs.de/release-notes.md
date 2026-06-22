@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿---
+title: Versionshinweise
+category: Deutsch
+group: System
+---
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
@@ -10,7 +15,7 @@
   <main>
     <section class="doc-card">
       <div class="doc-topbar">
-        <a class="doc-home-link" href="Inhaltsverzeichnis.html">Zurück zum Inhaltsverzeichnis</a>
+        <a class="doc-home-link" href="./index.md">Zurück zum Inhaltsverzeichnis</a>
       </div>
       <article class="doc-content">
 <h1>Release Notes</h1>
@@ -39,10 +44,10 @@
         <h4>Charaktere</h4>
         <div>
             <p>Charaktere sind die wichtigste Art der Akteure und haben entsprechend auch die meisten Funktionen.</p>
-            <p>Im folgenden werden die einzelnen Funktionen die ein Charakter Akteur besitzt beschrieben.</p>
+            <p>Im Folgenden werden die einzelnen Funktionen, die ein Charakter Akteur besitzt, beschrieben.</p>
             <ul>
                 <li>Charakterbogen - Funktionen des Earthdawn-Rollenspiels für Spielende</li>
-                <li>Charaktererschaffung - Umfangreiche Charaktererstellung mit mehreren Schritten</li>
+                <li>Charaktererschaffung - umfangreiche Charaktererstellung mit mehreren Schritten</li>
                 <li>Legendenpunkte - Verwaltung und Verwendung von Legendenpunkten zum Erlernen und Verbessern von Fähigkeiten</li>
             </ul>
         </div>

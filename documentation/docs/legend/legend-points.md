@@ -1,3 +1,8 @@
+---
+title: Legend Points
+category: English
+group: Legend
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +15,7 @@
   <main>
     <section class="doc-card">
       <div class="doc-topbar">
-        <a class="doc-home-link" href="Inhaltsverzeichnis.html">Back to Table of Contents</a>
+        <a class="doc-home-link" href="../index.md">Back to Table of Contents</a>
       </div>
       <article class="doc-content">
 <h2>Basics</h2>
@@ -24,13 +29,13 @@
         <p>A character's Legend Points can be viewed in the "Legend" tab. It shows an overview of received,
             spent, and available Legend Points and their status.</p>
         <div>
-            <img src="../../../assets/manual/german/legend-point-history-button.png" width="616" height="252">
+            <img src="../../../assets/manual/german/legend-point-history-button.png" alt="Legend Point History Button">
         </div>
     </div>
     <p> </p>
     <h2>Earning Legend Points and History</h2>
     <div>
-        <p>First of all, characters need Legend Points. They can be added in two ways: manually through the Legend Point overview
+        <p>To build their legend, characters need Legend Points. They can be added in two ways: manually through the Legend Point overview
             or through the <code>/lp</code> chat command.</p>
         <h3>Legend Point Overview</h3>
         <div>
@@ -47,7 +52,7 @@
             <div>
                 <p>All Legend Point spending is shown in this view. Entries can be sorted by date, by name, or by
                     type (attributes, talents, spells, etc.).</p>
-                <img src="../../../assets/manual/german/legend-point-history-spent.png" width="658" height="392">
+                <img src="../../../assets/manual/german/legend-point-history-spent.png" alt="Legend Point History Spent">
             </div>
             <h4>Chronological View & Reset</h4>
             <div>
@@ -55,14 +60,14 @@
                     but each entry has an arrow icon. Clicking it deletes this entry and <strong>all</strong> newer entries.</p>
                 <p><strong>Warning: </strong>At the moment, this function does not reset values tied to those transactions. It only
                     deletes the entries from this list.</p>
-                <img src="../../../assets/manual/german/legend-point-history-chronological.png" width="660" height="399">
+                <img src="../../../assets/manual/german/legend-point-history-chronological.png" alt="Legend Point History Chronological View">
             </div>
         </div>
         <section style="overflow:hidden">
             <h3>/lp Chat Command</h3>
             <div>
                 <div>
-                    <img style="float: right" src="../../../assets/manual/german/assign-lp-prompt.png" width="222" height="460">
+                    <img style="float: right" src="../../../assets/manual/german/assign-lp-prompt.png" alt="Assign Legend Points Prompt">
                 </div>
                 <div>
                     <p>The other way to grant a character Legend Points is the <code>/lp</code> chat command. It opens a dialog
@@ -91,7 +96,7 @@
         <p>Knacks and spells are dragged and dropped onto the character to trigger their learning function.</p>
         <p>Here as well, a dialog appears each time to explain the relevant conditions and options.</p>
         <p>Permanent threads trigger the learning function when you activate the next thread rank.</p>
-        <img src="../../../assets/manual/german/increase-talent.png">
+        <img src="../../../assets/manual/german/increase-talent.png" alt="Increase Talent">
     </div>
     <p> </p>
     <h2>Disciplines, Paths, and Questors (Vocations)</h2>
@@ -101,10 +106,10 @@
             does not require Legend Points. For the associated talents, devotion powers, and knacks, the same rules as above apply.</p>
         <p>All these vocations can be increased in Edit mode. Similar to abilities, a dialog appears here as well,
             informing you about conditions and options.</p>
-        <img src="../../../assets/manual/german/increase-vocation.png" style="display: block; width: auto; max-width: 100%; margin: 0 auto; clear: both">
+        <img src="../../../assets/manual/german/increase-vocation.png" style="display: block; width: auto; max-width: 100%; margin: 0 auto; clear: both" alt="Increase Vocation">
         <p>Paths and Questors have an ability directly tied to the vocation that must have at least a rank equal to the new rank
             of the Path or Questor. If this is not the case, the system offers the option to increase that ability immediately.</p>
-        <p>If a Discipline is increased and it has a Thread Weaving talent used for spellcasting, another option appears to learn a new spell.</p>
+        <p>If a Discipline is increased, and it has a Thread Weaving talent used for spellcasting, another option appears to learn a new spell.</p>
     </div>
 </div>
       </article>

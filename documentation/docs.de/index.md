@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿---
+title: Inhaltsverzeichnis
+category: Deutsch
+---
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
@@ -13,51 +17,43 @@
       <p class="doc-intro">Diese Seite verlinkt alle weiteren HTML-Dokumente im Ordner der deutschen Wiki-Dokumentation.</p>
       <ul class="doc-links">
         <li>
-          <a href="Release-notes.html">
+          <a href="release-notes.md">
             Release Notes
-            <span class="filename">Release-notes.html</span>
           </a>
         </li>
         <li>
-          <a href="characterbogen.html">
+          <a href="./character/character-sheet.md">
             Charakterbogen
-            <span class="filename">characterbogen.html</span>
           </a>
         </li>
         <li>
-          <a href="character-gameplay.html">
+          <a href="./character/character-gameplay.md">
             Charakter-Gameplay
-            <span class="filename">character-gameplay.html</span>
           </a>
         </li>
         <li>
-          <a href="character-generation.html">
+          <a href="./character/character-generation.md">
             Charaktererschaffung
-            <span class="filename">character-generation.html</span>
           </a>
         </li>
         <li>
-          <a href="legend/Legendenpunkte.html">
+          <a href="./legend/legend-points.md">
             Legendenpunkte
-            <span class="filename">Legendenpunkte.html</span>
           </a>
         </li>
         <li>
-          <a href="legend/Verbesserungen.html">
+          <a href="./legend/advancements.md">
             Verbesserungen
-            <span class="filename">Verbesserungen.html</span>
           </a>
         </li>
         <li>
-          <a href="Faeden-und-Strukturen.html">
+          <a href="./magic/threads-and-patterns.md">
             Fäden und Strukturen
-            <span class="filename">Faeden-und-Strukturen.html</span>
           </a>
         </li>
         <li>
-          <a href="earthdawn-active-effects.html">
+          <a href="earthdawn-active-effects.md">
             Earthdawn Active Effects
-            <span class="filename">earthdawn-active-effects.html</span>
           </a>
         </li>
       </ul>

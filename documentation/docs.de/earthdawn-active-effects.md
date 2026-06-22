@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿---
+title: Aktive Effekte
+category: Deutsch
+group: System
+---
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
@@ -10,7 +15,7 @@
   <main>
     <section class="doc-card">
       <div class="doc-topbar">
-        <a class="doc-home-link" href="Inhaltsverzeichnis.html">Zurück zum Inhaltsverzeichnis</a>
+        <a class="doc-home-link" href="./index.md">Zurück zum Inhaltsverzeichnis</a>
       </div>
       <article class="doc-content">
 <h1>Earthdawn Active Effekts</h1>
@@ -31,7 +36,7 @@
       <h3>Allgemein Tab</h3>
       <div>
         <p>
-          Im Allgemein Tab können die folgenden informationen angegeben werden:
+          Im Allgemein Tab können die folgenden Informationen angegeben werden:
         <ul>
           <li>Effektbild</li>
           <li>Effektname</li>
@@ -41,11 +46,11 @@
         </ul>
         <p>
           Zum Bild, dem Namen und der Beschreibung ist nicht viel zu erklären. Die Zustände sind aktuell noch eine
-          einfach Auswahl, die besonderheit von mehrfachen Zuständen ist aktuell noch nicht umgesetzt. Du
-          kannst hier zur Zeit also zum Beispiel nur halbe Deckung oder teilweise Bewegungseinschränkung auswählen.
+          einfach Auswahl, die Besonderheit von mehrfachen Zuständen ist aktuell noch nicht umgesetzt. Du
+          kannst hier zurzeit also zum Beispiel nur halbe Deckung oder teilweise Bewegungseinschränkung auswählen.
         </p>
-        <p>Die Zuweisung ist wesentlich um die Effekte richtig anzuwenden. Bei Effekten auf Items ist es sehr wichtig
-          zu unterscheiden ob der Effekt für das Item selbst oder einen Akteur bestimmt ist. Für einen Effekt für einen
+        <p>Die Zuweisung ist wesentlich, um die Effekte richtig anzuwenden. Bei Effekten auf Items ist es sehr wichtig
+          zu unterscheiden, ob der Effekt für das Item selbst oder einen Akteur bestimmt ist. Für einen Effekt für einen
           Akteur muss entweder "Apply Effect to Target" oder "Übertragung des Effekts auf das Ziel" ausgewählt werden.
           Bei einem Effekt für das Item selbst müssen diese beiden Optionen deaktiviert sein.
         </p>

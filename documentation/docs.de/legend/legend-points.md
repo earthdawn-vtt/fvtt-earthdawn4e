@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿---
+title: Legendenpunkte
+category: Deutsch
+group: Legende
+---
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
@@ -10,7 +15,7 @@
   <main>
     <section class="doc-card">
       <div class="doc-topbar">
-        <a class="doc-home-link" href="Inhaltsverzeichnis.html">Zurück zum Inhaltsverzeichnis</a>
+        <a class="doc-home-link" href="../index.md">Zurück zum Inhaltsverzeichnis</a>
       </div>
       <article class="doc-content">
 <h2>Grundlagen</h2>
@@ -30,40 +35,40 @@
     <p> </p>
     <h2>Legendenpunkte verdienen und Verlauf</h2>
     <div>
-        <p>Zu allererst benötigen Charaktere Legendenpunkte, diese können auf zwei Arten hinzugefügt werden: manuell über die Legendenpunkteübersicht 
+        <p>Zuallererst benötigen Charaktere Legendenpunkte, diese können auf zwei Arten hinzugefügt werden: manuell über die Legendenpunkteübersicht 
             oder mittels des /lp Chat-Befehls.</p>
         <h3>Legendenpunkteübersicht</h3>
         <div>
             <p>Die Legendenpunkteübersicht zeigt alle relevanten Informationen zu den Legendenpunkten eines Charakters an. Hier können Spielende neue 
-                Legendenpunkte hinzufügen, und alle Transaktionen einsehen, bearbeiten oder rückgängig machen.</p>
+                Legendenpunkte hinzufügen und alle Transaktionen einsehen, bearbeiten oder rückgängig machen.</p>
             <h4>Erhaltene Legendenpunkte</h4>
             <div>
                 <p>Diese Übersicht zeigt eine Liste aller erhaltenen Legendenpunkte an.</p>
                 <p>Neu errungene Legendenpunkte können mittels des Buttons "Legendenpunkt hinzufügen" hinzugefügt werden. Jeder Eintrag ist zusätzlich 
                     zu den Legendenpunkten mit einem Datum und einer Beschreibung versehen.</p>
-                <img src="../../../assets/manual/german/legend-point-history-earned.png" width="663" height="291">
+                <img src="../../../assets/manual/german/legend-point-history-earned.png" width="663" height="291" alt="Legendenpunkteübersicht">
             </div>
             <h4>Legendenpunkteausgaben</h4>
             <div>
                 <p>Alle Legendenpunktausgaben werden in dieser Übersicht angezeigt. Die Ausgabe kann nach Datum, nach Namen oder nach 
                     Typ (Attribute, Talente, Zauber etc.) sortiert werden.</p>
-                <img src="../../../assets/manual/german/legend-point-history-spent.png" width="658" height="392">
+                <img src="../../../assets/manual/german/legend-point-history-spent.png" width="658" height="392" alt="Legendenpunkteausgaben">
             </div>
             <h4>Chronologische Sicht & Zurücksetzen</h4>
             <div>
                 <p>Die letzte Ansicht ist eine Kombination der ersten beiden (erhaltene und ausgegebene Legendenpunkte). Die Ansicht ist rein chronologisch, 
                     besitzt jedoch hinter jedem Eintrag ein Pfeilsymbol. Wird dieses angeklickt, so werden dieser und <strong>alle</strong> neueren Einträge 
                     gelöscht.</p>
-                <p><strong>Achtung: </strong>Diese Funktion setzt aktuell noch keine Werte die mit dieser Transaktion verbunden sind zurück, sondern löscht 
+                <p><strong>Achtung: </strong>Diese Funktion setzt aktuell noch keine Werte, die mit dieser Transaktion verbunden sind, zurück, sondern löscht 
                     nur die Einträge in dieser Liste.</p>
-                <img src="../../../assets/manual/german/legend-point-history-chronological.png" width="660" height="399">
+                <img src="../../../assets/manual/german/legend-point-history-chronological.png" width="660" height="399" alt="Chronologische Sicht">
             </div>
         </div>
         <section style="overflow:hidden">
             <h3>/lp Chat-Befehl</h3>
             <div>
                 <div>
-                    <img style="float: right" src="../../../assets/manual/german/assign-lp-prompt.png" width="222" height="460">
+                    <img style="float: right" src="../../../assets/manual/german/assign-lp-prompt.png" width="222" height="460" alt="Legendenpunkte zuweisen">
                 </div>
                 <div>
                     <p>Die andere Möglichkeit, einem Charakter Legendenpunkte zu geben, ist der Chat-Befehl <code>/lp</code>. Dieser öffnet einen Dialog, 
@@ -99,12 +104,12 @@
     <div>
         <p>Es gibt neben den oben genannten Möglichkeiten, Legendenpunkte auszugeben, auch noch weitere Optionen, den Charakter zu verbessern. Das Erhöhen 
             des Disziplinkreises, das Erlernen neuer Disziplinen, das Beitreten zu einem Pfad oder die Bindung an eine Passion als Questor erfordern 
-            keine Legendenpunkte. Für die dazugehörigen Talente, Weihekräfte und Kniffe gilt das gleiche wie oben beschrieben.</p>
+            keine Legendenpunkte. Für die dazugehörigen Talente, Weihekräfte und Kniffe gilt das Gleiche wie oben beschrieben.</p>
         <p>Diese Berufungen lassen sich alle im Editiermodus steigern. Ähnlich den Fähigkeiten taucht auch hier ein Dialog auf, der über die Umstände oder 
             Möglichkeiten informiert.</p>
-        <img src="../../../assets/manual/german/increase-vocation.png" style="display: block; width: auto; max-width: 100%; margin: 0 auto; clear: both">
+        <img src="../../../assets/manual/german/increase-vocation.png" style="display: block; width: auto; max-width: 100%; margin: 0 auto; clear: both" alt="Disziplinen, Pfade und Questoren">
         <p>Pfade und Questoren haben eine Fähigkeit, die in direktem Bezug zur Berufung steht und die mindestens einen Rang besitzen muss, der dem neuen Rang 
-            des Pfades oder des Questors entspricht. Ist dies nicht der Fall, bietet das System die Möglichkeit, die entsprechende Fähigkeit gleich mit zu steigern.</p>
+            des Pfades oder des Questors entspricht. Ist dies nicht der Fall, bietet das System die Möglichkeit, die entsprechende Fähigkeit gleich mitzusteigern.</p>
         <p>Wenn eine Disziplin erhöht wird, die ein Fadenwebentalent besitzt, das zum Zaubern genutzt wird, so erscheint noch eine Option, einen neuen Zauber zu erlernen.</p>
     </div>
 </div>
