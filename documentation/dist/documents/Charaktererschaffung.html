@@ -1,0 +1,109 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><style>body { visibility: hidden; }</style><meta charset="utf-8"><meta http-equiv="x-ua-compatible" content="IE=edge"><title>Charaktererschaffung | ED4E - Earthdawn 4th Edition Foundry VTT System - v0.2.0</title><meta name="description" content="Documentation for ED4E - Earthdawn 4th Edition Foundry VTT System"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="../assets/style.css"><link rel="stylesheet" href="../assets/highlight.css"><link rel="stylesheet" href="../assets/custom.css"><script defer="" src="../assets/main.js"></script><script async="" src="../assets/icons.js" id="tsd-icons-script"></script><script async="" src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script><link rel="stylesheet" href="../assets/dmt/dmt-components.css" layer="theme-dmt"><link rel="stylesheet" href="../assets/dmt/dmt-theme.css" layer="theme-dmt"><script src="../assets/dmt/dmt-components.js" type="module"></script><link rel="icon" href="https://gitlab.com/earthdawn/progressive-web-app/-/blob/87ad8efbacdf5984ca83f13326eaf8cf97eba063/favicon.ico"><noscript><style>body { visibility: visible; }</style></noscript></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";</script><div class="overlay"></div>
+<main><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container" id="dmt-toolbar"><a href="../index.html" class="title">ED4E - Earthdawn 4th Edition Foundry VTT System - v0.2.0</a><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header><div class="container container-main" tabindex="-1"><div class="col-content"><div class="tsd-page-title"><ul class="tsd-breadcrumb" aria-label="Breadcrumb"></ul></div><div class="tsd-panel tsd-typography">
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Character Generation</title>
+  <link rel="stylesheet" href="../wiki.css">
+
+
+  <main>
+    <section class="doc-card">
+      <div class="doc-topbar">
+        <a class="doc-home-link" href="Inhaltsverzeichnis.html">Zurück zum Inhaltsverzeichnis</a>
+      </div>
+      <article class="doc-content">
+<div>
+    <p>Das Earthdawn System für Foundry VTT bietet eine umfangreiche Charaktererschaffung, um Spielenden einen schnellen Start ins Spiel zu ermöglichen.</p>
+    <p>Die Charaktererschaffung ist in mehrere Schritte aufgeteilt:</p>
+    <ol>
+        <li>@UUID[JournalEntry.cZBJj7ZA2IF8vepy.JournalEntryPage.0XFXQ0pS0kkZlIi6#namensgeber]{Auswahl der Namensgeber}</li>
+        <li>@UUID[JournalEntry.cZBJj7ZA2IF8vepy.JournalEntryPage.0XFXQ0pS0kkZlIi6#berufung]{Auswahl der Berufung mit Verteilung der Talentränge}</li>
+        <li>@UUID[JournalEntry.cZBJj7ZA2IF8vepy.JournalEntryPage.0XFXQ0pS0kkZlIi6#attribute]{Verteilung der Attributspunkte}</li>
+        <li>@UUID[JournalEntry.cZBJj7ZA2IF8vepy.JournalEntryPage.0XFXQ0pS0kkZlIi6#zauber]{Auswahl der Zauber (Optional)}</li>
+        <li>@UUID[JournalEntry.cZBJj7ZA2IF8vepy.JournalEntryPage.0XFXQ0pS0kkZlIi6#fertigkeiten]{Verteilung der Fertigkeitsränge}</li>
+        <li>@UUID[JournalEntry.cZBJj7ZA2IF8vepy.JournalEntryPage.0XFXQ0pS0kkZlIi6#sprachen]{Auswahl der Sprachen}</li>
+        <li>@UUID[JournalEntry.cZBJj7ZA2IF8vepy.JournalEntryPage.0XFXQ0pS0kkZlIi6#ausrustung]{Auswahl der Startausrüstung}</li>
+    </ol>
+    <p>&nbsp;</p>
+<pre><code>&lt;h2&gt;Voraussetzungen&lt;/h2&gt;
+&lt;div&gt;
+    &lt;p&gt;Um einen Charakter im Earthdawn System zu erstellen, sind folgende Voraussetzungen zu beachten.&lt;/p&gt;
+    &lt;p&gt;Zuerst benötigen Spielende das entsprechende Recht einen Akteur in der Welt anzulegen. Das kann standardmäßig nur die Spielleitung machen. Um das Recht 
+        an die Spielenden zu vergeben, öffne die &lt;em lang="en"&gt;User Permission Configuration&lt;/em&gt; (Nutzerverwaltung) in den Foundry VTT Systemeinstellungen und 
+        setze einen Haken bei &lt;em lang="en"&gt;Create Actor&lt;/em&gt;. Wenn die Spielleitung diese Option nicht für Spielende beibehalten möchte, sollte die Konfiguration 
+        nach der Charaktererschaffung wieder zurückgesetzt werden. &lt;br&gt;&lt;strong&gt;Vorsicht: Dieses Recht erlaubt es den Spielenden beliebig viele Akteure zu erstellen 
+            und besonders in öffentlichen Welten darf diese Berechtigung nicht leichtfertig aktiviert bleiben.&lt;/strong&gt;&lt;/p&gt;
+    &lt;img src="../../assets/manual/german/char-gen-permission-setting.png"&gt;
+    &lt;p&gt;Die nächste wichtige Voraussetzung ist, dass die Spielenden Zugriff (mindestens "Beobachter" Zugriff) auf die entsprechenden Kompendium Pakete oder Items in 
+        der Welt haben. Damit ist gemeint, dass die automatische Charaktererschaffung nur funktioniert, wenn die Spielenden Zugriff auf die Items haben, die dafür 
+        benötigt werden (z.B. Namensgeber, Disziplinen, Talente, Fertigkeiten, Zauber etc.).&lt;/p&gt;
+    &lt;img src="../../assets/manual/german/char-gen-compendium-permissions.png"&gt;
+    &lt;p&gt;Wenn diese beiden Voraussetzungen erfüllt sind, können die Spielenden die Charaktererschaffung entweder über den Menüpunkt &lt;em&gt;Akteur erstellen&lt;/em&gt; im 
+        Akteur Verzeichnis, oder über den Chat Befehl &lt;code&gt;/char&lt;/code&gt; starten.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;&nbsp;&lt;/p&gt;
+
+&lt;h2&gt;Charaktererschaffung Konfiguration (Information für die Spielleitung)&lt;/h2&gt;
+&lt;div&gt;
+    &lt;p&gt;Die Charaktererschaffung hat mehrere Systemeinstellungen die angepasst werden können:&lt;/p&gt;
+    &lt;h3&gt;Charaktergenerierung an?&lt;/h3&gt;
+    &lt;p&gt;Diese Konfiguration ist standardmäßig aktiv. Dadurch wird jedesmal, wenn ein Akteur vom Typ &lt;em&gt;Charakter&lt;/em&gt; erstellt wird, die Charaktererschaffung gestartet. 
+        Wenn diese Konfiguration deaktiviert wird, muss die Charaktererschaffung manuell über den Chat Befehl &lt;code&gt;/char&lt;/code&gt; gestartet werden.&lt;/p&gt;
+    &lt;h3&gt;Verfügbare Attributspunkte&lt;/h3&gt;
+    &lt;p&gt;Diese Einstellung legt fest, wie viele Attributspunkte bei der Charaktererschaffung zur Verfügung stehen. Standardmäßig sind es 25 Punkte, wie im Spielerhandbuch 
+        festgelegt.&lt;/p&gt;
+    &lt;h3&gt;Maximale Ränge&lt;/h3&gt;
+    &lt;p&gt;Diese Einstellung legt fest, wie viele Ränge maximal auf Talente oder Fertigkeiten verteilt werden können. Standardmäßig ist der maximale Rang auf 3 festgelegt.&lt;/p&gt;
+    &lt;h3&gt;Maximaler Zauberkreis&lt;/h3&gt;
+    &lt;p&gt;Diese Konfiguration legt fest, welche Zauber bei der Charaktererschaffung zur Verfügung stehen. Hier kann der Kreis festgelegt werden. Standardmäßig ist der 
+        maximale Kreis auf 2 festgelegt.&lt;/p&gt;
+    &lt;img src="../../assets/manual/german/char-gen-system-settings.png" style="display: block; width: auto; max-width: 100%; margin: 0 auto; clear: both"&gt;
+&lt;/div&gt;
+&lt;p&gt;&nbsp;&lt;/p&gt;
+
+&lt;h2&gt;Charaktererschaffung im Detail&lt;/h2&gt;
+&lt;div&gt;
+    &lt;p&gt;Beim Starten öffnet sich ein Dialog, in dem die Charaktererschaffung stattfindet. Er besitzt am unteren Teil Buttons die durch die einzelnen Schritte führen. 
+        Der Button &lt;em&gt;Fertigstellen&lt;/em&gt; wird erst aktiv, wenn alle nötigen Schritte der Charaktererschaffung abgeschlossen sind. Nach dem Klicken schließt sich 
+        der Dialog und der neue Akteur wird angelegt.&lt;/p&gt;
+    &lt;h3&gt;Namensgeber&lt;/h3&gt;
+    &lt;p&gt;Im ersten Schritt wählst du die Namensgeber des Charakters aus einem Menü am unteren Teil des Dialoges aus.&lt;/p&gt;
+    &lt;h3&gt;Berufung&lt;/h3&gt;
+    &lt;p&gt;Im zweiten Schritt wählst du zuerst die Berufungsart. Soll es Adept_in (standardmäßig voreingestellt) oder Questor_in werden? Du kannst zwischen den beiden 
+        Optionen wählen und bekommen entsprechend die Berufungsoptionen angezeigt (Disziplinen oder Questoren).&lt;/p&gt;
+    &lt;h4&gt;Disziplinen&lt;/h4&gt;
+    &lt;p&gt;Willst du Adpet_in werden, kannst du eine Disziplin auswählen. Diese haben alle Disziplin-, Optionale- und ggf. Freie-Talente. Du kannst dann Talentränge 
+        auf die Disziplintalente und ein optionales Talent verteilen.&lt;/p&gt;
+    &lt;h5&gt;Namensgebertalente&lt;/h5&gt;
+    &lt;p&gt;Einige Namensgeber besitzen eigene Talente (Menschen haben Vielseitigkeit und Windlinge haben Astralsicht). Diese Talente können zusätzlich zu den 
+        Disziplin- und Optionalen-Talenten mit Rängen versehen werden.&lt;/p&gt;
+    &lt;h4&gt;Questor_in&lt;/h4&gt;
+    &lt;p&gt;Wenn du ein_e Questor_in spielen willst, kannst du Liste der verfügbaren Optionen eine auswählen. Danach kannst du eine Weihekraft wählen und einen Rang 
+        auf die Weihekraft verteilen. Die Questor-Weihekraft wird nach der Charaktererschaffung automatisch angelegt und auf Rang 1 gesetzt.&lt;/p&gt;
+    &lt;h3&gt;Attribute&lt;/h3&gt;
+    &lt;p&gt;Im dritten Schritt werden die Attributspunkte auf die Attribute verteilt. Die Verteilung erfolgt über die + &amp; - Buttons jeweils neben dem Attribut. Das 
+        verändert auch automatisch die Charakteristiken des Charakters. Im unteren Teil des Dialoges wird sowohl der aktuelle Wert als auch der Charakteristikwert 
+        angezeigt der sich aus dem erhöhen oder senken des Attributs ergibt. Nicht verteilte Attributspunkte werden als Bonus-Karmapunkte gutgeschrieben.&lt;/p&gt;
+    &lt;h3&gt;Zauber&lt;/h3&gt;
+    &lt;p&gt;Wenn du eine Disziplin gewählt hast, die Spruchzauber nutzt, werden hier die Zauber ausgewählt. Das geht über einfaches anklicken des jeweiligen Zaubers.&lt;/p&gt;
+    &lt;h3&gt;Fertigkeiten&lt;/h3&gt;
+    &lt;p&gt;Im nächsten Schritt wählst du die Fertigkeiten des Charakters. Es muss mindestens ein Rang in ein Kunsthandwerk, 2 Ränge in Wissensfertigkeiten und 3 Ränge 
+        in Sprachfertigkeiten verteilt werden. Die Sprachfertigkeiten sind bereits vorausgewählt und können nur verbessert aber nicht reduziert oder entfernt werden. 
+        Zusätzlich stehen noch 8 freie Fertigkeitsränge für die freie Verteilung zur Verfügung.&lt;/p&gt;
+    &lt;p&gt;Zum Verteilen der Ränge klickst du wie bei den anderen Schritten auf das + oder - Symbol neben der Fertigkeit.&lt;/p&gt;
+    &lt;h3&gt;Sprachen&lt;/h3&gt;
+    &lt;p&gt;Im nächsten Schritt werden die Sprachen des Charakters bestimmt. Du kannst dabei so viele Sprachen auswählen, wie du Ränge in der Fertigkeit 
+        &lt;em&gt;Lesen und Schreiben&lt;/em&gt; und der Fertigkeit &lt;em&gt;Fremdsprachen&lt;/em&gt; hast.&lt;/p&gt;
+    &lt;h3&gt;Ausrüstung&lt;/h3&gt;
+    &lt;p&gt;Im letzten Schritt bekommst du die Grundausrüstung des Charakters. Das sind die Ausrüstungsgegenstände, die der Grundausrüstung aus dem Kapitel 
+        &lt;em&gt;Charaktererschaffung&lt;/em&gt; aus dem Spielerhandbuch entsprechen. Zusätzliche Ausrüstung musst du nach der Charaktererschaffung selbst hinzufügen.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+      </article>
+    </section>
+  </main>
+
+</div></div><div class="col-sidebar" tabindex="-1"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg><h3>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked=""><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div></div><div class="site-menu" tabindex="-1"><nav class="tsd-navigation"><a href="../modules.html">ED4E - Earthdawn 4th Edition Foundry VTT System - v0.2.0</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"></ul></nav></div></div></div></main></body></html>

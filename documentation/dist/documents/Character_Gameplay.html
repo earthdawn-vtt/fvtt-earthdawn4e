@@ -1,0 +1,114 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><style>body { visibility: hidden; }</style><meta charset="utf-8"><meta http-equiv="x-ua-compatible" content="IE=edge"><title>Character Gameplay | ED4E - Earthdawn 4th Edition Foundry VTT System - v0.2.0</title><meta name="description" content="Documentation for ED4E - Earthdawn 4th Edition Foundry VTT System"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="../assets/style.css"><link rel="stylesheet" href="../assets/highlight.css"><link rel="stylesheet" href="../assets/custom.css"><script defer="" src="../assets/main.js"></script><script async="" src="../assets/icons.js" id="tsd-icons-script"></script><script async="" src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script><link rel="stylesheet" href="../assets/dmt/dmt-components.css" layer="theme-dmt"><link rel="stylesheet" href="../assets/dmt/dmt-theme.css" layer="theme-dmt"><script src="../assets/dmt/dmt-components.js" type="module"></script><link rel="icon" href="https://gitlab.com/earthdawn/progressive-web-app/-/blob/87ad8efbacdf5984ca83f13326eaf8cf97eba063/favicon.ico"><noscript><style>body { visibility: visible; }</style></noscript></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";</script><div class="overlay"></div>
+<main><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container" id="dmt-toolbar"><a href="../index.html" class="title">ED4E - Earthdawn 4th Edition Foundry VTT System - v0.2.0</a><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header><div class="container container-main" tabindex="-1"><div class="col-content"><div class="tsd-page-title"><ul class="tsd-breadcrumb" aria-label="Breadcrumb"></ul></div><div class="tsd-panel tsd-typography">
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Character Gameplay</title>
+  <link rel="stylesheet" href="../wiki.css">
+
+
+  <main>
+    <section class="doc-card">
+      <div class="doc-topbar">
+        <a class="doc-home-link" href="Table_of_Contents.html">Back to Table of Contents</a>
+      </div>
+      <article class="doc-content">
+<p>The following section describes the individual functions of the character sheet in detail.</p>
+<p></p>
+<div>
+    <section style="overflow:hidden">
+        <h3>Play and Edit Mode</h3>
+        <div>
+            <img style="float: right" src="../media/actor-sheet-edit-mode.png">
+            <p>The already described Play and Edit mode enables or disables features in many places. This protects users from unintended changes and creates a clear separation that makes the character sheet easier to read.</p>
+        </div>
+    </section>
+    <h3>Features in Play Mode</h3>
+    <div>
+        <p>In Play mode, various features are available in multiple places on the character sheet.</p>
+        <h4>+/- Button</h4>
+        <div>
+            <p>The +/- buttons can increase or decrease values in many locations on the character sheet. Clicking edits a persistent effect (Active Effect) that stores all manual changes. Each additional click increases or decreases that effect.</p>
+            <p>A normal click increases or decreases by 1, and Shift+Click increases or decreases by 5.</p>
+            <p>Dice Button</p>
+            <p>Many abilities and items can be used to trigger an action roll. Items that can trigger an action show a die icon instead of the image when you hover over them.</p>
+            <img src="../media/actor-sheet-talent-tab-roll.png" alt="Dice Button to Trigger Action Roll">
+            <h4>Blood Drop Button</h4>
+            <p>Some abilities do not trigger an action roll but cause strain damage when used. Such abilities show a blood drop icon to trigger the action and apply damage.</p>
+            <img src="../media/actor-sheet-talent-tab-strain.png" alt="Blood Drop Button to Trigger Strain Damage">
+        </div>
+        <h4>Spell Cards</h4>
+        <div>
+            <p>Spell cards provide two functions: attuning a spell and casting the spell itself.</p>
+            <p>Attuning a spell opens a dedicated dialog where both quick attunement and full attunement can be performed.</p>
+            <p>Casting also opens a dialog where additional options such as weaving threads or using raw magic can be selected.</p>
+        </div>
+        <p>Add to Favorites</p>
+        <div>
+            <p>On the right side of the character sheet, there is a "Favorites" area. Players can add frequently used abilities there. A context menu, opened by right-clicking an item, allows adding the following types to favorites:</p>
+            <ul>
+                <li>Talents</li>
+                <li>Skills</li>
+                <li>Devotion Powers</li>
+                <li>Spells</li>
+                <li>Powers</li>
+                <li>Equipment (usable equipment only)</li>
+            </ul>
+            <img src="../media/actor-sheet-talent-tab-favorite.png" alt="Context Menu to add to Favorites">
+            <p></p>
+            <h4>Action Buttons</h4>
+            <p>There are many action buttons that trigger specific actions. Here are some examples:</p>
+            <h5>Favorites</h5>
+            <div>
+                <p>Favorites always trigger an action. Talents, skills, devotion powers, and equipment roll directly. Spells start by asking whether they should be cast through a matrix, a grimoire, or raw.</p>
+            </div>
+            <h5>Legend Point Overview</h5>
+            <div>
+                <p>The legend point overview opens a dialog showing all gained and spent legend points.</p>
+            </div>
+            <h5>Karma Ritual</h5>
+            <div>
+                <p>The karma ritual button is located to the right of the header. Activating it resets current karma points to maximum.</p>
+            </div>
+            <h5>Recovery</h5>
+            <div>
+                <p>The recovery icon (a small bed) next to the header opens a dialog to roll recovery tests or take a long rest.</p>
+            </div>
+            <h5>Initiative</h5>
+            <div>
+                <p>The initiative icon (crossed swords) next to the header rolls the current initiative step.</p>
+            </div>
+            <h5>Knockdown</h5>
+            <div>
+                <p>The knockdown button triggers a manual knockdown test.</p>
+            </div>
+            <h5>Stand Up</h5>
+            <div>
+                <p>The stand-up button triggers a stand-up test.</p>
+            </div>
+            <h5>Take Damage</h5>
+            <div>
+                <p>This button allows manually adding damage outside normal actions.</p>
+            </div>
+        </div>
+        <h4>Add Effect</h4>
+        <div>
+            <p>Temporary and permanent effects include a "+" icon next to the header. Clicking it creates a new effect and adds it to the player character. A dialog opens to configure the effect.</p>
+        </div>
+        <h4>Situational Modifiers</h4>
+        <div>
+            <p>In the "Specials" tab, situational modifiers are shown next to effects. Activating a button adds a temporary effect. Activating it again removes that effect. Active buttons appear darker.</p>
+            <p>The "Overwhelmed" effect is an exception because it can have multiple levels. Instead of a button, it uses an input field for the level.</p>
+        </div>
+        <h4>Equipment Status</h4>
+        <div>
+            <p>All equipment items can have different statuses (for example, "Owned", "Worn", "Equipped", "Off-Hand", "Two-Handed"). Clicking the status icon cycles to the next status.</p>
+        </div>
+    </div>
+</div>
+      </article>
+    </section>
+  </main>
+
+</div></div><div class="col-sidebar" tabindex="-1"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg><h3>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked=""><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div></div><div class="site-menu" tabindex="-1"><nav class="tsd-navigation"><a href="../modules.html">ED4E - Earthdawn 4th Edition Foundry VTT System - v0.2.0</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"></ul></nav></div></div></div></main></body></html>

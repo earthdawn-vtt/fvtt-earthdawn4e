@@ -1,0 +1,88 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><style>body { visibility: hidden; }</style><meta charset="utf-8"><meta http-equiv="x-ua-compatible" content="IE=edge"><title>Character Sheet | ED4E - Earthdawn 4th Edition Foundry VTT System - v0.2.0</title><meta name="description" content="Documentation for ED4E - Earthdawn 4th Edition Foundry VTT System"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="../assets/style.css"><link rel="stylesheet" href="../assets/highlight.css"><link rel="stylesheet" href="../assets/custom.css"><script defer="" src="../assets/main.js"></script><script async="" src="../assets/icons.js" id="tsd-icons-script"></script><script async="" src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script><link rel="stylesheet" href="../assets/dmt/dmt-components.css" layer="theme-dmt"><link rel="stylesheet" href="../assets/dmt/dmt-theme.css" layer="theme-dmt"><script src="../assets/dmt/dmt-components.js" type="module"></script><link rel="icon" href="https://gitlab.com/earthdawn/progressive-web-app/-/blob/87ad8efbacdf5984ca83f13326eaf8cf97eba063/favicon.ico"><noscript><style>body { visibility: visible; }</style></noscript></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";</script><div class="overlay"></div>
+<main><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container" id="dmt-toolbar"><a href="../index.html" class="title">ED4E - Earthdawn 4th Edition Foundry VTT System - v0.2.0</a><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header><div class="container container-main" tabindex="-1"><div class="col-content"><div class="tsd-page-title"><ul class="tsd-breadcrumb" aria-label="Breadcrumb"></ul></div><div class="tsd-panel tsd-typography">
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Character Sheet</title>
+  <link rel="stylesheet" href="../wiki.css">
+
+
+  <main>
+    <section class="doc-card">
+      <div class="doc-topbar">
+        <a class="doc-home-link" href="Table_of_Contents.html">Back to Table of Contents</a>
+      </div>
+      <article class="doc-content">
+<h1>Character Sheet</h1>
+<h2>Edit Mode</h2>
+<div>
+  <p>In the upper-left corner of the window, there is a small toggle button. You can use it to switch between Play and Edit mode.</p>
+  <p>This mode unlocks many editing functions or protects against accidental clicks and disruptive dialogs during play.</p>
+</div>
+<h2>Characteristics</h2>
+<div>
+  <p>At the top of the character sheet are the characteristics: defense, armor, movement, and health values. Most of these values cannot be changed directly by hand. Exceptions are damage values and the number of wounds. Those can be edited directly in their fields. All other values are calculated automatically. Characteristic values are based on calculations from the Player's Guide and depend on the character's attribute values.</p>
+  <p>To modify them, effects are required. Next to immutable values, you will find ➕ and ➖ icons beside the fields. These automatically create an effect (Active Effect) to adjust values temporarily. A normal click increases or decreases by 1. Shift+Click increases or decreases by 5.</p>
+</div>
+<h2>Navigation and Tabs</h2>
+<div>
+  <p>In the lower main section of the character sheet, there are several tabs. Click a tab name to open it.</p>
+  <p>Here is an overview of the tabs and what they contain.</p>
+  <h3>General</h3>
+  <div>
+    <p><strong>Attributes:</strong> Show the value, resulting step, and number of increases. Click the die icon to roll attribute, half-magic, or ability tests. In Play mode, the ➕ and ➖ icons are available again for temporary value changes. In Edit mode, an arrow is shown instead to trigger a permanent attribute increase.</p>
+    <p><strong>Resources:</strong></p>
+    <ul>
+      <li><strong>Recovery:</strong> Maximum and current number of recovery tests, and recovery step. Various recovery actions can be triggered here.</li>
+      <li><strong>Karma:</strong> Maximum and current number of karma points, and karma step. The karma ritual can also be triggered here.</li>
+      <li><strong>Devotion:</strong> Maximum and current number of devotion points, and devotion point step.</li>
+    </ul>
+    <p>Current resource values can be edited manually. Maximum and step can only be modified through effects.</p>
+  </div>
+  <h3>Abilities</h3>
+  <div>
+    <p>This section describes options for talents, skills, and devotion powers. Every ability that has a test displays a die icon. You can roll the related step from there. Clicking an ability name opens a short description. Additional values such as action, attribute, step, rank, and strain are shown as well.</p>
+    <p>Each ability has buttons for increase, show in chat, edit, and delete. Some of these functions are only available in Edit mode.</p>
+    <h4>Talents</h4>
+    <p>In the Talents tab, talents can be shown by category or as one combined list (configurable in system settings). Knacks such as talent knacks, karma knacks, and special maneuvers are shown under their related talent.</p>
+    <h4>Skills</h4>
+    <p>In the Skills tab, skills can be grouped by categories such as Artisan Skills, Language Skills, General Skills, and Knowledge Skills.</p>
+  </div>
+  <h3>Spells</h3>
+  <div>
+    <p>The "Spells" tab combines all spell-related information. Spells are grouped by circle by default, but can be shown in one ungrouped list in system settings. A dedicated navigator groups spells by schools (for example Elementalism, Illusionism) and provides a separate tab for matrices.</p>
+  </div>
+  <h3>Equipment</h3>
+  <div>
+    <p>The "Equipment" tab lists everything a character owns, including gear, armor, shields, and weapons. Wealth and encumbrance are also shown. Encumbrance can be disabled in game settings.</p>
+  </div>
+  <h3>Legend</h3>
+  <div>
+    <p>The "Legend" tab includes:</p>
+    <ul>
+      <li>Namegiver and a notes editor.</li>
+      <li>Disciplines, paths, and questors with ranks and circles, plus the option to start advancement.</li>
+      <li>The character's languages and the option to add additional languages.</li>
+      <li>Legend point information (Total, Current, Spent) and a button to open legend point history.</li>
+    </ul>
+    <h3>Links</h3>
+    <p>The "Reputation" tab currently only contains the character's woven threads and their own true pattern. The personal pattern is only shown if it was added explicitly.</p>
+  </div>
+  <p></p>
+  <h3>Specials</h3>
+  <div>
+    <p>The "Specials" tab is divided into three sections:</p>
+    <ul>
+      <li><strong>Status Effects:</strong> Covers situational modifiers from the Player's Guide and creates temporary effects.</li>
+      <li><strong>Temporary Effects:</strong> Effects with a limited duration.</li>
+      <li><strong>Permanent Effects:</strong> Effects with the setting "Permanent".</li>
+    </ul>
+    <p>Each effect is shown with an image, name, a checkbox (active/inactive), and a control menu. The control menu includes buttons for "Show in Chat", "Edit", and "Delete".</p>
+  </div>
+</div>
+      </article>
+    </section>
+  </main>
+
+</div></div><div class="col-sidebar" tabindex="-1"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg><h3>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked=""><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div></div><div class="site-menu" tabindex="-1"><nav class="tsd-navigation"><a href="../modules.html">ED4E - Earthdawn 4th Edition Foundry VTT System - v0.2.0</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"></ul></nav></div></div></div></main></body></html>

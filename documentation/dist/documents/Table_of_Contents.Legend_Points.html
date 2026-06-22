@@ -1,0 +1,115 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><style>body { visibility: hidden; }</style><meta charset="utf-8"><meta http-equiv="x-ua-compatible" content="IE=edge"><title>Legend Points | ED4E - Earthdawn 4th Edition Foundry VTT System - v0.2.0</title><meta name="description" content="Documentation for ED4E - Earthdawn 4th Edition Foundry VTT System"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="../assets/style.css"><link rel="stylesheet" href="../assets/highlight.css"><link rel="stylesheet" href="../assets/custom.css"><script defer="" src="../assets/main.js"></script><script async="" src="../assets/icons.js" id="tsd-icons-script"></script><script async="" src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script><link rel="stylesheet" href="../assets/dmt/dmt-components.css" layer="theme-dmt"><link rel="stylesheet" href="../assets/dmt/dmt-theme.css" layer="theme-dmt"><script src="../assets/dmt/dmt-components.js" type="module"></script><link rel="icon" href="https://gitlab.com/earthdawn/progressive-web-app/-/blob/87ad8efbacdf5984ca83f13326eaf8cf97eba063/favicon.ico"><noscript><style>body { visibility: visible; }</style></noscript></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";</script><div class="overlay"></div>
+<main><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container" id="dmt-toolbar"><a href="../index.html" class="title">ED4E - Earthdawn 4th Edition Foundry VTT System - v0.2.0</a><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header><div class="container container-main" tabindex="-1"><div class="col-content"><div class="tsd-page-title"><ul class="tsd-breadcrumb" aria-label="Breadcrumb"><li><a href="Table_of_Contents.html">Table of Contents</a></li><li><a href="" aria-current="page">Legend Points</a></li></ul></div><div class="tsd-panel tsd-typography">
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legend Points</title>
+  <link rel="stylesheet" href="../wiki.css">
+
+
+  <main>
+    <section class="doc-card">
+      <div class="doc-topbar">
+        <a class="doc-home-link" href="Table_of_Contents.html">Back to Table of Contents</a>
+      </div>
+      <article class="doc-content">
+<h2>Basics</h2>
+<div>
+    <div>
+        <p>Legend Points (LP) are a central element of the Earthdawn system and allow characters to improve their abilities.</p>
+        <p>The Earthdawn system for Foundry VTT provides extensive options for managing Legend Points.</p>
+    </div>
+    <h2>Character Legend Points</h2>
+    <div>
+        <p>A character's Legend Points can be viewed in the "Legend" tab. It shows an overview of received,
+            spent, and available Legend Points and their status.</p>
+        <div>
+            <img src="../media/legend-point-history-button.png" alt="Legend Point History Button">
+        </div>
+    </div>
+    <p> </p>
+    <h2>Earning Legend Points and History</h2>
+    <div>
+        <p>To build their legend, characters need Legend Points. They can be added in two ways: manually through the Legend Point overview
+            or through the <code>/lp</code> chat command.</p>
+        <h3>Legend Point Overview</h3>
+        <div>
+            <p>The Legend Point overview shows all relevant information about a character's Legend Points. Players can add new
+                Legend Points here and view, edit, or undo all transactions.</p>
+            <h4>Received Legend Points</h4>
+            <div>
+                <p>This view shows a list of all received Legend Points.</p>
+                <p>Newly earned Legend Points can be added with the "Add Legend Point" button. Every entry also includes
+                    a date and description in addition to the points.</p>
+                <img src="../media/legend-point-history-earned.png" width="663" height="291">
+            </div>
+            <h4>Legend Point Spending</h4>
+            <div>
+                <p>All Legend Point spending is shown in this view. Entries can be sorted by date, by name, or by
+                    type (attributes, talents, spells, etc.).</p>
+                <img src="../media/legend-point-history-spent.png" alt="Legend Point History Spent">
+            </div>
+            <h4>Chronological View &amp; Reset</h4>
+            <div>
+                <p>The last view combines the first two (received and spent Legend Points). It is strictly chronological,
+                    but each entry has an arrow icon. Clicking it deletes this entry and <strong>all</strong> newer entries.</p>
+                <p><strong>Warning: </strong>At the moment, this function does not reset values tied to those transactions. It only
+                    deletes the entries from this list.</p>
+                <img src="../media/legend-point-history-chronological.png" alt="Legend Point History Chronological View">
+            </div>
+        </div>
+        <section style="overflow:hidden">
+            <h3>/lp Chat Command</h3>
+            <div>
+                <div>
+                    <img style="float: right" src="../media/assign-lp-prompt.png" alt="Assign Legend Points Prompt">
+                </div>
+                <div>
+                    <p>The other way to grant a character Legend Points is the <code>/lp</code> chat command. It opens a dialog
+                        showing all characters assigned to players (via configuration or access rights).
+                        The GM can run this command, select characters, and add Legend Points with a description.
+                        When the dialog is confirmed, each selected character receives a Legend Point entry with the given description.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <p> </p>
+    <h2>Spending Legend Points</h2>
+    <div>
+        <p>Legend Points can be spent on the following items:</p>
+        <ul>
+            <li>Increase talent, skill, and devotion power ranks</li>
+            <li>Increase attributes</li>
+            <li>Learn spells</li>
+            <li>Learn knacks (talent knacks, karma knacks, special maneuvers, and spell knacks)</li>
+            <li>Permanent threads to patterns</li>
+        </ul>
+        <p>The cost of each improvement varies by type according to the values in the Player's Guide. Key parameters,
+            such as degree for abilities (Novice, Journeyman, Warden, or Master), always have a matching option in the item itself.</p>
+        <p>Abilities and attributes can be increased in Edit mode using the "arrow-up" button in the relevant list.</p>
+        <p>Each time this button is pressed, a dialog appears with cost and requirement details.</p>
+        <p>Knacks and spells are dragged and dropped onto the character to trigger their learning function.</p>
+        <p>Here as well, a dialog appears each time to explain the relevant conditions and options.</p>
+        <p>Permanent threads trigger the learning function when you activate the next thread rank.</p>
+        <img src="../media/increase-talent.png" alt="Increase Talent">
+    </div>
+    <p> </p>
+    <h2>Disciplines, Paths, and Questors (Vocations)</h2>
+    <div>
+        <p>Besides the options above for spending Legend Points, there are additional ways to improve a character.
+            Raising Discipline circle, learning new Disciplines, joining a Path, or binding to a Passion as a Questor
+            does not require Legend Points. For the associated talents, devotion powers, and knacks, the same rules as above apply.</p>
+        <p>All these vocations can be increased in Edit mode. Similar to abilities, a dialog appears here as well,
+            informing you about conditions and options.</p>
+        <img src="../media/increase-vocation.png" style="display: block; width: auto; max-width: 100%; margin: 0 auto; clear: both" alt="Increase Vocation">
+        <p>Paths and Questors have an ability directly tied to the vocation that must have at least a rank equal to the new rank
+            of the Path or Questor. If this is not the case, the system offers the option to increase that ability immediately.</p>
+        <p>If a Discipline is increased, and it has a Thread Weaving talent used for spellcasting, another option appears to learn a new spell.</p>
+    </div>
+</div>
+      </article>
+    </section>
+  </main>
+
+</div></div><div class="col-sidebar" tabindex="-1"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg><h3>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked=""><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div></div><div class="site-menu" tabindex="-1"><nav class="tsd-navigation"><a href="../modules.html">ED4E - Earthdawn 4th Edition Foundry VTT System - v0.2.0</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"></ul></nav></div></div></div></main></body></html>

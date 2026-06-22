@@ -1,0 +1,88 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><style>body { visibility: hidden; }</style><meta charset="utf-8"><meta http-equiv="x-ua-compatible" content="IE=edge"><title>Charakterbogen | ED4E - Earthdawn 4th Edition Foundry VTT System - v0.2.0</title><meta name="description" content="Documentation for ED4E - Earthdawn 4th Edition Foundry VTT System"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="../assets/style.css"><link rel="stylesheet" href="../assets/highlight.css"><link rel="stylesheet" href="../assets/custom.css"><script defer="" src="../assets/main.js"></script><script async="" src="../assets/icons.js" id="tsd-icons-script"></script><script async="" src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script><link rel="stylesheet" href="../assets/dmt/dmt-components.css" layer="theme-dmt"><link rel="stylesheet" href="../assets/dmt/dmt-theme.css" layer="theme-dmt"><script src="../assets/dmt/dmt-components.js" type="module"></script><link rel="icon" href="https://gitlab.com/earthdawn/progressive-web-app/-/blob/87ad8efbacdf5984ca83f13326eaf8cf97eba063/favicon.ico"><noscript><style>body { visibility: visible; }</style></noscript></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";</script><div class="overlay"></div>
+<main><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container" id="dmt-toolbar"><a href="../index.html" class="title">ED4E - Earthdawn 4th Edition Foundry VTT System - v0.2.0</a><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header><div class="container container-main" tabindex="-1"><div class="col-content"><div class="tsd-page-title"><ul class="tsd-breadcrumb" aria-label="Breadcrumb"></ul></div><div class="tsd-panel tsd-typography">
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Charakterbogen</title>
+  <link rel="stylesheet" href="../wiki.css">
+
+
+  <main>
+    <section class="doc-card">
+      <div class="doc-topbar">
+        <a class="doc-home-link" href="Inhaltsverzeichnis.html">Zurück zum Inhaltsverzeichnis</a>
+      </div>
+      <article class="doc-content">
+<h1>Charakterbogen</h1>
+<h2>Bearbeitungsmodus</h2>
+<div>
+  <p>In der linken oberen Ecke des Fensters gibt es einen kleinen Schiebeknopf. Mit diesem kannst du zwischen Spiel- und Bearbeitungsmodus wechseln.</p>
+  <p>Dieser Modus schaltet viele Bearbeitungsfunktionen frei oder schützt während des Spiels vor versehentlichen Klicks und störenden Dialogen.</p>
+</div>
+<h2>Charakteristiken</h2>
+<div>
+  <p>Im oberen Bereich des Charakterbogens sind die Charakteristiken: Verteidigungs-, Rüstungs-, Bewegungs- und Gesundheitswerte. Die meisten dieser Werte sind nicht direkt manuell änderbar. Ausnahmen sind die Schadenswerte und die Anzahl an Wunden. Die können in ihrem entsprechenden Feld einfach geändert werden. Alle anderen Werte sind automatisch berechnet. Die Charakteristiken basieren auf den Berechnungen aus dem Spielerhandbuch und hängen von den Attributwerten der Spielfigur ab.</p>
+  <p>Um sie zu ändern, braucht es Effekte. Neben den unveränderbaren Werten gibt es die Symbole ➕ und ➖ neben den Feldern. Damit wird automatisch ein Effekt (Active Effect) erstellt, um Werte temporär anzupassen. Ein einfacher Klick erhöht oder reduziert den Wert um 1. Shift+Klick erhöht, beziehungsweise senkt den Wert um jeweils 5.</p>
+</div>
+<h2>Navigation und Tabs</h2>
+<div>
+  <p>Im unteren Hauptteil des Charakterbogens sind verschiedene Tabs. Mit einem Klick auf ihren Namen kannst du den entsprechenden Tab öffnen.</p>
+  <p>Hier ist eine Auflistung der verschiedenen Tabs und was in ihnen zu finden ist.</p>
+  <h3>Allgemein</h3>
+  <div>
+    <p><strong>Attribute:</strong> Zeigen den Wert, die daraus resultierende Stufe und die Anzahl der Steigerungen an. Mit einem Klick auf das Würfelsymbol kannst du Attributs-, Halbmagie- oder Fähigkeitstests würfeln. Im Spielmodus gibt es wieder die Symbole ➕ und ➖ neben zur temporären Anpassung der Werte. Im Bearbeitungsmodus wird stattdessen ein Pfeil angezeigt, der eine permanente Steigerung des Attributs auslöst.</p>
+    <p><strong>Ressourcen:</strong></p>
+    <ul>
+      <li><strong>Erholung:</strong> Maximale und aktuelle Anzahl an Erholungsproben sowie die Erholungsstufe. Hier können diverse Erholungsproben ausgelöst werden.</li>
+      <li><strong>Karma:</strong> Maximale und aktuelle Anzahl an Karma-Punkten sowie die Karmastufe. Hier kann auch das Karmaritual ausgelöst werden.</li>
+      <li><strong>Weihekraft:</strong> Maximale und aktuelle Anzahl an Weihekraft-Punkten sowie die Weihepunktstufe.</li>
+    </ul>
+    <p>Die aktuellen Werte der Ressourcen können manuell angepasst werden. Maximum und Stufe können nur durch Effekte verändert werden.</p>
+  </div>
+  <h3>Fähigkeiten</h3>
+  <div>
+    <p>Dieser Abschnitt beschreibt die Optionen für Talente, Fertigkeiten und Weihekräfte. Jede Fähigkeit, die einen Test hat, verfügt über ein Würfelsymbol. Damit kann die entsprechende Stufe gewürfelt werden. Ein Klick auf den Namen der Fähigkeit öffnet eine kurze Beschreibung. Danach werden noch zusätzliche Werte wie Aktion, Attribut, Stufe, Rang und Überanstrengung angezeigt.</p>
+    <p>Zu jeder Fähigkeit gibt es Buttons für Steigerung, Chat-Anzeige, Bearbeiten und Löschen. Einige dieser Funktionen sind nur im Bearbeitungsmodus verfügbar.</p>
+    <h4>Talente</h4>
+    <p>Im Talent-Tab können Talente nach Kategorien oder in einer gemeinsamen Liste angezeigt werden (einstellbar in den Systemeinstellungen). Kniffe wie Talentkniffe, Karmakniffe und Spezialmanöver werden unter dem zugehörigen Talent angezeigt.</p>
+    <h4>Fertigkeiten</h4>
+    <p>Im Fertigkeiten-Tab können Fertigkeiten nach Kategorien wie Kunsthandwerke, Sprachfertigkeiten, allgemeine Fertigkeiten und Wissensfertigkeiten gruppiert werden.</p>
+  </div>
+  <h3>Zauber</h3>
+  <div>
+    <p>Im Tab "Zauber" werden alle zauberrelevanten Informationen zusammengefasst. Die Zauber sind standardmäßig nach Kreisen gruppiert, können aber in den Systemeinstellungen in einer Liste ohne Trennung angezeigt werden. Ein eigener Navigator gruppiert die Zauber nach Schulen (z. B. Elementarismus, Illusionismus) und bietet einen separaten Tab für Matrizen.</p>
+  </div>
+  <h3>Ausrüstung</h3>
+  <div>
+    <p>Im Tab "Ausrüstung" wird alles aufgelistet, was ein Character besitzt, einschließlich Ausrüstung, Rüstung, Schilde und Waffen. Zusätzlich werden Vermögen und Belastung angezeigt. Die Belastung kann in den Spieleinstellungen deaktiviert werden.</p>
+  </div>
+  <h3>Legende</h3>
+  <div>
+    <p>Der Tab "Legende" enthält:</p>
+    <ul>
+      <li>Namensgeber und einen Editor für Notizen.</li>
+      <li>Disziplinen, Pfade und Questoren mit Rängen und Kreisen sowie die Möglichkeit, einen Aufstieg zu starten.</li>
+      <li>Sprachen des Charakters und die Option, weitere Sprachen hinzuzufügen.</li>
+      <li>Informationen zu den Legendenpunkten (Gesamt, Aktuell, Ausgegeben) und einen Button zum Verlauf der Legendpunkte.</li>
+    </ul>
+    <h3>Verknüpfungen</h3>
+    <p>Der Tab "Ansehen" enhält zurzeit nur die gewobenen Fäden des Charakters und die eigene Wahre Struktur. Die eigene Struktur wird nur angezeigt, wenn sie explizit hinzugefügt wird.</p>
+  </div>
+  <p></p>
+  <h3>Besonderheiten</h3>
+  <div>
+    <p>Der Tab "Besonderheiten" ist in drei Bereiche unterteilt:</p>
+    <ul>
+      <li><strong>Statuseffekte:</strong> Decken Situationsmodifikatoren aus dem Spielerhandbuch ab und erzeugen temporäre Effekte.</li>
+      <li><strong>Temporäre Effekte:</strong> Effekte mit einer begrenzten Dauer.</li>
+      <li><strong>Permanente Effekte:</strong> Effekte mit der Einstellung "Permanent".</li>
+    </ul>
+    <p>Jeder Effekt wird mit einem Bild, Namen, einer Checkbox (aktiv/inaktiv) und einem Kontrollmenü angezeigt. Das Kontrollmenü enthält Buttons für "Zeige im Chat", "Bearbeiten" und "Löschen".</p>
+  </div>
+</div>
+      </article>
+    </section>
+  </main>
+
+</div></div><div class="col-sidebar" tabindex="-1"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg><h3>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked=""><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div></div><div class="site-menu" tabindex="-1"><nav class="tsd-navigation"><a href="../modules.html">ED4E - Earthdawn 4th Edition Foundry VTT System - v0.2.0</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"></ul></nav></div></div></div></main></body></html>

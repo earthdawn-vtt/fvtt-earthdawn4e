@@ -1,0 +1,150 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><style>body { visibility: hidden; }</style><meta charset="utf-8"><meta http-equiv="x-ua-compatible" content="IE=edge"><title>Threads and Patterns | ED4E - Earthdawn 4th Edition Foundry VTT System - v0.2.0</title><meta name="description" content="Documentation for ED4E - Earthdawn 4th Edition Foundry VTT System"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="../assets/style.css"><link rel="stylesheet" href="../assets/highlight.css"><link rel="stylesheet" href="../assets/custom.css"><script defer="" src="../assets/main.js"></script><script async="" src="../assets/icons.js" id="tsd-icons-script"></script><script async="" src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script><link rel="stylesheet" href="../assets/dmt/dmt-components.css" layer="theme-dmt"><link rel="stylesheet" href="../assets/dmt/dmt-theme.css" layer="theme-dmt"><script src="../assets/dmt/dmt-components.js" type="module"></script><link rel="icon" href="https://gitlab.com/earthdawn/progressive-web-app/-/blob/87ad8efbacdf5984ca83f13326eaf8cf97eba063/favicon.ico"><noscript><style>body { visibility: visible; }</style></noscript></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";</script><div class="overlay"></div>
+<main><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container" id="dmt-toolbar"><a href="../index.html" class="title">ED4E - Earthdawn 4th Edition Foundry VTT System - v0.2.0</a><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header><div class="container container-main" tabindex="-1"><div class="col-content"><div class="tsd-page-title"><ul class="tsd-breadcrumb" aria-label="Breadcrumb"><li><a href="Table_of_Contents.html">Table of Contents</a></li><li><a href="" aria-current="page">Threads and Patterns</a></li></ul></div><div class="tsd-panel tsd-typography">
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Threads and Patterns</title>
+  <link rel="stylesheet" href="../wiki.css">
+
+
+  <main>
+    <section class="doc-card">
+      <div class="doc-topbar">
+        <a class="doc-home-link" href="Table_of_Contents.html">Back to Table of Contents</a>
+      </div>
+      <article class="doc-content">
+<h1>Threads and Patterns</h1>
+<div>
+  <div>
+    <p>This chapter explains how magical threads work outside of spellcasting.</p>
+  </div>
+  <section>
+    <h2>Patterns</h2>
+    <div>
+      <p>
+        The Earthdawn system currently supports true patterns on items and actors. True patterns
+        can only be created in Edit mode. For actors, you can create a true magical
+        pattern in the "Connections" tab. For items (equipment, armor, shields, and weapons), add it via the
+        "True Pattern" tab.
+      </p>
+      <p>
+        True patterns on items are hidden from players by default. The GM can choose
+        to make the pattern visible to players. Use the small "eye icon"
+        <i class="fa-light fa-xs fa-eye-slash" inert=""></i> on the true pattern to toggle visibility.
+        For all additional functions, the true pattern must be visible to players.
+      </p>
+    </div>
+    <h3>Core Functions of True Patterns</h3>
+    <div>
+      <p>
+        True patterns have three core functions: Item History, Research, and Thread Weaving. There is
+        one action button for each in the corresponding true pattern while in Play mode. These functions are
+        currently supported automatically only if the actor itself has the required abilities (Item History,
+        Research, and Thread Weaving).
+      </p>
+      <p>For true patterns of actors, only Thread Weaving is currently supported.</p>
+      <h4>Item History</h4>
+      <div>
+        <p>
+          The Item History function allows players with the Item History talent to investigate an item's
+          pattern. For this, the corresponding talent must have the <code>ed-id</code>
+          <em lang="en">item-history</em>.
+        </p>
+        <p>
+          On a successful test, the number of ranks (as tabs) becomes visible in the item. Each success in
+          the Item History test reveals one rank of the true pattern.
+        </p>
+        <p>
+          Similar to the true pattern itself, part of each rank remains hidden from players
+          (see Research and Thread Weaving).
+        </p>
+      </div>
+      <h4>Research</h4>
+      <div>
+        <p>Not implemented yet.</p>
+      </div>
+      <h4>Thread Weaving</h4>
+      <div>
+        <p>
+          The Thread Weaving function allows players to weave a thread to the true pattern. On a
+          successful test, an entry is created in the "Links" tab with a link to the thread's origin.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2>Thread Items</h2>
+    <div>
+      <p>
+        Thread items are one possible form of pattern items. They include the usual values of a
+        pattern item:
+      </p>
+      <ul>
+        <li>Mystic Defense</li>
+        <li>Maximum number of threads</li>
+        <li>Step</li>
+        <li>Link to woven threads</li>
+      </ul>
+      <p>Ranks have the following options:</p>
+      <ul>
+        <li>Key Knowledge question</li>
+        <li>Key Knowledge answer</li>
+        <li>Deed</li>
+        <li>Effect description</li>
+        <li>Earthdawn Active Effect link</li>
+        <li>Ability link</li>
+      </ul>
+      <p>
+        If the Item History test was successful, additional ranks are unlocked accordingly.
+        Players first see only the question for the required key knowledge.
+      </p>
+      <p>
+        Unlocking the answer and effect, the deed, and linked objects is only possible for the GM.
+      </p>
+      <p>
+        <strong>Note:</strong> Like many other functions in the Earthdawn Foundry system, this feature relies heavily
+        on "Earthdawn Active Effects." Automatic assignment of effects from true patterns to
+        actors is not implemented yet. Therefore, GM and players currently need to create effects manually or
+        activate them in the true pattern.
+      </p>
+    </div>
+    <h2>Increasing Thread Ranks</h2>
+    <div>
+      <p>
+        After a thread has been woven to an item initially, thread ranks can be increased directly on the actor in Edit mode
+        (see <a href="Advancements.html">Advancements</a>).
+      </p>
+    </div>
+  </section>
+  <section>
+    <h2>Group Patterns</h2>
+    <div>
+      <p>
+        A group pattern requires an item that serves as a focus for actor threads. As GM, create
+        an item in the world. Then grant all players "Owner" rights on that item,
+        so they can weave threads to it. The item itself stays in the world,
+        but it can also be added to each character.
+      </p>
+      <p>
+        If the item remains in the world, all characters can weave threads to the same item.
+        This creates a clear overview and keeps the group connection visible.
+      </p>
+      <p>
+        The item should have at least "number of players * 5" thread capacity. This is required so each
+        actor can weave 5 threads to the group's true pattern (according to the rulebook).
+      </p>
+      <p>
+        Woven threads can be found in the "Links" tab and can also be improved there.
+      </p>
+      <p>
+        Similar to thread items, players and GM must manage the effects themselves here as well.
+      </p>
+    </div>
+  </section>
+</div>
+      </article>
+    </section>
+  </main>
+
+</div></div><div class="col-sidebar" tabindex="-1"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg><h3>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked=""><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div></div><div class="site-menu" tabindex="-1"><nav class="tsd-navigation"><a href="../modules.html">ED4E - Earthdawn 4th Edition Foundry VTT System - v0.2.0</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"></ul></nav></div></div></div></main></body></html>
