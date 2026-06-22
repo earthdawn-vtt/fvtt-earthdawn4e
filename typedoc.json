@@ -15,7 +15,7 @@
   "outputs": [
     {
       "name": "html",
-      "path": "./docs"
+      "path": "./_site"
     }
   ],
 

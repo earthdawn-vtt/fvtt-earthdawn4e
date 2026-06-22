@@ -8,7 +8,7 @@ on:
     branches:
       - "main"
     paths:
-      - "documentation/docs/german/**"
+      - "documentation/**"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -31,10 +31,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Prepare documentation
+      - name: Build documentation
         run: |
-          mkdir -p _site
-          cp -r "documentation/docs/." _site/
+          npm run build:docs
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
