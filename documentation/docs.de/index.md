@@ -14,7 +14,7 @@ category: Deutsch
   <main>
     <section class="card">
       <h1>Inhaltsverzeichnis</h1>
-      <p class="doc-intro">Diese Seite verlinkt alle weiteren HTML-Dokumente im Ordner der deutschen Wiki-Dokumentation.</p>
+      <p class="doc-intro">Diese Seite verlinkt alle weiteren Dokumente der deutschen Dokumentation.</p>
       <ul class="doc-links">
         <li>
           <a href="release-notes.md">

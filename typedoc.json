@@ -15,7 +15,7 @@
   "outputs": [
     {
       "name": "html",
-      "path": "./documentation/dist"
+      "path": "./docs"
     }
   ],
 

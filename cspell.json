@@ -53,7 +53,8 @@
     "system.json",
     "module/config/migrations.mjs",
     "module/config/document-data.mjs",
-    "documentation/**"
+    "documentation/**",
+    "docs/**"
   ],
   "useGitignore":          true
 }
