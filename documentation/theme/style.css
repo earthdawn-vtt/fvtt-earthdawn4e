@@ -15,6 +15,11 @@ section.dmt-navigation-bar > button:hover {
     background: var(--dmt-focus-visible-color);
 }
 
+section.dmt-document-index {
+    border: unset;
+    padding: 0.5rem;
+}
+
 div.dmt-toolbar-icon > button {
     border: unset;
 }

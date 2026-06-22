@@ -44,11 +44,17 @@
   ],
   "theme": "default-modern",
   "dmtFavicon": "https://gitlab.com/earthdawn/progressive-web-app/-/blob/87ad8efbacdf5984ca83f13326eaf8cf97eba063/favicon.ico",
-  "dmtLinksIcon": [],
+  "dmtLinksIcon": [
+    {
+      "icon": "assets/logos/kofi_symbol.png",
+      "title": "Ko-fi",
+      "url": "https://ko-fi.com/qrizzl"
+    }
+  ],
   "dmtLinksService": {
-    "discord": "https://discord.com/channels/170995199584108546/872191259471671346",
-    "github": "https://github.com/earthdawn-vtt/fvtt-earthdawn4e",
-    "ko-fi": "https://ko-fi.com/qrizzl"
+    "Discord": "https://discord.com/channels/170995199584108546/872191259471671346",
+    "GitHub": "https://github.com/earthdawn-vtt/fvtt-earthdawn4e",
+    "Ko-fi": "https://ko-fi.com/qrizzl"
   },
   "dmtNavigation": {
     "moduleIcon": false,
