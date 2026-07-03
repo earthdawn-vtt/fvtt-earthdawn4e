@@ -1,8 +1,5 @@
 name: Quench Report
 
-env:
-  NODE_VERSION: 24
-
 on:
   pull_request:
     branches:
