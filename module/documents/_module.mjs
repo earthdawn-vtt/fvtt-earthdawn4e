@@ -1,3 +1,5 @@
+/** @module documents */
+
 // Document Classes
 export {default as ActorEd} from "./actor.mjs";
 export {default as ChatMessageEd} from "./chat.mjs";

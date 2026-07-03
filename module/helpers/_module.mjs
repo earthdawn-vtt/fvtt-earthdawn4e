@@ -1,3 +1,5 @@
+/** @module helpers */
+
 export * as document from "./document.mjs";
 export * as earthdawn from "./earthdawn.mjs";
 export * as enrichers from "./enrichers.mjs";

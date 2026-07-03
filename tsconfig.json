@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false,
+    "skipLibCheck": true,
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "bundler",
+  },
+  "include": [
+    "earthdawn4e.mjs",
+    "./module/**/*.mjs",
+    "./tools/**/*.mjs"
+  ],
+  "exclude": ["node_modules"]
+}

@@ -1,22 +1,27 @@
+---
+title: Advancements
+category: English
+group: Legend
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Advancements</title>
-  <link rel="stylesheet" href="wiki.css">
+  <link rel="stylesheet" href="../wiki.css">
 </head>
 <body>
   <main>
     <section class="doc-card">
       <div class="doc-topbar">
-        <a class="doc-home-link" href="Inhaltsverzeichnis.html">Back to Table of Contents</a>
+        <a class="doc-home-link" href="../index.md">Back to Table of Contents</a>
       </div>
       <article class="doc-content">
 <h1>Advancements</h1>
 <div>
   <p>
-    As already mentioned in the chapter <a href="Legendenpunkte.html" target="_blank">Legend Points</a>, many
+    As already mentioned in the chapter <a href="../legend/legend-points.md" target="_blank">Legend Points</a>, many
     character abilities can be learned or improved by spending Legend Points (LP). In addition,
     there are Discipline, Path, and Questor advancements that do not require Legend Points.
   </p>
@@ -137,7 +142,7 @@
       </p>
       <p>
         Along with the new Discipline, all Discipline talents from circle one are added. Origin Discipline and the circle at which
-        each talent was learned are automatically set for all those talents.
+        each talent was learned is automatically set for all those talents.
       </p>
       <p>When learned, Discipline order is automatically defined (second, third, fourth Discipline, etc.), based on which final Legend Point costs for
         talent improvements are calculated.
@@ -186,7 +191,7 @@
   <div>
     <p>
       Threads to true patterns, whether for a thread item, another actor's true magical pattern, or
-      a group pattern, are increased in Edit mode in the "Links" tab. The "arrow-up button"
+      a group pattern are increased in Edit mode in the "Links" tab. The "arrow-up button"
       triggers the increase process.
     </p>
   </div>

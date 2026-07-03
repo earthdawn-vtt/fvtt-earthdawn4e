@@ -1,20 +1,25 @@
-﻿<!DOCTYPE html>
+﻿---
+title: Charaktererschaffung
+category: Deutsch
+group: Charakter
+---
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Character Generation</title>
-  <link rel="stylesheet" href="wiki.css">
+  <link rel="stylesheet" href="../wiki.css">
 </head>
 <body>
   <main>
     <section class="doc-card">
       <div class="doc-topbar">
-        <a class="doc-home-link" href="Inhaltsverzeichnis.html">Zurück zum Inhaltsverzeichnis</a>
+        <a class="doc-home-link" href="../index.md">Zurück zum Inhaltsverzeichnis</a>
       </div>
       <article class="doc-content">
 <div>
-    <p>Das Earthdawn System für Foundry VTT bietet eine umfangreiche Charaktererschaffung um Spielenden einen schnellen Start ins Spiel zu ermöglichen.</p>
+    <p>Das Earthdawn System für Foundry VTT bietet eine umfangreiche Charaktererschaffung, um Spielenden einen schnellen Start ins Spiel zu ermöglichen.</p>
     <p>Die Charaktererschaffung ist in mehrere Schritte aufgeteilt:</p>
     <ol>
         <li>@UUID[JournalEntry.cZBJj7ZA2IF8vepy.JournalEntryPage.0XFXQ0pS0kkZlIi6#namensgeber]{Auswahl der Namensgeber}</li>
@@ -35,11 +40,11 @@
             setze einen Haken bei <em lang="en">Create Actor</em>. Wenn die Spielleitung diese Option nicht für Spielende beibehalten möchte, sollte die Konfiguration 
             nach der Charaktererschaffung wieder zurückgesetzt werden. <br><strong>Vorsicht: Dieses Recht erlaubt es den Spielenden beliebig viele Akteure zu erstellen 
                 und besonders in öffentlichen Welten darf diese Berechtigung nicht leichtfertig aktiviert bleiben.</strong></p>
-        <img src="../../../assets/manual/german/char-gen-permission-setting.png">
+        <img src="../../assets/manual/german/char-gen-permission-setting.png">
         <p>Die nächste wichtige Voraussetzung ist, dass die Spielenden Zugriff (mindestens "Beobachter" Zugriff) auf die entsprechenden Kompendium Pakete oder Items in 
             der Welt haben. Damit ist gemeint, dass die automatische Charaktererschaffung nur funktioniert, wenn die Spielenden Zugriff auf die Items haben, die dafür 
             benötigt werden (z.B. Namensgeber, Disziplinen, Talente, Fertigkeiten, Zauber etc.).</p>
-        <img src="../../../assets/manual/german/char-gen-compendium-permissions.png">
+        <img src="../../assets/manual/german/char-gen-compendium-permissions.png">
         <p>Wenn diese beiden Voraussetzungen erfüllt sind, können die Spielenden die Charaktererschaffung entweder über den Menüpunkt <em>Akteur erstellen</em> im 
             Akteur Verzeichnis, oder über den Chat Befehl <code>/char</code> starten.</p>
     </div>
@@ -59,7 +64,7 @@
         <h3>Maximaler Zauberkreis</h3>
         <p>Diese Konfiguration legt fest, welche Zauber bei der Charaktererschaffung zur Verfügung stehen. Hier kann der Kreis festgelegt werden. Standardmäßig ist der 
             maximale Kreis auf 2 festgelegt.</p>
-        <img src="../../../assets/manual/german/char-gen-system-settings.png" style="display: block; width: auto; max-width: 100%; margin: 0 auto; clear: both">
+        <img src="../../assets/manual/german/char-gen-system-settings.png" style="display: block; width: auto; max-width: 100%; margin: 0 auto; clear: both">
     </div>
     <p> </p>
 

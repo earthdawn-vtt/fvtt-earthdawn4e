@@ -1,3 +1,5 @@
+/** @module data/actor */
+
 import CreatureData from "./creature.mjs";
 import DragonData from "./dragon.mjs";
 import GroupData from "./group.mjs";

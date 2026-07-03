@@ -1,3 +1,5 @@
+/** @module data/common */
+
 import TypedEntryData from "./typed-entry-data.mjs";
 import {
   AreaMetricData,

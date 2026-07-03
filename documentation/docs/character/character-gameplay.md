@@ -1,16 +1,21 @@
+---
+title: Character Gameplay
+category: English
+group: Character
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Character Gameplay</title>
-  <link rel="stylesheet" href="wiki.css">
+  <link rel="stylesheet" href="../wiki.css">
 </head>
 <body>
   <main>
     <section class="doc-card">
       <div class="doc-topbar">
-        <a class="doc-home-link" href="Inhaltsverzeichnis.html">Back to Table of Contents</a>
+        <a class="doc-home-link" href="../index.md">Back to Table of Contents</a>
       </div>
       <article class="doc-content">
 <p>The following section describes the individual functions of the character sheet in detail.</p>
@@ -32,10 +37,10 @@
             <p>A normal click increases or decreases by 1, and Shift+Click increases or decreases by 5.</p>
             <p>Dice Button</p>
             <p>Many abilities and items can be used to trigger an action roll. Items that can trigger an action show a die icon instead of the image when you hover over them.</p>
-            <img src="../../../assets/manual/german/actor-sheet-talent-tab-roll.png">
+            <img src="../../../assets/manual/german/actor-sheet-talent-tab-roll.png" alt="Dice Button to Trigger Action Roll">
             <h4>Blood Drop Button</h4>
             <p>Some abilities do not trigger an action roll but cause strain damage when used. Such abilities show a blood drop icon to trigger the action and apply damage.</p>
-            <img src="../../../assets/manual/german/actor-sheet-talent-tab-strain.png">
+            <img src="../../../assets/manual/german/actor-sheet-talent-tab-strain.png" alt="Blood Drop Button to Trigger Strain Damage">
         </div>
         <h4>Spell Cards</h4>
         <div>
@@ -45,7 +50,7 @@
         </div>
         <p>Add to Favorites</p>
         <div>
-            <p>On the right side of the character sheet there is a favorites area. Players can add frequently used abilities there. A context menu, opened by right-clicking an item, allows adding the following types to favorites:</p>
+            <p>On the right side of the character sheet, there is a "Favorites" area. Players can add frequently used abilities there. A context menu, opened by right-clicking an item, allows adding the following types to favorites:</p>
             <ul>
                 <li>Talents</li>
                 <li>Skills</li>
@@ -54,7 +59,7 @@
                 <li>Powers</li>
                 <li>Equipment (usable equipment only)</li>
             </ul>
-            <img src="../../../assets/manual/german/actor-sheet-talent-tab-favorite.png">
+            <img src="../../../assets/manual/german/actor-sheet-talent-tab-favorite.png" alt="Context Menu to add to Favorites">
             <p></p>
             <h4>Action Buttons</h4>
             <p>There are many action buttons that trigger specific actions. Here are some examples:</p>
@@ -102,7 +107,7 @@
         </div>
         <h4>Equipment Status</h4>
         <div>
-            <p>All equipment items can have different statuses (for example "Owned", "Worn", "Equipped", "Off-Hand", "Two-Handed"). Clicking the status icon cycles to the next status.</p>
+            <p>All equipment items can have different statuses (for example, "Owned", "Worn", "Equipped", "Off-Hand", "Two-Handed"). Clicking the status icon cycles to the next status.</p>
         </div>
     </div>
 </div>

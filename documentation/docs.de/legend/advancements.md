@@ -1,22 +1,27 @@
-﻿<!DOCTYPE html>
+﻿---
+title: Verbesserungen
+category: Deutsch
+group: Legende
+---
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Verbesserungen</title>
-  <link rel="stylesheet" href="wiki.css">
+  <link rel="stylesheet" href="../wiki.css">
 </head>
 <body>
   <main>
     <section class="doc-card">
       <div class="doc-topbar">
-        <a class="doc-home-link" href="Inhaltsverzeichnis.html">Zurück zum Inhaltsverzeichnis</a>
+        <a class="doc-home-link" href="../index.md">Zurück zum Inhaltsverzeichnis</a>
       </div>
       <article class="doc-content">
 <h1>Verbesserungen</h1>
 <div>
   <p>
-    Wie schon im Kapitel <a href="Legendenpunkte.html" target="_blank">Legendenpunkte</a> erwähnt, können viele
+    Wie schon im Kapitel <a href="./legend-points.md" target="_blank">Legendenpunkte</a> erwähnt, können viele
     Fähigkeiten der Charaktere durch den Einsatz von Legendenpunkten (LP) erlernt oder verbessert werden. Außerdem
     gibt es noch die Verbesserungen der Disziplinen, der Pfade und der Questoren, die keine Legendenpunkte benötigen.
   </p>
@@ -191,7 +196,7 @@
   <div>
     <p>
       Fäden zu wahren Strukturen, sei es ein Fadengegenstand, eine Wahre magische Struktur eines anderen Akteurs, oder
-      einer Gruppenstruktur, werden im Editier-Modus im Tab "Verknüpfungen" erhöht. Die "Pfeil-nach-oben-Schaltfläche"
+      einer Gruppenstruktur werden im Editier-Modus im Tab "Verknüpfungen" erhöht. Die "Pfeil-nach-oben-Schaltfläche"
       löst den Prozess zum Steigern aus.
     </p>
   </div>

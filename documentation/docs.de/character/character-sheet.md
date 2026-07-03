@@ -1,16 +1,21 @@
-﻿<!DOCTYPE html>
+﻿---
+title: Charakterbogen
+category: Deutsch
+group: Charakter
+---
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Charakterbogen</title>
-  <link rel="stylesheet" href="wiki.css">
+  <link rel="stylesheet" href="../wiki.css">
 </head>
 <body>
   <main>
     <section class="doc-card">
       <div class="doc-topbar">
-        <a class="doc-home-link" href="Inhaltsverzeichnis.html">Zurück zum Inhaltsverzeichnis</a>
+        <a class="doc-home-link" href="../index.md">Zurück zum Inhaltsverzeichnis</a>
       </div>
       <article class="doc-content">
 <h1>Charakterbogen</h1>
@@ -22,7 +27,7 @@
 <h2>Charakteristiken</h2>
 <div>
   <p>Im oberen Bereich des Charakterbogens sind die Charakteristiken: Verteidigungs-, Rüstungs-, Bewegungs- und Gesundheitswerte. Die meisten dieser Werte sind nicht direkt manuell änderbar. Ausnahmen sind die Schadenswerte und die Anzahl an Wunden. Die können in ihrem entsprechenden Feld einfach geändert werden. Alle anderen Werte sind automatisch berechnet. Die Charakteristiken basieren auf den Berechnungen aus dem Spielerhandbuch und hängen von den Attributwerten der Spielfigur ab.</p>
-  <p>Um sie zu ändern braucht es Effekte. Neben den unveränderbaren Werten gibt es die Symbole ➕ und ➖ neben den Feldern. Damit wird automatisch ein Effekt (Active Effect) erstellt, um Werte temporär anzupassen. Ein einfacher Klick erhöht oder reduziert den Wert um 1. Shift+Klick erhöht, beziehungsweise senkt den Wert um jeweils 5.</p>
+  <p>Um sie zu ändern, braucht es Effekte. Neben den unveränderbaren Werten gibt es die Symbole ➕ und ➖ neben den Feldern. Damit wird automatisch ein Effekt (Active Effect) erstellt, um Werte temporär anzupassen. Ein einfacher Klick erhöht oder reduziert den Wert um 1. Shift+Klick erhöht, beziehungsweise senkt den Wert um jeweils 5.</p>
 </div>
 <h2>Navigation und Tabs</h2>
 <div>
@@ -41,12 +46,12 @@
   </div>
   <h3>Fähigkeiten</h3>
   <div>
-    <p>Dieser Abschnitt beschreibt die Optionen für Talente, Fertigkeiten und Weihekräfte. Jede Fähigkeit die einen Test hat verfügt über ein Würfelsymbol. Damit kann die entsprechende Stufe gewürfelt werden. Ein Klick auf den Namen der Fähigkeit öffnet eine kurze Beschreibung. Danach werden noch zusätzliche Werte wie Aktion, Attribut, Stufe, Rang und Überanstrengung angezeigt.</p>
+    <p>Dieser Abschnitt beschreibt die Optionen für Talente, Fertigkeiten und Weihekräfte. Jede Fähigkeit, die einen Test hat, verfügt über ein Würfelsymbol. Damit kann die entsprechende Stufe gewürfelt werden. Ein Klick auf den Namen der Fähigkeit öffnet eine kurze Beschreibung. Danach werden noch zusätzliche Werte wie Aktion, Attribut, Stufe, Rang und Überanstrengung angezeigt.</p>
     <p>Zu jeder Fähigkeit gibt es Buttons für Steigerung, Chat-Anzeige, Bearbeiten und Löschen. Einige dieser Funktionen sind nur im Bearbeitungsmodus verfügbar.</p>
     <h4>Talente</h4>
     <p>Im Talent-Tab können Talente nach Kategorien oder in einer gemeinsamen Liste angezeigt werden (einstellbar in den Systemeinstellungen). Kniffe wie Talentkniffe, Karmakniffe und Spezialmanöver werden unter dem zugehörigen Talent angezeigt.</p>
     <h4>Fertigkeiten</h4>
-    <p>Im Fertigkeiten-Tab können Fertigkeiten nach Kategorien wie Kunsthandwerke, Sprachfertigkeiten, Allgemeine Fertigkeiten und Wissensfertigkeiten gruppiert werden.</p>
+    <p>Im Fertigkeiten-Tab können Fertigkeiten nach Kategorien wie Kunsthandwerke, Sprachfertigkeiten, allgemeine Fertigkeiten und Wissensfertigkeiten gruppiert werden.</p>
   </div>
   <h3>Zauber</h3>
   <div>
@@ -66,7 +71,7 @@
       <li>Informationen zu den Legendenpunkten (Gesamt, Aktuell, Ausgegeben) und einen Button zum Verlauf der Legendpunkte.</li>
     </ul>
     <h3>Verknüpfungen</h3>
-    <p>Der Tab "Ansehen" enhält zurzeit nur die gewobenen Fäden des Charakters und die eigenen Wahre Struktur. Die eigene Struktur wird nur angezeigt wenn sie explizit hinzugefügt wird.</p>
+    <p>Der Tab "Ansehen" enhält zurzeit nur die gewobenen Fäden des Charakters und die eigene Wahre Struktur. Die eigene Struktur wird nur angezeigt, wenn sie explizit hinzugefügt wird.</p>
   </div>
   <p></p>
   <h3>Besonderheiten</h3>

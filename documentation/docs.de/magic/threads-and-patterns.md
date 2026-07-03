@@ -1,16 +1,21 @@
-﻿<!DOCTYPE html>
+﻿---
+title: Fäden und Strukturen
+category: Deutsch
+group: Magie
+---
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Faeden und Strukturen</title>
-  <link rel="stylesheet" href="wiki.css">
+  <link rel="stylesheet" href="../wiki.css">
 </head>
 <body>
   <main>
     <section class="doc-card">
       <div class="doc-topbar">
-        <a class="doc-home-link" href="Inhaltsverzeichnis.html">Zurück zum Inhaltsverzeichnis</a>
+        <a class="doc-home-link" href="../index.md">Zurück zum Inhaltsverzeichnis</a>
       </div>
       <article class="doc-content">
 <h1>Fäden und Strukturen</h1>
@@ -66,7 +71,7 @@
       <h4>Fadenweben</h4>
       <div>
         <p>
-          Die Fadenweben-Funktion ermöglicht es Spielern einen Faden an die wahre Struktur zu weben. Bei einer
+          Die Fadenweben-Funktion ermöglicht es Spielenden, einen Faden an die wahre Struktur zu weben. Bei einer
           erfolgreichen Probe entsteht im Tab "Verknüpfungen" ein Eintrag, mit einem Link zu dem Ursprung des Fadens.
         </p>
       </div>
@@ -113,7 +118,7 @@
     <div>
       <p>
         Nachdem ein Faden initial zu einem Gegenstand gewoben wurde, können die Fäden im Editier-Modus im Akteur einfach
-        erhöht werden (siehe <a href="Verbesserungen.html">Verbesserungen</a>).
+        erhöht werden (siehe <a href="../legend/advancements.md">Verbesserungen</a>).
       </p>
     </div>
   </section>

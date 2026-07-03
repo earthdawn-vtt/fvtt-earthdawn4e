@@ -1,9 +1,6 @@
 name: Release [1] - Prepare New Release
 run-name: Bump ${{ inputs.version }} version and create release branch - Triggered by ${{ github.triggering_actor }}
 
-env:
-  NODE_VERSION: 22
-
 on:
   workflow_dispatch:
     inputs:
@@ -27,10 +24,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Set up Node.js ${{ env.NODE_VERSION }}
+      - name: Set up Node.js ${{ vars.NODE_VERSION }}
         uses: actions/setup-node@v6
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: ${{ vars.NODE_VERSION }}
           cache: 'npm'
 
       - name: Set up Git

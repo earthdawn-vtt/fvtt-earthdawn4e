@@ -161,7 +161,7 @@ export default [
       "init-declarations": "off",
 
       "jsdoc/check-tag-names": [ "warn", {
-        definedTags: [ "userFunction" ],
+        definedTags: [ "category", "order" ],
       } ],
 
       "jsdoc/require-returns-check": "warn",

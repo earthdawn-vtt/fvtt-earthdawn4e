@@ -7,7 +7,7 @@ const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
  * @property {string} name The name that will be applied to the button element's `name` attribute.
  * @property {string} cssClass The CSS class to apply to the button.
  * @property {string} action The action to perform when the button is clicked, as defined in {@link ApplicationV2#DEFAULT_OPTIONS}`.
- * @property {boolean} disabled Whether the button is disabled and add the `disabled` attribute to the button.
+ * @property {boolean} disabled - Whether the button is disabled and adds the disabled attribute to the button.
  * @property {string} icon The icon to display on the button. Must be a valid Font Awesome icon class.
  * @property {string} label The label to display on the button. Will be localized.
  */

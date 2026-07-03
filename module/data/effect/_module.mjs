@@ -1,3 +1,5 @@
+/** @module data/effect */
+
 import EarthdawnActiveEffectData from "./eae.mjs";
 import EarthdawnConditionEffectData from "./eae-condition.mjs";
 

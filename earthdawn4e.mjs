@@ -1,3 +1,12 @@
+/**
+ * Public API for the Earthdawn 4E Foundry VTT system.
+ *
+ * This module gathers the system's public submodules under the {@link ed4e}
+ * namespace-like object and also exposes it on {@link globalThis}.
+ * @module ed4e
+ */
+
+
 // Import configuration
 import ED4E from "./module/config/_module.mjs";
 
@@ -16,9 +25,29 @@ import * as utils from "./module/utils/_module.mjs";
 import * as workflows from "./module/workflows/_module.mjs";
 import registerHooks from "./module/system/hooks.mjs";
 
-/* -------------------------------------------- */
-/*  Define Module Structure                     */
-/* -------------------------------------------- */
+// region Module Structure Definition
+
+/**
+ * The public Earthdawn 4E API namespace.
+ *
+ * This object mirrors the modules exposed on `globalThis.ed4e`.
+ * @namespace ed4e
+ */
+export const ed4e = {
+  applications,
+  canvas,
+  config: ED4E,
+  data,
+  dice,
+  documents,
+  enrichers,
+  helpers,
+  hooks,
+  services,
+  tours,
+  utils,
+  workflows,
+};
 
 globalThis.ed4e = {
   applications,
@@ -36,27 +65,30 @@ globalThis.ed4e = {
   workflows,
 };
 
-/* -------------------------------------------- */
-/*  Hooks                                       */
-/* -------------------------------------------- */
+// endregion
+
+// region Hooks
 
 registerHooks();
 
+// endregion
 
-/* -------------------------------------------- */
-/*  Bundled Module Exports                      */
-/* -------------------------------------------- */
+// region Bundled Module Exports
 
 export {
   applications,
   canvas,
+  ED4E as config,
   data,
   dice,
   documents,
   enrichers,
+  helpers,
   hooks,
-  // migrations,
+  services,
+  tours,
   utils,
   workflows,
-  ED4E
 };
+
+// endregion

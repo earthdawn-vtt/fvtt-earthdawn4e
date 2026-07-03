@@ -1,3 +1,5 @@
+/** @module data */
+
 export * as abstract from "./abstract/_module.mjs";
 export * as actor from "./actor/_module.mjs";
 export * as advancement from "./advancement/_module.mjs";

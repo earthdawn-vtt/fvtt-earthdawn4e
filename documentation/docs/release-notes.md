@@ -1,3 +1,8 @@
+---
+title: Release Notes
+category: English
+group: System
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +15,7 @@
   <main>
     <section class="doc-card">
       <div class="doc-topbar">
-        <a class="doc-home-link" href="Inhaltsverzeichnis.html">Back to Table of Contents</a>
+        <a class="doc-home-link" href="./index.md">Back to Table of Contents</a>
       </div>
       <article class="doc-content">
 <h1>Release Notes</h1>

@@ -1,16 +1,21 @@
-﻿<!DOCTYPE html>
+﻿---
+title: Charakter-Gameplay
+category: Deutsch
+group: Charakter
+---
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Character Gameplay</title>
-  <link rel="stylesheet" href="wiki.css">
+  <link rel="stylesheet" href="../wiki.css">
 </head>
 <body>
   <main>
     <section class="doc-card">
       <div class="doc-topbar">
-        <a class="doc-home-link" href="Inhaltsverzeichnis.html">Zurück zum Inhaltsverzeichnis</a>
+        <a class="doc-home-link" href="../index.md">Zurück zum Inhaltsverzeichnis</a>
       </div>
       <article class="doc-content">
 <p>Im Folgenden werden die einzelnen Funktionen des Charakterbogens im Detail beschrieben.</p>
@@ -19,7 +24,7 @@
     <section style="overflow:hidden">
         <h3>Spiel- und Bearbeitungsmodus</h3>
         <div>
-            <img style="float: right" src="../../../assets/manual/german/actor-sheet-edit-mode.png">
+            <img style="float: right" src="../../../assets/manual/german/actor-sheet-edit-mode.png" alt="Spiel- und Bearbeitungsmodus">
             <p>Der bereits beschriebene Spiel- und Bearbeitungsmodus schaltet an vielen Stellen Funktionen an oder aus. Das schützt Nutzende vor unbeabsichtigten Änderungen und sorgt für eine klare Trennung, die den Charakterbogen übersichtlicher macht.</p>
         </div>
     </section>
@@ -29,13 +34,13 @@
         <h4>+/- Button</h4>
         <div>
             <p>Mit den +/- Buttons können Werte an vielen Stellen im Charakterbogen erhöht oder verringert werden. Beim Klicken wird ein permanenter Effekt (Active Effect) bearbeitet, der alle manuellen Änderungen enthält. Jeder weitere Klick erhöht oder reduziert diesen Effekt.</p>
-            <p>Ein einfacher klick erhöht oder reduziert den Wert um 1, Shift+Klick erhöht bzw. senkt den Wert um jeweils 5.</p>
+            <p>Ein einfacher Klick erhöht oder reduziert den Wert um 1, Shift+Klick erhöht bzw. senkt den Wert um jeweils 5.</p>
             <p>Würfel-Button</p>
             <p>Viele Fähigkeiten und Gegenstände können genutzt werden, um einen Aktionswurf auszulösen. Items, die eine Aktion auslösen können, zeigen ein Würfelsymbol anstelle des Bildes, wenn mit der Maus darübergefahren wird.</p>
-            <img src="../../../assets/manual/german/actor-sheet-talent-tab-roll.png">
+            <img src="../../../assets/manual/german/actor-sheet-talent-tab-roll.png" alt="Würfel-Button">
             <h4>Bluttropfen-Button</h4>
             <p>Einige Fähigkeiten lösen keinen Aktionswurf aus, verursachen jedoch Überanstrengungsschaden bei der Nutzung. Solche Fähigkeiten zeigen ein Bluttropfen-Symbol, um die Aktion auszulösen und den Schaden zuzufügen.</p>
-            <img src="../../../assets/manual/german/actor-sheet-talent-tab-strain.png">
+            <img src="../../../assets/manual/german/actor-sheet-talent-tab-strain.png" alt="Bluttropfen-Button">
         </div>
         <h4>Zauberkarten</h4>
         <div>
@@ -54,7 +59,7 @@
                 <li>Kräfte</li>
                 <li>Ausrüstung (nur benutzbare Ausrüstung)</li>
             </ul>
-            <img src="../../../assets/manual/german/actor-sheet-talent-tab-favorite.png">
+            <img src="../../../assets/manual/german/actor-sheet-talent-tab-favorite.png" alt="Favoriten">
             <p></p>
             <h4>Aktionsbuttons</h4>
             <p>Es gibt viele Aktionsbuttons, die spezifische Aktionen auslösen. Hier sind einige Beispiele:</p>

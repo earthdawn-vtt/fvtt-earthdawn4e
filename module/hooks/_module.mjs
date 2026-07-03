@@ -1,3 +1,5 @@
+/** @module hooks */
+
 export { default as chat } from "./chat.mjs";
 export { default as i18n } from "./i18n.mjs";
 export { default as init } from "./init.mjs";

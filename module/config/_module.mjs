@@ -1,3 +1,5 @@
+/** @module config */
+
 import * as ACTIONS from "./actions.mjs";
 import * as ACTORS from "./actors.mjs";
 import * as CHAT from "./chat.mjs";

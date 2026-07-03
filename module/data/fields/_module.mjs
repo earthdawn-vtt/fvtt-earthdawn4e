@@ -1,3 +1,5 @@
+/** @module data/fields */
+
 /*
 * Some field implementations are taken from the [DnD5e]{@link https://github.com/foundryvtt/dnd5e} and [SWADE]{@link
 * https://gitlab.com/peginc/swade} systems.
