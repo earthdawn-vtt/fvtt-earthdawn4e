@@ -2,7 +2,7 @@ name: Release [1] - Prepare New Release
 run-name: Bump ${{ inputs.version }} version and create release branch - Triggered by ${{ github.triggering_actor }}
 
 env:
-  NODE_VERSION: 22
+  NODE_VERSION: 24
 
 on:
   workflow_dispatch:

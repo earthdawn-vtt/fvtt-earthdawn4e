@@ -2,7 +2,7 @@ name: Release [2] - Start Release
 run-name: Update changelog, tag and create release PR - Triggered by ${{ github.triggering_actor }}
 
 env:
-    NODE_VERSION: 22
+    NODE_VERSION: 24
 
 on: workflow_dispatch
 

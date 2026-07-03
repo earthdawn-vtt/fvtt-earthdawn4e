@@ -3,7 +3,7 @@ name: Release [3] - Create Release
 run-name: Create GitHub Release - Triggered by ${{ github.triggering_actor }}
 
 env:
-  NODE_VERSION: 22
+  NODE_VERSION: 24
 
 on:
   pull_request:

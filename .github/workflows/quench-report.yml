@@ -1,7 +1,7 @@
 name: Quench Report
 
 env:
-  NODE_VERSION: 22
+  NODE_VERSION: 24
 
 on:
   pull_request:
