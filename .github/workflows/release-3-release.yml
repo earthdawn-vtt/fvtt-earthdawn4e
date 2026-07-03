@@ -2,9 +2,6 @@
 name: Release [3] - Create Release
 run-name: Create GitHub Release - Triggered by ${{ github.triggering_actor }}
 
-env:
-  NODE_VERSION: 24
-
 on:
   pull_request:
   merge_group:
@@ -141,10 +138,10 @@ jobs:
           flags.hotReload: false
           esmodules: '[ "earthdawn4e.mjs" ]'
 
-      - name: Set up Node.js {{ env.NODE_VERSION }}
+      - name: Set up Node.js {{ vars.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: ${{ vars.NODE_VERSION }}
           cache: 'npm'
 
       # `npm ci` is recommended:
