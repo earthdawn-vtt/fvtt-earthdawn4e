@@ -2,6 +2,7 @@
   "$schema": "https://typedoc.org/schema.json",
   "entryPoints": [
     "module/**/_module.mjs",
+    "module/**/_types.mjs",
     "earthdawn4e.mjs"
   ],
   "entryPointStrategy": "resolve",
@@ -15,16 +16,17 @@
   "outputs": [
     {
       "name": "html",
-      "path": "./_site"
+      "path": "./_site",
+      "useFirstParagraphOfCommentAsSummary": true
     }
   ],
 
   "navigation": {
     "includeCategories": true,
-    "includeGroups": false,
+    "includeGroups":     true,
     "includeFolders":    true,
     "compactFolders":    false,
-    "excludeReferences": false
+    "excludeReferences": true
   },
   "categorizeByGroup": true,
 
