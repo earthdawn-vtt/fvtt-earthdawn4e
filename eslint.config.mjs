@@ -397,13 +397,10 @@ export default [
       "symbol-description":         "error",
 
       "typedoc/require-param-tag-description": "error",
-      "typedoc/require-param-tags":            "error",
       "typedoc/require-returns-description":   "error",
-      "typedoc/require-returns-tag":           "error",
       "typedoc/require-see-tag-link":          "error",
       "typedoc/require-since-tag-description": "error",
       "typedoc/require-throws-description":    "error",
-      "typedoc/require-throws-tag":            "error",
 
       "use-isnan":                  "error",
       "valid-typeof":               "error",
