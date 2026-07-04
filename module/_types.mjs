@@ -70,4 +70,14 @@
  * @property {string} [name] The name of the workflow.
  */
 
-export {};
+/**
+ * A 16-character UID
+ * @typedef {string} DocumentId
+ * @see{foundry.data.validation.isValidId}
+ */
+
+/**
+ * A multipart Foundry UUID for identifying a document.
+ * @typedef {string} DocumentUuid
+ * @see{foundry.utils.parseUuid}
+ */
