@@ -1,4 +1,8 @@
+/**
+ * Shared fields for movement data.
+ */
 export default class MovementFields {
+
   /**
    * Fields that describe movement shared between sentient actors and namegiver items.
    * @type {object}

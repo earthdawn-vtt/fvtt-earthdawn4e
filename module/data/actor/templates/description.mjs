@@ -2,6 +2,7 @@ import SystemDataModel from "../../abstract/system-data-model.mjs";
 
 /**
  * Data model template with Actor description
+ * @augments SystemDataModel
  * @mixin
  */
 export default class ActorDescriptionTemplate extends SystemDataModel {
