@@ -1,7 +1,7 @@
 ﻿---
 title: Verbesserungen
-category: Deutsch
-group: Legende
+group: Deutsch
+category: Legende
 ---
 <!DOCTYPE html>
 <html lang="de">
@@ -14,9 +14,6 @@ group: Legende
 <body>
   <main>
     <section class="doc-card">
-      <div class="doc-topbar">
-        <a class="doc-home-link" href="../index.md">Zurück zum Inhaltsverzeichnis</a>
-      </div>
       <article class="doc-content">
 <h1>Verbesserungen</h1>
 <div>

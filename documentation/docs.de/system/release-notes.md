@@ -1,7 +1,7 @@
 ﻿---
 title: Versionshinweise
-category: Deutsch
-group: System
+group: Deutsch
+category: System
 ---
 <!DOCTYPE html>
 <html lang="de">
@@ -9,14 +9,11 @@ group: System
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Release Notes</title>
-  <link rel="stylesheet" href="wiki.css">
+  <link rel="stylesheet" href="../wiki.css">
 </head>
 <body>
   <main>
     <section class="doc-card">
-      <div class="doc-topbar">
-        <a class="doc-home-link" href="./index.md">Zurück zum Inhaltsverzeichnis</a>
-      </div>
       <article class="doc-content">
 <h1>Release Notes</h1>
 <div>

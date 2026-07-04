@@ -1,7 +1,7 @@
 ---
 title: Legend Points
-category: English
-group: Legend
+group: English
+category: Legend
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -14,9 +14,6 @@ group: Legend
 <body>
   <main>
     <section class="doc-card">
-      <div class="doc-topbar">
-        <a class="doc-home-link" href="../index.md">Back to Table of Contents</a>
-      </div>
       <article class="doc-content">
 <h2>Basics</h2>
 <div>

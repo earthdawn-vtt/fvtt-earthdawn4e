@@ -1,7 +1,7 @@
 ---
 title: Character Generation
-category: English
-group: Character
+group: English
+category: Character
 ---
 
 <!DOCTYPE html>
@@ -15,9 +15,6 @@ group: Character
 <body>
   <main>
     <section class="doc-card">
-      <div class="doc-topbar">
-        <a class="doc-home-link" href="../index.md">Back to Table of Contents</a>
-      </div>
       <article class="doc-content">
         <p>The Earthdawn system for Foundry VTT offers a comprehensive character generation flow to help players start quickly.</p>
         <p>Character generation is split into multiple steps:</p>

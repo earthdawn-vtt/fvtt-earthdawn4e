@@ -1,7 +1,7 @@
 ---
 title: Character Gameplay
-category: English
-group: Character
+group: English
+category: Character
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -14,9 +14,6 @@ group: Character
 <body>
   <main>
     <section class="doc-card">
-      <div class="doc-topbar">
-        <a class="doc-home-link" href="../index.md">Back to Table of Contents</a>
-      </div>
       <article class="doc-content">
 <p>The following section describes the individual functions of the character sheet in detail.</p>
 <p></p>

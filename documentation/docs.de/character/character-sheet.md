@@ -1,7 +1,7 @@
 ﻿---
 title: Charakterbogen
-category: Deutsch
-group: Charakter
+group: Deutsch
+category: Charakter
 ---
 <!DOCTYPE html>
 <html lang="de">
@@ -14,9 +14,6 @@ group: Charakter
 <body>
   <main>
     <section class="doc-card">
-      <div class="doc-topbar">
-        <a class="doc-home-link" href="../index.md">Zurück zum Inhaltsverzeichnis</a>
-      </div>
       <article class="doc-content">
 <h1>Charakterbogen</h1>
 <h2>Bearbeitungsmodus</h2>
