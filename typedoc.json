@@ -23,9 +23,9 @@
 
   "navigation": {
     "includeCategories": true,
-    "includeGroups":     true,
+    "includeGroups":     false,
     "includeFolders":    true,
-    "compactFolders":    false,
+    "compactFolders":    true,
     "excludeReferences": true
   },
   "categorizeByGroup": true,
@@ -35,8 +35,8 @@
   "hideGenerator": true,
 
   "projectDocuments": [
-    "documentation/docs/**/*.md",
-    "documentation/docs.de/**/*.md"
+    "documentation/docs/index.md",
+    "documentation/docs.de/index.md"
   ],
 
   "searchInDocuments": true,
