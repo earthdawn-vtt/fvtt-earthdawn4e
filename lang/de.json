@@ -1773,7 +1773,7 @@
               "hint":                             "Modifikator auf die Initiative",
               "label":                            "Initiative"
             },
-            "knockDownStep": {
+            "knockdownStep": {
               "hint":                             "Modifikator auf den Niederschlagswurf",
               "label":                            "Niederschlagsstufe"
             },
