@@ -2,7 +2,13 @@ import CommonTemplate from "./templates/common.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
+ * @import { TrapSystemData } from "./_types.mjs";
+ */
+
+/**
  * System data definition for traps.
+ * @augments {CommonTemplate<TrapSystemData>}
+ * @see {@link TrapSystemData} The system data model for this actor type.
  */
 export default class TrapData extends CommonTemplate {
 

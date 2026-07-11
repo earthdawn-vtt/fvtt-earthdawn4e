@@ -5,8 +5,14 @@ import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 const fUtils = foundry.utils;
 
 /**
+ * @import { DragonSystemData } from "./_types.mjs";
+ */
+
+/**
  * System data definition for dragons.
- * @mixin
+ * @augments {SentientTemplate<DragonSystemData>}
+ * @mixes NoneCharacterTemplate
+ * @see {@link DragonSystemData} The system data model for this actor type.
  */
 export default class DragonData extends SentientTemplate.mixin(
   NoneCharacterTemplate

@@ -16,11 +16,13 @@ import { getSingleGlobalItemByEdid } from "../../helpers/document.mjs";
 import { mapObject } from "../../utils/object.mjs";
 
 /**
+ * @import { PcSystemData } from "./_types.mjs";
+ */
+
+/**
  * System data definition for PCs.
- * @mixin
- * @property {number} initialValue      initial Value will only be affected by character generation
- * @property {number} value             value is the one shown. baseValue + modifications
- * @property {number} timesIncreased    attribute increases
+ * @augments {NamegiverTemplate<PcSystemData>}
+ * @see {@link PcSystemData} The system data model for this actor type.
  */
 export default class PcData extends NamegiverTemplate {
 
@@ -282,7 +284,6 @@ export default class PcData extends NamegiverTemplate {
    *                                                  a prompt will be shown.
    * @param {boolean} [onCircleIncrease]              Whether this increase is due to a circle increase, i.e.
    *                                                  the cost is according to the given setting.
-   * @returns {Promise<void>}
    */
   async increaseAttribute( attribute, useLp, onCircleIncrease = false ) {
     const actor = this.parent;

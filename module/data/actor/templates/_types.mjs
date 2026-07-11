@@ -15,7 +15,7 @@
  */
 
 /**
- * @typedef ActorDescriptionTemplate
+ * @typedef ActorDescriptionData
  * @property {DescriptionData} description The actor's description.
  */
 

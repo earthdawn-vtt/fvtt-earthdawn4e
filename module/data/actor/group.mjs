@@ -4,7 +4,13 @@ import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 const fUtils = foundry.utils;
 
 /**
+ * @import { GroupSystemData } from "./_types.mjs";
+ */
+
+/**
  * System data definition for groups/organizations/etc.
+ * @augments {CommonTemplate<GroupSystemData>}
+ * @see {@link GroupSystemData} The system data model for this actor type.
  */
 export default class GroupData extends CommonTemplate {
 
