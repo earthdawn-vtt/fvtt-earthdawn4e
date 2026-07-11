@@ -8,8 +8,14 @@ import { getSetting } from "../../helpers/settings.mjs";
 const { isEmpty } = foundry.utils;
 
 /**
- * Data model template with information on discipline items.
- * @property {number} durability durability value
+ * @import { DisciplineSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for discipline items.
+ * @augments {ClassTemplate<DisciplineSystemData>}
+ * @mixes ItemDescriptionTemplate
+ * @see {@link DisciplineSystemData} The system data model for discipline items.
  */
 export default class DisciplineData extends ClassTemplate.mixin(
   ItemDescriptionTemplate

@@ -8,11 +8,14 @@ import { getSingleGlobalItemByEdid } from "../../helpers/document.mjs";
 import { createContentLink } from "../../helpers/formatting.mjs";
 
 /**
- * Data model template with information on path items.
- * @property {string} sourceDisciplineId The ID of the discipline this path belongs to.
- * @property {number} bloodMagicDamage The amount of blood magic damage caused by this path.
- * @property {string} pathKnackId The ID of the knack ability associated with this path.
- * @property {string} pathTalentId The ID of the talent associated with this path.
+ * @import { PathSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for path items.
+ * @augments {ClassTemplate<PathSystemData>}
+ * @mixes ItemDescriptionTemplate
+ * @see {@link PathSystemData} The system data model for path items.
  */
 export default class PathData extends ClassTemplate.mixin(
   ItemDescriptionTemplate

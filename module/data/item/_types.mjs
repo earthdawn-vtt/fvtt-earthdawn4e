@@ -1,6 +1,6 @@
 /**
- * @import { DocumentUuid } from "../../_types.mjs";
- * @import { ItemDescriptionTemplateData, PhysicalItemTemplateData, RollableTemplateData } from "./templates/_types.mjs";
+ * @import { DocumentId, DocumentUuid } from "../../_types.mjs";
+ * @import { ClassTemplateData, IncreasableAbilityTemplateData, ItemDescriptionTemplateData, PhysicalItemTemplateData, RollableTemplateData } from "./templates/_types.mjs";
  * @import { armor, attributes } from "../../config/actors.mjs";
  * @import { damageType } from "../../config/combat.mjs";
  * @import { ammunitionType, weaponSubType, weaponType, weaponWieldingType } from "../../config/items.mjs";
@@ -171,6 +171,83 @@
 /**
  * The system data model for `shipWeapon` items.
  * @typedef {ItemDescriptionTemplateData & _ShipWeaponData} ShipWeaponSystemData
+ * {@interface}
+ */
+
+// endregion
+
+// endregion
+
+// region Classes & Class-like
+
+// region Discipline
+
+/**
+ * Additional data for discipline items, on top of the class and item-description templates.
+ * @typedef _DisciplineData
+ * {@ignore}
+ * @property {number} durability The discipline's durability value.
+ * @property {number} order The identifier for the position among the actor's disciplines (1 = first discipline).
+ */
+
+/**
+ * The system data model for `discipline` items.
+ * @typedef {ClassTemplateData & ItemDescriptionTemplateData & _DisciplineData} DisciplineSystemData
+ * {@interface}
+ */
+
+// endregion
+
+// region Path
+
+/**
+ * Additional data for path items, on top of the class and item-description templates.
+ * @typedef _PathData
+ * {@ignore}
+ * @property {DocumentId} sourceDisciplineId Sibling item id of the discipline this path belongs to.
+ * @property {number} bloodMagicDamage The amount of blood magic damage caused by this path.
+ * @property {DocumentId} pathKnackId Sibling item id of the knack ability associated with this path.
+ * @property {DocumentId} pathTalentId Sibling item id of the talent associated with this path.
+ */
+
+/**
+ * The system data model for `path` items.
+ * @typedef {ClassTemplateData & ItemDescriptionTemplateData & _PathData} PathSystemData
+ * {@interface}
+ */
+
+// endregion
+
+// region Questor
+
+/**
+ * Additional data for questor items, on top of the class and item-description templates.
+ * @typedef _QuestorData
+ * {@ignore}
+ * @property {DocumentId|null} questorDevotionId Sibling item id of the corresponding devotion of this passion.
+ */
+
+/**
+ * The system data model for `questor` items.
+ * @typedef {ClassTemplateData & ItemDescriptionTemplateData & _QuestorData} QuestorSystemData
+ * {@interface}
+ */
+
+// endregion
+
+// region Devotion
+
+/**
+ * Additional data for devotion items, on top of the increasable-ability and item-description templates.
+ * @typedef _DevotionData
+ * {@ignore}
+ * @property {boolean} devotionRequired Whether a devotion point needs to be spent to use this devotion.
+ * @property {number} durability The devotion's durability value.
+ */
+
+/**
+ * The system data model for `devotion` items.
+ * @typedef {IncreasableAbilityTemplateData & ItemDescriptionTemplateData & _DevotionData} DevotionSystemData
  * {@interface}
  */
 

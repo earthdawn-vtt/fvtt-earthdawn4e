@@ -8,7 +8,14 @@ import { getSetting } from "../../helpers/settings.mjs";
 
 
 /**
- * Data model template with information on Devotion items.
+ * @import { DevotionSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for devotion items.
+ * @augments {IncreasableAbilityTemplate<DevotionSystemData>}
+ * @mixes ItemDescriptionTemplate
+ * @see {@link DevotionSystemData} The system data model for devotion items.
  */
 export default class DevotionData extends IncreasableAbilityTemplate.mixin(
   ItemDescriptionTemplate

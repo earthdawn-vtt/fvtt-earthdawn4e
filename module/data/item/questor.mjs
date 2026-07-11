@@ -14,10 +14,14 @@ import { getSetting } from "../../helpers/settings.mjs";
 const { isEmpty } = foundry.utils;
 
 /**
- * Data model template with information on the questor path items.
- * @augments ClassTemplate
+ * @import { QuestorSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for questor items.
+ * @augments {ClassTemplate<QuestorSystemData>}
  * @mixes ItemDescriptionTemplate
- * @property {string} questorDevotionId   The ID of the associated devotion item.
+ * @see {@link QuestorSystemData} The system data model for questor items.
  */
 export default class QuestorData extends ClassTemplate.mixin(
   ItemDescriptionTemplate
