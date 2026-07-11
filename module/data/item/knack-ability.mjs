@@ -4,11 +4,15 @@ import KnackTemplate from "./templates/knack-item.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
- * Data model template with information on Knack items.
- * @property {string} sourceItem          talent the knack is derived from
- * @property {string} restrictions          restrictions of the knack
- * @property {object} requirements          requirement of the knack
- * @property {boolean} standardEffect       standard effect used
+ * @import { KnackAbilitySystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for knack ability items.
+ * @augments {AbilityTemplate<KnackAbilitySystemData>}
+ * @mixes KnackTemplate
+ * @mixes ItemDescriptionTemplate
+ * @see {@link KnackAbilitySystemData} The system data model for knack ability items.
  */
 export default class KnackAbilityData extends AbilityTemplate.mixin(
   KnackTemplate,

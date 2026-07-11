@@ -1,7 +1,8 @@
 /**
  * @import { DocumentId, DocumentUuid } from "../../_types.mjs";
- * @import { ActionTemplateData, ClassTemplateData, IncreasableAbilityTemplateData, ItemDescriptionTemplateData, MatrixTemplateData, PhysicalItemTemplateData, RollableTemplateData, TargetTemplateData } from "./templates/_types.mjs";
+ * @import { AbilityTemplateData, ActionTemplateData, ClassTemplateData, IncreasableAbilityTemplateData, ItemDescriptionTemplateData, KnackTemplateData, MatrixTemplateData, PhysicalItemTemplateData, RollableTemplateData, TargetTemplateData } from "./templates/_types.mjs";
  * @import { armor, attributes } from "../../config/actors.mjs";
+ * @import { MovementData } from "../actor/templates/_types.mjs";
  * @import { damageType } from "../../config/combat.mjs";
  * @import { ammunitionType, weaponSubType, weaponType, weaponWieldingType } from "../../config/items.mjs";
  * @import { talentCategory, skillTypes } from "../../config/legend.mjs";
@@ -363,5 +364,105 @@
  */
 
 // endregion
+
+// endregion
+
+// region Knacks
+
+// region Knack Ability
+
+/**
+ * Additional data for knack ability items, on top of the ability, knack, and item-description templates.
+ * @typedef _KnackAbilityData
+ * {@ignore}
+ * @property {boolean} standardEffect Whether the knack triggers the effects of the source ability.
+ */
+
+/**
+ * The system data model for `knackAbility` items.
+ * @typedef {AbilityTemplateData & KnackTemplateData & ItemDescriptionTemplateData & _KnackAbilityData} KnackAbilitySystemData
+ * {@interface}
+ */
+
+// endregion
+
+// region Knack Karma
+
+/**
+ * The system data model for `knackKarma` items. Adds no fields beyond the knack and item-description templates.
+ * @typedef {KnackTemplateData & ItemDescriptionTemplateData} KnackKarmaSystemData
+ * {@interface}
+ */
+
+// endregion
+
+// region Knack Maneuver
+
+/**
+ * The system data model for `knackManeuver` items. Adds no fields beyond the maneuver, knack, and item-description
+ * templates.
+ * @typedef {ManeuverSystemData & KnackTemplateData} KnackManeuverSystemData
+ * {@interface}
+ */
+
+// endregion
+
+// region Spell Knack
+
+/**
+ * Additional data for spell knack items, on top of the spell, knack, and item-description templates.
+ * @typedef _SpellKnackData
+ * {@ignore}
+ * @property {boolean} bloodMagic Whether the spell's strain counts as blood magic damage.
+ * @property {boolean} linkable Whether the spell knack can be linked with other knacks on the same casting.
+ * @property {number} strain Additional strain cost applied when the knack is used.
+ */
+
+/**
+ * The system data model for `spellKnack` items.
+ * @typedef {SpellSystemData & KnackTemplateData & ItemDescriptionTemplateData & _SpellKnackData} SpellKnackSystemData
+ * {@interface}
+ */
+
+// endregion
+
+// endregion
+
+// region Namegiver
+
+/**
+ * A single min/max size window for a namegiver's weapon-size preference.
+ * @typedef NamegiverWeaponSizeRangeData
+ * @property {number} min Minimum weapon size the namegiver can wield in this configuration.
+ * @property {number} max Maximum weapon size the namegiver can wield in this configuration.
+ */
+
+/**
+ * Weapon-size ranges the namegiver can wield with one or two hands.
+ * @typedef NamegiverWeaponSizeData
+ * @property {NamegiverWeaponSizeRangeData} oneHanded Weapon size range for one-handed use.
+ * @property {NamegiverWeaponSizeRangeData} twoHanded Weapon size range for two-handed use.
+ */
+
+/**
+ * Additional data for namegiver items, on top of the item-description template.
+ * @typedef _NamegiverData
+ * {@ignore}
+ * @property {Record<attributes, number>} attributeValues Base attribute values granted by this namegiver, keyed by
+ * 3-letter attribute abbreviation.
+ * @property {number} karmaModifier Karma modifier granted by this namegiver.
+ * @property {MovementData} movement Base movement rates provided by this namegiver.
+ * @property {number} weightMultiplier Multiplier applied to items tailored by this namegiver.
+ * @property {boolean} tailAttack Whether this namegiver has a tail attack.
+ * @property {boolean} livingArmorOnly Whether this namegiver may only wear living armor.
+ * @property {NamegiverWeaponSizeData} weaponSize Weapon size ranges for one-handed and two-handed use.
+ * @property {Set<DocumentUuid>} abilities UUIDs of abilities granted by this namegiver.
+ */
+
+/**
+ * The system data model for `namegiver` items.
+ * @typedef {ItemDescriptionTemplateData & _NamegiverData} NamegiverSystemData
+ * {@interface}
+ */
 
 // endregion

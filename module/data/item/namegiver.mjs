@@ -5,21 +5,14 @@ import ItemDataModel from "../abstract/item-data-model.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
- * Data model template with information on namegiver items.
- * @property {object} attributeValues                           Attribute Schema Object
- * @property {number} attributeValues.dexterityValue            dexterity value
- * @property {number} attributeValues.strengthValue             strength value
- * @property {number} attributeValues.toughnessValue            toughness value
- * @property {number} attributeValues.perceptionValue           perception value
- * @property {number} attributeValues.willpowerValue            willpower value
- * @property {number} attributeValues.charismaValue             charisma value
- * @property {number} karmaModifier                             initiative value
- * @property {object} movement                                  movement Schema Object
- * @property {number} movement.walk                             movement type walk modifications
- * @property {number} movement.fly                              movement type fly modifications
- * @property {number} movement.swim                             movement type swim modifications
- * @property {number} movement.burrow                           movement type burrow modifications
- * @property {number} movement.climb                            movement type climb modifications
+ * @import { NamegiverSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for namegiver items.
+ * @augments {ItemDataModel<NamegiverSystemData>}
+ * @mixes ItemDescriptionTemplate
+ * @see {@link NamegiverSystemData} The system data model for namegiver items.
  */
 export default class NamegiverData extends ItemDataModel.mixin(
   ItemDescriptionTemplate

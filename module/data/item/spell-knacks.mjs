@@ -7,7 +7,15 @@ import * as LEGEND from "../../config/legend.mjs";
 import { getSingleGlobalItemByEdid } from "../../helpers/document.mjs";
 
 /**
- * Data model template with information on Spell items.
+ * @import { SpellKnackSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for spell knack items.
+ * @augments {SpellData<SpellKnackSystemData>}
+ * @mixes ItemDescriptionTemplate
+ * @mixes KnackTemplate
+ * @see {@link SpellKnackSystemData} The system data model for spell knack items.
  */
 export default class SpellKnackData extends SpellData.mixin(
   ItemDescriptionTemplate,
@@ -87,7 +95,6 @@ export default class SpellKnackData extends SpellData.mixin(
    * Writes the data of the source spell into `data` for fields that are not provided in `data`.
    * Does nothing if no source spell is found.
    * @param {object} data The data being provided for creating or updating the spell knack.
-   * @returns {Promise<void>}
    */
   async _copySourceSpellData( data ) {
     const actor = this.containingActor;
