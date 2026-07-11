@@ -124,7 +124,7 @@ export default class MaskData extends ItemDataModel.mixin(
         initial:  0,
         integer:  true,
       } ),
-      knockDownStep: new fields.NumberField( {
+      knockdownStep: new fields.NumberField( {
         required: true,
         nullable: false,
         initial:  0,

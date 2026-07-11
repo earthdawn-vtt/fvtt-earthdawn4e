@@ -689,7 +689,7 @@
  * @property {number} damageStep Modifier to damage steps.
  * @property {number} attackStep Modifier to attack steps.
  * @property {number} actions Modifier to the number of actions per round.
- * @property {number} knockDownStep Modifier to the knockdown step.
+ * @property {number} knockdownStep Modifier to the knockdown step.
  * @property {MaskChallengeData} challenge Challenge rating modifiers.
  * @property {Record<number, MaskPowerData>} powers Powers granted by the mask, keyed by index.
  * @property {Set<DocumentUuid>} maneuvers UUIDs of maneuvers granted by the mask.
