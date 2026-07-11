@@ -3,9 +3,14 @@ import ItemDataModel from "../../abstract/item-data-model.mjs";
 import * as ACTIONS from "../../../config/actions.mjs";
 
 /**
- * Data model template with information on Attack items.
- * @property {number} strain        strain
- * @property {string} action        action type
+ * @import { ActionTemplateData } from "./_types.mjs";
+ */
+
+/**
+ * Data model template with information on action items.
+ * @augments {ItemDataModel<ActionTemplateData>}
+ * @mixes RollableTemplate
+ * @see {@link ActionTemplateData} The system data model for this template.
  */
 export default class ActionTemplate extends ItemDataModel.mixin(
   RollableTemplate,

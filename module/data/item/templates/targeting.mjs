@@ -4,13 +4,14 @@ import * as SYSTEM from "../../../config/system.mjs";
 import { getSetting } from "../../../helpers/settings.mjs";
 
 /**
- * Data model template with information on Ability items.
- * @property {string} action action type
- * @property {string} attribute attribute
- * @property {string} tier talent tier
- * @property {number} strain strain
- * @property {number} level rank
+ * @import { TargetTemplateData } from "./_types.mjs";
+ */
+
+/**
+ * Data model template for items whose roll targets one or more actors.
+ * @augments {SystemDataModel<TargetTemplateData>}
  * @mixin
+ * @see {@link TargetTemplateData} The system data model for this template.
  */
 export default class TargetTemplate extends SystemDataModel {
 

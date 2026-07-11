@@ -7,6 +7,16 @@ import { LoggerEd } from "../../../logging/logger.mjs";
 const { fields } = foundry.data;
 const logger = LoggerEd.getInstance();
 
+/**
+ * @import { GrimoireTemplateData } from "./_types.mjs";
+ */
+
+/**
+ * Data model template for items that can act as a grimoire.
+ * @augments {SystemDataModel<GrimoireTemplateData>}
+ * @mixin
+ * @see {@link GrimoireTemplateData} The system data model for this template.
+ */
 export default class GrimoireTemplate extends SystemDataModel {
 
   /** @inheritdoc */

@@ -81,3 +81,10 @@
  * @typedef {string} DocumentUuid
  * @see{foundry.utils.parseUuid}
  */
+
+/**
+ * A special case string field that represents a strictly slugged string for identifying a document within
+ * the Earthdawn system.
+ * @typedef {string} EdId
+ * @see{import("./data/fields/edid-field.mjs").EdIdField}
+ */

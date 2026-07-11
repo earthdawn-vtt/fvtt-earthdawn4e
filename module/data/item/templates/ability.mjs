@@ -13,13 +13,15 @@ import * as LEGEND from "../../../config/legend.mjs";
 import * as SYSTEM from "../../../config/system.mjs";
 
 /**
- * Data model template with information on Ability items.
- * @property {string} attribute attribute
- * @property {object} source Class Source
- * @property {string} source.class class
- * @property {string} source.tier talent tier
+ * @import { AbilityTemplateData } from "./_types.mjs";
+ */
+
+/**
+ * Data model template with information on ability items.
+ * @augments {ActionTemplate<AbilityTemplateData>}
  * @mixes LearnableTemplate
  * @mixes TargetTemplate
+ * @see {@link AbilityTemplateData} The system data model for this template.
  */
 export default class AbilityTemplate extends ActionTemplate.mixin(
   LearnableTemplate,
@@ -112,9 +114,9 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
 
   /**
    * The type of spellcasting magic of this ability, if it is of type thread weaving.
-   * Null if thread weaving of a non spellcasting discipline.
+   * Null if thread weaving of a non-spellcasting discipline.
    * @type {string|null|undefined}
-   * @see ED4E.spellcastingTypes
+   * @see {@link ED4E.spellcastingTypes}
    */
   get castingType() {
     return this.rollType === "threadWeaving" ? this.rollTypeDetails.threadWeaving.castingType : undefined;

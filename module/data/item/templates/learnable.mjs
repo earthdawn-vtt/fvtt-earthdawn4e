@@ -1,9 +1,16 @@
 import SystemDataModel from "../../abstract/system-data-model.mjs";
 
 /**
+ * @import { LearnableTemplateData } from "./_types.mjs";
+ */
+
+/**
  * Template to be mixed in with data models that can be acquired through legend points (like abilities and spells).
- * @property {boolean} canBeLearned Whether the item fulfills all requirements to be learned.
+ * Adds no schema fields; provides `canBeLearned`, `learnData`, `learnRules`, and related getters and the static
+ * {@link LearnableTemplate.learn} method.
+ * @augments {SystemDataModel<LearnableTemplateData>}
  * @mixin
+ * @see {@link LearnableTemplateData} The system data model for this template.
  */
 export default class LearnableTemplate extends SystemDataModel {
 

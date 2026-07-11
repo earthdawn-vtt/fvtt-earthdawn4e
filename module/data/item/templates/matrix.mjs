@@ -9,6 +9,16 @@ import { SYSTEM_TYPES } from "../../../constants/constants.mjs";
 
 const { fields } = foundry.data;
 
+/**
+ * @import { MatrixTemplateData } from "./_types.mjs";
+ */
+
+/**
+ * Data model template for items that can act as a spell matrix.
+ * @augments {SystemDataModel<MatrixTemplateData>}
+ * @mixin
+ * @see {@link MatrixTemplateData} The system data model for this template.
+ */
 export default class MatrixTemplate extends SystemDataModel {
 
   // region Schema

@@ -3,8 +3,14 @@ import SystemDataModel from "../../abstract/system-data-model.mjs";
 import * as SYSTEM from "../../../config/system.mjs";
 
 /**
- * Data model template with item description
+ * @import { ItemDescriptionTemplateData } from "./_types.mjs";
+ */
+
+/**
+ * Data model template with item description, summary, and Earthdawn ID.
+ * @augments {SystemDataModel<ItemDescriptionTemplateData>}
  * @mixin
+ * @see {@link ItemDescriptionTemplateData} The system data model for this template.
  */
 export default class ItemDescriptionTemplate extends SystemDataModel {
 

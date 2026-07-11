@@ -1,11 +1,16 @@
 import SystemDataModel from "../../abstract/system-data-model.mjs";
 
 /**
+ * @import { LpIncreaseTemplateData } from "./_types.mjs";
+ */
+
+/**
  * Template to be mixed in with data models that have a level that can be increased through spending legend points.
- * @property {boolean} canBeIncreased Whether the entity fulfills all requirements to be increased.
- * @property {object} increaseValidationDataForIncrease Data needed to validate the increase of this entity's level.
- * @property {number} requiredLpForIncrease The amount of legend points required to increase the level of the entity.
+ * Adds no schema fields; provides `canBeIncreased`, `requiredLpForIncrease`, `increase()`, and related getters and
+ * methods.
+ * @augments {SystemDataModel<LpIncreaseTemplateData>}
  * @mixin
+ * @see {@link LpIncreaseTemplateData} The system data model for this template.
  */
 export default class LpIncreaseTemplate extends SystemDataModel {
 
