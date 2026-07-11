@@ -3,13 +3,14 @@ import ItemDataModel from "../abstract/item-data-model.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
- * Data model template with information on namegiver items.
- * @property {number} firePowerPoints   Fire power of the weapon
- * @property {number} crewWeapon        required crew to handle the weapon
- * @property {number} rangeShort        short range
- * @property {number} rangeLong         long range
- * @property {number} salvoCost         cost per salvo
- * @property {number} characterDamage   weapon damage on a sentient being
+ * @import { ShipWeaponSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for ship weapon items.
+ * @augments {ItemDataModel<ShipWeaponSystemData>}
+ * @mixes ItemDescriptionTemplate
+ * @see {@link ShipWeaponSystemData} The system data model for ship weapon items.
  */
 export default class ShipWeaponData extends ItemDataModel.mixin(
   ItemDescriptionTemplate

@@ -12,18 +12,15 @@ import { filterObject } from "../../utils/object.mjs";
 
 
 /**
- * Data model template with information on weapon items.
- * @property {string} weaponType      type of weapon
- * @property {object} damage        damage object
- * @property {string} damage.attribute     base attribute used for damage
- * @property {number} damage.baseStep    weapon basic damage step
- * @property {number} size          weapon size 1-7
- * @property {number} strengthMinimum     strength minimum to use without penalty
- * @property {number} dexterityMinimum    dexterity minimum to use without penalty
- * @property {number} rangeShort      short range
- * @property {number} rangeLong       long range
- * @property {number} ammunition      ammunition amount
- * @property {number} forgeBonus      forged damage bonus
+ * @import { WeaponSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for weapon items.
+ * @augments {PhysicalItemTemplate<WeaponSystemData>}
+ * @mixes ItemDescriptionTemplate
+ * @mixes RollableTemplate
+ * @see {@link WeaponSystemData} The system data model for weapon items.
  */
 export default class WeaponData extends PhysicalItemTemplate.mixin(
   ItemDescriptionTemplate,
