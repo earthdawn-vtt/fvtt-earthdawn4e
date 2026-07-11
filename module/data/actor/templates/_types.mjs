@@ -14,7 +14,6 @@
  * @property {number} climb The actor's climbing speed.
  */
 
-
 /**
  * @typedef ActorDescriptionTemplate
  * @property {DescriptionData} description The actor's description.
@@ -179,4 +178,35 @@
 /**
  * @typedef {CommonTemplateData & _SentientData} SentientTemplateData
  * {@interface}
+ */
+
+/**
+ * The languages the actor can speak and read and write.
+ * The available languages are defined in the game's system settings.
+ * @typedef LanguagesData
+ * @property {Set<string>} speak The languages the actor can speak.
+ * @property {Set<string>} readWrite The languages the actor can read and write.
+ */
+
+/**
+ * @typedef _NamegiverData
+ * {@ignore}
+ * @property {LanguagesData} languages The languages the actor can speak and read and write.
+ */
+
+/**
+ * @typedef {_NamegiverData & SentientTemplateData} NamegiverTemplateData
+ * {@interface}
+ */
+
+/**
+ * @typedef ChallengeData
+ * @property {number} rate This is a rough guideline to the creature’s power level.
+ */
+
+/**
+ * @typedef NoneCharacterData
+ * @property {boolean} isMob Whether to treat the actor with the mob rules.
+ * @property {ChallengeData} challenge Information on the creature's challenge.
+ * @property {number} actions The number of Standard actions the creature may make each round.
  */
