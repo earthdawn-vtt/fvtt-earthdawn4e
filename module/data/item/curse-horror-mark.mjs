@@ -7,11 +7,14 @@ import * as ITEMS from "../../config/items.mjs";
 
 
 /**
- * Data model template with information on Curse and Horror Mark items.
- * @property {number} step                  curse step
- * @property {string} curseType             type of the curse
- * @property {boolean} curseActive          is the curse active
- * @property {boolean} curseDetected        is the curse known
+ * @import { CurseHorrorMarkSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for curse and horror mark items.
+ * @augments {ItemDataModel<CurseHorrorMarkSystemData>}
+ * @mixes ItemDescriptionTemplate
+ * @see {@link CurseHorrorMarkSystemData} The system data model for curse / horror mark items.
  */
 export default class CurseHorrorMarkData extends ItemDataModel.mixin(
   ItemDescriptionTemplate

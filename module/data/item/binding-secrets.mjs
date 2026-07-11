@@ -3,7 +3,14 @@ import SpellData from "./spell.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
- * Data model template with information on Spell items.
+ * @import { BindingSecretSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for binding secret items.
+ * @augments {SpellData<BindingSecretSystemData>}
+ * @mixes ItemDescriptionTemplate
+ * @see {@link BindingSecretSystemData} The system data model for binding secret items.
  */
 export default class BindingSecretData extends SpellData.mixin(
   ItemDescriptionTemplate

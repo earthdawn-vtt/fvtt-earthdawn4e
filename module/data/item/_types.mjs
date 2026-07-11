@@ -1,12 +1,14 @@
 /**
  * @import { DocumentId, DocumentUuid } from "../../_types.mjs";
- * @import { AbilityTemplateData, ActionTemplateData, ClassTemplateData, IncreasableAbilityTemplateData, ItemDescriptionTemplateData, KnackTemplateData, MatrixTemplateData, PhysicalItemTemplateData, RollableTemplateData, TargetTemplateData } from "./templates/_types.mjs";
- * @import { armor, attributes } from "../../config/actors.mjs";
+ * @import { AbilityTemplateData, ActionTemplateData, ClassTemplateData, IncreasableAbilityTemplateData, ItemDescriptionTemplateData, KnackTemplateData, LearnableTemplateData, LpIncreaseTemplateData, MatrixTemplateData, PhysicalItemTemplateData, RollableTemplateData, TargetTemplateData } from "./templates/_types.mjs";
+ * @import { armor, attributes, defenses } from "../../config/actors.mjs";
  * @import { MovementData } from "../actor/templates/_types.mjs";
  * @import { damageType } from "../../config/combat.mjs";
  * @import { ammunitionType, weaponSubType, weaponType, weaponWieldingType } from "../../config/items.mjs";
  * @import { talentCategory, skillTypes } from "../../config/legend.mjs";
- * @import { elements, elementSubtypes } from "../../config/magic.mjs";
+ * @import { elements, elementSubtypes, spellcastingTypes, spellEffectTypes, spellKeywords, threadTypes } from "../../config/magic.mjs";
+ * @import { curseType, poisonActivation } from "../../config/items.mjs";
+ * @import { AreaMetricData, DurationMetricData, MetricData, RangeMetricData } from "../common/metrics.mjs";
  */
 
 // region Physical Gear
@@ -466,3 +468,275 @@
  */
 
 // endregion
+
+// region Magic
+
+// region Spell
+
+/**
+ * Weaving and reattuning difficulty numbers for a spell.
+ * @typedef SpellDifficultyData
+ * @property {number} reattune The difficulty to reattune the spell to a matrix on the fly.
+ * @property {number} weaving The difficulty of the thread weaving tests for this spell.
+ */
+
+/**
+ * Thread information for a spell.
+ * @typedef SpellThreadsData
+ * @property {number} required Number of threads required to cast the spell.
+ * @property {number} woven Number of threads currently woven for casting.
+ * @property {MetricData[]} extra The effects of the chosen extra threads, if any.
+ */
+
+/**
+ * Damage sub-schema for a spell's effect details.
+ * @typedef SpellEffectDamageData
+ * @property {attributes} attribute The attribute used to compute the damage step.
+ * @property {number} stepModifier Modifier added to the damage step.
+ * @property {boolean} addCircle Whether the caster's circle in the corresponding discipline is added to the damage step.
+ * @property {damageType} damageType The damage type inflicted by the spell.
+ * @property {armor|null} armorType Armor type the damage is applied against, or `null` to ignore armor.
+ */
+
+/**
+ * Effect sub-schema for a spell's effect details.
+ * @typedef SpellEffectEffectData
+ * @property {attributes} attribute The attribute used to compute the effect step.
+ * @property {number} stepModifier Modifier added to the effect step.
+ * @property {boolean} addCircle Whether the caster's circle in the corresponding discipline is added to the effect step.
+ */
+
+/**
+ * Macro sub-schema for a spell's effect details.
+ * @typedef SpellEffectMacroData
+ * @property {DocumentUuid|null} macroUuid UUID of the macro to run when the spell effect resolves.
+ */
+
+/**
+ * Special sub-schema for a spell's effect details.
+ * @typedef SpellEffectSpecialData
+ * @property {string} description Free-form description for the special effect.
+ */
+
+/**
+ * Detail sub-schemas for spell effects. Only the sub-schema matching {@link SpellEffectData.type} is meaningful.
+ * @typedef SpellEffectDetailsData
+ * @property {SpellEffectDamageData} damage Damage effect details.
+ * @property {SpellEffectEffectData} effect Non-damage effect details.
+ * @property {SpellEffectMacroData} macro Macro effect details.
+ * @property {SpellEffectSpecialData} special Special/free-form effect details.
+ */
+
+/**
+ * Effect configuration for a spell.
+ * @typedef SpellEffectData
+ * @property {spellEffectTypes} type The kind of effect this spell has.
+ * @property {SpellEffectDetailsData} details Details for each effect type.
+ */
+
+/**
+ * Element configuration for a spell.
+ * @typedef SpellElementData
+ * @property {elements|null} type The element type of the spell.
+ * @property {string|null} subtype The element subtype flattened from {@link elementSubtypes}.
+ */
+
+/**
+ * Additional data for spell items, on top of the item-description, learnable, and targeting templates.
+ * @typedef _SpellData
+ * {@ignore}
+ * @property {spellcastingTypes} spellcastingType The type of spellcasting used by this spell.
+ * @property {number} level The spell's circle / level.
+ * @property {SpellDifficultyData} spellDifficulty Weaving and reattuning difficulty values.
+ * @property {SpellThreadsData} threads Thread information for the spell.
+ * @property {SpellEffectData} effect Effect configuration.
+ * @property {Set<spellKeywords>} keywords Keywords describing spell properties.
+ * @property {SpellElementData|null} element Element configuration.
+ * @property {DurationMetricData} duration The spell's duration (embedded metric).
+ * @property {RangeMetricData} range The spell's range (embedded metric).
+ * @property {AreaMetricData} area The spell's area of effect (embedded metric).
+ * @property {MetricData|null} extraSuccess The effect granted when casting the spell with extra successes.
+ * @property {Record<string, MetricData>|null} extraThreads Additional effects granted when casting the spell with
+ * extra threads.
+ * @property {boolean} isWeaving Whether the spell is currently being woven.
+ */
+
+/**
+ * The system data model for `spell` items.
+ * @typedef {ItemDescriptionTemplateData & LearnableTemplateData & TargetTemplateData & _SpellData} SpellSystemData
+ * {@interface}
+ */
+
+// endregion
+
+// region Binding Secret
+
+/**
+ * The system data model for `bindingSecret` items. Adds no fields beyond the spell and item-description templates.
+ * @typedef {SpellSystemData & ItemDescriptionTemplateData} BindingSecretSystemData
+ * {@interface}
+ */
+
+// endregion
+
+// region Thread
+
+/**
+ * Additional data for thread items, on top of the item-description and lp-increase templates.
+ * @typedef _ThreadData
+ * {@ignore}
+ * @property {DocumentUuid|null} wovenToUuid UUID of the item this thread is woven to, if any.
+ * @property {number} level The rank of this thread.
+ * @property {threadTypes|null} threadType The type of thread (e.g., to a thread item or a group pattern).
+ */
+
+/**
+ * The system data model for `thread` items.
+ * @typedef {ItemDescriptionTemplateData & LpIncreaseTemplateData & _ThreadData} ThreadSystemData
+ * {@interface}
+ */
+
+// endregion
+
+// region Curse / Horror Mark
+
+/**
+ * Additional data for curse and horror mark items, on top of the item-description template.
+ * @typedef _CurseHorrorMarkData
+ * {@ignore}
+ * @property {number} step The curse's step.
+ * @property {curseType} type The type of the curse (e.g. "minor", "major").
+ * @property {boolean} active Whether the curse is currently active.
+ * @property {boolean} detected Whether the curse has been detected by its target.
+ * @property {DocumentId|null} source Sibling item id of the source of the curse.
+ * @property {DocumentId|null} target Foreign document id of the actor targeted by the curse.
+ */
+
+/**
+ * The system data model for `curseMark` items.
+ * @typedef {ItemDescriptionTemplateData & _CurseHorrorMarkData} CurseHorrorMarkSystemData
+ * {@interface}
+ */
+
+// endregion
+
+// endregion
+
+// region Mask
+
+/**
+ * Attribute step modifiers granted by a mask, keyed by 3-letter attribute abbreviation.
+ * @typedef MaskAttributeStepData
+ * @property {number} step Step modification for the attribute.
+ */
+
+/**
+ * Defense value modifier for a mask.
+ * @typedef MaskDefenseValueData
+ * @property {number} value Modifier to the defense.
+ */
+
+/**
+ * Armor value modifier for a mask.
+ * @typedef MaskArmorValueData
+ * @property {number} value Modifier to the armor rating.
+ */
+
+/**
+ * Health modifiers granted by a mask.
+ * @typedef MaskHealthData
+ * @property {number} death Modifier to the death threshold.
+ * @property {number} unconscious Modifier to the unconscious threshold.
+ * @property {number} woundThreshold Modifier to the wound threshold.
+ */
+
+/**
+ * Recovery tests resource modifier for a mask.
+ * @typedef MaskRecoveryData
+ * @property {number} value Modifier to the recovery tests resource.
+ */
+
+/**
+ * Grouped defense, armor, health, and recovery modifiers granted by a mask.
+ * @typedef MaskCharacteristicsData
+ * @property {Record<defenses, MaskDefenseValueData>} defenses Defense modifiers keyed by defense type.
+ * @property {Record<armor, MaskArmorValueData>} armor Armor modifiers keyed by armor type.
+ * @property {MaskHealthData} health Health-related modifiers.
+ * @property {MaskRecoveryData} recoveryTestsResource Recovery tests resource modifier.
+ */
+
+/**
+ * Challenge configuration for a mask.
+ * @typedef MaskChallengeData
+ * @property {number} rate Modifier to the challenge rating.
+ */
+
+/**
+ * A power entry granted by a mask.
+ * @typedef MaskPowerData
+ * @property {DocumentUuid} uuid UUID of the power item.
+ * @property {number} step Step at which the power is used when granted by the mask.
+ */
+
+/**
+ * Additional data for mask items, on top of the item-description template.
+ * @typedef _MaskData
+ * {@ignore}
+ * @property {Record<attributes, MaskAttributeStepData>} attributes Attribute step modifiers granted by the mask.
+ * @property {MovementData} movement Movement rate modifications granted by the mask.
+ * @property {MaskCharacteristicsData} characteristics Defense, armor, health, and recovery modifiers.
+ * @property {number} initiative Initiative modifier.
+ * @property {number} damageStep Modifier to damage steps.
+ * @property {number} attackStep Modifier to attack steps.
+ * @property {number} actions Modifier to the number of actions per round.
+ * @property {number} knockDownStep Modifier to the knockdown step.
+ * @property {MaskChallengeData} challenge Challenge rating modifiers.
+ * @property {Record<number, MaskPowerData>} powers Powers granted by the mask, keyed by index.
+ * @property {Set<DocumentUuid>} maneuvers UUIDs of maneuvers granted by the mask.
+ */
+
+/**
+ * The system data model for `mask` items.
+ * @typedef {ItemDescriptionTemplateData & _MaskData} MaskSystemData
+ * {@interface}
+ */
+
+// endregion
+
+// region Poison / Disease
+
+/**
+ * Effect step values for a poison or disease.
+ * @typedef PoisonDiseaseEffectData
+ * @property {number} damageStep Damage step of the effect.
+ * @property {number} paralysisStep Paralysis step of the effect.
+ * @property {number} debilitationStep Debilitation step of the effect.
+ */
+
+/**
+ * Interval configuration for a poison or disease.
+ * @typedef PoisonDiseaseIntervalData
+ * @property {number} totalEffects Total number of effect ticks.
+ * @property {number} timeInBetween Time between effect ticks, in configured units.
+ */
+
+/**
+ * Additional data for poison and disease items, on top of the item-description template.
+ * @typedef _PoisonDiseaseData
+ * {@ignore}
+ * @property {PoisonDiseaseEffectData} effect Effect steps for the poison/disease.
+ * @property {PoisonDiseaseIntervalData} interval Interval configuration.
+ * @property {number} onsetTime Time until the poison/disease becomes effective.
+ * @property {number} duration Duration of the poison/disease.
+ * @property {poisonActivation} activation How the poison/disease is activated (e.g. "wound", "contact").
+ * @property {boolean} death Whether the poison/disease can be lethal.
+ */
+
+/**
+ * The system data model for `poisonDisease` items.
+ * @typedef {ItemDescriptionTemplateData & _PoisonDiseaseData} PoisonDiseaseSystemData
+ * {@interface}
+ */
+
+// endregion
+

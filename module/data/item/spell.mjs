@@ -23,11 +23,17 @@ import { getSetting } from "../../helpers/settings.mjs";
 const { fields } = foundry.data;
 
 /**
- * Data model template with information on Spell items.
+ * @import { SpellSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for spell items.
+ * @augments {ItemDataModel<SpellSystemData>}
  * @mixes ItemDescriptionTemplate
  * @mixes LearnableTemplate
  * @mixes TargetTemplate
  * @mixes TypedEntryManagerMixin
+ * @see {@link SpellSystemData} The system data model for spell items.
  */
 export default class SpellData extends ItemDataModel.mixin(
   ItemDescriptionTemplate,
