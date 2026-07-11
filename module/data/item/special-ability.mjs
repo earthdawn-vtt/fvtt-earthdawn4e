@@ -3,7 +3,14 @@ import ItemDataModel from "../abstract/item-data-model.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
- * Data model template with information on Special items.
+ * @import { SpecialAbilitySystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for special ability items.
+ * @augments {ItemDataModel<SpecialAbilitySystemData>}
+ * @mixes ItemDescriptionTemplate
+ * @see {@link SpecialAbilitySystemData} The system data model for special ability items.
  */
 export default class SpecialAbilityData extends ItemDataModel.mixin(
   ItemDescriptionTemplate

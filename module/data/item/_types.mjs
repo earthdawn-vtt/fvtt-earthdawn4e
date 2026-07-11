@@ -1,9 +1,11 @@
 /**
  * @import { DocumentId, DocumentUuid } from "../../_types.mjs";
- * @import { ClassTemplateData, IncreasableAbilityTemplateData, ItemDescriptionTemplateData, PhysicalItemTemplateData, RollableTemplateData } from "./templates/_types.mjs";
+ * @import { ActionTemplateData, ClassTemplateData, IncreasableAbilityTemplateData, ItemDescriptionTemplateData, MatrixTemplateData, PhysicalItemTemplateData, RollableTemplateData, TargetTemplateData } from "./templates/_types.mjs";
  * @import { armor, attributes } from "../../config/actors.mjs";
  * @import { damageType } from "../../config/combat.mjs";
  * @import { ammunitionType, weaponSubType, weaponType, weaponWieldingType } from "../../config/items.mjs";
+ * @import { talentCategory, skillTypes } from "../../config/legend.mjs";
+ * @import { elements, elementSubtypes } from "../../config/magic.mjs";
  */
 
 // region Physical Gear
@@ -178,7 +180,7 @@
 
 // endregion
 
-// region Classes & Class-like
+// region Classes
 
 // region Discipline
 
@@ -235,6 +237,10 @@
 
 // endregion
 
+// endregion
+
+// region Abilities
+
 // region Devotion
 
 /**
@@ -248,6 +254,111 @@
 /**
  * The system data model for `devotion` items.
  * @typedef {IncreasableAbilityTemplateData & ItemDescriptionTemplateData & _DevotionData} DevotionSystemData
+ * {@interface}
+ */
+
+// endregion
+
+// region Talent
+
+/**
+ * Knacks associated with a talent.
+ * @typedef TalentKnacksData
+ * @property {Set<DocumentUuid>} available UUIDs of world/compendium knack items that can be learned from this talent.
+ * @property {Set<DocumentId>} learned Sibling item ids of knacks (ability, karma, or maneuver) already learned from this talent.
+ */
+
+/**
+ * Additional data for talent items, on top of the increasable-ability, item-description, and matrix templates.
+ * @typedef _TalentData
+ * {@ignore}
+ * @property {talentCategory} talentCategory The talent's category (e.g. "discipline", "free", "optional").
+ * @property {TalentKnacksData} knacks Available and learned knacks derived from this talent.
+ */
+
+/**
+ * The system data model for `talent` items.
+ * @typedef {IncreasableAbilityTemplateData & ItemDescriptionTemplateData & MatrixTemplateData & _TalentData} TalentSystemData
+ * {@interface}
+ */
+
+// endregion
+
+// region Skill
+
+/**
+ * Additional data for skill items, on top of the increasable-ability and item-description templates.
+ * @typedef _SkillData
+ * {@ignore}
+ * @property {skillTypes} skillType The skill's type (e.g. "general", "artisan", "knowledge").
+ */
+
+/**
+ * The system data model for `skill` items.
+ * @typedef {IncreasableAbilityTemplateData & ItemDescriptionTemplateData & _SkillData} SkillSystemData
+ * {@interface}
+ */
+
+// endregion
+
+// region Special Ability
+
+/**
+ * The system data model for `specialAbility` items. Adds no fields beyond the item-description template.
+ * @typedef {ItemDescriptionTemplateData} SpecialAbilitySystemData
+ * {@interface}
+ */
+
+// endregion
+
+// region Power
+
+/**
+ * Damage sub-schema for power items.
+ * @typedef PowerDamageData
+ * @property {damageType} type The damage type inflicted (e.g. "standard", "fire").
+ * @property {armor|null} armorType Armor type the damage is applied against.
+ * @property {boolean} ignoreArmor Whether the damage ignores armor entirely.
+ */
+
+/**
+ * Element sub-schema for power items.
+ * @typedef PowerElementData
+ * @property {elements|null} type The element type (e.g. "fire", "water").
+ * @property {string|null} subtype The element subtype flattened from {@link elementSubtypes}.
+ */
+
+/**
+ * Additional data for power items, on top of the action, item-description, and targeting templates.
+ * @typedef _PowerData
+ * {@ignore}
+ * @property {number} powerStep The base step used for the power's action roll.
+ * @property {number|null} damageStep The base step used for the power's damage roll, if any.
+ * @property {armor|null} armorType Armor type the power's action targets.
+ * @property {PowerDamageData} damage Damage configuration.
+ * @property {PowerElementData|null} element Elemental configuration.
+ */
+
+/**
+ * The system data model for `power` items.
+ * @typedef {ActionTemplateData & ItemDescriptionTemplateData & TargetTemplateData & _PowerData} PowerSystemData
+ * {@interface}
+ */
+
+// endregion
+
+// region Maneuver
+
+/**
+ * Additional data for maneuver items, on top of the item-description template.
+ * @typedef _ManeuverData
+ * {@ignore}
+ * @property {number} extraSuccesses The number of extra successes required to trigger the maneuver.
+ */
+
+/**
+ * The system data model for `maneuver` items.
+ * @typedef {ItemDescriptionTemplateData & _ManeuverData} ManeuverSystemData
  * {@interface}
  */
 

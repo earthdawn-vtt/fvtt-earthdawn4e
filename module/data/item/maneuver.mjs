@@ -3,8 +3,14 @@ import ItemDataModel from "../abstract/item-data-model.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
- * Data model template with information on Maneuver items.
- * @property {number} extraSuccesses        extra successes to trigger the maneuver
+ * @import { ManeuverSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for maneuver items.
+ * @augments {ItemDataModel<ManeuverSystemData>}
+ * @mixes ItemDescriptionTemplate
+ * @see {@link ManeuverSystemData} The system data model for maneuver items.
  */
 export default class ManeuverData extends ItemDataModel.mixin(
   ItemDescriptionTemplate
