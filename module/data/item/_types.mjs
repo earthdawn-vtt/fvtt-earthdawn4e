@@ -1,14 +1,40 @@
 /**
  * @import { DocumentId, DocumentUuid } from "../../_types.mjs";
- * @import { AbilityTemplateData, ActionTemplateData, ClassTemplateData, IncreasableAbilityTemplateData, ItemDescriptionTemplateData, KnackTemplateData, LearnableTemplateData, LpIncreaseTemplateData, MatrixTemplateData, PhysicalItemTemplateData, RollableTemplateData, TargetTemplateData } from "./templates/_types.mjs";
- * @import { armor, attributes, defenses } from "../../config/actors.mjs";
+ * @import {
+ *   AbilityTemplateData,
+ *   ActionTemplateData,
+ *   ClassTemplateData,
+ *   IncreasableAbilityTemplateData,
+ *   ItemDescriptionTemplateData,
+ *   KnackTemplateData,
+ *   LearnableTemplateData,
+ *   LpIncreaseTemplateData,
+ *   MatrixTemplateData,
+ *   PhysicalItemTemplateData,
+ *   RollableTemplateData,
+ *   TargetTemplateData
+ * } from "./templates/_types.mjs";
  * @import { MovementData } from "../actor/templates/_types.mjs";
- * @import { damageType } from "../../config/combat.mjs";
- * @import { ammunitionType, weaponSubType, weaponType, weaponWieldingType } from "../../config/items.mjs";
- * @import { talentCategory, skillTypes } from "../../config/legend.mjs";
- * @import { elements, elementSubtypes, spellcastingTypes, spellEffectTypes, spellKeywords, threadTypes } from "../../config/magic.mjs";
- * @import { curseType, poisonActivation } from "../../config/items.mjs";
  * @import { AreaMetricData, DurationMetricData, MetricData, RangeMetricData } from "../common/metrics.mjs";
+ * @import { armor, attributes, defenses } from "../../config/actors.mjs";
+ * @import { damageType } from "../../config/combat.mjs";
+ * @import {
+ *   ammunitionType,
+ *   curseType,
+ *   poisonActivation,
+ *   weaponSubType,
+ *   weaponType,
+ *   weaponWieldingType
+ * } from "../../config/items.mjs";
+ * @import { talentCategory, skillTypes } from "../../config/legend.mjs";
+ * @import {
+ *   elements,
+ *   elementSubtypes,
+ *   spellcastingTypes,
+ *   spellEffectTypes,
+ *   spellKeywords,
+ *   threadTypes
+ * } from "../../config/magic.mjs";
  */
 
 // region Physical Gear
@@ -82,9 +108,9 @@
 /**
  * Damage sub-schema for weapon items.
  * @typedef WeaponDamageData
- * @property {attributes} attribute The 3-letter attribute abbreviation used as the base for damage (e.g. "str").
+ * @property {keyof typeof attributes} attribute The 3-letter attribute abbreviation used as the base for damage.
  * @property {number} baseStep The weapon's basic damage step.
- * @property {damageType} type The damage type inflicted.
+ * @property {keyof typeof damageType} type The damage type inflicted.
  */
 
 /**
@@ -99,16 +125,16 @@
 /**
  * Ammunition sub-schema for weapon items.
  * @typedef WeaponAmmunitionData
- * @property {ammunitionType|null} type The ammunition type this weapon consumes.
+ * @property {keyof typeof ammunitionType|null} type The ammunition type this weapon consumes.
  */
 
 /**
  * Additional data for weapon items, on top of the physical-item, item-description, and rollable templates.
  * @typedef _WeaponData
  * {@ignore}
- * @property {weaponType|null} weaponType The general weapon type (e.g. "melee", "ranged").
- * @property {weaponSubType} weaponSubType The specific weapon subtype (e.g. "bow", "sword").
- * @property {weaponWieldingType} wieldingType The default wielding type (e.g. "mainHand", "offHand", "twoHands").
+ * @property {keyof typeof weaponType|null} weaponType The general weapon type.
+ * @property {keyof typeof weaponSubType} weaponSubType The specific weapon subtype.
+ * @property {keyof typeof weaponWieldingType} wieldingType The default wielding type.
  * @property {WeaponDamageData} damage Damage configuration.
  * @property {number} size Weapon size, 1-7.
  * @property {number} strengthMinimum Minimum strength value to be able to use the weapon.
@@ -116,7 +142,7 @@
  * @property {WeaponRangeData} range Range configuration.
  * @property {WeaponAmmunitionData} ammunition Ammunition configuration.
  * @property {number} forgeBonus Forged damage bonus.
- * @property {armor|null} armorType Armor type the weapon damage is applied against (e.g. "physical", "mystical").
+ * @property {keyof typeof armor|null} armorType Armor type the weapon damage is applied against.
  */
 
 /**
@@ -132,7 +158,7 @@
 /**
  * Ammunition sub-schema for equipment items.
  * @typedef EquipmentAmmunitionData
- * @property {ammunitionType|null} type The ammunition type this equipment provides (see `ITEMS.ammunitionType`).
+ * @property {keyof typeof ammunitionType|null} type The ammunition type this equipment provides (see `ITEMS.ammunitionType`).
  */
 
 /**
@@ -275,7 +301,7 @@
  * Additional data for talent items, on top of the increasable-ability, item-description, and matrix templates.
  * @typedef _TalentData
  * {@ignore}
- * @property {talentCategory} talentCategory The talent's category (e.g. "discipline", "free", "optional").
+ * @property {keyof typeof talentCategory} talentCategory The talent's category.
  * @property {TalentKnacksData} knacks Available and learned knacks derived from this talent.
  */
 
@@ -293,7 +319,7 @@
  * Additional data for skill items, on top of the increasable-ability and item-description templates.
  * @typedef _SkillData
  * {@ignore}
- * @property {skillTypes} skillType The skill's type (e.g. "general", "artisan", "knowledge").
+ * @property {keyof typeof skillTypes} skillType The skill's type.
  */
 
 /**
@@ -319,15 +345,15 @@
 /**
  * Damage sub-schema for power items.
  * @typedef PowerDamageData
- * @property {damageType} type The damage type inflicted (e.g. "standard", "fire").
- * @property {armor|null} armorType Armor type the damage is applied against.
+ * @property {keyof typeof damageType} type The type of damage inflicted.
+ * @property {keyof typeof armor|null} armorType Armor type the damage is applied against.
  * @property {boolean} ignoreArmor Whether the damage ignores armor entirely.
  */
 
 /**
  * Element sub-schema for power items.
  * @typedef PowerElementData
- * @property {elements|null} type The element type (e.g. "fire", "water").
+ * @property {keyof typeof elements|null} type The element type.
  * @property {string|null} subtype The element subtype flattened from {@link elementSubtypes}.
  */
 
@@ -337,7 +363,7 @@
  * {@ignore}
  * @property {number} powerStep The base step used for the power's action roll.
  * @property {number|null} damageStep The base step used for the power's damage roll, if any.
- * @property {armor|null} armorType Armor type the power's action targets.
+ * @property {keyof typeof armor|null} armorType Armor type the power's action targets.
  * @property {PowerDamageData} damage Damage configuration.
  * @property {PowerElementData|null} element Elemental configuration.
  */
@@ -450,7 +476,7 @@
  * Additional data for namegiver items, on top of the item-description template.
  * @typedef _NamegiverData
  * {@ignore}
- * @property {Record<attributes, number>} attributeValues Base attribute values granted by this namegiver, keyed by
+ * @property {Record<keyof typeof attributes, number>} attributeValues Base attribute values granted by this namegiver, keyed by
  * 3-letter attribute abbreviation.
  * @property {number} karmaModifier Karma modifier granted by this namegiver.
  * @property {MovementData} movement Base movement rates provided by this namegiver.
@@ -491,17 +517,17 @@
 /**
  * Damage sub-schema for a spell's effect details.
  * @typedef SpellEffectDamageData
- * @property {attributes} attribute The attribute used to compute the damage step.
+ * @property {keyof typeof attributes} attribute The attribute used to compute the damage step.
  * @property {number} stepModifier Modifier added to the damage step.
  * @property {boolean} addCircle Whether the caster's circle in the corresponding discipline is added to the damage step.
- * @property {damageType} damageType The damage type inflicted by the spell.
- * @property {armor|null} armorType Armor type the damage is applied against, or `null` to ignore armor.
+ * @property {keyof typeof damageType} damageType The damage type inflicted by the spell.
+ * @property {keyof typeof armor|null} armorType Armor type the damage is applied against, or `null` to ignore armor.
  */
 
 /**
  * Effect sub-schema for a spell's effect details.
  * @typedef SpellEffectEffectData
- * @property {attributes} attribute The attribute used to compute the effect step.
+ * @property {keyof typeof attributes} attribute The attribute used to compute the effect step.
  * @property {number} stepModifier Modifier added to the effect step.
  * @property {boolean} addCircle Whether the caster's circle in the corresponding discipline is added to the effect step.
  */
@@ -530,14 +556,14 @@
 /**
  * Effect configuration for a spell.
  * @typedef SpellEffectData
- * @property {spellEffectTypes} type The kind of effect this spell has.
+ * @property {keyof typeof spellEffectTypes} type The kind of effect this spell has.
  * @property {SpellEffectDetailsData} details Details for each effect type.
  */
 
 /**
  * Element configuration for a spell.
  * @typedef SpellElementData
- * @property {elements|null} type The element type of the spell.
+ * @property {keyof typeof elements|null} type The element type of the spell.
  * @property {string|null} subtype The element subtype flattened from {@link elementSubtypes}.
  */
 
@@ -545,12 +571,12 @@
  * Additional data for spell items, on top of the item-description, learnable, and targeting templates.
  * @typedef _SpellData
  * {@ignore}
- * @property {spellcastingTypes} spellcastingType The type of spellcasting used by this spell.
+ * @property {keyof typeof spellcastingTypes} spellcastingType The type of spellcasting used by this spell.
  * @property {number} level The spell's circle / level.
  * @property {SpellDifficultyData} spellDifficulty Weaving and reattuning difficulty values.
  * @property {SpellThreadsData} threads Thread information for the spell.
  * @property {SpellEffectData} effect Effect configuration.
- * @property {Set<spellKeywords>} keywords Keywords describing spell properties.
+ * @property {Set<keyof typeof spellKeywords>} keywords Keywords describing spell properties.
  * @property {SpellElementData|null} element Element configuration.
  * @property {DurationMetricData} duration The spell's duration (embedded metric).
  * @property {RangeMetricData} range The spell's range (embedded metric).
@@ -587,7 +613,7 @@
  * {@ignore}
  * @property {DocumentUuid|null} wovenToUuid UUID of the item this thread is woven to, if any.
  * @property {number} level The rank of this thread.
- * @property {threadTypes|null} threadType The type of thread (e.g., to a thread item or a group pattern).
+ * @property {keyof typeof threadTypes|null} threadType The type of thread (e.g., to a thread item or a group pattern).
  */
 
 /**
@@ -605,7 +631,7 @@
  * @typedef _CurseHorrorMarkData
  * {@ignore}
  * @property {number} step The curse's step.
- * @property {curseType} type The type of the curse (e.g. "minor", "major").
+ * @property {keyof typeof curseType} type The type of the curse.
  * @property {boolean} active Whether the curse is currently active.
  * @property {boolean} detected Whether the curse has been detected by its target.
  * @property {DocumentId|null} source Sibling item id of the source of the curse.
@@ -659,8 +685,8 @@
 /**
  * Grouped defense, armor, health, and recovery modifiers granted by a mask.
  * @typedef MaskCharacteristicsData
- * @property {Record<defenses, MaskDefenseValueData>} defenses Defense modifiers keyed by defense type.
- * @property {Record<armor, MaskArmorValueData>} armor Armor modifiers keyed by armor type.
+ * @property {Record<keyof typeof defenses, MaskDefenseValueData>} defenses Defense modifiers keyed by defense type.
+ * @property {Record<keyof typeof armor, MaskArmorValueData>} armor Armor modifiers keyed by armor type.
  * @property {MaskHealthData} health Health-related modifiers.
  * @property {MaskRecoveryData} recoveryTestsResource Recovery tests resource modifier.
  */
@@ -682,7 +708,7 @@
  * Additional data for mask items, on top of the item-description template.
  * @typedef _MaskData
  * {@ignore}
- * @property {Record<attributes, MaskAttributeStepData>} attributes Attribute step modifiers granted by the mask.
+ * @property {Record<keyof typeof attributes, MaskAttributeStepData>} attributes Attribute step modifiers granted by the mask.
  * @property {MovementData} movement Movement rate modifications granted by the mask.
  * @property {MaskCharacteristicsData} characteristics Defense, armor, health, and recovery modifiers.
  * @property {number} initiative Initiative modifier.
@@ -728,7 +754,7 @@
  * @property {PoisonDiseaseIntervalData} interval Interval configuration.
  * @property {number} onsetTime Time until the poison/disease becomes effective.
  * @property {number} duration Duration of the poison/disease.
- * @property {poisonActivation} activation How the poison/disease is activated (e.g. "wound", "contact").
+ * @property {keyof typeof poisonActivation} activation How the poison/disease is activated.
  * @property {boolean} death Whether the poison/disease can be lethal.
  */
 

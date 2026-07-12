@@ -36,14 +36,14 @@
 /**
  * Details for an "attack" roll.
  * @typedef RollTypeAttackData
- * @property {Set<itemStatus>} weaponItemStatus Item statuses of weapons that are eligible for this attack.
- * @property {Set<weaponType>} weaponTypes Weapon types (e.g. melee, ranged) that are eligible for this attack.
+ * @property {Set<keyof typeof itemStatus>} weaponItemStatus Item statuses of weapons that are eligible for this attack.
+ * @property {Set<keyof typeof weaponType>} weaponTypes Weapon types that are eligible for this attack.
  */
 
 /**
  * Details for a "damage" roll.
  * @typedef RollTypeDamageData
- * @property {Set<weaponType>} combatType Weapon types (e.g. melee, ranged) that determine which weapons contribute to the
+ * @property {Set<keyof typeof weaponType>} combatType Weapon types that determine which weapons contribute to the
  * damage roll.
  */
 
@@ -60,7 +60,7 @@
 /**
  * Details for a "reaction" roll.
  * @typedef RollTypeReactionData
- * @property {targetDifficulty} defenseType The defense type used as the target for the reaction roll.
+ * @property {keyof typeof targetDifficulty} defenseType The defense type used as the target for the reaction roll.
  */
 
 /**
@@ -76,7 +76,7 @@
 /**
  * Details for a "threadWeaving" roll.
  * @typedef RollTypeThreadWeavingData
- * @property {spellcastingTypes|null} castingType The spellcasting type this thread weaving ability uses.
+ * @property {keyof typeof spellcastingTypes|null} castingType The spellcasting type this thread weaving ability uses.
  */
 
 /**
@@ -109,7 +109,7 @@
  * Data shared by items that represent an action, e.g., abilities and attack items.
  * @typedef _ActionData
  * {@ignore}
- * @property {action|null} action The action type, e.g. "standard", "simple", "free".
+ * @property {keyof typeof action|null} action The action type.
  * @property {number} strain The strain cost incurred when using this action.
  */
 
@@ -125,8 +125,8 @@
 /**
  * The difficulty settings for a target-based roll.
  * @typedef DifficultyData
- * @property {targetDifficulty} target The defense type of the target (e.g. "physical", "mystical", "social").
- * @property {groupDifficulty} group Group difficulty rule, e.g. "highestOfGroup" or "lowestX".
+ * @property {keyof typeof targetDifficulty} target The defense type of the target.
+ * @property {keyof typeof groupDifficulty} group Group difficulty rule.
  * @property {number|null} fixed A fixed numeric difficulty that overrides target and group when > 0.
  */
 
@@ -174,7 +174,7 @@
  * @typedef _AbilityData
  * {@ignore}
  * @property {string} attribute The 3-letter attribute abbreviation used for the ability's roll.
- * @property {tier} tier The tier of the ability (e.g. "novice", "journeyman", "warden", "master").
+ * @property {keyof typeof tier} tier The tier of the ability.
  * @property {AbilitySourceData} source The source class information for this ability.
  */
 
@@ -258,7 +258,7 @@
 /**
  * Data for a matrix item. `null` if the item is not currently a matrix.
  * @typedef MatrixData
- * @property {matrixTypes} matrixType The type of matrix (e.g. "standard", "armored", "shared").
+ * @property {keyof typeof matrixTypes} matrixType The type of matrix.
  * @property {number} level The rank of the matrix.
  * @property {number} damage The current damage on the matrix.
  * @property {number} deathRating The maximum damage the matrix can take before breaking.
@@ -281,7 +281,7 @@
  * The item's price with denomination.
  * @typedef PriceData
  * @property {number} value Numeric price value.
- * @property {denomination} denomination Denomination of the price (e.g. "silver", "gold").
+ * @property {keyof typeof denomination} denomination Denomination of the price.
  */
 
 /**
@@ -298,10 +298,10 @@
  * {@ignore}
  * @property {PriceData} price The item's price with denomination.
  * @property {WeightData} weight The item's weight data.
- * @property {availability} availability The item's availability rating (e.g. "average", "rare").
+ * @property {keyof typeof availability} availability The item's availability rating.
  * @property {number} amount The number of units of this item.
  * @property {number} bloodMagicDamage Blood magic damage inflicted on the actor while this item is active.
- * @property {itemStatus} itemStatus Whether the item is owned, carried, or equipped.
+ * @property {keyof typeof itemStatus} itemStatus Whether the item is owned, carried, or equipped.
  * @property {TruePatternData} truePattern The item's true pattern data (embedded).
  */
 

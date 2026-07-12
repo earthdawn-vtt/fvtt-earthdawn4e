@@ -36,7 +36,7 @@
 
 /**
  * The identifiers used for actor attributes.
- * @typedef {attributes} AttributeId
+ * @typedef {keyof typeof attributes} AttributeId
  * @see {@link attributes}
  */
 
@@ -60,7 +60,7 @@
 
 /**
  * The identifiers used for defense mappings.
- * @typedef { defense } DefenseId
+ * @typedef { keyof typeof defense } DefenseId
  * @see {@link defense}
  */
 
@@ -71,7 +71,7 @@
 
 /**
  * The identifiers used for armor mappings.
- * @typedef { armor } ArmorId
+ * @typedef { keyof typeof armor } ArmorId
  * @see {@link armor}
  */
 
