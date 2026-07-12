@@ -59,7 +59,6 @@ export default class BaseMessageData extends SystemDataModel {
   /**
    * Iterate over the inheritance chain of this Application. Analogous to {@link ApplicationV2#inheritanceChain}
    * @see {@link BaseMessageData.BASE_DATA_MODEL}
-   * @generator
    * @yields {typeof ApplicationV2}
    */
   static *inheritanceChain() {
