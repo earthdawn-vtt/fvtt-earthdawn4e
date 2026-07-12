@@ -71,6 +71,12 @@
  */
 
 /**
+ * A string representing an identifier, consisting of only ascii letters, numbers, _, and -.
+ * @typedef {string} Identifier
+ * @see{@link IdentifierField}
+ */
+
+/**
  * A 16-character UID
  * @typedef {string} DocumentId
  * @see{foundry.data.validation.isValidId}

@@ -3,6 +3,15 @@ import LpSpendingTransactionData from "./lp-spending-transaction.mjs";
 
 import { sum } from "../../utils/math.mjs";
 
+/**
+ * @import { LpTrackingSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for tracking all LP (Legend Points) earnings and spendings for an actor.
+ * @augments {foundry.abstract.DataModel<LpTrackingSystemData>}
+ * @see {@link LpTrackingSystemData} The system data model for LP tracking data.
+ */
 export default class LpTrackingData extends foundry.abstract.DataModel {
 
   /** @inheritdoc */

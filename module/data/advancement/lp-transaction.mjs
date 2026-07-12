@@ -1,5 +1,14 @@
 import AssignLpPrompt from "../../applications/advancement/assign-legend.mjs";
 
+/**
+ * @import { LpTransactionSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Abstract base data model for an LP (Legend Points) transaction on an actor.
+ * @augments {foundry.abstract.DataModel<LpTransactionSystemData>}
+ * @see {@link LpTransactionSystemData} The system data model for LP transaction data.
+ */
 export default class LpTransactionData extends foundry.abstract.DataModel {
 
   // region Schema

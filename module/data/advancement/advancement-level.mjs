@@ -6,7 +6,13 @@ import MappingField from "../fields/mapping-field.mjs";
 import { mapObject } from "../../utils/object.mjs";
 
 /**
- * A level in an advancement.
+ * @import { AdvancementLevelSystemData } from "./_types.mjs";
+ */
+
+/**
+ * A level in a class-advancement.
+ * @augments {SparseDataModel<AdvancementLevelSystemData>}
+ * @see {@link AdvancementLevelSystemData} The system data model for advancement level data.
  */
 export default class AdvancementLevelData extends SparseDataModel {
 
