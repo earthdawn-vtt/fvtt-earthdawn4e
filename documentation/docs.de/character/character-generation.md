@@ -37,11 +37,11 @@ category: Charakter
             setze einen Haken bei <em lang="en">Create Actor</em>. Wenn die Spielleitung diese Option nicht für Spielende beibehalten möchte, sollte die Konfiguration 
             nach der Charaktererschaffung wieder zurückgesetzt werden. <br><strong>Vorsicht: Dieses Recht erlaubt es den Spielenden beliebig viele Akteure zu erstellen 
                 und besonders in öffentlichen Welten darf diese Berechtigung nicht leichtfertig aktiviert bleiben.</strong></p>
-        <img src="../../assets/manual/german/char-gen-permission-setting.png">
+        <img src="../../../assets/manual/german/char-gen-permission-setting.png">
         <p>Die nächste wichtige Voraussetzung ist, dass die Spielenden Zugriff (mindestens "Beobachter" Zugriff) auf die entsprechenden Kompendium Pakete oder Items in 
             der Welt haben. Damit ist gemeint, dass die automatische Charaktererschaffung nur funktioniert, wenn die Spielenden Zugriff auf die Items haben, die dafür 
             benötigt werden (z.B. Namensgeber, Disziplinen, Talente, Fertigkeiten, Zauber etc.).</p>
-        <img src="../../assets/manual/german/char-gen-compendium-permissions.png">
+        <img src="../../../assets/manual/german/char-gen-compendium-permissions.png">
         <p>Wenn diese beiden Voraussetzungen erfüllt sind, können die Spielenden die Charaktererschaffung entweder über den Menüpunkt <em>Akteur erstellen</em> im 
             Akteur Verzeichnis, oder über den Chat Befehl <code>/char</code> starten.</p>
     </div>
@@ -61,7 +61,7 @@ category: Charakter
         <h3>Maximaler Zauberkreis</h3>
         <p>Diese Konfiguration legt fest, welche Zauber bei der Charaktererschaffung zur Verfügung stehen. Hier kann der Kreis festgelegt werden. Standardmäßig ist der 
             maximale Kreis auf 2 festgelegt.</p>
-        <img src="../../assets/manual/german/char-gen-system-settings.png" style="display: block; width: auto; max-width: 100%; margin: 0 auto; clear: both">
+        <img src="../../../assets/manual/german/char-gen-system-settings.png" style="display: block; width: auto; max-width: 100%; margin: 0 auto; clear: both">
     </div>
     <p> </p>
 
