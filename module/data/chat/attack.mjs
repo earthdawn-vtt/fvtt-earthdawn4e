@@ -1,6 +1,15 @@
 import BaseMessageData from "./base-message.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
+/**
+ * @import { AttackMessageSystemData } from "./_types.mjs";
+ */
+
+/**
+ * The data model for a chat message representing an attack roll.
+ * @augments {BaseMessageData<AttackMessageSystemData>}
+ * @see {@link AttackMessageSystemData} The system data model for attack message data.
+ */
 export default class AttackMessageData extends BaseMessageData {
 
   // region Schema

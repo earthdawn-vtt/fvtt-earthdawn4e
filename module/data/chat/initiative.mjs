@@ -1,6 +1,15 @@
 import BaseMessageData from "./base-message.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
+/**
+ * @import { InitiativeMessageSystemData } from "./_types.mjs";
+ */
+
+/**
+ * The data model for a chat message representing an initiative roll.
+ * @augments {BaseMessageData<InitiativeMessageSystemData>}
+ * @see {@link InitiativeMessageSystemData} The system data model for initiative message data.
+ */
 export default class InitiativeMessageData extends BaseMessageData {
 
   // region Static Properties

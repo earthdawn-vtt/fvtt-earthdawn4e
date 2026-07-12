@@ -5,6 +5,16 @@ import { LoggerEd } from "../../logging/logger.mjs";
 
 const logger = LoggerEd.getInstance();
 
+/**
+ * @import { BaseMessageSystemData } from "./_types.mjs";
+ */
+
+/**
+ * The abstract base data model for all system-specific chat messages. Concrete subclasses
+ * extend this and add their own schema fields.
+ * @augments {SystemDataModel<BaseMessageSystemData>}
+ * @see {@link BaseMessageSystemData} The system data model for chat message base data.
+ */
 export default class BaseMessageData extends SystemDataModel {
 
   // region Static Properties
@@ -48,7 +58,7 @@ export default class BaseMessageData extends SystemDataModel {
 
   /**
    * Iterate over the inheritance chain of this Application. Analogous to {@link ApplicationV2#inheritanceChain}
-   * @see BaseMessageData.BASE_DATA_MODEL
+   * @see {@link BaseMessageData.BASE_DATA_MODEL}
    * @generator
    * @yields {typeof ApplicationV2}
    */
