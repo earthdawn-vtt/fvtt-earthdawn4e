@@ -1,5 +1,15 @@
 import SparseDataModel from "../abstract/sparse-data-model.mjs";
 
+/**
+ * @import { ThreadItemLevelSystemData } from "./_types.mjs";
+ */
+
+/**
+ * A single rank/level of a thread item, embedded inside a {@link TruePatternData}. Each level
+ * carries its own key knowledge, deed, effect, and granted abilities/active effects.
+ * @augments {SparseDataModel<ThreadItemLevelSystemData>}
+ * @see {@link ThreadItemLevelSystemData} The system data model for a thread item level.
+ */
 export default class ThreadItemLevelData extends SparseDataModel {
 
   /** @inheritdoc */

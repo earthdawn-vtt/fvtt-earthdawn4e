@@ -3,7 +3,17 @@ import ThreadItemLevelData from "./thread-item-level.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as LEGEND from "../../config/legend.mjs";
 
+/**
+ * @import { TruePatternSystemData } from "./_types.mjs";
+ */
 
+/**
+ * An embedded data model representing a true pattern attached to an actor or item. Depending on
+ * the parent document, it acts as a pattern item, a thread item (with per-level ranks), or a
+ * group pattern; it also tracks attached threads and the maximum number of threads that can be weaved to it.
+ * @augments {SparseDataModel<TruePatternSystemData>}
+ * @see {@link TruePatternSystemData} The system data model for a true pattern.
+ */
 export default class TruePatternData extends SparseDataModel {
 
   // region Schema
