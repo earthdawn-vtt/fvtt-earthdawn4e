@@ -1,0 +1,76 @@
+import { OptionDefaults } from "typedoc";
+
+/**
+ * TypeDoc configuration.
+ *
+ * @type {Partial<import('typedoc').TypeDocOptions>}
+ */
+const config = {
+  entryPoints: [
+    "module/**/_module.mjs",
+    "module/**/_types.mjs",
+    "earthdawn4e.mjs",
+  ],
+  entryPointStrategy: "resolve",
+  tsconfig:           "tsconfig.json",
+  readme:             "README.md",
+
+  name:           "ED4E - Earthdawn 4th Edition Foundry VTT System",
+  includeVersion: true,
+
+  outputs: [
+    {
+      name:                                "html",
+      path:                                "./_site",
+      useFirstParagraphOfCommentAsSummary: true,
+    },
+  ],
+  navigation: {
+    includeCategories: true,
+    includeGroups:     false,
+    includeFolders:    true,
+    compactFolders:    true,
+    excludeReferences: true,
+  },
+  categorizeByGroup: true,
+  customCss:         "documentation/theme/style.css",
+  customFooterHtml:  "",
+  hideGenerator:     true,
+
+  projectDocuments: [
+    "documentation/docs/index.md",
+    "documentation/docs.de/index.md",
+  ],
+  searchInDocuments: true,
+  lang:              "en",
+
+  blockTags: [
+    ...OptionDefaults.blockTags,
+    "@mixes",
+    "@mixin",
+  ],
+
+  plugin: [
+    "@typhonjs-typedoc/typedoc-theme-dmt",
+  ],
+  theme:        "default-modern",
+  dmtFavicon:   "https://gitlab.com/earthdawn/progressive-web-app/-/blob/87ad8efbacdf5984ca83f13326eaf8cf97eba063/favicon.ico",
+  dmtLinksIcon: [
+    {
+      icon:  "assets/logos/kofi_symbol.png",
+      title: "Ko-fi",
+      url:   "https://ko-fi.com/qrizzl",
+    },
+  ],
+  dmtLinksService: {
+    Discord: "https://discord.com/channels/170995199584108546/872191259471671346",
+    GitHub:  "https://github.com/earthdawn-vtt/fvtt-earthdawn4e",
+    // "Ko-fi": "https://ko-fi.com/qrizzl",
+  },
+  dmtNavigation: {
+    moduleIcon: false,
+    style:      "full",
+  },
+};
+
+export default config;

@@ -15,7 +15,7 @@
   "scripts": {
     "build": "npm run build:docs && build:packs && npm run build:css",
     "build:css": "gulp buildCSS",
-    "build:docs": "typedoc --options typedoc.json",
+    "build:docs": "typedoc --options typedoc.config.mjs",
     "build:packs": "npm run pullJSONtoLDB",
     "build:watch": "gulp",
     "lint:lang": "node tools/lint-json.mjs",
