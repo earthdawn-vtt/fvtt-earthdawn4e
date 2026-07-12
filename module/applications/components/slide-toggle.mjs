@@ -25,8 +25,8 @@ export default class SlideToggleElement extends CheckboxElement {
   /* -------------------------------------------- */
 
   /**
-   * Activate the element when it is attached to the DOM.
    * @inheritDoc
+   * Activate the element when it is attached to the DOM.
    */
   connectedCallback() {
     this.replaceChildren( ...this._buildElements() );
