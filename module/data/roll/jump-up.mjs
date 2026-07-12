@@ -4,19 +4,14 @@ import * as STATUSES from "../../config/statuses.mjs";
 import { createContentAnchor } from "../../helpers/formatting.mjs";
 
 /**
- * Roll options for jump up tests.
- * @typedef {object} JumpUpRollOptionsInitializationData
- * @augments {EdRollOptionsInitializationData}
- * @property {ActorEd} [actor] The actor jumping up. Can be omitted if `rollingActorUuid` in
- * {@link JumpUpRollOptions} is provided.
- * @property {ItemEd} [jumpUpAbility] The jump up ability used for the test. Can be
- * omitted if `jumpUpAbilityUuid` in {@link JumpUpRollOptions} is provided.
+ * @import { JumpUpRollOptionsSystemData, JumpUpRollOptionsInitializationData } from "./_types.mjs";
  */
 
 /**
  * Roll options for jump up tests.
- * @augments {EdRollOptions}
- * @property {string} [jumpUpAbilityUuid] The UUID of the jump up ability used for the test.
+ * @augments {EdRollOptions<JumpUpRollOptionsSystemData>}
+ * @see {@link JumpUpRollOptionsSystemData} The system data model for jump up roll options.
+ * @see {@link JumpUpRollOptionsInitializationData} The initialization data for jump up roll options.
  */
 export default class JumpUpRollOptions extends EdRollOptions {
 
@@ -54,7 +49,7 @@ export default class JumpUpRollOptions extends EdRollOptions {
 
   /**
    *  @inheritDoc
-   *  @param { JumpUpRollOptionsInitializationData & Partial<JumpUpRollOptions> } data The data to initialize
+   *  @param { JumpUpRollOptionsInitializationData & Partial<JumpUpRollOptionsSystemData> } data The data to initialize
    *  the roll options with.
    */
   static fromData( data, options = {} ) {
@@ -65,7 +60,7 @@ export default class JumpUpRollOptions extends EdRollOptions {
 
   /**
    * @inheritDoc
-   * @param { JumpUpRollOptionsInitializationData & Partial<JumpUpRollOptions> } data The data to initialize the roll options with.
+   * @param { JumpUpRollOptionsInitializationData & Partial<JumpUpRollOptionsSystemData> } data The data to initialize the roll options with.
    */
   static fromActor( data, actor, options = {} ) {
     return /** @type { JumpUpRollOptions } */ super.fromActor( data, actor, options );

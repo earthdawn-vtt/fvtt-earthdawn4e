@@ -9,151 +9,14 @@ import { createContentAnchor } from "../../helpers/formatting.mjs";
 
 
 /**
- * Base roll options initialization data for all types of damage rolls.
- * @typedef {object} BaseDamageRollOptionsInitializationData
- * @property {string} damageSourceType The type of damage source used for {@link DamageRollOptions~damageSourceType}.
- * @property {ItemEd} [replacementAbility] The ability that will replace the attribute step used for the base damage step.
- * Examples include "Crushing Blow", "Down Strike", or "Flame Arrow".
- * This does not include talents like "Body Control" or "Claw Shape", which create a weapon and
- * should instead be passed as a weapon item.
- * Can be omitted if `replacementAbilityUuid` in {@link DamageRollOptions} is provided.
- * @property {ItemEd[]} [increaseAbilities] Abilities that increase the damage step.
- * Can be omitted if `increaseAbilityUuids` in {@link DamageRollOptions} is provided.
+ * @import { DamageRollOptionsSystemData, EdDamageRollOptionsInitializationData } from "./_types.mjs";
  */
-
-/**
- * Roll options initialization data for arbitrary damage roll.
- * @typedef {BaseDamageRollOptionsInitializationData} ArbitraryDamageInitializationData
- * @property {"arbitrary"} damageSourceType Discriminator for arbitrary damage source.
- * @property {Document} [sourceDocument] If given, will try to get the base damage step via `system.rankFinal`, or 1 if
- * not found.
- */
-
-/**
- * Roll options initialization data for drowning damage roll.
- * @typedef {BaseDamageRollOptionsInitializationData} DrowningDamageInitializationData
- * @property {"drowning"} damageSourceType Discriminator for drowning damage source.
- * @property {number} [drowningRound=1] The round of drowning to roll damage for. Determines the step number for the
- * roll.
- */
-
-/**
- * Roll options initialization data for falling damage roll.
- * @typedef {BaseDamageRollOptionsInitializationData} FallingDamageInitializationData
- * @property {"falling"} damageSourceType Discriminator for falling damage source.
- * @property {number} [fallingHeight] The height of the fall in yards.
- * Determines the step number for the roll, but not the number of rolls (heights >10 yards must repeat).
- */
-
-/**
- * Roll options initialization data for fire damage roll.
- * @typedef {BaseDamageRollOptionsInitializationData} FireDamageInitializationData
- * @property {"fire"} damageSourceType Discriminator for fire damage source.
- * @property {string} fireType The type of fire source. Must be one of the values defined in
- * {@link module:config~ENVIRONMENT~fireDamage}.
- */
-
-/**
- * Roll options initialization data for poison damage roll.
- * @typedef {BaseDamageRollOptionsInitializationData} PoisonDamageInitializationData
- * @property {"poison"} damageSourceType Discriminator for poison damage source.
- * @property {ItemEd} sourceDocument Item of type "poison". The poison's effect damage step is used as the base
- * damage step.
- */
-
-/**
- * Roll options initialization data for power damage roll.
- * @typedef {BaseDamageRollOptionsInitializationData} PowerDamageInitializationData
- * @property {"power"} damageSourceType Discriminator for power damage source.
- * @property {ItemEd} sourceDocument Item of type "power". The power's damage step is used as the base
- * damage step.
- */
-
-/**
- * Roll options initialization data for spell damage roll.
- * @typedef {BaseDamageRollOptionsInitializationData} SpellDamageInitializationData
- * @property {"spell"} damageSourceType Discriminator for spell damage source.
- * @property {ItemEd} sourceDocument Item of type "spell".
- * @property {ActorEd} caster The actor that cast the spell. The caster's willpower step is used as the base
- * @property {ItemEd} [willforce] The willforce ability of the spell's caster, if used for the damage roll.
- */
-
-/**
- * Roll options initialization data for suffocation damage roll.
- * @typedef {BaseDamageRollOptionsInitializationData} SuffocationDamageInitializationData
- * @property {"suffocation"} damageSourceType Discriminator for suffocation damage source.
- * @property {number} [suffocationRound=1] The round of suffocation to roll damage for. Determines the step number for
- * the roll.v
- */
-
-/**
- * Roll options initialization data for unarmed damage roll.
- * @typedef {BaseDamageRollOptionsInitializationData} UnarmedDamageInitializationData
- * @property {"unarmed"} damageSourceType Discriminator for unarmed damage source.
- * @property {ActorEd} sourceDocument Actor of type "sentient". The attacker’s Strength step is used as the base
- * damage step.
- * @property {EdRoll} [attackRoll] The attack roll that caused the damage. This is used to determine
- * the bonus to the damage step from extra successes.
- */
-
-/**
- * Roll options initialization data for warping damage roll.
- * @typedef {BaseDamageRollOptionsInitializationData} WarpingDamageInitializationData
- * @property {"warping"} damageSourceType Discriminator for warping damage source.
- * @property {ItemEd} sourceDocument Item of type "spell". The spell’s circle is used as the base damage step.
- * @property {string} [astralSpacePollution="safe"] The type of astral space pollution to use for modifying the
- * step of warping damage.
- */
-
-/**
- * Roll options initialization data for weapon damage roll.
- * @typedef {BaseDamageRollOptionsInitializationData} WeaponDamageInitializationData
- * @property {"weapon"} damageSourceType Discriminator for weapon damage source.
- * @property {ItemEd} sourceDocument The document that is causing the damage, e.g. a weapon, an attack power, or an
- * actor.
- * @property {EdRoll} [attackRoll] The attack roll that caused the damage. This is used to determine
- * the bonus to the damage step from extra successes.
- */
-
-/**
- * Union of all possible damage roll initialization options.
- * @typedef {
- *   ArbitraryDamageInitializationData |
- *   DrowningDamageInitializationData |
- *   FallingDamageInitializationData |
- *   FireDamageInitializationData |
- *   PoisonDamageInitializationData |
- *   SpellDamageInitializationData |
- *   SuffocationDamageInitializationData |
- *   UnarmedDamageInitializationData |
- *   WarpingDamageInitializationData |
- *   WeaponDamageInitializationData
- * } EdDamageRollOptionsInitializationData
- */
-
 
 /**
  * Roll options for damage rolls.
- * @augments { EdRollOptions }
- * @property { string } damageSourceType The type of damage source (e.g., weapon, spell). Must be one of the values
- * defined in {@link module:config~COMBAT~damageSourceConfig}.
- * @property { string|null } [armorType=""] The type of armor to consider when calculating damage. Must be one of the values
- * defined in {@link module:config~ACTORS~armor}.
- * @property { string } [damageType="standard"] The type of damage to roll. Must be one of the values defined in
- * {@link module:config~COMBAT~damageType}.
- * @property { boolean } [ignoreArmor=false] Whether to ignore armor when calculating damage.
- * @property { boolean } [naturalArmorOnly=false] Whether to only consider natural armor when calculating damage.
- * @property { string } [sourceUuid=null] The UUID of the source item or actor that caused the damage, if applicable.
- * @property { string } [replacementAbilityUuid=null] The UUID of an ability that will replace the attribute step used for
- * the base damage step. Examples include "Crushing Blow", "Down Strike", or "Flame Arrow".
- * Note: This does not include talents like "Body Control" or "Claw Shape", which technically create a weapon and
- * therefore should be passed as a weapon item.
- * @property { string[] } [increaseAbilityUuids=[]] An array of UUIDs of abilities that increase the damage step.
- * @property { object } [element] The element and subtype of the damage, if applicable.
- * @property { string } [element.type] The type of element (e.g., fire, water). Must be one of the values defined in
- * {@link module:config~MAGIC~elements}.
- * @property { string } [element.subtype] The subtype of the element (e.g., acid, cold). Must be one of the values defined in
- * {@link module:config~MAGIC~elementSubtypes}.
+ * @augments {EdRollOptions<DamageRollOptionsSystemData>}
+ * @see {@link DamageRollOptionsSystemData} The system data model for damage roll options.
+ * @see {@link EdDamageRollOptionsInitializationData} The initialization data union for damage roll options.
  */
 export default class DamageRollOptions extends EdRollOptions {
 
@@ -248,7 +111,7 @@ export default class DamageRollOptions extends EdRollOptions {
   /**
    * @inheritDoc
    * @template { EdDamageRollOptionsInitializationData } T
-   * @param { T & Partial<DamageRollOptions> } data The data to initialize the roll options with.
+   * @param { T & Partial<DamageRollOptionsSystemData> } data The data to initialize the roll options with.
    */
   static fromData( data, options = {} ) {
     data.sourceUuid ??= data.sourceDocument?.uuid;
@@ -265,7 +128,7 @@ export default class DamageRollOptions extends EdRollOptions {
   /**
    * @inheritDoc
    * @template { EdDamageRollOptionsInitializationData } T
-   * @param { T & Partial<DamageRollOptions> } data The data to initialize the roll options with.
+   * @param { T & Partial<DamageRollOptionsSystemData> } data The data to initialize the roll options with.
    */
   static fromActor( data, actor, options = {} ) {
     return /** @type { DamageRollOptions } */ super.fromActor( data, actor, options );

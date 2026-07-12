@@ -3,33 +3,14 @@ import * as MAGIC from "../../config/magic.mjs";
 import { createContentAnchor } from "../../helpers/formatting.mjs";
 
 /**
- * @typedef { object } EdThreadWeavingRollOptionsInitializationData
- * @augments { EdRollOptionsInitializationData }
- * @property { ItemEd } [weavingAbility] The ability used for thread weaving.
- * Can be omitted if `weavingAbilityUuid` is provided.
- * @property { string } [weavingAbilityUuid] The UUID of the ability used for thread weaving.
- * Can be omitted if `weavingAbility` is provided.
- * @property { ItemEd } [spell] The spell the threads are woven for.
- * Can be omitted if `spellUuid` is provided.
- * @property { string } [spellUuid] The UUID of the spell the threads are woven for.
- * Can be omitted if `spell` is provided.
- * @property { ItemEd } [grimoire] The grimoire item, if a grimoire is used to cast the spell.
- * @property { ItemEd } [truePattern] The document that holds the true pattern the thread is woven to.
- * Can be omitted if `truePatternUuid` is provided.
- * @property { string } [truePatternUuid] The UUID of the document that holds the true pattern the thread
- * is woven to. Can be omitted if `truePattern` is provided.
- * @property { number } [newThreadRank=1] The rank of the new thread being created, if any.
+ * @import { ThreadWeavingRollOptionsSystemData, EdThreadWeavingRollOptionsInitializationData } from "./_types.mjs";
  */
 
 /**
  * Roll options for weaving threads to spells and true patterns.
- * @augments { EdRollOptions }
- * @property { string } weavingAbilityUuid The UUID of the ability used for thread weaving.
- * @property { string } spellUuid The UUID of the spell the threads are woven for, if any.
- * @property { { required: number, extra: number } } threads The number of threads for the spell, if any.
- * @property { number } [newThreadRank] The rank of the new thread being created, if any.
- * @property { string } [truePatternUuid] The UUID of the document that holds the true pattern the thread
- * is woven to, if any.
+ * @augments {EdRollOptions<ThreadWeavingRollOptionsSystemData>}
+ * @see {@link ThreadWeavingRollOptionsSystemData} The system data model for thread weaving roll options.
+ * @see {@link EdThreadWeavingRollOptionsInitializationData} The initialization data for thread weaving roll options.
  */
 export default class ThreadWeavingRollOptions extends EdRollOptions {
 
@@ -97,7 +78,7 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
 
   /**
    * @inheritDoc
-   * @param { EdThreadWeavingRollOptionsInitializationData & Partial<ThreadWeavingRollOptions> } data The data to initialize the roll options with.
+   * @param { EdThreadWeavingRollOptionsInitializationData & Partial<ThreadWeavingRollOptionsSystemData> } data The data to initialize the roll options with.
    * @returns { ThreadWeavingRollOptions } A new instance of ThreadWeavingRollOptions.
    */
   static fromActor( data, actor, options = {} ) {
@@ -106,7 +87,7 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
 
   /**
    * @inheritDoc
-   * @param { EdThreadWeavingRollOptionsInitializationData & Partial<ThreadWeavingRollOptions> } data The data to initialize the roll options with.
+   * @param { EdThreadWeavingRollOptionsInitializationData & Partial<ThreadWeavingRollOptionsSystemData> } data The data to initialize the roll options with.
    * @returns { ThreadWeavingRollOptions } A new instance of ThreadWeavingRollOptions.
    */
   static fromData( data, options = {} ) {

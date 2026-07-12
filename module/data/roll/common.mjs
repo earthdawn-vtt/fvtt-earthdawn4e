@@ -9,49 +9,16 @@ import { sum } from "../../utils/math.mjs";
 import { getSetting } from "../../helpers/settings.mjs";
 
 /**
- * @typedef {import('../../_types.mjs').RollModifiers} RollModifiers
- * @typedef {import('../../_types.mjs').RollStepData} RollStepData
- * @typedef {import('../../_types.mjs').RollResourceData} RollResourceData
- * @typedef {import('../../_types.mjs').RollTargetData} RollTargetData
- * @typedef {import('../../_types.mjs').RollStrainData} RollStrainData
+ * @import { EdRollOptionsSystemData, EdRollOptionsInitializationData } from "./_types.mjs";
  */
 
 /**
- * @typedef { object } EdRollOptionsInitializationData
- * @property { RollStepData } [step] The step data for the roll. Can be omitted if to be initialized automatically.
- * @property { RollTargetData } [target] The target data for the roll. Can be omitted if to be initialized automatically.
- * @property { RollStrainData } [strain] The strain data for the roll. Can be omitted if to be initialized automatically.
- * @property { RollResourceData } [karma] The karma data for the roll. Can be omitted if to initialize to default.
- * @property { RollResourceData } [devotion] The devotion data for the roll. Can be omitted to initialize to default.
- * @property { Record<string, number> } [extraDice] Extra dice that are added to the roll, see {@link EdRollOptions.extraDice}.
- * @property { FlavorTemplateData } [flavor] Optional flavor data.
- */
-
-/**
- * @typedef {import('../../dice/ed-roll.mjs').FlavorTemplateData} FlavorTemplateData
- */
-
-/**
- * EdRollOptions Options for creating an {@link EdRoll} instance.
- * If not provided, values for `step`, `target`, and `strain` will be initialized to their default automatically.
- * Subclasses should override this to provide automation. This class only provides the default values.
- * @property { RollStepData } step Ever information related to the step of the action, Mods, Bonuses, Mali, etc.
- * @property { RollResourceData | null } karma Available Karma, Karma dice and used karma.
- * @property { RollResourceData | null } devotion Available Devotions, Devotion die, Devotion die used and used devotion.
- * @property { Record<string, number> } extraDice Extra dice that are added to the roll.
- *                                            Keys are localized labels. Values are the number of dice.
- * @property { RollTargetData | null } target All information of the targets array. Defenses, number, resistance.
- * @property { RollStrainData | null } strain How much strain this roll will cost
- * @property { string } [chatFlavor=""] The text that is added to the ChatMessage when this call is put to chat.
- * @property { string | null } [rollingActorUuid=null] The UUID of the actor performing the roll.
- * @property { ( 'action' | 'effect' | 'arbitrary' ) } testType The type of the test. See {@link module:config~ROLLS~testTypes}.
- * @property { string } rollType The type of the roll. See {@link module:config~ROLLS~rollTypes}.
- * @property { { guaranteed: number | null, additionalExtra: number | null } | null } successes
- *           Predefined successes for this roll. `guaranteed` are successes that are always counted.
- *           `additionalExtra` are successes that are only counted if extra successes are rolled.
- * @property { boolean } _dummy Whether this roll is a dummy roll that has no mechanical effect or meaningful content. It
- *                             does not consume resources, does not apply strain, has no meaningful result. Can be used
- *                             to simulate rolls for chat messages or other non-mechanical purposes.
+ * Base options for creating an {@link EdRoll} instance. If not provided, values for `step`,
+ * `target`, and `strain` will be initialized to their defaults automatically. Subclasses should
+ * override this to provide automation.
+ * @augments {SparseDataModel<EdRollOptionsSystemData>}
+ * @see {@link EdRollOptionsSystemData} The system data model for base roll options.
+ * @see {@link EdRollOptionsInitializationData} The initialization data for base roll options.
  */
 export default class EdRollOptions extends SparseDataModel {
 
@@ -316,7 +283,7 @@ export default class EdRollOptions extends SparseDataModel {
   /**
    * Creates a new instance of EdRollOptions from the provided data and actor. Subclasses may extend this method.
    * This basic implementation initializes the roll with karma and devotion data derived from the actor.
-   * @param { EdRollOptionsInitializationData & Partial<EdRollOptions> } data - The data to initialize the roll options with.
+   * @param { EdRollOptionsInitializationData & Partial<EdRollOptionsSystemData> } data - The data to initialize the roll options with.
    * @param { ActorEd } actor - The actor from which to derive additional roll options.
    * @param { DataModelConstructionContext } [options] - Additional options for the data model, see {@link foundry.abstract.DataModel}.
    * @returns { EdRollOptions } A new instance of EdRollOptions initialized with the provided data and actor.
@@ -340,7 +307,7 @@ export default class EdRollOptions extends SparseDataModel {
   /**
    * Creates a new instance of EdRollOptions. It uses the provided data to automatically initialize
    * step, target, and strain data, if possible.
-   * @param { EdRollOptionsInitializationData & Partial<EdRollOptions> } data The data object containing the roll options and/or
+   * @param { EdRollOptionsInitializationData & Partial<EdRollOptionsSystemData> } data The data object containing the roll options and/or
    * additional data for automatic initialization.
    * @param { DataModelConstructionContext } [options] Additional options for the data model, see {@link foundry.abstract.DataModel}.
    * @returns { EdRollOptions } A new instance of EdRollOptions initialized with the provided data.

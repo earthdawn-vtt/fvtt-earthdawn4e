@@ -5,31 +5,14 @@ import * as EFFECTS from "../../config/effects.mjs";
 import { createContentAnchor } from "../../helpers/formatting.mjs";
 
 /**
- * @typedef { object } EdAttackRollOptionsInitializationData
- * @augments { EdRollOptionsInitializationData }
- * @property { ItemEd } [weapon] The weapon used for the attack.
- * Can be omitted if `weaponUuid` is provided.
- * @property { string } [weaponUuid] The UUID of the weapon used for the attack.
- * Must be an embedded Item. Can be omitted if `weapon` is provided.
- * @property { ItemEd|null } [attackAbility] The ability used for the attack.
- * Can be null if no ability is used (substitute via attribute) or omitted if `attackAbilityUuid` is provided.
- * @property { string|null } [attackAbilityUuid] The UUID of the ability used for the attack.
- * Must be an embedded Item. Can be null if no ability is used (substitute via attribute) or omitted if `attackAbility` is provided.
- * @property { ActorEd } [attacker] The actor performing the attack.
- * Can be omitted if `rollingActorUuid` is provided.
- * @property { string } [rollingActorUuid] The UUID of the actor performing the attack.
- * Can be omitted if `attacker` is provided.
+ * @import { AttackRollOptionsSystemData, EdAttackRollOptionsInitializationData } from "./_types.mjs";
  */
 
 /**
  * Roll options for attack rolls.
- * @augments { EdRollOptions }
- * @property { string } weaponType The type of the weapon used for the attack.
- * Should be one of the keys in {@link module:config~ITEMS~weaponType}.
- * @property { string|null } weaponUuid The UUID of the weapon used for the attack.
- * Must be an embedded Item. Null if no weapon is used.
- * @property { string|null } attackAbilityUuid The UUID of the ability used for the attack.
- * Must be an embedded Item. Null if no ability is used.
+ * @augments {EdRollOptions<AttackRollOptionsSystemData>}
+ * @see {@link AttackRollOptionsSystemData} The system data model for attack roll options.
+ * @see {@link EdAttackRollOptionsInitializationData} The initialization data for attack roll options.
  */
 export default class AttackRollOptions extends EdRollOptions {
 
@@ -81,7 +64,7 @@ export default class AttackRollOptions extends EdRollOptions {
 
   /**
    * @inheritdoc
-   * @param { EdAttackRollOptionsInitializationData & Partial<AttackRollOptions> } data The data to initialize the roll options with.
+   * @param { EdAttackRollOptionsInitializationData & Partial<AttackRollOptionsSystemData> } data The data to initialize the roll options with.
    * @returns { AttackRollOptions } A new instance of AttackRollOptions.
    */
   static fromData( data, options = {} ) {
@@ -97,7 +80,7 @@ export default class AttackRollOptions extends EdRollOptions {
 
   /**
    * @inheritDoc
-   * @param { EdAttackRollOptionsInitializationData & Partial<AttackRollOptions> } data The data to initialize the roll options with.
+   * @param { EdAttackRollOptionsInitializationData & Partial<AttackRollOptionsSystemData> } data The data to initialize the roll options with.
    * @returns { AttackRollOptions } A new instance of AttackRollOptions.
    */
   static fromActor( data, actor, options = {} ) {

@@ -4,18 +4,14 @@ import { getSetting } from "../../helpers/settings.mjs";
 import { createContentAnchor } from "../../helpers/formatting.mjs";
 
 /**
- * @typedef { object } AbilityRollOptionsInitializationData
- * @augments { EdRollOptionsInitializationData }
- * @property { ItemEd } [ability] The ability being rolled.  Must have the `rankFinal` property in its `system` data.
- * Can be omitted if `abilityUuid` is provided.
- * @property { string } [abilityUuid] The UUID of the ability being rolled.
- * Can be omitted if `ability` is provided.
+ * @import { AbilityRollOptionsSystemData, AbilityRollOptionsInitializationData } from "./_types.mjs";
  */
 
 /**
  * Roll options for ability rolls.
- * @augments { EdRollOptions }
- * @property { string } abilityUuid The UUID of the ability being rolled.
+ * @augments {EdRollOptions<AbilityRollOptionsSystemData>}
+ * @see {@link AbilityRollOptionsSystemData} The system data model for ability roll options.
+ * @see {@link AbilityRollOptionsInitializationData} The initialization data for ability roll options.
  */
 export default class AbilityRollOptions extends EdRollOptions {
 

@@ -2,19 +2,14 @@ import EdRollOptions from "./common.mjs";
 import { createContentAnchor } from "../../helpers/formatting.mjs";
 
 /**
- * @typedef { object } EdKnockdownRollOptionsInitializationData
- * @augments { EdRollOptionsInitializationData }
- * @property { ItemEd | null } [knockdownAbility] The knockdown ability item.
- * Can be omitted if `knockdownAbilityUuid` in {@link KnockdownRollOptions} is provided.
- * @property { ActorEd } [actor] The actor making the knockdown test.
- * Can be omitted if `rollingActorUuid` in {@link KnockdownRollOptions} is provided.
- * @property { number } damageTaken The damage taken that triggered the knockdown test.
+ * @import { KnockdownRollOptionsSystemData, EdKnockdownRollOptionsInitializationData } from "./_types.mjs";
  */
 
 /**
  * Roll options for knockdown tests.
- * @augments { EdRollOptions }
- * @property { string | null } knockdownAbilityUuid The UUID of the knockdown ability item.
+ * @augments {EdRollOptions<KnockdownRollOptionsSystemData>}
+ * @see {@link KnockdownRollOptionsSystemData} The system data model for knockdown roll options.
+ * @see {@link EdKnockdownRollOptionsInitializationData} The initialization data for knockdown roll options.
  */
 export default class KnockdownRollOptions extends EdRollOptions {
 
@@ -53,7 +48,7 @@ export default class KnockdownRollOptions extends EdRollOptions {
 
   /**
    * @inheritdoc
-   * @param {EdKnockdownRollOptionsInitializationData & Partial<KnockdownRollOptions>} data This is the initial data to create the roll options from.
+   * @param {EdKnockdownRollOptionsInitializationData & Partial<KnockdownRollOptionsSystemData>} data This is the initial data to create the roll options from.
    */
   static fromData( data, options = {} ) {
     data.knockdownAbilityUuid ??= data.knockdownAbility?.uuid;
@@ -62,7 +57,7 @@ export default class KnockdownRollOptions extends EdRollOptions {
 
   /**
    * @inheritdoc
-   * @param {EdKnockdownRollOptionsInitializationData & Partial<KnockdownRollOptions>} data The initial data with which to create the roll options.
+   * @param {EdKnockdownRollOptionsInitializationData & Partial<KnockdownRollOptionsSystemData>} data The initial data with which to create the roll options.
    */
   static fromActor( data, actor, options = {} ) {
     return /** @type {KnockdownRollOptions} */ super.fromActor( data, actor, options );

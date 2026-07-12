@@ -3,20 +3,14 @@ import * as MAGIC from "../../config/magic.mjs";
 import { createContentAnchor } from "../../helpers/formatting.mjs";
 
 /**
- * @typedef { object } EdWarpingRollOptionsInitializationData
- * @augments { EdRollOptionsInitializationData }
- * @property { ItemEd } [caster] The actor casting the spell.
- * Can be omitted if `casterUuid` in {@link WarpingRollOptions} is provided.
- * @property { ItemEd } [spell] The spell being cast.
- * Can be omitted if `spellUuid` in {@link WarpingRollOptions} is provided
+ * @import { WarpingRollOptionsSystemData, EdWarpingRollOptionsInitializationData } from "./_types.mjs";
  */
 
 /**
  * Roll options for potential warping effects when casting spells.
- * @augments { EdRollOptions }
- * @property { string } astralSpacePollution The type of astral space pollution while casting the spell.
- * @property { string } casterUuid The UUID of the actor casting the spell.
- * @property { string } spellUuid The UUID of the spell being cast.
+ * @augments {EdRollOptions<WarpingRollOptionsSystemData>}
+ * @see {@link WarpingRollOptionsSystemData} The system data model for warping roll options.
+ * @see {@link EdWarpingRollOptionsInitializationData} The initialization data for warping roll options.
  */
 export default class WarpingRollOptions extends EdRollOptions {
 
@@ -62,7 +56,7 @@ export default class WarpingRollOptions extends EdRollOptions {
 
   /**
    *  @inheritDoc
-   *  @param { EdWarpingRollOptionsInitializationData & Partial<WarpingRollOptions> } data The data to initialize
+   *  @param { EdWarpingRollOptionsInitializationData & Partial<WarpingRollOptionsSystemData> } data The data to initialize
    *  the roll options with.
    */
   static fromData( data, options = {} ) {

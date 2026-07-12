@@ -3,25 +3,14 @@ import * as WORKFLOWS from "../../config/workflows.mjs";
 
 
 /**
- * @typedef { object } RecoveryRollOptionsInitializationData
- * @augments { EdRollOptionsInitializationData }
- * @property { string } recoveryMode The recovery mode, which can be one
- * of the keys in {@link module:config~WORKFLOWS~recoveryModes}.
- * @property { { standard: number, stun: number } } initialDamage The damage values before the recovery roll.
- * @property { number } initialWounds The number of wounds before the recovery roll.
- * @property { boolean } [ignoreWounds=false] Whether to ignore penalties from wounds during the recovery roll.
- * @property { ActorEd } [actor] The actor performing the recovery roll. Can be omitted if `rollingActorUuid` from
- * {@link EdRollOptions} is provided.
+ * @import { RecoveryRollOptionsSystemData, RecoveryRollOptionsInitializationData } from "./_types.mjs";
  */
 
 /**
  * Roll options for recovery rolls.
- * @augments { EdRollOptions }
- * @property { string } recoveryMode The recovery mode, which can be one
- * of the keys in {@link module:config~WORKFLOWS~recoveryModes}.
- * @property { { standard: number, stun: number } } initialDamage The damage values before the recovery roll.
- * @property { number } initialWounds The number of wounds before the recovery roll.
- * @property { boolean } [ignoreWounds=false] Whether to ignore penalties from wounds during the recovery roll.
+ * @augments {EdRollOptions<RecoveryRollOptionsSystemData>}
+ * @see {@link RecoveryRollOptionsSystemData} The system data model for recovery roll options.
+ * @see {@link RecoveryRollOptionsInitializationData} The initialization data for recovery roll options.
  */
 export default class RecoveryRollOptions extends EdRollOptions {
 
@@ -92,7 +81,7 @@ export default class RecoveryRollOptions extends EdRollOptions {
 
   /**
    * @inheritDoc
-   * @param { RecoveryRollOptionsInitializationData & Partial<RecoveryRollOptions> } data The data to initialize the roll options with.
+   * @param { RecoveryRollOptionsInitializationData & Partial<RecoveryRollOptionsSystemData> } data The data to initialize the roll options with.
    * @returns { RecoveryRollOptions } A new instance of RecoveryRollOptions.
    */
   static fromData( data, options = {} ) {
@@ -101,7 +90,7 @@ export default class RecoveryRollOptions extends EdRollOptions {
 
   /**
    * @inheritDoc
-   * @param { RecoveryRollOptionsInitializationData & Partial<RecoveryRollOptions> } data The data to initialize the roll options with.
+   * @param { RecoveryRollOptionsInitializationData & Partial<RecoveryRollOptionsSystemData> } data The data to initialize the roll options with.
    * @returns { RecoveryRollOptions } A new instance of RecoveryRollOptions.
    */
   static fromActor( data, actor, options = {} ) {

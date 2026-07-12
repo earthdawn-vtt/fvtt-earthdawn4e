@@ -3,20 +3,14 @@ import * as MAGIC from "../../config/magic.mjs";
 import { createContentAnchor } from "../../helpers/formatting.mjs";
 
 /**
- * @typedef { object } EdSpellcastingRollOptionsInitializationData
- * @augments { EdRollOptionsInitializationData }
- * @property { ItemEd } [spell] The spell being cast.
- * Can be omitted if `spellUuid` in {@link SpellcastingRollOptions} is provided.
- * @property { ItemEd } [spellcastingAbility] The ability used for spellcasting.
- * Can be omitted if `spellcastingAbilityUuid` in {@link SpellcastingRollOptions} is provided.
- * @property { ItemEd } [grimoire] The grimoire item, if a grimoire is used to cast the spell.
+ * @import { SpellcastingRollOptionsSystemData, EdSpellcastingRollOptionsInitializationData } from "./_types.mjs";
  */
 
 /**
  * Roll options for spellcasting.
- * @augments { EdRollOptions }
- * @property { string } spellUuid The UUID of the spell being cast.
- * @property { string } spellcastingAbilityUuid The UUID of the ability used for spellcasting.
+ * @augments {EdRollOptions<SpellcastingRollOptionsSystemData>}
+ * @see {@link SpellcastingRollOptionsSystemData} The system data model for spellcasting roll options.
+ * @see {@link EdSpellcastingRollOptionsInitializationData} The initialization data for spellcasting roll options.
  */
 export default class SpellcastingRollOptions extends EdRollOptions {
 
@@ -63,7 +57,7 @@ export default class SpellcastingRollOptions extends EdRollOptions {
 
   /**
    * @inheritDoc
-   * @param { EdSpellcastingRollOptionsInitializationData & Partial<SpellcastingRollOptions> } data The data to initialize the roll options with.
+   * @param { EdSpellcastingRollOptionsInitializationData & Partial<SpellcastingRollOptionsSystemData> } data The data to initialize the roll options with.
    */
   static fromData( data, options = {} ) {
     data.spellcastingAbilityUuid ??= data.spellcastingAbility?.uuid;
@@ -79,7 +73,7 @@ export default class SpellcastingRollOptions extends EdRollOptions {
 
   /**
    * @inheritDoc
-   * @param { EdSpellcastingRollOptionsInitializationData & Partial<SpellcastingRollOptions> } data The data to initialize the roll options with.
+   * @param { EdSpellcastingRollOptionsInitializationData & Partial<SpellcastingRollOptionsSystemData> } data The data to initialize the roll options with.
    */
   static fromActor( data, actor, options = {} ) {
     return /** @type { SpellcastingRollOptions } */ super.fromActor( data, actor, options );
