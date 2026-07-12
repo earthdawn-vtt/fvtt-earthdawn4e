@@ -4,6 +4,16 @@ import { LoggerEd } from "../../logging/logger.mjs";
 
 const logger = LoggerEd.getInstance();
 
+/**
+ * @import { EarthdawnActiveEffectSystemData } from "./_types.mjs";
+ */
+
+/**
+ * The base Earthdawn system-specific active effect data model. Concrete subclasses extend this
+ * and declare their own schema fields.
+ * @augments {ActiveEffectDataModel<EarthdawnActiveEffectSystemData>}
+ * @see {@link EarthdawnActiveEffectSystemData} The system data model for Earthdawn active effect data.
+ */
 export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
 
   // region Static Properties

@@ -1,6 +1,16 @@
 import EarthdawnActiveEffectData from "./eae.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
+/**
+ * @import { EarthdawnConditionEffectSystemData } from "./_types.mjs";
+ */
+
+/**
+ * The data model for an Earthdawn active effect representing a status condition, optionally with
+ * stacked or staged levels.
+ * @augments {EarthdawnActiveEffectData<EarthdawnConditionEffectSystemData>}
+ * @see {@link EarthdawnConditionEffectSystemData} The system data model for condition effect data.
+ */
 export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectData {
 
   // region Schema
