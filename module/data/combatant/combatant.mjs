@@ -1,6 +1,16 @@
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import { SYSTEM_TYPES as systemType } from "../../constants/constants.mjs";
 
+/**
+ * @import { CombatantSystemData } from "./_types.mjs";
+ */
+
+/**
+ * The data model for the system-specific data attached to a combatant in an active combat
+ * encounter.
+ * @augments {SystemDataModel<CombatantSystemData>}
+ * @see {@link CombatantSystemData} The system data model for combatant data.
+ */
 export default class CombatantData extends SystemDataModel {
 
   // region Schema
