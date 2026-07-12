@@ -23,7 +23,7 @@ export default class LpIncreaseTemplate extends SystemDataModel {
   // region Getters
 
   /**
-   * @description Whether the entity fulfills all requirements to be increased.
+   * Whether the entity fulfills all requirements to be increased.
    * @type {boolean}
    */
   get canBeIncreased() {
@@ -31,7 +31,7 @@ export default class LpIncreaseTemplate extends SystemDataModel {
   }
 
   /**
-   * @description Whether the entity can be increased. This is a shortcut for checking if this is mixed in.
+   * Whether the entity can be increased. This is a shortcut for checking if this is mixed in.
    * @type {boolean}
    */
   get increasable() {
@@ -39,7 +39,7 @@ export default class LpIncreaseTemplate extends SystemDataModel {
   }
 
   /**
-   * @description Data needed to validate the increase of this entity's level.
+   * Data needed to validate the increase of this entity's level.
    * @type {object}
    */
   get increaseData() {
@@ -87,7 +87,7 @@ export default class LpIncreaseTemplate extends SystemDataModel {
   }
 
   /**
-   * @description The amount of silver required to increase the level of the entity.
+   * The amount of silver required to increase the level of the entity.
    * @type {number}
    */
   get requiredMoneyForIncrease() {

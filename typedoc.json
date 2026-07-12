@@ -12,7 +12,6 @@
   "name": "ED4E - Earthdawn 4th Edition Foundry VTT System",
   "includeVersion": true,
 
-
   "outputs": [
     {
       "name": "html",
@@ -20,7 +19,6 @@
       "useFirstParagraphOfCommentAsSummary": true
     }
   ],
-
   "navigation": {
     "includeCategories": true,
     "includeGroups":     false,
@@ -29,7 +27,6 @@
     "excludeReferences": true
   },
   "categorizeByGroup": true,
-
   "customCss":        "documentation/theme/style.css",
   "customFooterHtml": "",
   "hideGenerator": true,
@@ -38,11 +35,12 @@
     "documentation/docs/index.md",
     "documentation/docs.de/index.md"
   ],
-
   "searchInDocuments": true,
-
   "lang": "en",
 
+  "blockTags": [
+    "@mixes"
+  ],
 
   "plugin": [
     "@typhonjs-typedoc/typedoc-theme-dmt"

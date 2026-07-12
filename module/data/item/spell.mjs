@@ -292,7 +292,7 @@ export default class SpellData extends ItemDataModel.mixin(
   // region Getters
 
   /**
-   * @description The difficulty number to dispel this spell.
+   * The difficulty number to dispel this spell.
    * @type {number}
    */
   get dispelDifficulty() {
@@ -308,7 +308,7 @@ export default class SpellData extends ItemDataModel.mixin(
   }
 
   /**
-   * @description Whether this spell is an illusion and therefore can be sensed.
+   * Whether this spell is an illusion and therefore can be sensed.
    * @type {boolean}
    */
   get isIllusion() {
@@ -340,7 +340,7 @@ export default class SpellData extends ItemDataModel.mixin(
   }
 
   /**
-   * @description The difficulty number to sense this spell, if it is an illusion, else undefined.
+   * The difficulty number to sense this spell, if it is an illusion, else undefined.
    * @type { number | undefined }
    */
   get sensingDifficulty() {
@@ -436,7 +436,7 @@ export default class SpellData extends ItemDataModel.mixin(
   }
 
   /**
-   * @description The difficulty number to learn this spells. Equals the level of the spell plus 5.
+   * The difficulty number to learn this spell. Equals the level of the spell plus 5.
    * @type {number}
    */
   get learningDifficulty() {

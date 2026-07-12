@@ -12,8 +12,8 @@ import { getSetting } from "../../helpers/settings.mjs";
 
 
 /**
+ * Validation categories for character generation.
  * @typedef {"namegiver" | "class" | "attributes" | "talents" | "skills"} ValidationCategoryKey
- * @description Validation categories for character generation.
  */
 
 /**

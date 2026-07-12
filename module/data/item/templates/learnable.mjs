@@ -21,7 +21,7 @@ export default class LearnableTemplate extends SystemDataModel {
   ];
 
   /**
-   * @description Whether the entity fulfills all requirements to be learned.
+   * Whether the entity fulfills all requirements to be learned.
    * @type {boolean}
    * @abstract
    */
@@ -30,7 +30,7 @@ export default class LearnableTemplate extends SystemDataModel {
   }
 
   /**
-   * @description Whether the entity can be learned. Should always be true if mixed in, as a shortcut for checking
+   * Whether the entity can be learned. Should always be true if mixed in, as a shortcut for checking
    * if this is mixed in.
    * @type {boolean}
    */
@@ -39,7 +39,7 @@ export default class LearnableTemplate extends SystemDataModel {
   }
 
   /**
-   * @description Data needed to validate if this entity can be learned.
+   * Data needed to validate if this entity can be learned.
    * @type {object}
    */
   get learnData() {
@@ -78,7 +78,7 @@ export default class LearnableTemplate extends SystemDataModel {
   }
 
   /**
-   * @description The amount of legend points required to learn this entity.
+   * The number of legend points required to learn this entity.
    * @type {number}
    */
   get requiredLpToLearn() {

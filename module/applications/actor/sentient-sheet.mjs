@@ -162,7 +162,6 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
    * @this {ActorSheetEdSentient}
    * @param {Event} event     The originating click event.
    * @param {HTMLElement} target  The target element that was clicked.
-   * @returns {Promise<void>}
    */
   static async _onAttuneMatrix( event, target ) {
     event.preventDefault();
@@ -322,7 +321,6 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
 
   /**
    * Handle changing the holding type of owned items.
-   * @description itemStatus.value =
    * @param {Event} event     The originating click event.
    * @param {number} target
    * 1: owned,

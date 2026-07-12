@@ -49,7 +49,7 @@ export default class LpTransactionData extends foundry.abstract.DataModel {
   // region Static Methods
 
   /**
-   * @description Converts a date object or integer to a string that can be used as value in a datetime input field.
+   * Converts a date object or integer to a string that can be used as value in a datetime input field.
    * @param { Date | integer } date The date to be converted. If integer, it is treated as a timestamp.
    * @returns { string } The date string in the format "YYYY-MM-DDTHH:MM".
    */
@@ -72,7 +72,7 @@ export default class LpTransactionData extends foundry.abstract.DataModel {
   // region Getters
 
   /**
-   * @description An automated description of this transaction.
+   * An automated description of this transaction.
    * @type {string}
    */
   get displayString() {

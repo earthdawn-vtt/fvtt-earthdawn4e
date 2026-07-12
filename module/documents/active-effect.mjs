@@ -37,7 +37,7 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
 
   /**
    *  @inheritdoc
-   *  @description The target this Active Effect is applied to.
+   *  The target this Active Effect is applied to.
    *  Null if not embedded. Undefined if the target is a document to which the effect needs to be transferred to.
    *  Effects on Actor documents are always applied to the Actor.
    *  @type {Document|null|undefined}

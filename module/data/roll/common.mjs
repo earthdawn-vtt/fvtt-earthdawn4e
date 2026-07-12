@@ -233,7 +233,7 @@ export default class EdRollOptions extends SparseDataModel {
   ];
 
   /**
-   * @description Bonus resources to be added globally
+   * Bonus resources to be added globally
    * @type { fields.SchemaField }
    */
   static get _bonusResource() {

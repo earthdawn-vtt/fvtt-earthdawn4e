@@ -857,11 +857,10 @@ export default class ActorEd extends Actor {
   // region LP Tracking
 
   /**
-   * @description                                 Add a new LP transaction to the actor's system data
+   * Add a new LP transaction to the actor's system data
    * @param {('earnings'|'spendings')} type       Type of the transaction
    * @param {object} transactionData   Data of the transaction
    * @returns {ActorEd}                           The updated actor data
-   * @see                             ../../documentation/User Functions/UF_LpTracking-addLpTransaction.md
    */
   async addLpTransaction( type, transactionData ) {
     if ( ![ "earnings", "spendings" ].includes( type ) ) throw new Error( `ActorEd.addLpTransaction: Invalid transaction type '${ type }' provided.` );
@@ -1087,7 +1086,7 @@ export default class ActorEd extends Actor {
   }
 
   /**
-   * @description                       Attribute Roll.
+   * Attribute Roll.
    * @param {string} attributeId        The 3-letter id for the attribute (e.g. "per").
    * @returns {Promise<any>}            A promise that resolves when the attunement workflow execution is complete.
    */
@@ -1103,7 +1102,7 @@ export default class ActorEd extends Actor {
   }
 
   /**
-   * @description                       Half magic Roll.
+   * Half magic Roll.
    * @param {string} attributeId        The 3-letter id for the attribute (e.g. "per").
    * @returns {Promise<any>}            A promise that resolves when the attunement workflow execution is complete.
    */
@@ -1118,7 +1117,7 @@ export default class ActorEd extends Actor {
   }
 
   /**
-   * @description                       Substitute Roll.
+   * Substitute Roll.
    * @param {string} attributeId        The 3-letter id for the attribute (e.g. "per").
    * @returns {Promise<any>}            A promise that resolves when the attunement workflow execution is complete.
    */
@@ -1148,7 +1147,7 @@ export default class ActorEd extends Actor {
   }
 
   /**
-   * @description                     The sequence that is rotated
+   * The sequence that is rotated
    * @param {object}    itemId        Id of the item to rotate the status of
    * @param {boolean}   backwards     Whether to rotate the status backwards
    * @returns {Promise<ItemEd[]>}       The updated items
@@ -1267,7 +1266,7 @@ export default class ActorEd extends Actor {
   }
 
   /**
-   * @description                       Returns all ammunition items of the given actor
+   * Returns all ammunition items of the given actor
    * @param {string} type               The type of ammunition to get
    * @returns {ItemEd[]}                An array of ammunition items
    */
