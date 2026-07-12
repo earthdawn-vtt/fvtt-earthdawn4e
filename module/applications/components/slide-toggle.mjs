@@ -2,7 +2,6 @@ import CheckboxElement from "./checkbox.mjs";
 
 /**
  * A custom HTML element that represents a checkbox-like input that is displayed as a slide toggle.
- * @fires change
  */
 export default class SlideToggleElement extends CheckboxElement {
   /** @inheritDoc */
