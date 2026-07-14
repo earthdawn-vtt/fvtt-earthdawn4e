@@ -117,7 +117,7 @@ export default class RollPrompt extends ApplicationEd {
   }
 
   /**
-   * @description                 Roll a step prompt.
+   * Roll a step prompt.
    */
   static rollArbitraryPrompt() {
     RollPrompt.waitPrompt(
@@ -201,7 +201,7 @@ export default class RollPrompt extends ApplicationEd {
   // region Event Handling
 
   /**
-   * @description                Roll the step.
+   * Roll the step.
    * @param {Event} event        The event that triggered the roll.
    * @param {HTMLElement} _      The target element of the event. Unused.
    * @returns {Promise}          The promise of the roll.
@@ -221,7 +221,7 @@ export default class RollPrompt extends ApplicationEd {
   // region Methods
 
   /**
-   * @description                 Validate the available resources.
+   * Validate the available resources.
    * @param {Event} event        The event that triggered the validation.
    */
   _validateAvailableResource( event ) {

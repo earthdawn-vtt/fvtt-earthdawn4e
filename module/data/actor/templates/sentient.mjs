@@ -6,8 +6,13 @@ import SiblingDocumentField from "../../fields/sibling-document-field.mjs";
 import * as ACTORS from "../../../config/actors.mjs";
 
 /**
+ * @import { SentientTemplateData } from "./_types.mjs";
+ */
+
+/**
  * A template for all actors that represent sentient beings and have such stats.
- * @mixin
+ * @augments {CommonTemplate<SentientTemplateData>}
+ * @see {@link SentientTemplateData} The system data model for this template.
  */
 export default class SentientTemplate extends CommonTemplate {
 

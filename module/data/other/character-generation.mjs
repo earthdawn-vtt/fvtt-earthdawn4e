@@ -12,20 +12,14 @@ import { getSetting } from "../../helpers/settings.mjs";
 
 
 /**
- * The data model from which a new character is generated.
- * @property {string} namegiver - The uuid of the chosen namegiver.
- * @property {boolean} isAdept - True if a discipline is chosen, false for questor.
- * @property {string} selectedClass - The uuid of the chosen class (discipline or questor).
- * @property {{[key: string]: {[change: string]: number, [cost: string]: number}}} attributes - The changes to the attribute values
- *                                                                          and their associated costs.
- * @property {{string: {string: number}}} abilities - The levels of the abilities, divided by types
- * ` "optional", "class", "free", "special", "artisan", "knowledge", "general", "language", "namegiver" `. Abilities
- * are represented as a mapping of uuids to levels.
- * @property {{string: number}} availableRanks - The available ranks to assign for free to abilities types.
- * @property {Set<string>} spells - The uuids of the chosen spells.
- * @property {{string: Set<string>}} languages - The chosen languages by read/write and speak. Keys are
- * `"speak", "readWrite"` with values being sets of languages.
- * @property {Set<string>} equipment - The uuids of the chosen equipment.
+ * @import { CharacterGenerationSystemData } from "./_types.mjs";
+ */
+
+/**
+ * The data model holding all in-progress choices for generating a new player character:
+ * namegiver, class, attributes, abilities, spells, languages, and starting equipment.
+ * @augments {SparseDataModel<CharacterGenerationSystemData>}
+ * @see {@link CharacterGenerationSystemData} The system data model for character generation data.
  */
 export default class CharacterGenerationData extends SparseDataModel {
 
@@ -412,7 +406,6 @@ export default class CharacterGenerationData extends SparseDataModel {
    * Updates the abilities available for the selected class.
    * @param {ItemEd} selectedClassDocument - The document representing the selected class.
    * The class needs to have {@link AdvancementData}.
-   * @returns {void}
    */
   setClassAbilities( selectedClassDocument ) {
     // only update if selected class changes
@@ -437,7 +430,6 @@ export default class CharacterGenerationData extends SparseDataModel {
    * Updates the abilities for a namegiver based on the provided namegiver document.
    * Only updates when the namegiver changes.
    * @param {ItemEd} namegiverDocument - The document representing the namegiver.
-   * @returns {void}
    */
   setNamegiverAbilities( namegiverDocument ) {
     // Only update data if namegiver changes

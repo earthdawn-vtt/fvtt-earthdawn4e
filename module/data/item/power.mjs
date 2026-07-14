@@ -13,9 +13,15 @@ import AttackWorkflow from "../../workflows/workflow/attack-workflow.mjs";
 
 
 /**
- * Data model template with information on Power items.
- * @property {number} powerStep    attack step
- * @property {number} damageStep    damage step
+ * @import { PowerSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for power items.
+ * @augments {ActionTemplate<PowerSystemData>}
+ * @mixes ItemDescriptionTemplate
+ * @mixes TargetTemplate
+ * @see {@link PowerSystemData} The system data model for power items.
  */
 export default class PowerData extends ActionTemplate.mixin(
   ItemDescriptionTemplate,

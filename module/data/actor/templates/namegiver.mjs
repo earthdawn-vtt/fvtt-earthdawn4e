@@ -6,8 +6,13 @@ const { SetField } = foundry.data.fields;
 const futils = foundry.utils;
 
 /**
+ * @import { NamegiverTemplateData } from "./_types.mjs";
+ */
+
+/**
  * A template for all actors that represent namegivers, that is, PCs and NPCs.
- * @mixin
+ * @augments {SentientTemplate<NamegiverTemplateData>}
+ * @see {@link NamegiverTemplateData} The system data model for this template.
  */
 export default class NamegiverTemplate extends SentientTemplate {
 
@@ -57,7 +62,7 @@ export default class NamegiverTemplate extends SentientTemplate {
   /**
    * Gets the type of magic of the first thread weaving talent encountered.
    * @type {string}
-   * @see ED4E.spellcastingTypes
+   * @see {@link ED4E.spellcastingTypes}
    */
   get castingType() {
     return this.parent.items.find(

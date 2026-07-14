@@ -3,21 +3,14 @@ import EdRollOptions from "./common.mjs";
 import { createContentAnchor } from "../../helpers/formatting.mjs";
 
 /**
- * @typedef { object } EdSpellEffectRollOptionsInitializationData
- * @augments { EdRollOptionsInitializationData }
- * @property { ItemEd } [spell] The spell causing the effect.
- * Can be omitted if `spellUuid` in {@link SpellEffectRollOptions} is provided.
- * @property { ItemEd } [willforce] The willforce ability of the spell's caster, if used for the effect.
- * Can be omitted if `willforceUuid` in {@link SpellEffectRollOptions} is provided.
- * @property { ActorEd } [caster] The actor casting the spell.
- * Can be omitted if `rollingActorUuid` in {@link SpellEffectRollOptions} is provided.
+ * @import { SpellEffectRollOptionsSystemData, EdSpellEffectRollOptionsInitializationData } from "./_types.mjs";
  */
 
 /**
  * Roll options for non-damage spell effects.
- * @augments { EdRollOptions }
- * @property { string } spellUuid The UUID of the spell causing the effect.
- * @property { string } willforceUuid The UUID of the willforce ability of the spell's caster, if used for the effect.
+ * @augments {EdRollOptions<SpellEffectRollOptionsSystemData>}
+ * @see {@link SpellEffectRollOptionsSystemData} The system data model for spell effect roll options.
+ * @see {@link EdSpellEffectRollOptionsInitializationData} The initialization data for spell effect roll options.
  */
 export default class SpellEffectRollOptions extends EdRollOptions {
 
@@ -62,7 +55,7 @@ export default class SpellEffectRollOptions extends EdRollOptions {
 
   /**
    * @inheritdoc
-   * @param {EdSpellEffectRollOptionsInitializationData & Partial<SpellEffectRollOptions>} data The initial data with which to create the roll options.
+   * @param {EdSpellEffectRollOptionsInitializationData & Partial<SpellEffectRollOptionsSystemData>} data The initial data with which to create the roll options.
    */
   static fromData( data, options = {} ) {
     data.spellUuid ??= data.spell?.uuid;
@@ -73,7 +66,7 @@ export default class SpellEffectRollOptions extends EdRollOptions {
 
   /**
    * @inheritdoc
-   * @param {EdSpellEffectRollOptionsInitializationData & Partial<SpellEffectRollOptions>} data The initial data with which to create the roll options.
+   * @param {EdSpellEffectRollOptionsInitializationData & Partial<SpellEffectRollOptionsSystemData>} data The initial data with which to create the roll options.
    */
   static fromActor( data, actor, options = {} ) {
     return /** @type {SpellEffectRollOptions} */ super.fromActor( data, actor, options );

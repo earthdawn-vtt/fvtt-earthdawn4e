@@ -1,9 +1,16 @@
 import SystemDataModel from "../../abstract/system-data-model.mjs";
 
 /**
+ * @import { LearnableTemplateData } from "./_types.mjs";
+ */
+
+/**
  * Template to be mixed in with data models that can be acquired through legend points (like abilities and spells).
- * @property {boolean} canBeLearned Whether the item fulfills all requirements to be learned.
+ * Adds no schema fields; provides `canBeLearned`, `learnData`, `learnRules`, and related getters and the static
+ * {@link LearnableTemplate.learn} method.
+ * @augments {SystemDataModel<LearnableTemplateData>}
  * @mixin
+ * @see {@link LearnableTemplateData} The system data model for this template.
  */
 export default class LearnableTemplate extends SystemDataModel {
 
@@ -14,7 +21,7 @@ export default class LearnableTemplate extends SystemDataModel {
   ];
 
   /**
-   * @description Whether the entity fulfills all requirements to be learned.
+   * Whether the entity fulfills all requirements to be learned.
    * @type {boolean}
    * @abstract
    */
@@ -23,7 +30,7 @@ export default class LearnableTemplate extends SystemDataModel {
   }
 
   /**
-   * @description Whether the entity can be learned. Should always be true if mixed in, as a shortcut for checking
+   * Whether the entity can be learned. Should always be true if mixed in, as a shortcut for checking
    * if this is mixed in.
    * @type {boolean}
    */
@@ -32,7 +39,7 @@ export default class LearnableTemplate extends SystemDataModel {
   }
 
   /**
-   * @description Data needed to validate if this entity can be learned.
+   * Data needed to validate if this entity can be learned.
    * @type {object}
    */
   get learnData() {
@@ -71,7 +78,7 @@ export default class LearnableTemplate extends SystemDataModel {
   }
 
   /**
-   * @description The amount of legend points required to learn this entity.
+   * The number of legend points required to learn this entity.
    * @type {number}
    */
   get requiredLpToLearn() {

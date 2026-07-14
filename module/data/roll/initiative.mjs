@@ -3,10 +3,13 @@ import EdRollOptions from "./common.mjs";
 import { createContentAnchor } from "../../helpers/formatting.mjs";
 
 /**
+ * @import { InitiativeRollOptionsSystemData } from "./_types.mjs";
+ */
+
+/**
  * Roll options for initiative rolls.
- * @augments { EdRollOptions }
- * @property { string } [replacementEffect] The UUID of an item that replaces the basic DEX attribute step.
- * @property { Set<string> } [increaseAbilities] A set of UUIDs of items that add steps to the initiative roll.
+ * @augments {EdRollOptions<InitiativeRollOptionsSystemData>}
+ * @see {@link InitiativeRollOptionsSystemData} The system data model for initiative roll options.
  */
 export default class InitiativeRollOptions extends EdRollOptions {
 

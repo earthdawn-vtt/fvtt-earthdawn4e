@@ -75,7 +75,7 @@ preLocalize( "eaeDocumentTypes", { key: "label" } );
 
 /**
  * @enum {{label:string; hint: string}}
- * @see CONFIG.ActiveEffect.phases
+ * @see {@link CONFIG.ActiveEffect.phases}
  */
 export const eaeChangePhases = {
   derived: {
@@ -87,7 +87,7 @@ preLocalize( "eaeChangePhases", { keys: [ "hint", "label" ] } );
 
 /**
  * @enum {string}
- * @see CONST.ACTIVE_EFFECT_DURATION_UNITS
+ * @see {@link CONST.ACTIVE_EFFECT_DURATION_UNITS}
  */
 export const eaeDurationTypes = {
   uses:       "ED.Config.Eae.DurationTypes.uses",
@@ -160,7 +160,7 @@ preLocalize( "eaeTransferTargets", { key: "label" } );
  */
 
 /**
- * @description The global modifier configurations
+ * The global modifier configurations
  * @enum { GlobalModifierConfiguration }
  */
 export const globalModifiers = {
@@ -220,10 +220,10 @@ preLocalize( "singleModifiers", { key: "label" } );
  */
 
 /**
+ * Prepared input data for human-readable change selection in Active Effects and
+ * information on handling of a given key.
  * @typedef {FormSelectOption&_ActiveEffectPhaseAssignment} EaeChangeConfig
  * @property {string} value The change key, which is the value of the input field.
- * @description Prepared input data for human-readable change selection in Active Effects and
- * information on handling of a given key.
  */
 
 /**

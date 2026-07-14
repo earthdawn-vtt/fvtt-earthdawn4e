@@ -3,8 +3,14 @@ import NamegiverTemplate from "./templates/namegiver.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
+ * @import { NpcSystemData } from "./_types.mjs";
+ */
+
+/**
  * System data definition for NPCs.
- * @mixin
+ * @augments {NamegiverTemplate<NpcSystemData>}
+ * @mixes NoneCharacterTemplate
+ * @see {@link NpcSystemData} The system data model for this actor type.
  */
 export default class NpcData extends NamegiverTemplate.mixin(
   NoneCharacterTemplate

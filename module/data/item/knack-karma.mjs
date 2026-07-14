@@ -5,7 +5,15 @@ import ItemDataModel from "../abstract/item-data-model.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
- * Data model template with information on items that are used to represent custom active effects.
+ * @import { KnackKarmaSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for knack karma items.
+ * @augments {ItemDataModel<KnackKarmaSystemData>}
+ * @mixes KnackTemplate
+ * @mixes ItemDescriptionTemplate
+ * @see {@link KnackKarmaSystemData} The system data model for knack karma items.
  */
 export default class KnackKarmaData extends ItemDataModel.mixin(
   KnackTemplate,

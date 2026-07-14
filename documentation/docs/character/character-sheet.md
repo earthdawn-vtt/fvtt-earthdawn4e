@@ -1,7 +1,7 @@
 ---
 title: Character Sheet
-category: English
-group: Character
+group: English
+category: Character
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -14,9 +14,6 @@ group: Character
 <body>
   <main>
     <section class="doc-card">
-      <div class="doc-topbar">
-        <a class="doc-home-link" href="../index.md">Back to Table of Contents</a>
-      </div>
       <article class="doc-content">
 <h1>Character Sheet</h1>
 <h2>Edit Mode</h2>

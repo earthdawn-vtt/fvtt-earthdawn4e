@@ -3,16 +3,14 @@ import { createContentAnchor } from "../../helpers/formatting.mjs";
 import * as ACTORS from "../../config/actors.mjs";
 
 /**
- * @typedef { object } AttributeRollOptionsInitializationData
- * @augments { EdRollOptionsInitializationData }
- * @property {string} attribute The attribute to use for the roll. Must be one of
- * the keys listed in {@link attributes}.
+ * @import { AttributeRollOptionsSystemData, AttributeRollOptionsInitializationData } from "./_types.mjs";
  */
 
 /**
  * Roll options for attribute rolls.
- * @augments { EdRollOptions }
- * @property {string} attribute The attribute to use for the roll.
+ * @augments {EdRollOptions<AttributeRollOptionsSystemData>}
+ * @see {@link AttributeRollOptionsSystemData} The system data model for attribute roll options.
+ * @see {@link AttributeRollOptionsInitializationData} The initialization data for attribute roll options.
  */
 export default class AttributeRollOptions extends EdRollOptions {
 

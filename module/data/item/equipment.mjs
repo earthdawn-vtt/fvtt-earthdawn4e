@@ -4,9 +4,14 @@ import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as ITEMS from "../../config/items.mjs";
 
 /**
- * Data model template with information on equipment items.
- * @property {boolean} consumable check if item will be consumed on usage
- * @property {string} ammunition which type of ammo it is.
+ * @import { EquipmentSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for equipment items.
+ * @augments {PhysicalItemTemplate<EquipmentSystemData>}
+ * @mixes ItemDescriptionTemplate
+ * @see {@link EquipmentSystemData} The system data model for equipment items.
  */
 export default class EquipmentData extends PhysicalItemTemplate.mixin(
   ItemDescriptionTemplate

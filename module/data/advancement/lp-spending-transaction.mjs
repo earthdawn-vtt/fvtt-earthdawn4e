@@ -2,6 +2,15 @@ import LpTransactionData from "./lp-transaction.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import SiblingDocumentField from "../fields/sibling-document-field.mjs";
 
+/**
+ * @import { LpSpendingTransactionSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for an LP spending transaction on an actor.
+ * @augments {LpTransactionData<LpSpendingTransactionSystemData>}
+ * @see {@link LpSpendingTransactionSystemData} The system data model for LP spending transaction data.
+ */
 export default class LpSpendingTransactionData extends LpTransactionData {
 
   // region Schema

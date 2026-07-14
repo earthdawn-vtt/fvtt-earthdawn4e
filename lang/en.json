@@ -1773,7 +1773,7 @@
               "hint":                             "Bonus to Initiative",
               "label":                            "Initiative"
             },
-            "knockDownStep": {
+            "knockdownStep": {
               "hint":                             "Bonus to Knockdown Test",
               "label":                            "Knockdown Step"
             },

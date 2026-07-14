@@ -4,8 +4,14 @@ import ActorDataModel from "../../abstract/actor-data-model.mjs";
 import TruePatternData from "../../thread/true-pattern.mjs";
 
 /**
+ * @import { CommonTemplateData } from "./_types.mjs";
+ */
+
+/**
  * A template for all actors that share the common template.
- * @mixin
+ * @augments {ActorDataModel<ActorDescriptionTemplate & CommonTemplateData>}
+ * @mixes ActorDescriptionTemplate
+ * @see {@link CommonTemplateData} The system data model for this template.
  */
 export default class CommonTemplate extends ActorDataModel.mixin(
   ActorDescriptionTemplate

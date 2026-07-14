@@ -5,43 +5,14 @@ import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as ACTORS from "../../config/actors.mjs";
 
 /**
- * Data model template with information on mask items.
- * @property {object} attributes                  Attributes group object
- * @property {number} attributes.dexterityStep             dexterity step modifications
- * @property {number} attributes.strengthStep              strength step modifications
- * @property {number} attributes.toughnessStep             toughness step modifications
- * @property {number} attributes.perceptionStep            perception step modifications
- * @property {number} attributes.willpowerStep             willpower step modifications
- * @property {number} attributes.charismaStep              charisma step modifications
- * @property {object} movement                  movement group object
- * @property {number} movement.walk             movement type walk modifications
- * @property {number} movement.fly              movement type fly modifications
- * @property {number} movement.swim             movement type swim modifications
- * @property {number} movement.burrow           movement type burrow modifications
- * @property {number} movement.climb            movement type climb modifications
- * @property {object} defenses                  Defenses group object
- * @property {number} defenses.physical           physical defense modifications
- * @property {number} defenses.mystical           mystical defense modifications
- * @property {number} defenses.social            social defense modifications
- * @property {object} armor                     Armor group object
- * @property {number} armor.physical            physical armor modifications
- * @property {number} armor.mystical              mystic armor modifications
- * @property {object} healthBonuses               Health bonuses group object
- * @property {number} healthBonuses.recoveryTestsResource     recovery tests modifications
- * @property {number} healthBonuses.deathThreshold            death threshold modifications
- * @property {number} healthBonuses.unconsciousThreshold      unconscious threshold modifications
- * @property {number} healthBonuses.woundThreshold            wound threshold modifications
- * @property {object} combatBonuses              Combat bonuses group object
- * @property {number} combatBonuses.attackStep          attack steps modifications
- * @property {number} combatBonuses.damageStep          damage steps modification
- * @property {number} combatBonuses.knockDownStep             knock down step modifications
- * @property {number} combatBonuses.actions                   number of attacks
- * @property {number} combatBonuses.initiativeStep            initiative step modifications
- * @property {number} challengingRate           changes to the challenging rate
- * @property {object[]} powers                    Object of powers to be added to the mask target
- * @property {string} powers.uuid               UUID of the power item
- * @property {number} powers.step               Step of the power item
- * @property {object[]} maneuvers                 Object of maneuvers to be added to the mask target
+ * @import { MaskSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for mask items.
+ * @augments {ItemDataModel<MaskSystemData>}
+ * @mixes ItemDescriptionTemplate
+ * @see {@link MaskSystemData} The system data model for mask items.
  */
 export default class MaskData extends ItemDataModel.mixin(
   ItemDescriptionTemplate
@@ -97,7 +68,7 @@ export default class MaskData extends ItemDataModel.mixin(
             integer:  true,
           } ),
         } ), {
-          initialKeys:     [ "physical", "mystical", "social" ],
+          initialKeys:     ACTORS.defense,
           initialKeysOnly: true,
         } ),
         armor: new MappingField( new fields.SchemaField( {
@@ -106,7 +77,7 @@ export default class MaskData extends ItemDataModel.mixin(
             integer:  true,
           } ) ,
         } ), {
-          initialKeys:     [ "physical", "mystical" ],
+          initialKeys:     ACTORS.armor,
           initialKeysOnly: true,
         } ),
         health: new fields.SchemaField( {
@@ -153,7 +124,7 @@ export default class MaskData extends ItemDataModel.mixin(
         initial:  0,
         integer:  true,
       } ),
-      knockDownStep: new fields.NumberField( {
+      knockdownStep: new fields.NumberField( {
         required: true,
         nullable: false,
         initial:  0,

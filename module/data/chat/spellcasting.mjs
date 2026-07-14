@@ -3,6 +3,15 @@ import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as CHAT from "../../config/chat.mjs";
 import { createContentAnchor } from "../../helpers/formatting.mjs";
 
+/**
+ * @import { SpellcastingMessageSystemData } from "./_types.mjs";
+ */
+
+/**
+ * The data model for a chat message representing the casting of a spell.
+ * @augments {BaseMessageData<SpellcastingMessageSystemData>}
+ * @see {@link SpellcastingMessageSystemData} The system data model for spellcasting message data.
+ */
 export default class SpellcastingMessageData extends BaseMessageData {
 
   // region Schema

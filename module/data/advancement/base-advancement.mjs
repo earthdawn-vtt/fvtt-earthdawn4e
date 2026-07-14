@@ -5,14 +5,14 @@ import SparseDataModel from "../abstract/sparse-data-model.mjs";
 import { mapObject } from "../../utils/object.mjs";
 
 /**
- * @typedef {Record<number, AdvancementLevelData>} AdvancementLevels
- * Keys are the level number of the corresponding level data.
+ * @import { AdvancementSystemData } from "./_types.mjs";
  */
 
 /**
- * Advancement of Disciplines, Paths and Questors
+ * Advancement of Disciplines, Paths, and Questors.
+ * @augments {SparseDataModel<AdvancementSystemData>}
+ * @see {@link AdvancementSystemData} The system data model for advancement data.
  */
-
 export default class AdvancementData extends SparseDataModel {
 
   // region Schema

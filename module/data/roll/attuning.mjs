@@ -3,14 +3,13 @@ import * as MAGIC from "../../config/magic.mjs";
 import { createContentAnchor } from "../../helpers/formatting.mjs";
 
 /**
+ * @import { AttuningRollOptionsSystemData } from "./_types.mjs";
+ */
+
+/**
  * Roll options for attuning spells to matrices or grimoires.
- * @augments { EdRollOptions }
- * @property { string } attuningType The type of attuning, either "matrixOnTheFly" or "grimoire".
- * See {@link module:config~MAGIC~attuningType}.
- * @property { string } attuningAbility The UUID of the ability used for attuning, usually thread weaving for matrices
- * or patterncraft for grimoires.
- * @property { Set<string> } spellsToAttune The UUIDs of the spells to attune.
- * @property { boolean } grimoirePenalty Whether the penalty for unowned grimoires applies.
+ * @augments {EdRollOptions<AttuningRollOptionsSystemData>}
+ * @see {@link AttuningRollOptionsSystemData} The system data model for attuning roll options.
  */
 export default class AttuningRollOptions extends EdRollOptions {
 

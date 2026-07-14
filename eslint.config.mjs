@@ -1,7 +1,7 @@
 import babelParser from "@babel/eslint-parser";
 import globals from "globals";
 import js from "@eslint/js";
-import jsdoc from "eslint-plugin-jsdoc";
+import typedocPlugin from "eslint-plugin-typedoc";
 import path from "node:path";
 import stylistic from "@stylistic/eslint-plugin";
 import stylisticMigrate from "@stylistic/eslint-plugin-migrate";
@@ -17,12 +17,13 @@ const compat = new FlatCompat( {
 } );
 
 export default [
-  ...compat.extends( "eslint:recommended", "plugin:jsdoc/recommended" ),
+  ...compat.extends( "eslint:recommended" ),
+  typedocPlugin.configs.recommended,
   {
     plugins: {
-      jsdoc,
       "@stylistic":         stylistic,
       "@stylistic/migrate": stylisticMigrate,
+      "typedoc":            typedocPlugin,
     },
     files:           [ "**/*.mjs", "**/*.js", ],
     languageOptions: {
@@ -159,12 +160,6 @@ export default [
       } ],
 
       "init-declarations": "off",
-
-      "jsdoc/check-tag-names": [ "warn", {
-        definedTags: [ "category", "order" ],
-      } ],
-
-      "jsdoc/require-returns-check": "warn",
 
       "@stylistic/key-spacing": [ "error", {
         beforeColon: false,
@@ -315,7 +310,6 @@ export default [
       "no-undef":                      "error",
       "no-undef-init":                 "error",
       "no-undefined":                  "off",
-      "jsdoc/no-undefined-types":      0,
       "no-underscore-dangle":          "off",
       "no-unmodified-loop-condition":  "error",
       "no-unneeded-ternary":           "off",
@@ -401,6 +395,13 @@ export default [
       "@stylistic/space-in-parens": [ "error", "always" ],
       strict:                       [ "error", "never" ],
       "symbol-description":         "error",
+
+      "typedoc/require-param-tag-description": "error",
+      "typedoc/require-returns-description":   "error",
+      "typedoc/require-see-tag-link":          "error",
+      "typedoc/require-since-tag-description": "error",
+      "typedoc/require-throws-description":    "error",
+
       "use-isnan":                  "error",
       "valid-typeof":               "error",
       "vars-on-top":                "off",

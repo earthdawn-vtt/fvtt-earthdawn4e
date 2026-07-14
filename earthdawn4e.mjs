@@ -31,7 +31,6 @@ import registerHooks from "./module/system/hooks.mjs";
  * The public Earthdawn 4E API namespace.
  *
  * This object mirrors the modules exposed on `globalThis.ed4e`.
- * @namespace ed4e
  */
 export const ed4e = {
   applications,

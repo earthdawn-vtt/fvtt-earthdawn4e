@@ -23,11 +23,17 @@ import { getSetting } from "../../helpers/settings.mjs";
 const { fields } = foundry.data;
 
 /**
- * Data model template with information on Spell items.
+ * @import { SpellSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for spell items.
+ * @augments {ItemDataModel<SpellSystemData>}
  * @mixes ItemDescriptionTemplate
  * @mixes LearnableTemplate
  * @mixes TargetTemplate
  * @mixes TypedEntryManagerMixin
+ * @see {@link SpellSystemData} The system data model for spell items.
  */
 export default class SpellData extends ItemDataModel.mixin(
   ItemDescriptionTemplate,
@@ -286,7 +292,7 @@ export default class SpellData extends ItemDataModel.mixin(
   // region Getters
 
   /**
-   * @description The difficulty number to dispel this spell.
+   * The difficulty number to dispel this spell.
    * @type {number}
    */
   get dispelDifficulty() {
@@ -302,7 +308,7 @@ export default class SpellData extends ItemDataModel.mixin(
   }
 
   /**
-   * @description Whether this spell is an illusion and therefore can be sensed.
+   * Whether this spell is an illusion and therefore can be sensed.
    * @type {boolean}
    */
   get isIllusion() {
@@ -334,7 +340,7 @@ export default class SpellData extends ItemDataModel.mixin(
   }
 
   /**
-   * @description The difficulty number to sense this spell, if it is an illusion, else undefined.
+   * The difficulty number to sense this spell, if it is an illusion, else undefined.
    * @type { number | undefined }
    */
   get sensingDifficulty() {
@@ -430,7 +436,7 @@ export default class SpellData extends ItemDataModel.mixin(
   }
 
   /**
-   * @description The difficulty number to learn this spells. Equals the level of the spell plus 5.
+   * The difficulty number to learn this spell. Equals the level of the spell plus 5.
    * @type {number}
    */
   get learningDifficulty() {

@@ -1,13 +1,18 @@
 import ManeuverData from "./maneuver.mjs";
-import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
- * Data model template with information on items that are used to represent custom active effects.
+ * @import { KnackManeuverSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for knack maneuver items.
+ * @augments {ManeuverData<KnackManeuverSystemData>}
+ * @mixes KnackTemplate
+ * @see {@link KnackManeuverSystemData} The system data model for knack maneuver items.
  */
 export default class KnackManeuverData extends ManeuverData.mixin(
-  ItemDescriptionTemplate,
   KnackTemplate,
 ) {
 

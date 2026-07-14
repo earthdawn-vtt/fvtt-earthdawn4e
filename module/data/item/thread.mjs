@@ -9,11 +9,15 @@ import * as MAGIC from "../../config/magic.mjs";
 
 
 /**
+ * @import { ThreadSystemData } from "./_types.mjs";
+ */
+
+/**
  * Data model for thread items.
- * @property {string|null} wovenToUuid The UUID of the item this thread is woven to, if any.
- * @property {number} level The rank of this thread.
+ * @augments {ItemDataModel<ThreadSystemData>}
  * @mixes ItemDescriptionTemplate
  * @mixes LpIncreaseTemplate
+ * @see {@link ThreadSystemData} The system data model for thread items.
  */
 export default class ThreadData extends ItemDataModel.mixin(
   ItemDescriptionTemplate,

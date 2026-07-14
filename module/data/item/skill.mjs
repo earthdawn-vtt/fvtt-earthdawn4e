@@ -5,8 +5,14 @@ import * as LEGEND from "../../config/legend.mjs";
 import { getSetting } from "../../helpers/settings.mjs";
 
 /**
- * Data model template with information on Skill items.
+ * @import { SkillSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for skill items.
+ * @augments {IncreasableAbilityTemplate<SkillSystemData>}
  * @mixes ItemDescriptionTemplate
+ * @see {@link SkillSystemData} The system data model for skill items.
  */
 export default class SkillData extends IncreasableAbilityTemplate.mixin(
   ItemDescriptionTemplate

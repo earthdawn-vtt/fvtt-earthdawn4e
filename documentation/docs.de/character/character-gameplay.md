@@ -1,7 +1,7 @@
 ﻿---
 title: Charakter-Gameplay
-category: Deutsch
-group: Charakter
+group: Deutsch
+category: Charakter
 ---
 <!DOCTYPE html>
 <html lang="de">
@@ -14,9 +14,6 @@ group: Charakter
 <body>
   <main>
     <section class="doc-card">
-      <div class="doc-topbar">
-        <a class="doc-home-link" href="../index.md">Zurück zum Inhaltsverzeichnis</a>
-      </div>
       <article class="doc-content">
 <p>Im Folgenden werden die einzelnen Funktionen des Charakterbogens im Detail beschrieben.</p>
 <p></p>

@@ -1,7 +1,7 @@
 ---
 title: Threads and Patterns
-category: English
-group: Magic
+group: English
+category: Magic
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -14,9 +14,6 @@ group: Magic
 <body>
   <main>
     <section class="doc-card">
-      <div class="doc-topbar">
-        <a class="doc-home-link" href="../index.md">Back to Table of Contents</a>
-      </div>
       <article class="doc-content">
 <h1>Threads and Patterns</h1>
 <div>

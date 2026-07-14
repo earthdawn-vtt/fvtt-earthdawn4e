@@ -2,7 +2,13 @@ import CommonTemplate from "./templates/common.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
+ * @import { VehicleSystemData } from "./_types.mjs";
+ */
+
+/**
  * System data definition for vehicles.
+ * @augments {CommonTemplate<VehicleSystemData>}
+ * @see {@link VehicleSystemData} The system data model for this actor type.
  */
 export default class VehicleData extends CommonTemplate {
 

@@ -2,6 +2,15 @@ import ActiveEffectDataModel from "../abstract/active-effect-data-model.mjs";
 import SparseDataModel from "../abstract/sparse-data-model.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 
+/**
+ * @import { EarthdawnActiveEffectChangeSystemData } from "./_types.mjs";
+ */
+
+/**
+ * A single change entry on an Earthdawn active effect.
+ * @augments {SparseDataModel<EarthdawnActiveEffectChangeSystemData>}
+ * @see {@link EarthdawnActiveEffectChangeSystemData} The system data model for active effect change data.
+ */
 export default class EarthdawnActiveEffectChangeData extends SparseDataModel {
 
   // region Schema

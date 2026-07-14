@@ -3,12 +3,14 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
- * Data model template with information on shield items.
- * @property {number} defenseBonusPhysical    physical defense bonus
- * @property {number} defenseBonusMystical    mystical defense bonus
- * @property {number} initiativePenalty     initiative penalty
- * @property {number} shatterThreshold      shatter threshold
- * @property {boolean} shattered           shattered condition
+ * @import { ShieldSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for shield items.
+ * @augments {PhysicalItemTemplate<ShieldSystemData>}
+ * @mixes ItemDescriptionTemplate
+ * @see {@link ShieldSystemData} The system data model for shield items.
  */
 export default class ShieldData extends PhysicalItemTemplate.mixin(
   ItemDescriptionTemplate

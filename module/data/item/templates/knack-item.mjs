@@ -10,11 +10,17 @@ import TypedEntryManagerMixin from "../../common/typed-entry-manager.mjs";
 
 
 /**
- * Data model template for Knacks
- * @property {string} knackSource     UUID of Source the knack derives from
+ * @import { KnackTemplateData } from "./_types.mjs";
+ */
+
+/**
+ * Data model template for knack items derived from a source item (usually a talent).
+ * @augments {SystemDataModel<KnackTemplateData>}
  * @mixes LearnableTemplate
  * @mixes TargetTemplate
  * @mixes TypedEntryManagerMixin
+ * @mixin
+ * @see {@link KnackTemplateData} The system data model for this template.
  */
 export default class KnackTemplate extends SystemDataModel.mixin( 
   LearnableTemplate,

@@ -4,18 +4,14 @@ import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as ITEMS from "../../config/items.mjs";
 
 /**
- * Data model template with information on Poison and Disease items.
- * @property {object} effect                      effect type
- * @property {number} effect.damageStep           damage step
- * @property {number} effect.paralysisStep        paralysis step
- * @property {number} effect.debilitationStep     debilitation step
- * @property {object} interval                    interval 
- * @property {number} interval.totalEffects       total number of effects
- * @property {number} interval.timeInBetween      time between effects
- * @property {number} onsetTime                   after which time will the poison become effective
- * @property {number} duration                    duration
- * @property {string} activation            how the poison will be activated
- * @property {boolean} death                deadly poison
+ * @import { PoisonDiseaseSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for poison and disease items.
+ * @augments {ItemDataModel<PoisonDiseaseSystemData>}
+ * @mixes ItemDescriptionTemplate
+ * @see {@link PoisonDiseaseSystemData} The system data model for poison / disease items.
  */
 export default class PoisonDiseaseData extends ItemDataModel.mixin(
   ItemDescriptionTemplate

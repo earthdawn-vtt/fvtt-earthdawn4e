@@ -1,5 +1,14 @@
 import AssignLpPrompt from "../../applications/advancement/assign-legend.mjs";
 
+/**
+ * @import { LpTransactionSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Abstract base data model for an LP (Legend Points) transaction on an actor.
+ * @augments {foundry.abstract.DataModel<LpTransactionSystemData>}
+ * @see {@link LpTransactionSystemData} The system data model for LP transaction data.
+ */
 export default class LpTransactionData extends foundry.abstract.DataModel {
 
   // region Schema
@@ -40,7 +49,7 @@ export default class LpTransactionData extends foundry.abstract.DataModel {
   // region Static Methods
 
   /**
-   * @description Converts a date object or integer to a string that can be used as value in a datetime input field.
+   * Converts a date object or integer to a string that can be used as value in a datetime input field.
    * @param { Date | integer } date The date to be converted. If integer, it is treated as a timestamp.
    * @returns { string } The date string in the format "YYYY-MM-DDTHH:MM".
    */
@@ -63,7 +72,7 @@ export default class LpTransactionData extends foundry.abstract.DataModel {
   // region Getters
 
   /**
-   * @description An automated description of this transaction.
+   * An automated description of this transaction.
    * @type {string}
    */
   get displayString() {

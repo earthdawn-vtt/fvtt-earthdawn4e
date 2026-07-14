@@ -171,7 +171,7 @@ export default class LegendPointHistory extends ApplicationEd {
     const updateData = {};
 
     /**
-     * @description Parse the transaction data to ensure data validity.
+     * Parse the transaction data to ensure data validity.
      * @param {{}} transactionData The transaction data to parse.
      * @returns {Array<LpTransactionData>} The parsed transaction data.
      */

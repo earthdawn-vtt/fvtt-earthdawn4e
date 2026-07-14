@@ -71,9 +71,9 @@ function hasOwnProperty( obj, prop ) {
 }
 
 /**
- * @see util.fromUuidSync
  * @param {string} uuid - The UUID to convert.
  * @returns {string} - The name of the entity with the given UUID.
+ * @see {@link foundry.utils.fromUuidSync}
  */
 function nameFromUuid( uuid ) {
   return fromUuidSync( uuid , { strict: false } )?.name ?? "N/A";
@@ -118,7 +118,7 @@ function includes( collection, element ) {
 }
 
 /**
- * @description Creates an object that can be used in the {@link foundry.applications.handlebars#formInput} helper as the
+ * Creates an object that can be used in the {@link foundry.applications.handlebars#formInput} helper as the
  * {@link FormInputConfig#dataset} parameter to create a tooltip.
  * @param {string} content - The content of the tooltip.
  * @returns {object} - An object with a tooltip property of the form `{ tooltip: content }`.
@@ -148,7 +148,7 @@ function wrapInArray( value ) {
 }
 
 /**
- * @description Registers custom Handlebars helpers for the application.
+ * Registers custom Handlebars helpers for the application.
  */
 export default function registerHandlebarHelpers() {
 

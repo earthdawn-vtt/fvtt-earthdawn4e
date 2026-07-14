@@ -4,9 +4,14 @@ import LpSpendingTransactionData from "../../advancement/lp-spending-transaction
 import AbilityTemplate from "./ability.mjs";
 
 /**
+ * @import { IncreasableAbilityTemplateData } from "./_types.mjs";
+ */
+
+/**
  * Data model template with information on abilities that have rank and therefore can be increased with LP.
- * @property {number} level rank
+ * @augments {AbilityTemplate<IncreasableAbilityTemplateData>}
  * @mixes LpIncreaseTemplate
+ * @see {@link IncreasableAbilityTemplateData} The system data model for this template.
  */
 export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
   LpIncreaseTemplate,

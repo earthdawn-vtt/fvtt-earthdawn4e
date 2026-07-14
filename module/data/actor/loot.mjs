@@ -4,7 +4,13 @@ import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 const fUtils = foundry.utils;
 
 /**
+ * @import { LootSystemData } from "./_types.mjs";
+ */
+
+/**
  * System data definition for loot.
+ * @augments {CommonTemplate<LootSystemData>}
+ * @see {@link LootSystemData} The system data model for this actor type.
  */
 export default class LootData extends CommonTemplate {
 

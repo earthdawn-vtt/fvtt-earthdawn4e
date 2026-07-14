@@ -3,8 +3,14 @@ import SentientTemplate from "./templates/sentient.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
- * System data definition for dragons.
- * @mixin
+ * @import { SpiritSystemData } from "./_types.mjs";
+ */
+
+/**
+ * System data definition for spirits.
+ * @augments {SentientTemplate<SpiritSystemData>}
+ * @mixes NoneCharacterTemplate
+ * @see {@link SpiritSystemData} The system data model for this actor type.
  */
 export default class SpiritData extends SentientTemplate.mixin(
   NoneCharacterTemplate

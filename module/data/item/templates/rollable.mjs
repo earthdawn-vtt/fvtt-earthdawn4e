@@ -8,7 +8,16 @@ import { filterObject } from "../../../utils/object.mjs";
 
 const { fields } = foundry.data;
 
+/**
+ * @import { RollableTemplateData } from "./_types.mjs";
+ */
 
+/**
+ * Data model template for items that support rolling, with per-roll-type detail sub-schemas.
+ * @augments {SystemDataModel<RollableTemplateData>}
+ * @mixin
+ * @see {@link RollableTemplateData} The system data model for this template.
+ */
 export default class RollableTemplate extends SystemDataModel {
 
   /** @inheritdoc */

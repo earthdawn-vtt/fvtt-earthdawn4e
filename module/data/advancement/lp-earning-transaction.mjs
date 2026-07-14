@@ -1,8 +1,15 @@
 import LpTransactionData from "./lp-transaction.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
 
-// Affects User Functions:
-// UF_LpTracking-addLpTransaction
+/**
+ * @import { LpEarningTransactionSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for an LP earning transaction on an actor.
+ * @augments {LpTransactionData<LpEarningTransactionSystemData>}
+ * @see {@link LpEarningTransactionSystemData} The system data model for LP earning transaction data.
+ */
 export default class LpEarningTransactionData extends LpTransactionData {
 
   /** @inheritdoc */

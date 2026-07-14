@@ -1,7 +1,7 @@
 ﻿---
 title: Fäden und Strukturen
-category: Deutsch
-group: Magie
+group: Deutsch
+category: Magie
 ---
 <!DOCTYPE html>
 <html lang="de">
@@ -14,9 +14,6 @@ group: Magie
 <body>
   <main>
     <section class="doc-card">
-      <div class="doc-topbar">
-        <a class="doc-home-link" href="../index.md">Zurück zum Inhaltsverzeichnis</a>
-      </div>
       <article class="doc-content">
 <h1>Fäden und Strukturen</h1>
 <div>

@@ -1773,7 +1773,7 @@
               "hint":                             "Initiative",
               "label":                            "Initiative"
             },
-            "knockDownStep": {
+            "knockdownStep": {
               "hint":                             "STEP de renversement",
               "label":                            "STEP de renversement"
             },

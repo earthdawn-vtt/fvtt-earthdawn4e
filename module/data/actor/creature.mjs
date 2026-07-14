@@ -5,8 +5,14 @@ import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 const fUtils = foundry.utils;
 
 /**
+ * @import { CreatureSystemData } from "./_types.mjs";
+ */
+
+/**
  * System data definition for creatures.
- * @mixin
+ * @augments {SentientTemplate<CreatureSystemData>}
+ * @mixes NoneCharacterTemplate
+ * @see {@link CreatureSystemData} The system data model for this actor type.
  */
 export default class CreatureData extends SentientTemplate.mixin(
   NoneCharacterTemplate

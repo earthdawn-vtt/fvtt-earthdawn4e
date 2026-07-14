@@ -49,7 +49,7 @@ export const defaultEdIds = {
 // endregion
 
 /**
- * @description The grouping for the document creation dialogues in from the sidebar.
+ * The grouping for the document creation dialogues in from the sidebar.
  */
 export const typeGroups = {
   Item: {

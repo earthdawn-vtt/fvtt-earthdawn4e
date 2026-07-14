@@ -12,8 +12,8 @@ import { getSetting } from "../../helpers/settings.mjs";
 
 
 /**
+ * Validation categories for character generation.
  * @typedef {"namegiver" | "class" | "attributes" | "talents" | "skills"} ValidationCategoryKey
- * @description Validation categories for character generation.
  */
 
 /**
@@ -25,7 +25,6 @@ import { getSetting } from "../../helpers/settings.mjs";
 /**
  * A validation function that checks a specific aspect of character generation.
  * @callback ValidationFunction
- * @async
  * @param {ValidationOptions} options - Validation options.
  * @returns {Promise<boolean>} True if the validation passes, false otherwise.
  */
@@ -506,7 +505,6 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
   /**
    * Retrieves all error keys for invalid categories during character generation.
    * @returns {Promise<string[]>} An array of error keys for invalid categories.
-   * @async
    */
   async _getInvalidCategoryKeys() {
     const errors = [];
@@ -524,7 +522,6 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
   /**
    * Generates the tooltip text for the finish button based on validation results.
    * @returns {Promise<string>} The HTML string for the finish button tooltip.
-   * @async
    */
   async _getFinishButtonTooltip() {
     const invalidCategoryKeys = await this._getInvalidCategoryKeys();

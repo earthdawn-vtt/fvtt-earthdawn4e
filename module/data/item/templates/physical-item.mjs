@@ -6,18 +6,16 @@ import * as ITEMS from "../../../config/items.mjs";
 
 
 /**
- * Data model template with information on physical items.
- * @property {object} price                                 price group object
- * @property {number} price.value                           item cost
- * @property {string} price.denomination                    denomination type of the cost
- * @property {number} weight                                item weight
- * @property {number} amount                                amount of the item
- * @property {number} bloodMagicDamage                      number of blood magic damage the actor is receiving
- * @property {object} usableItem                            usable item object
- * @property {boolean} usableItem.isUsableItem        usable item selector
- * @property {number} usableItem.arbitraryStep              arbitrary step
- * @property {string} usableItem.action                     action type of usable item
- * @property {number} usableItem.recoveryPropertyValue      recovery type value
+ * @import { PhysicalItemTemplateData } from "./_types.mjs";
+ */
+
+/**
+ * Data model template with information on physical items (price, weight, amount, item status, and embedded
+ * true pattern), including grimoire and matrix mixins.
+ * @augments {ItemDataModel<PhysicalItemTemplateData>}
+ * @mixes GrimoireTemplate
+ * @mixes MatrixTemplate
+ * @see {@link PhysicalItemTemplateData} The system data model for this template.
  */
 export default class PhysicalItemTemplate extends ItemDataModel.mixin(
   GrimoireTemplate,

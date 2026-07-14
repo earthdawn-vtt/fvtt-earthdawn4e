@@ -3,6 +3,16 @@ import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import SpellcastingWorkflow from "../../workflows/workflow/spellcasting-workflow.mjs";
 import { MetricData } from "../common/metrics.mjs";
 
+/**
+ * @import { ThreadWeavingMessageSystemData } from "./_types.mjs";
+ */
+
+/**
+ * The data model for a chat message representing a thread weaving roll that precedes the casting
+ * of a spell.
+ * @augments {BaseMessageData<ThreadWeavingMessageSystemData>}
+ * @see {@link ThreadWeavingMessageSystemData} The system data model for thread weaving message data.
+ */
 export default class ThreadWeavingMessageData extends BaseMessageData {
 
   // region Schema

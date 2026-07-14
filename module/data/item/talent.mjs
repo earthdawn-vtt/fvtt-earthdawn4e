@@ -12,8 +12,15 @@ import { getSetting } from "../../helpers/settings.mjs";
 const DialogClass = DialogEd;
 
 /**
- * Data model template with information on talent items.
+ * @import { TalentSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for talent items.
+ * @augments {IncreasableAbilityTemplate<TalentSystemData>}
  * @mixes ItemDescriptionTemplate
+ * @mixes MatrixTemplate
+ * @see {@link TalentSystemData} The system data model for talent items.
  */
 export default class TalentData extends IncreasableAbilityTemplate.mixin(
   ItemDescriptionTemplate,

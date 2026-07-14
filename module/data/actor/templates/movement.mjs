@@ -1,13 +1,16 @@
+/**
+ * @import { MovementData } from "./_types.mjs";
+ */
+
+/**
+ * Shared fields for movement data.
+ * @see {@link MovementData} The system data model produced by these fields.
+ */
 export default class MovementFields {
+
   /**
    * Fields that describe movement shared between sentient actors and namegiver items.
-   * @type {object}
-   * @property {object} movement        The object containing the speed data for different movement types.
-   * @property {number} movement.walk   Walking speed.
-   * @property {number} movement.fly    Flying speed.
-   * @property {number} movement.swim   Swimming speed.
-   * @property {number} movement.burrow Burrowing speed.
-   * @property {number} movement.climb  Climbing speed.
+   * @type {{ movement: MovementData }}
    */
   static get movement() {
     const fields = foundry.data.fields;

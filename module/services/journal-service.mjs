@@ -22,8 +22,8 @@ export default class JournalService {
    */
 
   /**
+   * Configuration options for journal creation and management, derived from FoundryVTT's JournalEntry document structure
    * @typedef {object} JournalOptions
-   * @description Configuration options for journal creation and management, derived from FoundryVTT's JournalEntry document structure
    * @property {string} [folder] - Folder ID where the journal should be placed
    * @property {number} [sort] - Sort order for the journal within its folder
    * @property {object} [flags] - Custom flags to attach to the journal for module/system-specific data
@@ -33,8 +33,8 @@ export default class JournalService {
    */
 
   /**
+   * Internal representation of journal page data, derived from and compatible with FoundryVTT's JournalEntryPage structure
    * @typedef {object} PageData
-   * @description Internal representation of journal page data, derived from and compatible with FoundryVTT's JournalEntryPage structure
    * @property {string} name - The display name of the page
    * @property {string} type - The page type (typically "text" for HTML content)
    * @property {number} sort - Sort order for page arrangement (auto-incremented by 100 if not specified)

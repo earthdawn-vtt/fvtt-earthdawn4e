@@ -1,7 +1,7 @@
 ---
 title: Character Generation
-category: English
-group: Character
+group: English
+category: Character
 ---
 
 <!DOCTYPE html>
@@ -15,9 +15,6 @@ group: Character
 <body>
   <main>
     <section class="doc-card">
-      <div class="doc-topbar">
-        <a class="doc-home-link" href="../index.md">Back to Table of Contents</a>
-      </div>
       <article class="doc-content">
         <p>The Earthdawn system for Foundry VTT offers a comprehensive character generation flow to help players start quickly.</p>
         <p>Character generation is split into multiple steps:</p>
@@ -39,11 +36,11 @@ group: Character
                 enable <em lang="en">Create Actor</em>. If the GM does not want to keep this option enabled permanently,
                 the setting should be reset after character generation. <br><strong>Warning: This permission allows players to create any number of actors,
                     and in public worlds this must not remain enabled carelessly.</strong></p>
-            <img src="../../assets/manual/german/char-gen-permission-setting.png">
+            <img src="../../../assets/manual/german/char-gen-permission-setting.png">
             <p>The next important requirement is that players have access (at least Observer access) to the corresponding compendium packs or items in
                 the world. This means that automatic character generation only works when players can access the items required for it
                 (for example Namegivers, Disciplines, Talents, Skills, Spells, and so on).</p>
-            <img src="../../assets/manual/german/char-gen-compendium-permissions.png">
+            <img src="../../../assets/manual/german/char-gen-compendium-permissions.png">
             <p>If both requirements are met, players can start character generation either from <em>Create Actor</em> in
                 the Actor Directory or via the chat command <code>/char</code>.</p>
         </div>
@@ -62,7 +59,7 @@ group: Character
             <h3>Maximum Spell Circle</h3>
             <p>This configuration defines which spells are available during character generation by limiting spell circle.
                 By default, the maximum circle is set to 2.</p>
-            <img src="../../assets/manual/german/char-gen-system-settings.png" style="display: block; width: auto; max-width: 100%; margin: 0 auto; clear: both">
+            <img src="../../../assets/manual/german/char-gen-system-settings.png" style="display: block; width: auto; max-width: 100%; margin: 0 auto; clear: both">
         </div>
         <p> </p>
     

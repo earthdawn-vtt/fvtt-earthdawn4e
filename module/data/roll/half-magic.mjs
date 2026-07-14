@@ -3,21 +3,14 @@ import { createContentAnchor } from "../../helpers/formatting.mjs";
 import * as ACTORS from "../../config/actors.mjs";
 
 /**
- * @typedef { object } HalfMagicRollOptionsInitializationData
- * @augments { EdRollOptionsInitializationData }
- * @property {string} attribute The attribute to use for the roll. Must be one of
- * the keys listed in {@link attributes}.
- * @property { ItemEd } [discipline] The discipline for which to roll half-magic.
- * Can be omitted if `disciplineUuid` is provided.
- * @property { string } [disciplineUuid] The UUID of the discipline for which to roll half-magic.
- * Can be omitted if `discipline` is provided.
+ * @import { HalfMagicRollOptionsSystemData, HalfMagicRollOptionsInitializationData } from "./_types.mjs";
  */
 
 /**
  * Roll options for half-magic rolls.
- * @augments { EdRollOptions }
- * @property {string} attribute The attribute to use for the roll.
- * @property { string } disciplineUuid The UUID of the discipline for which to roll half-magic.
+ * @augments {EdRollOptions<HalfMagicRollOptionsSystemData>}
+ * @see {@link HalfMagicRollOptionsSystemData} The system data model for half-magic roll options.
+ * @see {@link HalfMagicRollOptionsInitializationData} The initialization data for half-magic roll options.
  */
 export default class HalfMagicRollOptions extends EdRollOptions {
 
@@ -63,6 +56,7 @@ export default class HalfMagicRollOptions extends EdRollOptions {
 
   /**
    * @inheritdoc
+   *
    * @returns { HalfMagicRollOptions } A new instance of HalfMagicRollOptions.
    */
   static fromData( data, options = {} ) {

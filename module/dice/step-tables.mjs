@@ -61,7 +61,7 @@ export default function getDice( step ) {
 }
 
 /**
- * @description step table of the third edition
+ * Step table of the third edition
  * @param { number } step The step that is to be rolled. Must be between 1 and 100.
  * @returns { string } A dice term that can be used in a Roll in the Foundry api.
  * @throws { Error } Throws an error if the step is out of bounds.
@@ -176,7 +176,7 @@ export function get3eDice( step ) {
 }
 
 /**
- * @description step table of the first edition
+ * Step table of the first edition
  * @param { number } step The step that is to be rolled.
  * @returns { string } A dice term that can be used in for a Roll in the Foundry api.
  */
@@ -290,7 +290,7 @@ export function get1eDice( step ) {
 }
 
 /**
- * @description step table of the classic edition
+ * Step table of the classic edition
  * @param { number } step The step that is to be rolled.
  * @returns { string } A dice term that can be used in for a Roll in the Foundry api.
  */

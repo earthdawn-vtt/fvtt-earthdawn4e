@@ -15,12 +15,30 @@ import * as ROLLS from "./rolls.mjs";
 import * as SOCKETS from "./sockets.mjs";
 import * as STATUSES from "./statuses.mjs";
 import * as SYSTEM from "./system.mjs";
+import * as TOKEN from "./token.mjs";
 import * as MIGRATIONS from "./migrations.mjs";
 import * as WORKFLOWS from "./workflows.mjs";
-import * as TOKEN from "./token.mjs";
 
-/** @module config */
+export * from "./actions.mjs";
+export * from "./actors.mjs";
+export * from "./chat.mjs";
+export * from "./combat.mjs";
+export * from "./document-data.mjs";
+export * from "./effects.mjs";
+export * from "./environment.mjs";
+export * from "./items.mjs";
+export * from "./legend.mjs";
+export * from "./magic.mjs";
+export * from "./quantities.mjs";
+export * from "./rolls.mjs";
+export * from "./sockets.mjs";
+export * from "./statuses.mjs";
+export * from "./system.mjs";
+export * from "./token.mjs";
+export * from "./migrations.mjs";
+export * from "./workflows.mjs";
 
+/** @ignore */
 export {
   ACTIONS,
   ACTORS,
@@ -85,4 +103,5 @@ const ED4E = {
   ...TOKEN
 };
 
+/** @namespace ED4E */
 export default ED4E;

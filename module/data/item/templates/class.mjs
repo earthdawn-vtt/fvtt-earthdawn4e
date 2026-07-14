@@ -8,14 +8,15 @@ import * as LEGEND from "../../../config/legend.mjs";
 
 
 /**
+ * @import { ClassTemplateData } from "./_types.mjs";
+ */
+
+/**
  * Data model template with information on "class"-like items: paths, disciplines, and questors.
- * @property {number} level         either circle or rank of the class 
- * @property {string} identifier    type of class
- * @augments {ItemDataModel}
- * @augments {LearnableTemplate}
- * @augments {LpIncreaseTemplate}
+ * @augments {ItemDataModel<ClassTemplateData>}
  * @mixes LearnableTemplate
  * @mixes LpIncreaseTemplate
+ * @see {@link ClassTemplateData} The system data model for this template.
  */
 export default class ClassTemplate extends ItemDataModel.mixin(
   LearnableTemplate,
@@ -254,7 +255,6 @@ export default class ClassTemplate extends ItemDataModel.mixin(
    * from the new level. This only replaces old effects that apply changes to the same change key
    * as an effect from the new level.
    * @param {EarthdawnActiveEffect[]} newEffects An array of new effects to add.
-   * @returns {Promise<void>}
    */
   async _replacePreviousClassEffects( newEffects ) {
     const newChangeKeys = newEffects.map( effect => {

@@ -4,24 +4,14 @@ import * as MAGIC from "../../config/magic.mjs";
 import { createContentAnchor } from "../../helpers/formatting.mjs";
 
 /**
- * @typedef { object } EdHorrorMarkRollOptionsInitializationData
- * @augments { EdRollOptionsInitializationData }
- * @property { ActorEd } caster The actor that is casting the horror mark.
- * Can be omitted if `casterUuid` in {@link HorrorMarkRollOptions} is provided.
- * @property { ActorEd } [horror] The horror that is trying to mark the target.
- * Can be omitted if `horrorUuid` in {@link HorrorMarkRollOptions} is provided.
- * @property { ItemEd } [spell] The spell that is causing the horror mark,
- * Can be omitted if `spellUuid` in {@link HorrorMarkRollOptions} is provided
+ * @import { HorrorMarkRollOptionsSystemData, EdHorrorMarkRollOptionsInitializationData } from "./_types.mjs";
  */
 
 /**
  * Roll options for horror mark rolls.
- * @augments { EdRollOptions }
- * @property { string } casterUuid The UUID of the actor that is casting the horror mark.
- * @property { string } [astralSpacePollution] The astral space pollution level. Should be one of the keys
- * in {@link module:config~MAGIC~astralSpacePollution}.
- * @property { string } [horrorUuid] The UUID of the horror that is trying to mark the target.
- * @property { string } [spellUuid] The spell that is causing the horror mark, if applicable.
+ * @augments {EdRollOptions<HorrorMarkRollOptionsSystemData>}
+ * @see {@link HorrorMarkRollOptionsSystemData} The system data model for horror mark roll options.
+ * @see {@link EdHorrorMarkRollOptionsInitializationData} The initialization data for horror mark roll options.
  */
 export default class HorrorMarkRollOptions extends EdRollOptions {
 
@@ -71,7 +61,7 @@ export default class HorrorMarkRollOptions extends EdRollOptions {
 
   /**
    * @inheritDoc
-   * @param { EdHorrorMarkRollOptionsInitializationData & Partial<HorrorMarkRollOptions> } data The data to initialize the roll options with.
+   * @param { EdHorrorMarkRollOptionsInitializationData & Partial<HorrorMarkRollOptionsSystemData> } data The data to initialize the roll options with.
    */
   static fromActor( data, actor, options = {} ) {
     return /** @type { HorrorMarkRollOptions } */ super.fromActor( data, actor, options );
@@ -79,7 +69,7 @@ export default class HorrorMarkRollOptions extends EdRollOptions {
 
   /**
    * @inheritDoc
-   * @param { EdHorrorMarkRollOptionsInitializationData & Partial<HorrorMarkRollOptions> } data The data to initialize the roll options with.
+   * @param { EdHorrorMarkRollOptionsInitializationData & Partial<HorrorMarkRollOptionsSystemData> } data The data to initialize the roll options with.
    */
   static fromData( data, options = {} ) {
     data.casterUuid ??= data.caster?.uuid;

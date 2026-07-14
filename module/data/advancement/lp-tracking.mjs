@@ -3,6 +3,15 @@ import LpSpendingTransactionData from "./lp-spending-transaction.mjs";
 
 import { sum } from "../../utils/math.mjs";
 
+/**
+ * @import { LpTrackingSystemData } from "./_types.mjs";
+ */
+
+/**
+ * Data model for tracking all LP (Legend Points) earnings and spendings for an actor.
+ * @augments {foundry.abstract.DataModel<LpTrackingSystemData>}
+ * @see {@link LpTrackingSystemData} The system data model for LP tracking data.
+ */
 export default class LpTrackingData extends foundry.abstract.DataModel {
 
   /** @inheritdoc */
@@ -67,7 +76,7 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
   }
 
   /**
-   * @description All transactions in chronological order.
+   * All transactions in chronological order.
    * @type {[LpTransactionData]}
    */
   get chronologically() {
@@ -75,7 +84,7 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
   }
 
   /**
-   * @description The HTML representing the LP earnings of this actor as a table.
+   * The HTML representing the LP earnings of this actor as a table.
    * @type {string}
    */
   get htmlEarnings() {
@@ -173,9 +182,9 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
   }
 
   /**
-   * @description Creates the update data necessary to revert the transactions up to the specified transaction ID.
-   *              If updated with this data, all transactions that appear chronologically after the specified
-   *              transaction will be removed.
+   * Creates the update data necessary to revert the transactions up to the specified transaction ID.
+   * If updated with this data, all transactions that appear chronologically after the specified
+   * transaction will be removed.
    * @param {string} transactionId - The ID of the transaction to revert to.
    * @returns {object}  An object containing the new earnings and spendings arrays.
    */
@@ -194,7 +203,7 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
   }
 
   /**
-   * @description The HTML representing the LP spendings of this actor as a table.
+   * The HTML representing the LP spendings of this actor as a table.
    * @param { ("earnings" | "spendings" | "chronological") } type The type of table to return
    * @param { ("time" | "type" | "item") } sorting By what the table should be sorted
    * @returns {string} The HTML representing the table

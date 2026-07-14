@@ -190,7 +190,7 @@ export default class EdRoll extends Roll {
   // region Modifiers
 
   /**
-   * @description           Apply modifiers to make all dice explode.
+   * Apply modifiers to make all dice explode.
    * @private
    */
   #configureModifiers() {
@@ -205,7 +205,7 @@ export default class EdRoll extends Roll {
   }
 
   /**
-   * @description             Add additional dice in groups, like karma, devotion or elemental damage.
+   * Add additional dice in groups, like karma, devotion or elemental damage.
    */
   #addExtraDice() {
     this.#addResourceDice( "karma" );
@@ -217,7 +217,7 @@ export default class EdRoll extends Roll {
   }
 
   /**
-   * @description             Add dice from a given resource step. Currently only karma or devotion.
+   * Add dice from a given resource step. Currently only karma or devotion.
    * @param {"karma"|"devotion"} type The type of resource to add dice for.
    */
   #addResourceDice( type ) {
@@ -238,7 +238,7 @@ export default class EdRoll extends Roll {
   }
 
   /**
-   * @description                   Add the dice from extra steps (like "Flame Weapon" or "Night's Edge").
+   * Add the dice from extra steps (like "Flame Weapon" or "Night's Edge").
    */
   #addExtraSteps() {
     if ( !foundry.utils.isEmpty( this.options?.extraDice ) ) {
@@ -259,7 +259,7 @@ export default class EdRoll extends Roll {
   // region Chat Messages
 
   /**
-   * @description                     The text that is added to this roll's chat message when calling `toMessage`.
+   * The text that is added to this roll's chat message when calling `toMessage`.
    * @returns {Promise<string>}       The rendered chat flavor text.
    */
   async getChatFlavor() {
@@ -267,7 +267,7 @@ export default class EdRoll extends Roll {
   }
 
   /**
-   * @description                       Prepare the roll data for rendering the flavor template.
+   * Prepare the roll data for rendering the flavor template.
    * @returns {object}                  The context data object used to render the flavor template.
    */
   async getFlavorTemplateData() {
@@ -348,7 +348,7 @@ export default class EdRoll extends Roll {
   }
 
   /**
-   * @description                       Add a success or failure class to the dice total.
+   * Add a success or failure class to the dice total.
    * @param {HTMLElement} element       The HTML element to which the class should be added.
    */
   addSuccessClass( element ) {
@@ -360,7 +360,7 @@ export default class EdRoll extends Roll {
   }
 
   /**
-   * @description                         Create the `rolls` part of the tooltip for displaying dice icons with results.
+   * Create the `rolls` part of the tooltip for displaying dice icons with results.
    * @param {DiceTerm[]} diceTerms        An array of dice terms with multiple results to be combined
    * @returns {{}[]}                      The desired classes
    */
@@ -407,7 +407,7 @@ export default class EdRoll extends Roll {
   }
 
   /**
-   * @description                                   Render a Roll instance to HTML
+   * Render a Roll instance to HTML
    * @param {object} [options]                   Options which affect how the Roll is rendered
    * @param {string} [options.flavor]               Flavor text to include
    * @param {string} [options.template]             A custom HTML template path
@@ -440,7 +440,7 @@ export default class EdRoll extends Roll {
   }
 
   /**
-   * @description                     Returns the formula string based on strings instead of dice.
+   * Returns the formula string based on strings instead of dice.
    * @type {string}
    */
   #getRenderedStepsFormula( isPrivate = false ) {
