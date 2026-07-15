@@ -45,11 +45,10 @@ category: Legende
     <p>Talente können erlernt und verbessert werden.</p>
     <h3>Neue Talente erlernen</h3>
     <div>
-      <p>Talente, die einem Charakter hinzugefügt werden, erfordern initial keine Legendenpunkte. Es sollte sichergestellt werden, dass die Talente nach dem
-        Hinzufügen den Rang 0 besitzen [#ISSUEXY]. Talente, die einem Charakter ohne Disziplin- oder Pfad-Bezug hinzugefügt werden, haben einige Dialoge
-        zur Folge, um den Grad, die Herkunft und die Kategorie des Talentes zu bestimmen. Wenn ein Talent durch einen Kreisaufstieg einer
-        Disziplin oder den Rangaufstieg eines Pfades automatisch hinzugefügt wird, müssen diese Optionen nicht gewählt werden, sondern
-        übernehmen die Parameter der Berufung.
+      <p>Talente, die einem Charakter hinzugefügt werden, erfordern initial keine Legendenpunkte. Talente, die einem Charakter ohne 
+        Disziplin- oder Pfad-Bezug hinzugefügt werden, haben einige Dialoge zur Folge, um den Grad, die Herkunft und die Kategorie des 
+        Talentes zu bestimmen. Wenn ein Talent durch einen Kreisaufstieg einer Disziplin oder den Rangaufstieg eines Pfades automatisch 
+        hinzugefügt wird, müssen diese Optionen nicht gewählt werden, sondern übernehmen die Parameter der Berufung.
       </p>
     </div>
     <h3>Talentverbesserungen</h3>
