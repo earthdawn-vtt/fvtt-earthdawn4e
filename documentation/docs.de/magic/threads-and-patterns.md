@@ -23,7 +23,7 @@ category: Magie
   <section>
     <h2>Strukturen</h2>
     <div>
-      <img style="float: right; width:300px" src="../../../assets/manual/german/thread-item-create-pattern.png">
+      <img style="float: right; width:300px" src="../../../assets/manual/german/legend/thread-item-create-pattern.png">
       <p>
         Das Earthdawn System unterstützt aktuell Wahre Strukturen an Gegenständen und Akteuren. Wahre Strukturen
         können nur im Bearbeitungs-Modus erstellt werden. Für Akteure kannst du im Tab "Verbindungen" eine Wahre magische
@@ -132,7 +132,7 @@ category: Magie
       <p>Wahre Strukturen können auch durch einen Spielleiter wieder entfernt werden. mit dieser Aktion werden auch alle bisher erstellten 
         Ränge gelöscht.
       </p>
-      <img style="float: right; width:250px" src="../../../assets/manual/german/thread-item-show-pattern.png">
+      <img style="float: right; width:250px" src="../../../assets/manual/german/legend/thread-item-show-pattern.png">
       <p>
         Wenn der Gegenstand in der Welt bleibt, können alle Charaktere die Fäden zum gleichen Gegenstand weben. Dadurch
         gibt es eine klare Übersicht und die Verbindung zur Gruppe ist sichtbar.
@@ -147,7 +147,7 @@ category: Magie
       <p>
         Ähnlich wie bei Fadengegenständen müssen hier Spielende und Spielleitung auch die Effekte selbst verwalten.
       </p>
-      <img style="float: right; width:300px" src="../../../assets/manual/german/thread-item-pattern-information.png">
+      <img style="float: right; width:300px" src="../../../assets/manual/german/legend/thread-item-pattern-information.png">
       <h3>Fadengegenstände</h3>
       <div>
         <p>Viele Strukturgegenstände im Spiel sind Fadengegenstände mit mehreren Rängen. Die Anzahl der Ränge können mit der Funktion "Rang hinzufügen"
