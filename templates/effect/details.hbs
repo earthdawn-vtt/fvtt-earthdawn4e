@@ -20,7 +20,7 @@
                 hint=(ifThen disabledReadOnly tooltips.disabled "")
     }}
 
-    {{formGroup fields.origin value=source.origin rootId=rootId disabled=true}}
+    {{formGroup fields.origin value=source.origin rootId=rootId}}
     {{#if (eq document.system.parentDocumentType "Item")}}
       {{formGroup systemFields.transferring.fields.transfer value=document.systemTransfer rootId=rootId }}
       {{#if document.systemTransfer}}
