@@ -23,6 +23,7 @@ category: Magic
   <section>
     <h2>Patterns</h2>
     <div>
+    <img style="float: right; width:300px" src="../../../assets/manual/english/legend/thread-item-create-pattern.png">
       <p>
         The Earthdawn system currently supports true patterns on items and actors. True patterns
         can only be created in Edit mode. For actors, you can create a true magical
@@ -127,6 +128,9 @@ category: Magic
         so they can weave threads to it. The item itself stays in the world,
         but it can also be added to each character.
       </p>
+      <p>A True pattern can also be removed by a game master. This action also deletes all ranks created so far.
+      </p>
+      <img style="float: right; width:250px" src="../../../assets/manual/english/legend/thread-item-show-pattern.png">
       <p>
         If the item remains in the world, all characters can weave threads to the same item.
         This creates a clear overview and keeps the group connection visible.
@@ -136,11 +140,16 @@ category: Magic
         actor can weave 5 threads to the group's true pattern (according to the rulebook).
       </p>
       <p>
-        Woven threads can be found in the "Links" tab and can also be improved there.
+        Woven threads can be found in the "Connections" tab and can also be improved there.
       </p>
       <p>
         Similar to thread items, players and GM must manage the effects themselves here as well.
       </p>
+      <img style="float: right; width:300px" src="../../../assets/manual/english/legend/thread-item-pattern-information.png">
+      <h3>Thread items</h3>
+      <div>
+        <p>Many thread items in the game have mutlipe ranks. The number of ranks can be adjusted using the "Add Rank" or "Remove Rank" functions. Adding a rank always adds the next higher rank, while removing a rank always removes the highest one. Removed rank cannot be restored.
+        </p>
     </div>
   </section>
 </div>

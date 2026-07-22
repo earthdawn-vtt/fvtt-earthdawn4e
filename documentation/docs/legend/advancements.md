@@ -43,10 +43,7 @@ category: Legend
     <p>Talents can be learned and improved.</p>
     <h3>Learning New Talents</h3>
     <div>
-      <p>Talents added to a character do not initially require Legend Points. It should be ensured that after adding,
-        talents start at rank 0 [#ISSUEXY]. Talents added to a character without Discipline or Path relation trigger dialogs
-        to define degree, origin, and category of the talent. If a talent is added automatically through a Discipline circle increase
-        or a Path rank increase, these options do not need to be selected and the vocation parameters are used instead.
+      <p>Talents added to a character do not initially require Legend Points. Talents added without reference to a Discipline or Path trigger a dialogue sequence to determine the Talent's grade, origin, and category. If a Talent is added automatically through advancing a Discipline Circle or a Path Rank, these options need not be selected; instead, the Talent adopts the parameters of the vocation.
       </p>
     </div>
     <h3>Talent Improvements</h3>
