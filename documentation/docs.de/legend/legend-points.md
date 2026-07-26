@@ -3,117 +3,80 @@ title: Legendenpunkte
 group: Deutsch
 category: Legende
 ---
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Legendenpunkte</title>
-  <link rel="stylesheet" href="../wiki.css">
-</head>
-<body>
-  <main>
-    <section class="doc-card">
-      <article class="doc-content">
-<h2>Grundlagen</h2>
-<div>
-    <div>
-        <p>Legendenpunkte (LP) sind ein zentrales Element des Earthdawn Systems und ermöglichen es Charakteren, ihre Fähigkeiten zu verbessern.</p>
-        <p>Das Earthdawn System für Foundry VTT hat umfangreiche Möglichkeiten zur Verwaltung von Legendenpunkten.</p>
-    </div>
-    <h2>Legendenpunkte des Charakters</h2>
-    <div>
-        <p>Die Legendenpunkte eines Charakters können im Tab "Legende" eingesehen werden. Dort ist eine Übersicht über die erhaltenen, ausgegebenen 
-            und freien Legendenpunkte sowie des Status.</p>
-        <div>
-            <img src="../../../assets/manual/german/legend-point-history-button.png" width="616" height="252">
-        </div>
-    </div>
-    <p> </p>
-    <h2>Legendenpunkte verdienen und Verlauf</h2>
-    <div>
-        <p>Zuallererst benötigen Charaktere Legendenpunkte, diese können auf zwei Arten hinzugefügt werden: manuell über die Legendenpunkteübersicht 
-            oder mittels des /lp Chat-Befehls.</p>
-        <h3>Legendenpunkteübersicht</h3>
-        <div>
-            <p>Die Legendenpunkteübersicht zeigt alle relevanten Informationen zu den Legendenpunkten eines Charakters an. Hier können Spielende neue 
-                Legendenpunkte hinzufügen und alle Transaktionen einsehen, bearbeiten oder rückgängig machen.</p>
-            <h4>Erhaltene Legendenpunkte</h4>
-            <div>
-                <p>Diese Übersicht zeigt eine Liste aller erhaltenen Legendenpunkte an.</p>
-                <p>Neu errungene Legendenpunkte können mittels des Buttons "Legendenpunkt hinzufügen" hinzugefügt werden. Jeder Eintrag ist zusätzlich 
-                    zu den Legendenpunkten mit einem Datum und einer Beschreibung versehen.</p>
-                <img src="../../../assets/manual/german/legend-point-history-earned.png" width="663" height="291" alt="Legendenpunkteübersicht">
-            </div>
-            <h4>Legendenpunkteausgaben</h4>
-            <div>
-                <p>Alle Legendenpunktausgaben werden in dieser Übersicht angezeigt. Die Ausgabe kann nach Datum, nach Namen oder nach 
-                    Typ (Attribute, Talente, Zauber etc.) sortiert werden.</p>
-                <img src="../../../assets/manual/german/legend-point-history-spent.png" width="658" height="392" alt="Legendenpunkteausgaben">
-            </div>
-            <h4>Chronologische Sicht & Zurücksetzen</h4>
-            <div>
-                <p>Die letzte Ansicht ist eine Kombination der ersten beiden (erhaltene und ausgegebene Legendenpunkte). Die Ansicht ist rein chronologisch, 
-                    besitzt jedoch hinter jedem Eintrag ein Pfeilsymbol. Wird dieses angeklickt, so werden dieser und <strong>alle</strong> neueren Einträge 
-                    gelöscht.</p>
-                <p><strong>Achtung: </strong>Diese Funktion setzt aktuell noch keine Werte, die mit dieser Transaktion verbunden sind, zurück, sondern löscht 
-                    nur die Einträge in dieser Liste.</p>
-                <img src="../../../assets/manual/german/legend-point-history-chronological.png" width="660" height="399" alt="Chronologische Sicht">
-            </div>
-        </div>
-        <section style="overflow:hidden">
-            <h3>/lp Chat-Befehl</h3>
-            <div>
-                <div>
-                    <img style="float: right" src="../../../assets/manual/german/assign-lp-prompt.png" width="222" height="460" alt="Legendenpunkte zuweisen">
-                </div>
-                <div>
-                    <p>Die andere Möglichkeit, einem Charakter Legendenpunkte zu geben, ist der Chat-Befehl <code>/lp</code>. Dieser öffnet einen Dialog, 
-                        in dem alle Charaktere angezeigt werden, die einer spielenden Person zugewiesen sind (per Konfiguration oder Zugriffsrechte). 
-                        Die Spielleitung kann diesen Befehl ausführen, Charaktere auswählen und Legendenpunkte sowie eine Beschreibung hinzufügen. 
-                        Mit Bestätigung des Dialogs wird bei jedem ausgewählten Charakter ein Legendenpunkte-Eintrag mit der angegebenen Beschreibung hinzugefügt.</p>
-                </div>
-            </div>
-        </section>
-    </div>
-    <p> </p>
-    <h2>Legendenpunkte ausgeben</h2>
-    <div>
-        <p>Legendenpunkte können für die folgenden Items ausgegeben werden:</p>
-        <ul>
-            <li>Talent-, Fertigkeits-, Weihekraft-Ränge erhöhen</li>
-            <li>Attribute erhöhen</li>
-            <li>Zauber erlernen</li>
-            <li>Kniffe erlernen (Kniffe, Karma-Kniffe, Spezialmanöver und Zauberkniffe)</li>
-            <li>Permanente Fäden zu Strukturen</li>
-        </ul>
-        <p>Die Kosten für die einzelnen Verbesserungen variieren je nach Typ, entsprechend den Werten aus dem Spielerhandbuch. Entscheidende Parameter wie 
-            bei Fähigkeiten die Stufe (Novize, Geselle, Hüter oder Meister) haben immer eine gleichnamige Option im Item selbst.</p>
-        <p>Fähigkeiten und Attribute können im Editiermodus mittels des "Pfeil-nach-oben"-Buttons in der jeweiligen Übersichtsliste erhöht werden.</p>
-        <p>Jedes Mal, wenn dieser Button gedrückt wird, erscheint ein Dialog, der über die Kosten und Bedingungen informiert.</p>
-        <p>Kniffe und Zauber werden per Drag & Drop auf den Charakter gezogen und lösen somit die Funktion aus.</p>
-        <p>Auch hier gibt es jedes Mal einen Dialog, der über die entsprechenden Umstände oder Möglichkeiten informiert.</p>
-        <p>Permanente Fäden lösen durch das Aktivieren des nächsten Fadenranges die Lern-Funktion aus.</p>
-        <img src="../../../assets/manual/german/increase-talent.png">
-    </div>
-    <p> </p>
-    <h2>Disziplinen, Pfade und Questoren (Berufungen)</h2>
-    <div>
-        <p>Es gibt neben den oben genannten Möglichkeiten, Legendenpunkte auszugeben, auch noch weitere Optionen, den Charakter zu verbessern. Das Erhöhen 
-            des Disziplinkreises, das Erlernen neuer Disziplinen, das Beitreten zu einem Pfad oder die Bindung an eine Passion als Questor erfordern 
-            keine Legendenpunkte. Für die dazugehörigen Talente, Weihekräfte und Kniffe gilt das Gleiche wie oben beschrieben.</p>
-        <p>Diese Berufungen lassen sich alle im Editiermodus steigern. Ähnlich den Fähigkeiten taucht auch hier ein Dialog auf, der über die Umstände oder 
-            Möglichkeiten informiert.</p>
-        <img src="../../../assets/manual/german/increase-vocation.png" style="display: block; width: auto; max-width: 100%; margin: 0 auto; clear: both" alt="Disziplinen, Pfade und Questoren">
-        <p>Pfade und Questoren haben eine Fähigkeit, die in direktem Bezug zur Berufung steht und die mindestens einen Rang besitzen muss, der dem neuen Rang 
-            des Pfades oder des Questors entspricht. Ist dies nicht der Fall, bietet das System die Möglichkeit, die entsprechende Fähigkeit gleich mitzusteigern.</p>
-        <p>Wenn eine Disziplin erhöht wird, die ein Fadenwebentalent besitzt, das zum Zaubern genutzt wird, so erscheint noch eine Option, einen neuen Zauber zu erlernen.</p>
-    </div>
-</div>
-      </article>
-    </section>
-  </main>
-</body>
-</html>
+# Grundlagen
+
+Legendenpunkte (LP) sind ein zentrales Element des Earthdawn-Systems und ermöglichen es Charakteren, ihre Fähigkeiten zu verbessern. Das Earthdawn-System für Foundry VTT hat umfangreiche Möglichkeiten zur Verwaltung von Legendenpunkten.
+
+## Legendenpunkte des Charakters
+
+Die Legendenpunkte eines Charakters können im Tab „Legende“ eingesehen werden. Dort ist eine Übersicht über die erhaltenen, ausgegebenen und freien Legendenpunkte sowie den Status.
+
+![Legendenpunkte-Button](../../../assets/manual/german/legend-point-history-button.png)
+
+## Legendenpunkte verdienen und Verlauf
+
+Zuallererst benötigen Charaktere Legendenpunkte. Diese können auf zwei Arten hinzugefügt werden: manuell über die Legendenpunkteübersicht oder mittels des `/lp` Chat-Befehls.
+
+### Legendenpunkteübersicht
+
+Die Legendenpunkteübersicht zeigt alle relevanten Informationen zu den Legendenpunkten eines Charakters an. Hier können Spielende neue Legendenpunkte hinzufügen und alle Transaktionen einsehen, bearbeiten oder rückgängig machen.
+
+#### Erhaltene Legendenpunkte
+
+Diese Übersicht zeigt eine Liste aller erhaltenen Legendenpunkte an. Neu errungene Legendenpunkte können mittels des Buttons „Legendenpunkt hinzufügen“ hinzugefügt werden. Jeder Eintrag ist zusätzlich zu den Legendenpunkten mit einem Datum und einer Beschreibung versehen.
+
+![Erhaltene Legendenpunkte](../../../assets/manual/german/legend-point-history-earned.png)
+
+#### Legendenpunkteausgaben
+
+Alle Legendenpunktausgaben werden in dieser Übersicht angezeigt. Die Ausgabe kann nach Datum, nach Namen oder nach Typ (Attribute, Talente, Zauber etc.) sortiert werden.
+
+![Legendenpunkteausgaben](../../../assets/manual/german/legend-point-history-spent.png)
+
+#### Chronologische Sicht & Zurücksetzen
+
+Die letzte Ansicht ist eine Kombination der ersten beiden (erhaltene und ausgegebene Legendenpunkte). Die Ansicht ist rein chronologisch, besitzt jedoch hinter jedem Eintrag ein Pfeilsymbol. Wird dieses angeklickt, so werden dieser und **alle** neueren Einträge gelöscht.
+
+**Achtung:** Diese Funktion setzt aktuell noch keine Werte, die mit dieser Transaktion verbunden sind, zurück, sondern löscht nur die Einträge in dieser Liste.
+
+![Chronologische Sicht](../../../assets/manual/german/legend-point-history-chronological.png)
+
+### /lp Chat-Befehl
+
+![Legendenpunkte zuweisen](../../../assets/manual/german/assign-lp-prompt.png)
+
+Die andere Möglichkeit, einem Charakter Legendenpunkte zu geben, ist der Chat-Befehl `/lp`. Dieser öffnet einen Dialog, in dem alle Charaktere angezeigt werden, die einer spielenden Person zugewiesen sind (per Konfiguration oder Zugriffsrechte). Die Spielleitung kann diesen Befehl ausführen, Charaktere auswählen und Legendenpunkte sowie eine Beschreibung hinzufügen. Mit Bestätigung des Dialogs wird bei jedem ausgewählten Charakter ein Legendenpunkte-Eintrag mit der angegebenen Beschreibung hinzugefügt.
+
+## Legendenpunkte ausgeben
+
+Legendenpunkte können für die folgenden Items ausgegeben werden:
+
+- Talent-, Fertigkeits-, Weihekraft-Ränge erhöhen
+- Attribute erhöhen
+- Zauber erlernen
+- Kniffe erlernen (Kniffe, Karma-Kniffe, Spezialmanöver und Zauberkniffe)
+- Permanente Fäden zu Strukturen
+
+Die Kosten für die einzelnen Verbesserungen variieren je nach Typ, entsprechend den Werten aus dem Spielerhandbuch. Entscheidende Parameter wie bei Fähigkeiten die Stufe (Novize, Geselle, Hüter oder Meister) haben immer eine gleichnamige Option im Item selbst.
+
+Fähigkeiten und Attribute können im Editiermodus mittels des „Pfeil-nach-oben“-Buttons in der jeweiligen Übersichtsliste erhöht werden. Jedes Mal, wenn dieser Button gedrückt wird, erscheint ein Dialog, der über die Kosten und Bedingungen informiert.
+
+Kniffe und Zauber werden per Drag & Drop auf den Charakter gezogen und lösen somit die Funktion aus. Auch hier gibt es jedes Mal einen Dialog, der über die entsprechenden Umstände oder Möglichkeiten informiert.
+
+Permanente Fäden lösen durch das Aktivieren des nächsten Fadenranges die Lern-Funktion aus.
+
+![Talent erhöhen](../../../assets/manual/german/increase-talent.png)
+
+## Disziplinen, Pfade und Questoren (Berufungen)
+
+Es gibt neben den oben genannten Möglichkeiten, Legendenpunkte auszugeben, auch noch weitere Optionen, den Charakter zu verbessern. Das Erhöhen des Disziplinkreises, das Erlernen neuer Disziplinen, das Beitreten zu einem Pfad oder die Bindung an eine Passion als Questor erfordern keine Legendenpunkte. Für die dazugehörigen Talente, Weihekräfte und Kniffe gilt das Gleiche wie oben beschrieben.
+
+Diese Berufungen lassen sich alle im Editiermodus steigern. Ähnlich den Fähigkeiten taucht auch hier ein Dialog auf, der über die Umstände oder Möglichkeiten informiert.
+
+![Disziplinen, Pfade und Questoren](../../../assets/manual/german/increase-vocation.png)
+
+Pfade und Questoren haben eine Fähigkeit, die in direktem Bezug zur Berufung steht und die mindestens einen Rang besitzen muss, der dem neuen Rang des Pfades oder des Questors entspricht. Ist dies nicht der Fall, bietet das System die Möglichkeit, die entsprechende Fähigkeit gleich mitzusteigern.
+
+Wenn eine Disziplin erhöht wird, die ein Fadenwebentalent besitzt, das zum Zaubern genutzt wird, so erscheint noch eine Option, einen neuen Zauber zu erlernen.
 
 

@@ -3,57 +3,34 @@ title: Versionshinweise
 group: Deutsch
 category: System
 ---
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Release Notes</title>
-  <link rel="stylesheet" href="../wiki.css">
-</head>
-<body>
-  <main>
-    <section class="doc-card">
-      <article class="doc-content">
-<h1>Release Notes</h1>
-<div>
-    <p>Im folgend Abschnitt werden alle Funktionen des Earthdawn Systems für Foundry VTT beschrieben.</p>
-    <h2>Grundlagen</h2>
-    <div>
-        <p>Für die Entwicklung vom Earthdawn Systems wurde der Fokus auf Akteure, Items und Chat Nachrichten gesetzt. 
-    Token, Szenen etc. wurden teilweise mitangepasst, werden aber nicht extra beschrieben.
-        </p>
-    </div>
-    <h3>Akteure</h3>
-    <div>
-        <p>Im Earthdawn System für Foundry VTT werden aktuell neun unterschiedlichen Akteuren unterschieden.</p>
-        <ul>
-            <li>Charakter</li>
-            <li>NSC (Nicht Spieler Charakter)</li>
-            <li>Kreaturen</li>
-            <li>Geister</li>
-            <li>Drachen</li>
-            <li>Dämonen</li>
-            <li>Gruppen</li>
-            <li>Fallen</li>
-            <li>Fahrzeuge</li>
-        </ul>
-        <h4>Charaktere</h4>
-        <div>
-            <p>Charaktere sind die wichtigste Art der Akteure und haben entsprechend auch die meisten Funktionen.</p>
-            <p>Im Folgenden werden die einzelnen Funktionen, die ein Charakter Akteur besitzt, beschrieben.</p>
-            <ul>
-                <li>Charakterbogen - Funktionen des Earthdawn-Rollenspiels für Spielende</li>
-                <li>Charaktererschaffung - umfangreiche Charaktererstellung mit mehreren Schritten</li>
-                <li>Legendenpunkte - Verwaltung und Verwendung von Legendenpunkten zum Erlernen und Verbessern von Fähigkeiten</li>
-            </ul>
-        </div>
-    </div>
-</div>
-      </article>
-    </section>
-  </main>
-</body>
-</html>
+# Release Notes
+
+Im folgenden Abschnitt werden alle Funktionen des Earthdawn-Systems für Foundry VTT beschrieben.
+
+## Grundlagen
+
+Für die Entwicklung des Earthdawn-Systems wurde der Fokus auf Akteure, Items und Chat-Nachrichten gesetzt. Token, Szenen etc. wurden teilweise mitangepasst, werden aber nicht extra beschrieben.
+
+### Akteure
+
+Im Earthdawn-System für Foundry VTT werden aktuell neun unterschiedliche Akteursarten unterschieden:
+
+- Charakter
+- NSC (Nichtspielercharakter)
+- Kreaturen
+- Geister
+- Drachen
+- Dämonen
+- Gruppen
+- Fallen
+- Fahrzeuge
+
+#### Charaktere
+
+Charaktere sind die wichtigste Art der Akteure und haben entsprechend auch die meisten Funktionen. Im Folgenden werden die einzelnen Funktionen, die ein Charakter-Akteur besitzt, beschrieben:
+
+- Charakterbogen – Funktionen des Earthdawn-Rollenspiels für Spielende
+- Charaktererschaffung – umfangreiche Charaktererstellung mit mehreren Schritten
+- Legendenpunkte – Verwaltung und Verwendung von Legendenpunkten zum Erlernen und Verbessern von Fähigkeiten
 
 
