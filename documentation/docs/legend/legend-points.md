@@ -3,114 +3,82 @@ title: Legend Points
 group: English
 category: Legend
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Legend Points</title>
-  <link rel="stylesheet" href="../wiki.css">
-</head>
-<body>
-  <main>
-    <section class="doc-card">
-      <article class="doc-content">
-<h2>Basics</h2>
-<div>
-    <div>
-        <p>Legend Points (LP) are a central element of the Earthdawn system and allow characters to improve their abilities.</p>
-        <p>The Earthdawn system for Foundry VTT provides extensive options for managing Legend Points.</p>
-    </div>
-    <h2>Character Legend Points</h2>
-    <div>
-        <p>A character's Legend Points can be viewed in the "Legend" tab. It shows an overview of received,
-            spent, and available Legend Points and their status.</p>
-        <div>
-            <img src="../../../assets/manual/german/legend-point-history-button.png" alt="Legend Point History Button">
-        </div>
-    </div>
-    <p> </p>
-    <h2>Earning Legend Points and History</h2>
-    <div>
-        <p>To build their legend, characters need Legend Points. They can be added in two ways: manually through the Legend Point overview
-            or through the <code>/lp</code> chat command.</p>
-        <h3>Legend Point Overview</h3>
-        <div>
-            <p>The Legend Point overview shows all relevant information about a character's Legend Points. Players can add new
-                Legend Points here and view, edit, or undo all transactions.</p>
-            <h4>Received Legend Points</h4>
-            <div>
-                <p>This view shows a list of all received Legend Points.</p>
-                <p>Newly earned Legend Points can be added with the "Add Legend Point" button. Every entry also includes
-                    a date and description in addition to the points.</p>
-                <img src="../../../assets/manual/german/legend-point-history-earned.png" width="663" height="291">
-            </div>
-            <h4>Legend Point Spending</h4>
-            <div>
-                <p>All Legend Point spending is shown in this view. Entries can be sorted by date, by name, or by
-                    type (attributes, talents, spells, etc.).</p>
-                <img src="../../../assets/manual/german/legend-point-history-spent.png" alt="Legend Point History Spent">
-            </div>
-            <h4>Chronological View & Reset</h4>
-            <div>
-                <p>The last view combines the first two (received and spent Legend Points). It is strictly chronological,
-                    but each entry has an arrow icon. Clicking it deletes this entry and <strong>all</strong> newer entries.</p>
-                <p><strong>Warning: </strong>At the moment, this function does not reset values tied to those transactions. It only
-                    deletes the entries from this list.</p>
-                <img src="../../../assets/manual/german/legend-point-history-chronological.png" alt="Legend Point History Chronological View">
-            </div>
-        </div>
-        <section style="overflow:hidden">
-            <h3>/lp Chat Command</h3>
-            <div>
-                <div>
-                    <img style="float: right" src="../../../assets/manual/german/assign-lp-prompt.png" alt="Assign Legend Points Prompt">
-                </div>
-                <div>
-                    <p>The other way to grant a character Legend Points is the <code>/lp</code> chat command. It opens a dialog
-                        showing all characters assigned to players (via configuration or access rights).
-                        The GM can run this command, select characters, and add Legend Points with a description.
-                        When the dialog is confirmed, each selected character receives a Legend Point entry with the given description.</p>
-                </div>
-            </div>
-        </section>
-    </div>
-    <p> </p>
-    <h2>Spending Legend Points</h2>
-    <div>
-        <p>Legend Points can be spent on the following items:</p>
-        <ul>
-            <li>Increase talent, skill, and devotion power ranks</li>
-            <li>Increase attributes</li>
-            <li>Learn spells</li>
-            <li>Learn knacks (talent knacks, karma knacks, special maneuvers, and spell knacks)</li>
-            <li>Permanent threads to patterns</li>
-        </ul>
-        <p>The cost of each improvement varies by type according to the values in the Player's Guide. Key parameters,
-            such as degree for abilities (Novice, Journeyman, Warden, or Master), always have a matching option in the item itself.</p>
-        <p>Abilities and attributes can be increased in Edit mode using the "arrow-up" button in the relevant list.</p>
-        <p>Each time this button is pressed, a dialog appears with cost and requirement details.</p>
-        <p>Knacks and spells are dragged and dropped onto the character to trigger their learning function.</p>
-        <p>Here as well, a dialog appears each time to explain the relevant conditions and options.</p>
-        <p>Permanent threads trigger the learning function when you activate the next thread rank.</p>
-        <img src="../../../assets/manual/german/increase-talent.png" alt="Increase Talent">
-    </div>
-    <p> </p>
-    <h2>Disciplines, Paths, and Questors (Vocations)</h2>
-    <div>
-        <p>Besides the options above for spending Legend Points, there are additional ways to improve a character.
-            Raising Discipline circle, learning new Disciplines, joining a Path, or binding to a Passion as a Questor
-            does not require Legend Points. For the associated talents, devotion powers, and knacks, the same rules as above apply.</p>
-        <p>All these vocations can be increased in Edit mode. Similar to abilities, a dialog appears here as well,
-            informing you about conditions and options.</p>
-        <img src="../../../assets/manual/german/increase-vocation.png" style="display: block; width: auto; max-width: 100%; margin: 0 auto; clear: both" alt="Increase Vocation">
-        <p>Paths and Questors have an ability directly tied to the vocation that must have at least a rank equal to the new rank
-            of the Path or Questor. If this is not the case, the system offers the option to increase that ability immediately.</p>
-        <p>If a Discipline is increased, and it has a Thread Weaving talent used for spellcasting, another option appears to learn a new spell.</p>
-    </div>
-</div>
-      </article>
-    </section>
-  </main>
-</body>
-</html>
+## Basics
+
+Legend Points (LP) are a central element of the Earthdawn system and allow characters to improve their abilities.
+
+The Earthdawn system for Foundry VTT provides extensive options for managing Legend Points.
+
+## Character Legend Points
+
+A character's Legend Points can be viewed in the "Legend" tab. It shows an overview of received, spent, and available Legend Points and their status.
+
+![Legend Point History Button](../../../assets/manual/german/legend-point-history-button.png)
+
+## Earning Legend Points and History
+
+To build their legend, characters need Legend Points. They can be added in two ways: manually through the Legend Point overview or through the `/lp` chat command.
+
+### Legend Point Overview
+
+The Legend Point overview shows all relevant information about a character's Legend Points. Players can add new Legend Points here and view, edit, or undo all transactions.
+
+#### Received Legend Points
+
+This view shows a list of all received Legend Points.
+
+Newly earned Legend Points can be added with the "Add Legend Point" button. Every entry also includes a date and description in addition to the points.
+
+![Legend Point History Earned](../../../assets/manual/german/legend-point-history-earned.png)
+
+#### Legend Point Spending
+
+All Legend Point spending is shown in this view. Entries can be sorted by date, by name, or by type (attributes, talents, spells, etc.).
+
+![Legend Point History Spent](../../../assets/manual/german/legend-point-history-spent.png)
+
+#### Chronological View & Reset
+
+The last view combines the first two (received and spent Legend Points). It is strictly chronological, but each entry has an arrow icon. Clicking it deletes this entry and all newer entries.
+
+Warning: At the moment, this function does not reset values tied to those transactions. It only deletes the entries from this list.
+
+![Legend Point History Chronological View](../../../assets/manual/german/legend-point-history-chronological.png)
+
+### /lp Chat Command
+
+![Assign Legend Points Prompt](../../../assets/manual/german/assign-lp-prompt.png)
+
+The other way to grant a character Legend Points is the `/lp` chat command. It opens a dialog showing all characters assigned to players (via configuration or access rights). The GM can run this command, select characters, and add Legend Points with a description. When the dialog is confirmed, each selected character receives a Legend Point entry with the given description.
+
+## Spending Legend Points
+
+Legend Points can be spent on the following items:
+
+- Increase talent, skill, and devotion power ranks
+- Increase attributes
+- Learn spells
+- Learn knacks (talent knacks, karma knacks, special maneuvers, and spell knacks)
+- Permanent threads to patterns
+
+The cost of each improvement varies by type according to the values in the Player's Guide. Key parameters, such as degree for abilities (Novice, Journeyman, Warden, or Master), always have a matching option in the item itself.
+
+Abilities and attributes can be increased in Edit mode using the "arrow-up" button in the relevant list. Each time this button is pressed, a dialog appears with cost and requirement details.
+
+Knacks and spells are dragged and dropped onto the character to trigger their learning function. Here as well, a dialog appears each time to explain the relevant conditions and options.
+
+Permanent threads trigger the learning function when you activate the next thread rank.
+
+![Increase Talent](../../../assets/manual/german/increase-talent.png)
+
+## Disciplines, Paths, and Questors (Vocations)
+
+Besides the options above for spending Legend Points, there are additional ways to improve a character. Raising Discipline circle, learning new Disciplines, joining a Path, or binding to a Passion as a Questor does not require Legend Points. For the associated talents, devotion powers, and knacks, the same rules as above apply.
+
+All these vocations can be increased in Edit mode. Similar to abilities, a dialog appears here as well, informing you about conditions and options.
+
+![Increase Vocation](../../../assets/manual/german/increase-vocation.png)
+
+Paths and Questors have an ability directly tied to the vocation that must have at least a rank equal to the new rank of the Path or Questor. If this is not the case, the system offers the option to increase that ability immediately.
+
+If a Discipline is increased, and it has a Thread Weaving talent used for spellcasting, another option appears to learn a new spell.

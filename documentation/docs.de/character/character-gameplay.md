@@ -3,115 +3,104 @@ title: Charakter-Gameplay
 group: Deutsch
 category: Charakter
 ---
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Character Gameplay</title>
-  <link rel="stylesheet" href="../wiki.css">
-</head>
-<body>
-  <main>
-    <section class="doc-card">
-      <article class="doc-content">
-<p>Im Folgenden werden die einzelnen Funktionen des Charakterbogens im Detail beschrieben.</p>
-<p></p>
-<div>
-    <section style="overflow:hidden">
-        <h3>Spiel- und Bearbeitungsmodus</h3>
-        <div>
-            <img style="float: right" src="../../../assets/manual/german/actor-sheet-edit-mode.png" alt="Spiel- und Bearbeitungsmodus">
-            <p>Der bereits beschriebene Spiel- und Bearbeitungsmodus schaltet an vielen Stellen Funktionen an oder aus. Das schützt Nutzende vor unbeabsichtigten Änderungen und sorgt für eine klare Trennung, die den Charakterbogen übersichtlicher macht.</p>
-        </div>
-    </section>
-    <h3>Funktionen im Spielmodus</h3>
-    <div>
-        <p>Im Spielmodus stehen verschiedene Funktionen zur Verfügung, die an mehreren Stellen im Charakterbogen auftauchen.</p>
-        <h4>+/- Button</h4>
-        <div>
-            <p>Mit den +/- Buttons können Werte an vielen Stellen im Charakterbogen erhöht oder verringert werden. Beim Klicken wird ein permanenter Effekt (Active Effect) bearbeitet, der alle manuellen Änderungen enthält. Jeder weitere Klick erhöht oder reduziert diesen Effekt.</p>
-            <p>Ein einfacher Klick erhöht oder reduziert den Wert um 1, Shift+Klick erhöht bzw. senkt den Wert um jeweils 5.</p>
-            <p>Würfel-Button</p>
-            <p>Viele Fähigkeiten und Gegenstände können genutzt werden, um einen Aktionswurf auszulösen. Items, die eine Aktion auslösen können, zeigen ein Würfelsymbol anstelle des Bildes, wenn mit der Maus darübergefahren wird.</p>
-            <img src="../../../assets/manual/german/actor-sheet-talent-tab-roll.png" alt="Würfel-Button">
-            <h4>Bluttropfen-Button</h4>
-            <p>Einige Fähigkeiten lösen keinen Aktionswurf aus, verursachen jedoch Überanstrengungsschaden bei der Nutzung. Solche Fähigkeiten zeigen ein Bluttropfen-Symbol, um die Aktion auszulösen und den Schaden zuzufügen.</p>
-            <img src="../../../assets/manual/german/actor-sheet-talent-tab-strain.png" alt="Bluttropfen-Button">
-        </div>
-        <h4>Zauberkarten</h4>
-        <div>
-            <p>Zauberkarten bieten zwei Funktionen: das Abstimmen eines Zaubers und das eigentliche Zaubern.</p>
-            <p>Das Abstimmen eines Zaubers öffnet einen separaten Dialog, in dem sowohl das "Abstimmen auf die Schnelle" als auch das Abstimmen mit ausreichend Zeit durchgeführt werden können.</p>
-            <p>Das Zaubern öffnet ebenfalls einen Dialog, in dem zusätzliche Optionen wie das Weben von Fäden oder die Nutzung roher Magie ausgewählt werden können.</p>
-        </div>
-        <p>Zu Favoriten hinzufügen</p>
-        <div>
-            <p>Im rechten Bereich des Charakterbogens gibt es einen Abschnitt für Favoriten. Spielende können hier häufig genutzte Fähigkeiten hinzufügen. Ein Kontextmenü, das per Rechtsklick auf ein Item aufgerufen wird, ermöglicht das Hinzufügen der folgenden Typen zu den Favoriten:</p>
-            <ul>
-                <li>Talente</li>
-                <li>Fertigkeiten</li>
-                <li>Weihekräfte</li>
-                <li>Zauber</li>
-                <li>Kräfte</li>
-                <li>Ausrüstung (nur benutzbare Ausrüstung)</li>
-            </ul>
-            <img src="../../../assets/manual/german/actor-sheet-talent-tab-favorite.png" alt="Favoriten">
-            <p></p>
-            <h4>Aktionsbuttons</h4>
-            <p>Es gibt viele Aktionsbuttons, die spezifische Aktionen auslösen. Hier sind einige Beispiele:</p>
-            <h5>Favoriten</h5>
-            <div>
-                <p>Favoriten lösen immer eine Aktion aus. Talente, Fertigkeiten, Weihekräfte und Ausrüstung werden gewürfelt. Zauber starten mit der Auswahl, ob sie über eine Matrix, ein Grimoire oder roh gewirkt werden sollen.</p>
-            </div>
-            <h5>Legendenpunkteübersicht</h5>
-            <div>
-                <p>Die Legendenpunkteübersicht öffnet einen Dialog, in dem alle erhaltenen und ausgegebenen Legendenpunkte angezeigt werden.</p>
-            </div>
-            <h5>Karmaritual</h5>
-            <div>
-                <p>Der Button für das Karmaritual befindet sich rechts neben der Überschrift. Durch Aktivieren des Buttons werden die aktuellen Karmapunkte auf das Maximum zurückgesetzt.</p>
-            </div>
-            <h5>Erholung</h5>
-            <div>
-                <p>Das Erholungssymbol (ein kleines Bett) neben der Überschrift öffnet einen Dialog, um Erholungsproben zu würfeln oder eine lange Rast zu machen.</p>
-            </div>
-            <h5>Initiative</h5>
-            <div>
-                <p>Das Symbol für die Initiative (gekreuzte Schwerter) neben der Überschrift würfelt die aktuelle Initiativstufe.</p>
-            </div>
-            <h5>Niederschlag</h5>
-            <div>
-                <p>Der Niederschlagsknopf löst einen manuellen Niederschlagstest aus.</p>
-            </div>
-            <h5>Aufspringen</h5>
-            <div>
-                <p>Der Aufspringenknopf löst einen Aufspringentest aus.</p>
-            </div>
-            <h5>Schaden nehmen</h5>
-            <div>
-                <p>Dieser Knopf ermöglicht das manuelle Hinzufügen von Schaden außerhalb der üblichen Aktionen.</p>
-            </div>
-        </div>
-        <h4>Effekt hinzufügen</h4>
-        <div>
-            <p>Die temporären und permanenten Effekte verfügen über ein "+"-Symbol neben der Überschrift. Durch Klicken auf dieses Symbol wird ein neuer Effekt erzeugt und der Spielfigur hinzugefügt. Ein Dialog öffnet sich, um den Effekt zu konfigurieren.</p>
-        </div>
-        <h4>Situationsmodifikatoren</h4>
-        <div>
-            <p>Im Tab "Besonderheiten" befinden sich neben den Effekten auch Situationsmodifikatoren. Durch Aktivieren eines Buttons wird ein temporärer Effekt hinzugefügt. Ein erneutes Aktivieren des Buttons entfernt den Effekt. Aktivierte Buttons erscheinen dunkler.</p>
-            <p>Der Effekt "Überwältigt" ist eine Ausnahme, da er mehrere Stufen haben kann. Statt eines Buttons gibt es ein Eingabefeld für die Stufe.</p>
-        </div>
-        <h4>Ausrüstungsstatus</h4>
-        <div>
-            <p>Alle Ausrüstungsgegenstände können verschiedene Status haben (z. B. "Besitzt", "Getragen", "Ausgerüstet", "Nebenhand", "Beidhändig"). Ein Klick auf das Statussymbol wechselt zum nächsten Status.</p>
-        </div>
-    </div>
-</div>
-      </article>
-    </section>
-  </main>
-</body>
-</html>
+Im Folgenden werden die einzelnen Funktionen des Charakterbogens im Detail beschrieben.
+
+### Spiel- und Bearbeitungsmodus
+
+![Spiel- und Bearbeitungsmodus](../../../assets/manual/german/actor-sheet-edit-mode.png)
+
+Der bereits beschriebene Spiel- und Bearbeitungsmodus schaltet an vielen Stellen Funktionen an oder aus. Das schützt Nutzende vor unbeabsichtigten Änderungen und sorgt für eine klare Trennung, die den Charakterbogen übersichtlicher macht.
+
+### Funktionen im Spielmodus
+
+Im Spielmodus stehen verschiedene Funktionen zur Verfügung, die an mehreren Stellen im Charakterbogen auftauchen.
+
+#### +/- Button
+
+Mit den +/- Buttons können Werte an vielen Stellen im Charakterbogen erhöht oder verringert werden. Beim Klicken wird ein permanenter Effekt (Active Effect) bearbeitet, der alle manuellen Änderungen enthält. Jeder weitere Klick erhöht oder reduziert diesen Effekt.
+
+Ein einfacher Klick erhöht oder reduziert den Wert um 1, Shift+Klick erhöht bzw. senkt den Wert um jeweils 5.
+
+#### Würfel-Button
+
+Viele Fähigkeiten und Gegenstände können genutzt werden, um einen Aktionswurf auszulösen. Items, die eine Aktion auslösen können, zeigen ein Würfelsymbol anstelle des Bildes, wenn mit der Maus darübergefahren wird.
+
+![Würfel-Button](../../../assets/manual/german/actor-sheet-talent-tab-roll.png)
+
+#### Bluttropfen-Button
+
+Einige Fähigkeiten lösen keinen Aktionswurf aus, verursachen jedoch Überanstrengungsschaden bei der Nutzung. Solche Fähigkeiten zeigen ein Bluttropfen-Symbol, um die Aktion auszulösen und den Schaden zuzufügen.
+
+![Bluttropfen-Button](../../../assets/manual/german/actor-sheet-talent-tab-strain.png)
+
+#### Zauberkarten
+
+Zauberkarten bieten zwei Funktionen: das Abstimmen eines Zaubers und das eigentliche Zaubern.
+
+- Das Abstimmen eines Zaubers öffnet einen separaten Dialog, in dem sowohl das "Abstimmen auf die Schnelle" als auch das Abstimmen mit ausreichend Zeit durchgeführt werden können.
+- Das Zaubern öffnet ebenfalls einen Dialog, in dem zusätzliche Optionen wie das Weben von Fäden oder die Nutzung roher Magie ausgewählt werden können.
+
+#### Zu Favoriten hinzufügen
+
+Im rechten Bereich des Charakterbogens gibt es einen Abschnitt für Favoriten. Spielende können hier häufig genutzte Fähigkeiten hinzufügen. Ein Kontextmenü, das per Rechtsklick auf ein Item aufgerufen wird, ermöglicht das Hinzufügen der folgenden Typen zu den Favoriten:
+
+- Talente
+- Fertigkeiten
+- Weihekräfte
+- Zauber
+- Kräfte
+- Ausrüstung (nur benutzbare Ausrüstung)
+
+![Favoriten](../../../assets/manual/german/actor-sheet-talent-tab-favorite.png)
+
+#### Aktionsbuttons
+
+Es gibt viele Aktionsbuttons, die spezifische Aktionen auslösen. Hier sind einige Beispiele:
+
+##### Favoriten
+
+Favoriten lösen immer eine Aktion aus. Talente, Fertigkeiten, Weihekräfte und Ausrüstung werden gewürfelt. Zauber starten mit der Auswahl, ob sie über eine Matrix, ein Grimoire oder roh gewirkt werden sollen.
+
+##### Legendenpunkteübersicht
+
+Die Legendenpunkteübersicht öffnet einen Dialog, in dem alle erhaltenen und ausgegebenen Legendenpunkte angezeigt werden.
+
+##### Karmaritual
+
+Der Button für das Karmaritual befindet sich rechts neben der Überschrift. Durch Aktivieren des Buttons werden die aktuellen Karmapunkte auf das Maximum zurückgesetzt.
+
+##### Erholung
+
+Das Erholungssymbol (ein kleines Bett) neben der Überschrift öffnet einen Dialog, um Erholungsproben zu würfeln oder eine lange Rast zu machen.
+
+##### Initiative
+
+Das Symbol für die Initiative (gekreuzte Schwerter) neben der Überschrift würfelt die aktuelle Initiativstufe.
+
+##### Niederschlag
+
+Der Niederschlagsknopf löst einen manuellen Niederschlagstest aus.
+
+##### Aufspringen
+
+Der Aufspringenknopf löst einen Aufspringentest aus.
+
+##### Schaden nehmen
+
+Dieser Knopf ermöglicht das manuelle Hinzufügen von Schaden außerhalb der üblichen Aktionen.
+
+#### Effekt hinzufügen
+
+Die temporären und permanenten Effekte verfügen über ein "+"-Symbol neben der Überschrift. Durch Klicken auf dieses Symbol wird ein neuer Effekt erzeugt und der Spielfigur hinzugefügt. Ein Dialog öffnet sich, um den Effekt zu konfigurieren.
+
+#### Situationsmodifikatoren
+
+Im Tab "Besonderheiten" befinden sich neben den Effekten auch Situationsmodifikatoren. Durch Aktivieren eines Buttons wird ein temporärer Effekt hinzugefügt. Ein erneutes Aktivieren des Buttons entfernt den Effekt. Aktivierte Buttons erscheinen dunkler.
+
+Der Effekt "Überwältigt" ist eine Ausnahme, da er mehrere Stufen haben kann. Statt eines Buttons gibt es ein Eingabefeld für die Stufe.
+
+#### Ausrüstungsstatus
+
+Alle Ausrüstungsgegenstände können verschiedene Status haben (z. B. "Besitzt", "Getragen", "Ausgerüstet", "Nebenhand", "Beidhändig"). Ein Klick auf das Statussymbol wechselt zum nächsten Status.
 
 
