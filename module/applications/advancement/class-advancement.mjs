@@ -8,6 +8,9 @@ import { getSetting } from "../../helpers/settings.mjs";
 
 const { isEmpty } = foundry.utils;
 
+/**
+ * The dialog for guided advancements in classes (discipline, paths, questors).
+ */
 export default class ClassAdvancementDialog extends ApplicationEd {
 
   // region Static Properties
@@ -120,7 +123,7 @@ export default class ClassAdvancementDialog extends ApplicationEd {
 
   // region Getters
 
-  /** @inheritDoc */
+  /** @inheritdoc */
   get _reRenderFooter() {
     return true;
   }

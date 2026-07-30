@@ -4,6 +4,9 @@ import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import { getSetting } from "../../helpers/settings.mjs";
 
 
+/**
+ * A dialog for learning a spell with all options, like help from a teacher, patterncraft, etc.
+ */
 export default class LearnSpellPrompt extends ApplicationEd {
 
   /**
@@ -25,6 +28,8 @@ export default class LearnSpellPrompt extends ApplicationEd {
       static LOCALIZATION_PREFIXES = [
         "ED.Data.Other.LearnSpell",
       ];
+
+      /** @inheritdoc */
       static defineSchema() {
         return {
           lpCost:       new fields.NumberField( {
