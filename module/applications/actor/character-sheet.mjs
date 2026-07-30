@@ -176,6 +176,11 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
     return context;
   }
 
+  /**
+   * Prepare the context for the 'talents' tab.
+   * @param {ApplicationRenderContext} context      Shared context provided by {@link _prepareContext}
+   * @returns {Promise<void>}                       Modification of the context happens in place
+   */
   async _prepareTalentContext( context ) {
     const talentsByCategory = {};
     const knacksByTypeAndTalentId = {

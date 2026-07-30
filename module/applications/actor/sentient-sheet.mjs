@@ -96,6 +96,12 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     return context;
   };
 
+  /**
+   * Prepare the context for the 'spells' tab.
+   * @param {ApplicationRenderContext} context      Shared context provided by {@link _prepareContext}
+   * @param {object}                  options      Options provided to {@link foundry.utils.mergeObject}
+   * @returns {Promise<ApplicationRenderContext>} The in-place prepared context
+   */
   async _prepareSpellsContext( context, options ) {
     foundry.utils.mergeObject( context, {
       tabsSpells:         this._getSpellTabs(),

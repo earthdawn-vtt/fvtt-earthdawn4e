@@ -29,6 +29,9 @@ import { getSetting } from "../../helpers/settings.mjs";
  * @returns {Promise<boolean>} True if the validation passes, false otherwise.
  */
 
+/**
+ * An application that guides through the character generation process.
+ */
 export default class CharacterGenerationPrompt extends ApplicationEd {
 
   // region Static Properties
