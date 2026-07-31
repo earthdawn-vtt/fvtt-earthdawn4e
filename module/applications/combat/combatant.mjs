@@ -1,3 +1,7 @@
+/**
+ * Customized CombatantConfig sheet for ED4E
+ * @inheritDoc
+ */
 export default class CombatantConfigEd extends foundry.applications.sheets.CombatantConfig {
 
   /** @inheritDoc */

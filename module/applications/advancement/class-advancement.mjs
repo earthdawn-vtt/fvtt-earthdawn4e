@@ -128,6 +128,13 @@ export default class ClassAdvancementDialog extends ApplicationEd {
     return true;
   }
 
+
+  /**
+   * Retrieves data associated with a specific advancement level.
+   *
+   * @param {number|string} level - The level for which to fetch the data. Can be a number or a string representation of the level.
+   * @return {AdvancementLevelData|undefined} The data corresponding to the specified level, or undefined if no data is found.
+   */
   _getLevelData( level ) {
     return this.classItem?.system?._getAdvancementLevelData?.( level )
       ?? this.classItem?.system?.advancement?.levels?.[level]

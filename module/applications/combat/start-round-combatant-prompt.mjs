@@ -1,6 +1,10 @@
 import ApplicationEd from "../api/application.mjs";
 
 
+/**
+ * A prompt that appears at the start of a combatant's turn in a round.
+ * Used to set up combat options, rolling initiative, and other combatant-related actions.
+ */
 export default class StartRoundCombatantPrompt extends ApplicationEd {
 
   /**
@@ -71,7 +75,7 @@ export default class StartRoundCombatantPrompt extends ApplicationEd {
 
   /**
    * Title of the application window, dynamically created based on the combatant's name.
-   * @returns {string} The combatant to show the prompt for.
+   * @type {string}
    */
   get title() {
     return _loc( "ED.Dialogs.Title.startRoundCombatantPrompt", {
@@ -83,6 +87,9 @@ export default class StartRoundCombatantPrompt extends ApplicationEd {
 
   // region Form Handling
 
+  /**
+   * @see {@link ApplicationEd##onFormSubmission}
+   */
   static async #onFormSubmission( event, form, formData ) {
     const data = foundry.utils.expandObject( formData.object );
 
@@ -94,7 +101,7 @@ export default class StartRoundCombatantPrompt extends ApplicationEd {
 
   // region Rendering
 
-  /** @inheritdoc */
+  /** @inheritDoc */
   async _prepareContext( options = {} ) {
     const context = await super._prepareContext( options );
 
@@ -103,7 +110,7 @@ export default class StartRoundCombatantPrompt extends ApplicationEd {
     return context;
   }
 
-  /** @inheritdoc */
+  /** @inheritDoc */
   async _preparePartContext( partId, context, options ) {
     const partContext = await super._preparePartContext( partId, context, options );
 
@@ -143,6 +150,7 @@ export default class StartRoundCombatantPrompt extends ApplicationEd {
 
   // region Event Handlers
 
+  /** @inheritDoc */
   async close( options = {} ) {
     if ( options?.continue ) return super.close( options );
 
@@ -167,6 +175,13 @@ export default class StartRoundCombatantPrompt extends ApplicationEd {
     this.close( { continue: true, } );
   }
 
+  /**
+   * Toggles the combat option checkbox for a combatant's status effect.
+   *
+   * @param {Event} event - The event that triggered this method, typically a user interaction.
+   * @param {HTMLElement} target - The HTML element representing the checkbox or control tied to the combat option.
+   * @return {Promise<void>} A promise that resolves when the status toggle and rendering are complete.
+   */
   static async _toggleCombatOptionCheckbox( event, target ) {
     // this feels really hacky and probably could be done nicely?
 
