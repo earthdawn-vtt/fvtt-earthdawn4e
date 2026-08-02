@@ -8,6 +8,14 @@ import AdoptedStyleSheetMixin from "./adopted-stylesheet-mixin.mjs";
 export default class CheckboxElement extends AdoptedStyleSheetMixin(
   foundry.applications.elements.AbstractFormInputElement
 ) {
+
+
+  /**
+   * Creates an instance of the class and initializes its state.
+   *
+   * @param {...any} args - Arguments forwarded to the parent constructor.
+   * @returns {CheckboxElement} The newly created instance.
+   */
   constructor( ...args ) {
     super( ...args );
     this._internals.role = "checkbox";
