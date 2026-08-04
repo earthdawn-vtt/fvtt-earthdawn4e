@@ -264,6 +264,9 @@ export default class PromptFactory {
   }
 }
 
+/**
+ * Factory class for generating actor-related prompt dialogs.
+ */
 class ActorPromptFactory extends PromptFactory {
 
   /**
@@ -648,6 +651,9 @@ class ActorPromptFactory extends PromptFactory {
 
 }
 
+/**
+ * Factory class for generating item-related prompt dialogs.
+ */
 class ItemPromptFactory extends PromptFactory {
 
   _promptTypeMapping = {
@@ -853,6 +859,14 @@ class ItemPromptFactory extends PromptFactory {
     } );
   }
 
+  /**
+   * Continues the weaving process for a spell if applicable.
+   * Displays a confirmation dialog to the user asking whether to proceed with the weaving process.
+   *
+   * @return {Promise<boolean|undefined>} Returns a promise that resolves to `true` if the user chooses to continue weaving,
+   *                                      `false` if the user cancels, and `undefined` if the item is not a valid spell or is not weaving.
+   * @throws {Error} Throws an error if the item is not a spell.
+   */
   async _continueWeavingSpell() {
     if ( !this.document.system.spellcastingType ) {
       throw new Error( "Item must be a spell to use this prompt." );

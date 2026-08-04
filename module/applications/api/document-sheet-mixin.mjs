@@ -14,6 +14,7 @@ const { TextEditor } = foundry.applications.ux;
 const DocumentSheetMixinEd = Base => {
   const mixin = foundry.applications.api.HandlebarsApplicationMixin;
 
+  // eslint-disable-next-line jsdoc/require-jsdoc
   return class DocumentSheetEd extends mixin( Base ) {
 
     // region Static Properties

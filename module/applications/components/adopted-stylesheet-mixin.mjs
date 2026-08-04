@@ -6,6 +6,8 @@
  * @returns {typeof AdoptedStyleSheetElement} A class extending the provided base class with adopted stylesheet functionality.
  */
 export default function AdoptedStyleSheetMixin( Base ) {
+
+  // eslint-disable-next-line jsdoc/require-jsdoc
   return class AdoptedStyleSheetElement extends Base {
     /**
      * A map of cached stylesheets per Document root.
