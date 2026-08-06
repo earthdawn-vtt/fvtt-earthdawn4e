@@ -247,7 +247,6 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     createData.name ||= this.documentCls.implementation.defaultName( {
       type: createData.type,
     } );
-    // eslint-disable-next-line new-cap
     createData = new this.documentCls.implementation( createData ).toObject();
      
 

@@ -186,7 +186,7 @@ export default [
       "new-cap": [ "error", {
         newIsCap:   true,
         capIsNew:   false,
-        properties: true,
+        properties: false,
       } ],
 
       "no-alert":                      "off",
@@ -333,7 +333,7 @@ export default [
       "no-unused-vars": [ "error", {
         vars:               "all",
         args:               "none",
-        ignoreRestSiblings: false,
+        ignoreRestSiblings: true,
         caughtErrors:       "none",
       } ],
 

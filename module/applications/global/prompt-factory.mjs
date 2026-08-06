@@ -830,7 +830,6 @@ class ItemPromptFactory extends PromptFactory {
     const versatilityEdId = getSetting( "edidVersatility" );
 
     const versatilityItem = this.document.actor.getSingleItemByEdid( versatilityEdId, SYSTEM_TYPES.Item.talent );
-    // eslint-disable-next-line no-unused-vars
     const { versatility, ...categoriesWithoutVersatility } = LEGEND.talentCategory;
 
     const buttons = Object.entries( versatilityItem ? LEGEND.talentCategory : categoriesWithoutVersatility  ).map( ( [ key, label ] ) => {
