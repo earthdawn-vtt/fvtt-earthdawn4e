@@ -2,6 +2,14 @@ import ApplicationEd from "../api/application.mjs";
 import * as MAGIC from "../../config/magic.mjs";
 import * as SYSTEMS from "../../config/system.mjs";
 
+/**
+ * @import { DocumentUuid } from "../../_types.mjs";
+ */
+
+/**
+ * The prompt for managing the attunement of matrices for an actor.
+ * @augments {ApplicationEd}
+ */
 export default class AttuneMatrixPrompt extends ApplicationEd {
 
   /**
@@ -95,6 +103,17 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
 
   // endregion
 
+  /**
+   * Constructs an instance with the provided configuration. Initializes actor-based matrices, resolves attune data,
+   * sorts spells, and sets up thread weaving talent based on input parameters.
+   *
+   * @param {object} params The configuration object for the constructor.
+   * @param {ActorEd} params.actor The actor containing relevant matrices and spell data.
+   * @param {DocumentUuid} params.firstMatrixUuid The unique identifier for the spell matrix shown on top.
+   * @param {boolean} [params.onTheFly=false] A flag to determine whether attuning is happening on-the-fly.
+   * @param {Object} [params.options] Additional options to be passed to the parent class constructor.
+   * @return {AttuneMatrixPrompt} A new instance of AttuneMatrixPrompt.
+   */
   constructor( { actor, firstMatrixUuid, onTheFly = false, ...options } ) {
     super( options );
     this.#actor = actor;
@@ -120,6 +139,11 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
 
   }
 
+  /**
+   * Creates a data field for selecting spells to be attuned to a matrix.
+   * @param {ItemEd} matrix The matrix item.
+   * @return {SpellSelectionFieldConfig} The data field configuration.
+   */
   _getSpellSelectionField( matrix ) {
     if ( !matrix ) return;
     return {
@@ -131,6 +155,11 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
     };
   }
 
+  /**
+   * Creates a data field for selecting multiple spells to be attuned to a matrix.
+   * @param {ItemEd} matrix The matrix item.
+   * @return {DataField} The data field for selecting multiple spells.
+   */
   #getMultipleSpellField( matrix ) {
     return new foundry.data.fields.SetField( new foundry.data.fields.StringField( {
       choices:  this.#getSpellChoicesConfig( matrix ),
@@ -141,6 +170,11 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
     } );
   }
 
+  /**
+   * Creates a data field for selecting a single spell to be attuned to a matrix.
+   * @param {ItemEd} matrix The matrix item.
+   * @return {DataField} The data field for selecting a single spell.
+   */
   #getSingleSpellField( matrix ) {
     return new foundry.data.fields.StringField( {
       label:    matrix.name,
@@ -150,6 +184,11 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
     } );
   }
 
+  /**
+   * Generates the choices configuration for a spell selection field.
+   * @param {ItemEd} matrix The matrix item.
+   * @return {object[]} The `choices` configuration.
+   */
   #getSpellChoicesConfig( matrix ) {
     return this.#spells.reduce( ( choices, spell ) => {
       const sameCastingTypes = this.#castingType === spell.system?.spellcastingType;
@@ -171,6 +210,10 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
     }, [] );
   }
 
+  /**
+   * Creates a data field for selecting a thread weaving talent to use if reattuning on the fly.
+   * @return {StringField} The data field for selecting a thread weaving talent.
+   */
   #getThreadWeavingTalentField() {
     const threadWeavingTalents = this.#actor.items.filter(
       item => item.system?.rollTypeDetails?.threadWeaving?.castingType in MAGIC.spellcastingTypes,
@@ -239,6 +282,7 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
 
   // region Form Handling
 
+  /** @inheritdoc */
   _processSubmitData ( event, form, formData, submitOptions ) {
     const { toAttune, threadWeavingId } = super._processSubmitData( event, form, formData, submitOptions );
     this.#threadWeavingTalent = this.#actor.items.get( threadWeavingId );
@@ -252,12 +296,20 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
 
   // region Event Handlers
 
+  /**
+   * Cancels the attuning process and closes the prompt.
+   * @type {ApplicationClickAction}
+   */
   static async _cancelReattuning( event, target ) {
     this.submit();
     this.resolve?.( { cancelReattuning: true } );
     return this.close();
   }
 
+  /**
+   * Removes all spells from all matrix fields.
+   * @type {ApplicationClickAction}
+   */
   static async _onEmptyAllMatrices( event, target ) {
     Object.keys( this._data.toAttune ).forEach( key => {
       this._data.toAttune[key] = "";

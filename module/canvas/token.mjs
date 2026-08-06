@@ -1,5 +1,9 @@
 const { Token } = foundry.canvas.placeables;
 
+/**
+ * Extend the base Token class to add custom functionality.
+ * @augments {Token}
+ */
 export default class TokenEd extends Token {
 
   #black = 0x000000;

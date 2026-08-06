@@ -1,5 +1,10 @@
 import ItemSheetEd from "./item-sheet.mjs";
 
+/**
+ * The sheet application for Thread items.
+ *
+ * @augments {ItemSheetEd}
+ */
 export default class ThreadItemSheet extends ItemSheetEd {
 
   // region Rendering

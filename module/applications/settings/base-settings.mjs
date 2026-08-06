@@ -3,6 +3,9 @@ import { getSetting, getSettingConfig, setSetting } from "../../helpers/settings
 import PromptFactory from "../global/prompt-factory.mjs";
 import { SYSTEM_ID } from "../../constants/constants.mjs";
 
+/**
+ * Base class for custom ed4e settings applications, the sub-menus in the Earthdawn settings menu.
+ */
 export default class BaseSettingsConfig extends ApplicationEd {
 
   // region Static Properties
@@ -49,6 +52,15 @@ export default class BaseSettingsConfig extends ApplicationEd {
     return newContext;
   }
 
+  /**
+   * Builds a list of form fields for automatic rendering in the settings UI.
+   *
+   * Dynamically generated from the selected settings group, if any.
+   *
+   * @returns {Array<Object>} An array of field entry objects with `field` (field type),
+   *                          `value` (current setting value), and `localize` (true) properties.
+   *                          Returns an empty array if no settings group is configured.
+   */
   _generateFieldEntries() {
     if ( !this.options.settingsGroup ) return [];
 
@@ -69,6 +81,10 @@ export default class BaseSettingsConfig extends ApplicationEd {
 
   // region Form Handling
 
+  /**
+   * Saves changes to settings and reloads the client if necessary.
+   * @type {ApplicationClickAction}
+   */
   static async #onCommitChanges( event, form, formData, submitOptions ) {
     let requiresClientReload = false;
     let requiresWorldReload = false;

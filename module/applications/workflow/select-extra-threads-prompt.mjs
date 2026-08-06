@@ -1,6 +1,10 @@
 import ApplicationEd from "../api/application.mjs";
 import * as MAGIC from "../../config/magic.mjs";
 
+/**
+ * An application for selecting extra thread configurations for a spell.
+ * @augments {ApplicationEd}
+ */
 export default class SelectExtraThreadsPrompt extends ApplicationEd {
 
   /** @inheritdoc */
@@ -71,6 +75,11 @@ export default class SelectExtraThreadsPrompt extends ApplicationEd {
 
   // endregion
 
+  /**
+   * @param {object} options - The options for the application.
+   * @param {ItemEd} options.spell - The spell to which extra threads are being added.
+   * @param {ActorEd} options.caster - The actor casting the spell.
+   */
   constructor( { spell, caster, ...options } ) {
     super( options );
 
