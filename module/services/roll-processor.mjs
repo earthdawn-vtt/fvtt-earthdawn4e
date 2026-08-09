@@ -1,4 +1,10 @@
-// module/services/roll-processor.mjs
+/**
+ * @import { RollResourceData } from "../_types.mjs";
+ */
+
+/**
+ * Service class for processing rolls and applying their effects to actors.
+ */
 export default class RollProcessor {
 
   /**
@@ -88,6 +94,15 @@ export default class RollProcessor {
     return roll;
   }
 
+  /**
+   * Process karma and devotion usage for a roll.
+   * @param {ActorEd} actor       The actor who made the roll.
+   * @param {RollResourceData} karma        The karma usage data.
+   * @param {RollResourceData} devotion     The devotion usage data.
+   * @param {object} [updateData] The update data to collect changes in.
+   * @returns {object}            The modified update data.
+   * @protected
+   */
   static _processResources( actor, karma, devotion, updateData = {} ) {
     const karmaOk = actor.system.karma.value >= karma.pointsUsed;
     const devotionOk = actor.system.devotion.value >= devotion.pointsUsed;
@@ -108,6 +123,14 @@ export default class RollProcessor {
     return updateData;
   }
 
+  /**
+   * Process a jump up roll.
+   * @param {EdRoll} roll         The jump up roll.
+   * @param {ActorEd} actor       The actor who made the roll.
+   * @param {object} [updateData] The update data.
+   * @returns {Promise<object>}   The modified update data.
+   * @protected
+   */
   static async _processJumpUp( roll, actor, updateData = {} ) {
     if ( roll.isSuccess ) {
       await actor.toggleStatusEffect( "knockedDown", { active: false,}, );
@@ -115,6 +138,14 @@ export default class RollProcessor {
     return updateData;
   }
 
+  /**
+   * Process a knockdown roll.
+   * @param {EdRoll} roll         The knockdown roll.
+   * @param {ActorEd} actor       The actor who made the roll.
+   * @param {object} [updateData] The update data.
+   * @returns {Promise<object>}   The modified update data.
+   * @protected
+   */
   static async _processKnockdown( roll, actor, updateData = {} ) {
     if ( !roll.isSuccess ) {
       await actor.toggleStatusEffect( "knockedDown", { active: true, } );
@@ -122,6 +153,14 @@ export default class RollProcessor {
     return updateData;
   }
 
+  /**
+   * Process a recovery roll.
+   * @param {EdRoll} roll         The recovery roll.
+   * @param {ActorEd} actor       The actor who made the roll.
+   * @param {object} [updateData] The update data.
+   * @returns {Promise<object>}   The modified update data.
+   * @protected
+   */
   static async _processRecovery( roll, actor, updateData = {} ) {
     let availableRecoveryTests = actor.system.characteristics.recoveryTestsResource.value;
     let stunRecoveryAvailable = actor.system.characteristics.recoveryTestsResource.stunRecoveryAvailable;

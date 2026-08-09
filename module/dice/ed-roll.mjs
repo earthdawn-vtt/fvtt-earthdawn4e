@@ -28,10 +28,17 @@ const { renderTemplate } = foundry.applications.handlebars;
  * @property {number} numExtraSuccesses The number of extra successes achieved in the roll
  */
 
+/**
+ * Custom Roll class for Earthdawn.
+ */
 export default class EdRoll extends Roll {
 
   // region Constructor
 
+  /**
+   * @inheritdoc
+   * @param {object} [edRollOptions] Options for the roll.
+   */
   constructor( formula = undefined, data = {}, edRollOptions = {} ) {
     const getBaseTerm = ( formula, edRollOptions ) => {
       if ( edRollOptions._dummy ) return "1";
@@ -75,6 +82,11 @@ export default class EdRoll extends Roll {
       : super.total;
   }
 
+  /**
+   * Whether this is a valid Earthdawn roll.
+   * Currently always `true`.
+   * @type {boolean}
+   */
   get validEdRoll() {
     // First term must be a Die
     // return this.terms[0] instanceof Die;
@@ -94,6 +106,11 @@ export default class EdRoll extends Roll {
     );
   }
 
+  /**
+   * Whether the roll triggered the Rule of One (all dice rolled 1).
+   * Is `undefined` if not a valid roll or not evaluated.
+   * @type {boolean|undefined}
+   */
   get isRuleOfOne() {
     if ( !this.validEdRoll || !this._evaluated ) return undefined;
     // more than one die required
@@ -102,31 +119,48 @@ export default class EdRoll extends Roll {
     return this.diceResults.every( result => result === 1 );
   }
 
+  /**
+   * Whether the roll is a basic success (meets or exceeds the target).
+   * Is `undefined` if it can't {@link canCalculateSuccesses}.
+   * @type {boolean|undefined}
+   */
   get isBasicSuccess() {
     if ( !this.canCalculateSuccesses ) return undefined;
     return this.total >= this.options.target.total;
   }
 
   /**
-   * Whether this roll is a dummy roll.
+   * Whether this roll is a dummy roll, skipping certain render and processing steps.
    * @type {boolean}
    */
   get isDummy() {
     return this.options._dummy === true;
   }
 
+  /**
+   * Whether the roll is a success.
+   * @type {boolean|undefined}
+   */
   get isSuccess() {
     if ( !this.validEdRoll || !this._evaluated || ![ "arbitrary", "action" ].includes( this.options.testType ) ) return undefined;
     if ( this.isRuleOfOne === true ) return false;
     return this.numSuccesses > 0;
   }
 
+  /**
+   * Whether the roll is a failure.
+   * @type {boolean|undefined}
+   */
   get isFailure() {
     if ( !this.validEdRoll || !this._evaluated || ![ "arbitrary", "action" ].includes( this.options.testType ) ) return undefined;
     if ( this.isRuleOfOne === true ) return true;
     return this.numSuccesses <= 0;
   }
 
+  /**
+   * The total number of dice in the roll.
+   * @type {number|undefined}
+   */
   get numDice() {
     // must be evaluated since dice can explode and add more dice
     if ( !this.validEdRoll || !this._evaluated ) return undefined;
@@ -135,15 +169,28 @@ export default class EdRoll extends Roll {
       .reduce( ( accumulator, currentValue ) => accumulator + currentValue, 0 );
   }
 
+  /**
+   * The total strain cost of the roll.
+   * @type {number}
+   */
   get totalStrain() {
     if ( !this.validEdRoll ) return undefined;
     return this.options.strain?.total ?? 0;
   }
 
+  /**
+   * Whether the successes for this roll can be calculated.
+   * Needs to be valid, evaluated, and have a target number >= 0.
+   * @type {boolean}
+   */
   get canCalculateSuccesses() {
     return this.validEdRoll && this._evaluated && this.options.target && this.options.target.total >= 0;
   }
 
+  /**
+   * The number of successes achieved.
+   * @type {number|undefined}
+   */
   get numSuccesses() {
     if ( !this.canCalculateSuccesses ) return undefined;
 
@@ -157,11 +204,21 @@ export default class EdRoll extends Roll {
     );
   }
 
+  /**
+   * The number of extra successes based on calculating the amount above the target number.
+   * As opposed to {@link numAdditionalExtraSuccesses}.
+   * @type {number|undefined}
+   */
   get numBasicExtraSuccesses() {
     if ( !this.canCalculateSuccesses ) return undefined;
     return Math.trunc( ( this.total - this.options.target.total ) / 5 );
   }
 
+  /**
+   * The number of extra successes achieved (successes beyond the first).
+   * Sum of {@link numBasicExtraSuccesses} and {@ink numAdditionalExtraSuccesses}.
+   * @type {number|undefined}
+   */
   get numExtraSuccesses() {
     if ( !this.canCalculateSuccesses ) return undefined;
     return this.numBasicExtraSuccesses + this.numAdditionalExtraSuccesses;
@@ -177,7 +234,9 @@ export default class EdRoll extends Roll {
   }
 
   /**
-   * The number of additional extra successes in this roll. Available even if the roll is not evaluated.
+   * The number of additional extra successes in this roll, as predefined via the options. Available even if the roll
+   * is not evaluated.
+   * As opposed to {@link numBasicExtraSuccesses}.
    * @type {undefined|number}
    */
   get numAdditionalExtraSuccesses() {
@@ -306,6 +365,11 @@ export default class EdRoll extends Roll {
     return templateData;
   }
 
+  /**
+   * Get the tooltip text for the successes achieved.
+   * @returns {string} The successes tooltip text.
+   * @protected
+   */
   _getSuccessesTooltip() {
     let tooltip = [ _loc(
       "ED.Rolls.successesAchieved",
@@ -488,6 +552,13 @@ export default class EdRoll extends Roll {
     return formulaParts.filterJoin( " + " );
   }
 
+  /**
+   * Get the rendered total for the roll, that is, whether to show the number, hide it if private,
+   * or a placeholder if dummy.
+   * @param {boolean} [isPrivate] Whether the roll is private.
+   * @returns {string|number} The rendered total.
+   * @private
+   */
   #getRenderedTotal( isPrivate = false ) {
     if ( isPrivate ) return "?";
     if ( this.isDummy ) return "-";
