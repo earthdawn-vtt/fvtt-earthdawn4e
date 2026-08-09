@@ -8,6 +8,9 @@ import Rollable from "./rollable.mjs";
  * @property {number} [damageTaken] - The amount of damage taken (optional).
  */
 
+/**
+ * Workflow for performing a knockdown test.
+ */
 export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
 
   /**
@@ -39,6 +42,10 @@ export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
     this._initRollableSteps();
   }
 
+  /**
+   * Validate that the actor is not already knocked down.
+   * @private
+   */
   async #validate() {
     if ( this._actor.statuses.has( "knockedDown" ) ) {
       ui.notifications.info(
@@ -49,6 +56,10 @@ export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
     }
   }
 
+  /**
+   * Prompt the user to choose a knockdown ability, if available.
+   * @private
+   */
   async #chooseKnockdownAbility() {
     if ( this._knockdownAbility ) return;
 

@@ -12,6 +12,9 @@ import AbilityRollOptions from "../../data/roll/ability.mjs";
  * in its `system` data, as defined in {@link TruePatternData}.
  */
 
+/**
+ * Workflow for performing an item history roll.
+ */
 export default class ItemHistoryWorkflow extends Rollable( ActorWorkflow ) {
 
   static MAX_POSSIBLE_TYPES = {
@@ -93,11 +96,19 @@ export default class ItemHistoryWorkflow extends Rollable( ActorWorkflow ) {
     );
   }
 
+  /**
+   * Initialize the workflow by determining the ability and key knowledge.
+   * @private
+   */
   async #initialize() {
     await this.#initializeItemHistoryAbility();
     await this.#initializeKeyKnowledge();
   }
 
+  /**
+   * Initialize the item history ability.
+   * @private
+   */
   async #initializeItemHistoryAbility() {
     if ( this._itemHistoryAbility )  return;
 
@@ -115,10 +126,19 @@ export default class ItemHistoryWorkflow extends Rollable( ActorWorkflow ) {
     }
   }
 
+  /**
+   * Initialize the key knowledge information.
+   * @private
+   */
   async #initializeKeyKnowledge() {
     this.#determineMaxObtainableKnowledge();
   }
 
+  /**
+   * Determine the maximum obtainable knowledge. Based on the item history ability level, the number of thread item
+   * levels, and the number of unknown levels in the target's true pattern.'
+   * @private
+   */
   #determineMaxObtainableKnowledge() {
     this._maxObtainableKnowledge = this._itemHistoryAbility.system.level;
     this._typeMaxPossible = ItemHistoryWorkflow.MAX_POSSIBLE_TYPES.MAX_RANK;
@@ -139,6 +159,10 @@ export default class ItemHistoryWorkflow extends Rollable( ActorWorkflow ) {
     }
   }
 
+  /**
+   * Validate the workflow state.
+   * @private
+   */
   async #validate() {}
 
   /** @inheritDoc */
@@ -180,6 +204,10 @@ export default class ItemHistoryWorkflow extends Rollable( ActorWorkflow ) {
     await super._processRoll();
   }
 
+  /**
+   * Reveal the next ranks of key knowledge of the thread item upon success.
+   * @private
+   */
   async #revealKeyKnowledge() {
     if ( this._numObtainedKnowledge <= 0 ) return;
 

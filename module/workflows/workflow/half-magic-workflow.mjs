@@ -62,6 +62,10 @@ export default class HalfMagicWorkflow extends Rollable( ActorWorkflow ) {
     this._initRollableSteps();
   }
 
+  /**
+   * Prompt the user to choose a discipline for the half-magic roll.
+   * @private
+   */
   async #chooseDiscipline() {
     if ( this._discipline ) return;
 

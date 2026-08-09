@@ -72,9 +72,8 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
   }
 
   /**
-   * Chooses the substitute ability for the roll
-   * @returns {Promise<void>}
-   * @private
+   * Chooses the substitute ability for the roll.
+   * @protected
    */
   async _chooseSubstituteAbility() {
     const buttons = await this.#getAbilityButtonByAttribute( this._attributeId );
@@ -93,6 +92,13 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
     } );
   }
 
+  /**
+   * Get the buttons for the substitute prompt based on the attribute ID.
+   * @param {string} attributeId  The ID of the attribute.
+   * @returns {Promise<object[]>}  The button configuration array.
+   * @see {@link DialogV2Button | https://foundryvtt.com/api/interfaces/foundry.DialogV2Button.html}
+   * @private
+   */
   async #getAbilityButtonByAttribute( attributeId ) {
     const modes = WORKFLOWS.substituteModes[attributeId];
     if ( !modes ) return [];
@@ -125,9 +131,8 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
   }
 
   /**
-   * Choose the workflow based on the selected button
-   * @returns {Promise<void>}
-   * @private
+   * Choose the workflow based on the selected button.
+   * @protected
    */
   async _chooseAlternativeWorkflow( ) {
     if ( this._action === "attack" ) {

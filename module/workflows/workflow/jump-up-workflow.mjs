@@ -9,6 +9,9 @@ import JumpUpRollOptions from "../../data/roll/jump-up.mjs";
  */
 
 
+/**
+ * Workflow for performing a jump up test.
+ */
 export default class JumpUpWorkflow extends Rollable( ActorWorkflow ) {
 
   /**
@@ -36,6 +39,10 @@ export default class JumpUpWorkflow extends Rollable( ActorWorkflow ) {
     this._initRollableSteps();
   }
 
+  /**
+   * Validate that the actor is knocked down.
+   * @private
+   */
   async #validate() {
     if ( !this._actor.statuses.has( "knockedDown" ) ) {
       ui.notifications.warn(
@@ -46,6 +53,10 @@ export default class JumpUpWorkflow extends Rollable( ActorWorkflow ) {
     }
   }
 
+  /**
+   * Prompt the user to choose a jump up ability, if available.
+   * @private
+   */
   async #chooseJumpUpAbility() {
     if ( this._jumpUpAbility ) return;
 

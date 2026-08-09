@@ -25,6 +25,12 @@ import DialogEd from "../../applications/api/dialog.mjs";
  * @mixin
  */
 export default function Rollable( WorkflowClass ) {
+  /**
+   * Mixin for adding rollable functionality to a workflow.
+   * @param {typeof Workflow} WorkflowClass The workflow class to mix into
+   * @returns {typeof Workflow} A new class with the Rollable functionality mixed in
+   * @mixin
+   */
   return class RollableWorkflow extends WorkflowClass {
 
     /**
@@ -93,7 +99,6 @@ export default function Rollable( WorkflowClass ) {
      * Prepare the roll options for this workflow.
      * This method should usually be overridden by subclasses to
      * set specific roll options.
-     * @returns {Promise<void>}
      */
     async _prepareRollOptions() {
       this._rollOptions ??= new EdRollOptions();
@@ -101,7 +106,6 @@ export default function Rollable( WorkflowClass ) {
 
     /**
      * Create the roll for this workflow based on {@link _rollOptions}.
-     * @returns {Promise<void>}
      * @private
      */
     async _createRoll() {
@@ -129,7 +133,6 @@ export default function Rollable( WorkflowClass ) {
     /**
      * Evaluate the result of the roll.
      * This method will resolve the roll and set the result of this workflow to the resolved roll.
-     * @returns {Promise<void>}
      */
     async _evaluateResultRoll() {
       if ( !this._roll ) return;
@@ -142,7 +145,6 @@ export default function Rollable( WorkflowClass ) {
      * Process the roll results.
      * This method can be overridden by subclasses to handle the roll results in a specific way.
      * By default, it uses the {@link RollProcessor} to process the roll.
-     * @returns {Promise<void>}
      */
     async _processRoll() {
       if ( !this._roll ) return;
@@ -159,7 +161,6 @@ export default function Rollable( WorkflowClass ) {
 
     /**
      * Confirm with the user to continue if the roll was a failure.
-     * @returns {Promise<void>}
      */
     async _confirmRoll() {
       this._result = undefined;
@@ -179,7 +180,6 @@ export default function Rollable( WorkflowClass ) {
 
     /**
      * Send the roll to the chat as a message.
-     * @returns {Promise<void>}
      */
     async _rollToChat() {
       if ( !this._roll ) {

@@ -26,18 +26,22 @@ export default class GrimoireCastingWorkflow extends BaseCastingWorkflow {
     this._grimoire = options.grimoire;
   }
 
+  /** @inheritdoc */
   async _preCastSpell() {
     super._preCastSpell();
   }
 
+  /** @inheritdoc */
   async _castSpell() {
     super._castSpell();
   }
 
+  /** @inheritdoc */
   async _postCastSpell() {
     super._postCastSpell();
   }
 
+  /** @inheritdoc */
   async _setResult() {
     return super._setResult();
   }

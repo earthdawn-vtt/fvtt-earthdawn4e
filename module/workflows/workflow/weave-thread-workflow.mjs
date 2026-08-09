@@ -77,11 +77,19 @@ export default class WeaveThreadWorkflow extends Rollable( ActorWorkflow ) {
     );
   }
 
+  /**
+   * Initialize the workflow by initializing the target and weaving ability.
+   * @private
+   */
   async #initialize() {
     await this.#initializeTarget();
     await this.#initializeThreadWeavingAbility();
   }
 
+  /**
+   * Get the target document for the weaving.
+   * @private
+   */
   async #initializeTarget() {
     if ( this._thread ) {
       const wovenToUuid = this._thread.system.wovenToUuid;
@@ -92,6 +100,10 @@ export default class WeaveThreadWorkflow extends Rollable( ActorWorkflow ) {
     }
   }
 
+  /**
+   * Get the thread weaving ability for the actor.
+   * @private
+   */
   async #initializeThreadWeavingAbility() {
     if ( !this._threadWeavingAbility ) {
       this._threadWeavingAbility = this._actor.getSingleItemByEdid(
@@ -107,12 +119,20 @@ export default class WeaveThreadWorkflow extends Rollable( ActorWorkflow ) {
     }
   }
 
+  /**
+   * Validate the weaving process can be started.
+   * @private
+   */
   async #validate() {
     await this.#validateTruePattern();
     await this.#validateMaxRank();
     await this.#validatePatternKnowledge();
   }
 
+  /**
+   * Validate that the target has a true pattern and can have more threads.
+   * @private
+   */
   async #validateTruePattern() {
     if ( !this._target.system.truePattern ) {
       throw new WorkflowInterruptError( "Target does not have a true pattern." );
@@ -129,6 +149,10 @@ export default class WeaveThreadWorkflow extends Rollable( ActorWorkflow ) {
     }
   }
 
+  /**
+   * Validate that the thread rank doesn't exceed the weaving ability rank.
+   * @private
+   */
   async #validateMaxRank() {
     const threadWeavingAbilityRank = this._threadWeavingAbility?.system.rankFinal ?? 0;
     if ( this._newThreadRank > threadWeavingAbilityRank ) {
@@ -142,6 +166,10 @@ export default class WeaveThreadWorkflow extends Rollable( ActorWorkflow ) {
     }
   }
 
+  /**
+   * Validate that the actor has the necessary knowledge of the pattern.
+   * @private
+   */
   async #validatePatternKnowledge() {
     const truePatternType = this._target.system.truePattern.truePatternType;
     if ( !truePatternType || [ "patternItem", "groupPattern" ].includes( truePatternType ) ) return;
@@ -157,6 +185,7 @@ export default class WeaveThreadWorkflow extends Rollable( ActorWorkflow ) {
     }
   }
 
+  /** @inheritdoc */
   async _prepareRollOptions() {
     this._rollOptions = ThreadWeavingRollOptions.fromActor(
       {
@@ -168,6 +197,10 @@ export default class WeaveThreadWorkflow extends Rollable( ActorWorkflow ) {
     );
   }
 
+  /**
+   * Create the thread item if it doesn't exist yet.
+   * @private
+   */
   async #createThread() {
     if ( this._thread ) return;
     const createdItems = await this._actor.createEmbeddedDocuments( "Item", [ {
@@ -187,10 +220,18 @@ export default class WeaveThreadWorkflow extends Rollable( ActorWorkflow ) {
     if ( !this._thread ) throw new WorkflowInterruptError( "Failed to create thread item." );
   }
 
+  /**
+   * Update the target's true pattern with the new thread.
+   * @private
+   */
   async #updateTargetThreads() {
     await this._target.system.truePattern.addAttachedThread( this._thread.uuid );
   }
 
+  /**
+   * Increase the level of the thread item.
+   * @private
+   */
   async #increaseThreadLevel() {
     await this._thread.system.increase();
     this._result = this._thread;
