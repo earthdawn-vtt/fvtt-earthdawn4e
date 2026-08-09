@@ -49,6 +49,10 @@ export class ConstraintData extends TypedEntryData {
 
   // region Getters
 
+  /**
+   * A summary string representing this constraint.
+   * @type {string}
+   */
   get summaryString() {
     return [
       `<em>${ LEGEND.constraints[ this.constructor.TYPE ].label }</em>`,
@@ -60,6 +64,9 @@ export class ConstraintData extends TypedEntryData {
   // endregion
 }
 
+/**
+ * Data model for a constraint requiring a certain ability.
+ */
 export class AbilityConstraintData extends ConstraintData {
 
   static {
@@ -80,6 +87,9 @@ export class AbilityConstraintData extends ConstraintData {
 
 }
 
+/**
+ * Data model for a constraint requiring an attribute to be of a minimal given value.
+ */
 export class AttributeConstraintData extends ConstraintData {
 
   static {
@@ -104,6 +114,9 @@ export class AttributeConstraintData extends ConstraintData {
 
 }
 
+/**
+ * Data model for a constraint requiring be a certain class.
+ */
 export class ClassConstraintData extends ConstraintData {
 
   static {
@@ -124,6 +137,9 @@ export class ClassConstraintData extends ConstraintData {
 
 }
 
+/**
+ * Data model for a constraint requiring to speak a certain language.
+ */
 export class LanguageConstraintData extends ConstraintData {
 
   static {
@@ -144,6 +160,9 @@ export class LanguageConstraintData extends ConstraintData {
 
 }
 
+/**
+ * Data model for a constraint requiring to be a certain namegiver.
+ */
 export class NamegiverConstraintData extends ConstraintData {
 
   static {
@@ -159,6 +178,9 @@ export class NamegiverConstraintData extends ConstraintData {
 
 }
 
+/**
+ * Data model for a constraint to have a certain relation.
+ */
 export class RelationConstraintData extends ConstraintData {
 
   static {
@@ -174,6 +196,9 @@ export class RelationConstraintData extends ConstraintData {
 
 }
 
+/**
+ * Data model for a constraint requiring to have a certain spell.
+ */
 export class SpellConstraintData extends ConstraintData {
 
   static {

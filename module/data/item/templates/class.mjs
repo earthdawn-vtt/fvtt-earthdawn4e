@@ -168,6 +168,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
 
   /** @inheritDoc */
    
+  /** @inheritdoc */
   async increase() {
     if ( !this.isActorEmbedded ) return;
 
@@ -215,6 +216,12 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     return updatedClass;
   }
 
+  /**
+   * Increase the level of free abilities to the new circle. Only updates those abilities that are lower than the
+   * next level.
+   * @param {number} nextLevel  The new circle/level.
+   * @protected
+   */
   async _increaseFreeAbilities( nextLevel ) {
     // increase all abilities of category "free" to the new circle, if lower
     const freeAbilities = this.containingActor.items.filter(
@@ -228,6 +235,11 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     }
   }
 
+  /**
+   * Increase the resource step (karma or devotion) based on the new level.
+   * @param {AdvancementLevelData} nextLevelData  The data for the new level.
+   * @protected
+   */
   async _increaseResourceStep( nextLevelData ) {
     const highestDiscipline = this.containingActor.highestDiscipline;
 
@@ -239,6 +251,11 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     }
   }
 
+  /**
+   * Add permanent effects from the new level.
+   * @param {AdvancementLevelData} nextLevelData  The data for the new level.
+   * @protected
+   */
   async _addPermanentEffects( nextLevelData ) {
     const newEffects = await Promise.all(
       Array.from( nextLevelData.effects ).map(
@@ -326,6 +343,12 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     return updatedEffects;
   }
 
+  /**
+   * Add free and special abilities from the new level.
+   * @param {AdvancementLevelData} nextLevelData  The data for the new level.
+   * @param {object} systemSourceData             The system source data to apply to the new abilities.
+   * @protected
+   */
   async _addFreeAbilities( nextLevelData, systemSourceData ) {
     const mergeObject = foundry.utils.mergeObject;
 
@@ -352,6 +375,12 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     await this.containingActor.createEmbeddedDocuments( "Item", [ ...freeAbilityData, ...specialAbilityData ] );
   }
 
+  /**
+   * Learn the discipline/class abilities from the new level.
+   * @param {AdvancementLevelData} nextLevelData  The data for the new level.
+   * @param {object} systemSourceData             The system source data to apply.
+   * @protected
+   */
   async _learnAbilities( nextLevelData, systemSourceData ) {
     for ( const abilityUuid of nextLevelData.abilities.class ) {
       const ability = /** @type { ItemEd } */ await fromUuid( abilityUuid );
@@ -363,6 +392,12 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     }
   }
 
+  /**
+   * Learn the selected spells.
+   * @param {string[]} spells          The UUIDs of the spells to learn.
+   * @param {object} systemSourceData  The system source data to apply.
+   * @protected
+   */
   async _learnSpells( spells, systemSourceData ) {
     for ( const spellUuid of spells ) {
       const spell = await fromUuid( spellUuid );
@@ -374,6 +409,14 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     }
   }
 
+  /**
+   * Learn the selected optional ability.
+   * @param {string} abilityChoice     The UUID of the selected ability.
+   * @param {object} systemSourceData  The system source data to apply.
+   * @param {number} nextLevel         The level at which the ability is learned.
+   * @param {string} nextTier          The tier of the ability.
+   * @protected
+   */
   async _learnAbilityChoice( abilityChoice, systemSourceData, nextLevel, nextTier ) {
     const abilityChoiceItem = /** @type { ItemEd } */ await fromUuid( abilityChoice );
     await abilityChoiceItem?.system?.constructor?.learn(

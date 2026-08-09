@@ -550,6 +550,10 @@ export default class PcData extends NamegiverTemplate {
     this.knockdownStep = this.attributes.str.step;
   }
 
+  /**
+   * Prepare the jump-up step based on the dexterity attribute.
+   * @private
+   */
   #prepareJumpUp() {
     this.jumpUpStep = this.attributes.dex.step;
   }

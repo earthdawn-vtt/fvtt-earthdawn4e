@@ -37,6 +37,13 @@ export default class LpEarningTransactionData extends LpTransactionData {
   }
 
 
+  /**
+   * Get this transaction as an HTML `<tr>` row element in the LP tracking table.
+   * @param {number} index     The index of the transaction in the earnings array.
+   * @param {string[]} classes  Additional CSS classes for the row.
+   * @param {string} dataGroup  The data group for the row.
+   * @returns {string}         The HTML string for the row.
+   */
   getHtmlRow( index, classes, dataGroup ) {
     return `
         <tr class="${ classes?.join( " " ) ?? "" }" data-group="${ dataGroup ?? "" }" data-id="${ this.id }">

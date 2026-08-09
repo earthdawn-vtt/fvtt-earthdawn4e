@@ -81,6 +81,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
 
   // region Getters
 
+  /** @inheritdoc */
   get baseRollOptions() {
     const rollOptions = super.baseRollOptions;
     const abilityRollOptions = {
@@ -148,6 +149,10 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
 
   // region LP Tracking
 
+  /**
+   * Prompt the user to choose a tier for this ability.
+   * @returns {Promise<ItemEd|void>} The updated item.
+   */
   async chooseTier( ) {
     const promptFactory = PromptFactory.fromDocument( this.parent );
     const tier = await promptFactory.getPrompt( "chooseTier" );
@@ -181,6 +186,10 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
 
   // region Rolling
 
+  /**
+   * Roll the ability test.
+   * @returns {Promise<EdRoll|void>} The processed roll.
+   */
   async rollAbility() {
     if ( !this.isActorEmbedded ) return;
 
@@ -206,6 +215,10 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     );
   }
 
+  /**
+   * Roll an attack test for this ability.
+   * @returns {Promise<EdRoll|void>} The processed roll.
+   */
   async rollAttack() {
     if ( !this.isActorEmbedded ) return;
 
@@ -225,6 +238,10 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     return /** @type {EdRoll} */ attackWorkflow.execute();
   }
 
+  /**
+   * Roll damage for this ability.
+   * @returns {Promise<EdRoll|void>} The processed roll.
+   */
   async rollDamage() {
     if ( !this.isActorEmbedded ) return;
 
@@ -239,6 +256,10 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     return /** @type {EdRoll} */ damageWorkflow.execute();
   }
 
+  /**
+   * Internal attack logic.
+   * @returns {Promise<boolean>} Whether the attack was successful.
+   */
   async _attack() {
     return true;
   }

@@ -69,26 +69,52 @@ export class MetricData extends TypedEntryData {
 
   // region Getters
 
+  /**
+   * Whether the unit is a scalar unit.
+   * @type {boolean}
+   * @see {@link scalarConfig}
+   */
   get isScalarUnit() {
     return this.unit in this.scalarConfig;
   }
 
+  /**
+   * Whether the unit is a special unit.
+   * @type {boolean}
+   * @see {@link specialUnitKey}
+   */
   get isSpecialUnit() {
     return this.unit === this.specialUnitKey;
   }
 
+  /**
+   * The localized label for the unit.
+   * @type {string}
+   */
   get localizedUnit() {
     return this.schema.fields.unit.options.choices?.[this.unit];
   }
 
+  /**
+   * The configuration for scalar units.
+   * @type {object}
+   */
   get scalarConfig() {
     return {};
   }
 
+  /**
+   * The key used for special units.
+   * @type {string}
+   */
   get specialUnitKey() {
     return "spec";
   }
 
+  /**
+   * A summary string representing this metric.
+   * @type {string}
+   */
   get summaryString() {
     const summary = [
       `<em>${MAGIC.spellEnhancements[this.constructor.TYPE].label}</em>`,
@@ -102,12 +128,20 @@ export class MetricData extends TypedEntryData {
     return summary.join( " " );
   }
 
+  /**
+   * A sanitized summary string representing this metric (no HTML).
+   * @type {string}
+   */
   get summaryStringSanitized() {
     const decoder = document.createElement( "div" );
     decoder.innerHTML = this.summaryString;
     return decoder.textContent;
   }
 
+  /**
+   * The options for unit groups.
+   * @type {object}
+   */
   get unitGroupOptions() {
     return {};
   }
@@ -172,6 +206,7 @@ export class ActiveEffectValueMetricData extends MetricData {
   /*  Properties                                  */
   /* -------------------------------------------- */
 
+  /** @inheritdoc */
   get isScalarUnit() {
     return true;
   }
@@ -201,6 +236,7 @@ export class AreaMetricData extends MetricData {
     Object.defineProperty( this, "TYPE", { value: "area" } );
   }
 
+  /** @inheritdoc */
   get summaryString() {
     const summary = [
       `<em>${MAGIC.spellEnhancements[this.constructor.TYPE].label}</em>`,
@@ -315,10 +351,12 @@ export class DurationMetricData extends MetricData {
 
   /* -------------------------------------------- */
 
+  /** @inheritdoc */
   get scalarConfig() {
     return QUANTITIES.scalarTimePeriods;
   }
 
+  /** @inheritdoc */
   get unitGroupOptions() {
     return {
       "":                                                   QUANTITIES.specialTimePeriods,
@@ -342,10 +380,12 @@ export class EffectMetricData extends MetricData {
 
   // region Getters
 
+  /** @inheritdoc */
   get isScalarUnit() {
     return true;
   }
 
+  /** @inheritdoc */
   get localizedUnit() {
     return Math.abs( this.value ) === 1 ? QUANTITIES.earthdawnUnits.step : QUANTITIES.earthdawnUnits.steps;
   }
@@ -385,10 +425,12 @@ export class RangeMetricData extends MetricData {
 
   /* -------------------------------------------- */
 
+  /** @inheritdoc */
   get scalarConfig() {
     return QUANTITIES.movementUnits;
   }
 
+  /** @inheritdoc */
   get unitGroupOptions() {
     return {
       "":                                                QUANTITIES.rangeTypes,
@@ -413,6 +455,7 @@ export class SectionMetricData extends MetricData {
   /*  Properties                                  */
   /* -------------------------------------------- */
 
+  /** @inheritdoc */
   get isScalarUnit() {
     return true;
   }
@@ -434,6 +477,7 @@ export class SpecialMetricData extends MetricData {
   /*  Properties                                  */
   /* -------------------------------------------- */
 
+  /** @inheritdoc */
   get isSpecialUnit() {
     return true;
   }
@@ -453,10 +497,12 @@ export class TargetMetricData extends MetricData {
 
   // region Getters
 
+  /** @inheritdoc */
   get isScalarUnit() {
     return true;
   }
 
+  /** @inheritdoc */
   get localizedUnit() {
     return Math.abs( this.value ) === 1 ? QUANTITIES.earthdawnUnits.target : QUANTITIES.earthdawnUnits.targets;
   }

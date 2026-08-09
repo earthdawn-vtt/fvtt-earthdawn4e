@@ -384,6 +384,10 @@ export default class SentientTemplate extends CommonTemplate {
 
   // region Getters
 
+  /**
+   * Whether this actor has any spells attuned in their spell matrices.
+   * @type {boolean}
+   */
   get hasSpellsAttuned() {
     return this.parent.getMatrices().some(
       matrix => {
@@ -392,11 +396,19 @@ export default class SentientTemplate extends CommonTemplate {
     );
   }
 
+  /**
+   * Whether this actor is dead.
+   * @type {boolean}
+   */
   get isDead() {
     return this.characteristics.health.death > 0
       && this.characteristics.health.damage.standard >= this.characteristics.health.death;
   }
 
+  /**
+   * Whether this actor is unconscious.
+   * @type {boolean}
+   */
   get isUnconscious() {
     return !this.isDead
       && this.characteristics.health.unconscious > 0
@@ -407,6 +419,11 @@ export default class SentientTemplate extends CommonTemplate {
 
   // region Checkers
 
+  /**
+   * Check if the actor is about to die after taking the given amount of damage.
+   * @param {number} newDamageTotal  The new total damage value to check.
+   * @returns {boolean}              True if the actor would be dead, false otherwise.
+   */
   isAboutToDie( newDamageTotal ) {
     return !this.isDead
       && newDamageTotal >= this.characteristics.health.death;
@@ -450,6 +467,7 @@ export default class SentientTemplate extends CommonTemplate {
 
   // region Life Cycle Events
 
+  /** @inheritdoc */
   async _preUpdate( changes, options, user ) {
     if ( await super._preUpdate( changes, options, user ) === false ) return false;
 

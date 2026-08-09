@@ -196,6 +196,7 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
     return updatedDevotion;
   }
 
+  /** @inheritdoc */
   static async learn( actor, item, createData = {} ) {
     const learnedItem = await super.learn( actor, item, createData );
     if ( !learnedItem.system.tier )await learnedItem.system.chooseTier();

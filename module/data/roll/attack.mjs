@@ -18,6 +18,7 @@ export default class AttackRollOptions extends EdRollOptions {
 
   // region Schema
 
+  /** @inheritdoc */
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
@@ -205,6 +206,10 @@ export default class AttackRollOptions extends EdRollOptions {
     return reactionsByTarget;
   }
 
+  /**
+   * Get the maneuvers available to the rolling actor.
+   * @returns {Promise<ItemEd[]>} An array of maneuver items.
+   */
   async _getManeuvers() {
     const actor = await fromUuid( this.rollingActorUuid );
     return actor.itemTypes.knackManeuver;

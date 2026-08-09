@@ -47,6 +47,7 @@ export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
 
   // region Getters
 
+  /** @inheritdoc */
   get baseRollOptions() {
     const rollOptions = super.baseRollOptions;
     rollOptions.updateSource( {

@@ -15,6 +15,7 @@ export default class DamageMessageData extends BaseMessageData {
 
   //  region Schema
 
+  /** @inheritdoc */
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
@@ -83,6 +84,10 @@ export default class DamageMessageData extends BaseMessageData {
     return newHTML;
   }
 
+  /**
+   * Get the HTML representation of the damage transactions.
+   * @returns {Promise<HTMLElement>} The `<div>` element containing the transactions.
+   */
   async getTransactionsHTML() {
     const div = document.createElement( "div" );
     div.classList.add( "damage-transactions" );

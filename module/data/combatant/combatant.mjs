@@ -15,6 +15,7 @@ export default class CombatantData extends SystemDataModel {
 
   // region Schema
 
+  /** @inheritdoc */
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {

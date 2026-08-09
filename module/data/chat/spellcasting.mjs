@@ -16,6 +16,7 @@ export default class SpellcastingMessageData extends BaseMessageData {
 
   // region Schema
 
+  /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema( super.defineSchema(), {} );
   }

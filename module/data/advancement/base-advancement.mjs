@@ -162,6 +162,7 @@ export default class AdvancementData extends SparseDataModel {
 
   // region Migration
 
+  /** @inheritdoc */
   static migrateData( source ) {
     if ( Array.isArray( source.levels ) ) {
       source.levels = source.levels.reduce( ( acc, levelData ) => {

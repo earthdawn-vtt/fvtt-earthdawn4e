@@ -150,6 +150,10 @@ export default class ActiveEffectDataModel extends SystemDataModel {
     }
   }
 
+  /**
+   * Assign change phases to each change in this effect.
+   * @see {@link EFFECTS.eaeActorChangeConfigByKey}
+   */
   _prepareChangePhases() {
     this.changes = this.changes.map( change => {
       const phase = EFFECTS.eaeActorChangeConfigByKey[change.key]?.phase ?? change.phase ?? "initial";

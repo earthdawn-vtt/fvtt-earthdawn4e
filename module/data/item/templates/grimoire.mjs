@@ -53,10 +53,18 @@ export default class GrimoireTemplate extends SystemDataModel {
 
   // region Properties
 
+  /**
+   * Whether this item is a grimoire. Identified through the grimoire ED-ID.
+   * @type {boolean}
+   */
   get isGrimoire() {
     return this.edid === getSetting( "edidGrimoire" );
   }
 
+  /**
+   * Whether this item is a grimoire and owned by the character.
+   * @type {boolean}
+   */
   get isOwnGrimoire() {
     return this.grimoire?.owner === this.containingActor?.uuid;
   }

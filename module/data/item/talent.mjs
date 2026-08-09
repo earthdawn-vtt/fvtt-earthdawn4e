@@ -335,6 +335,13 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
 
   // region Drag and Drop
 
+  /**
+   * Handle dropping a knack item onto the talent sheet.
+   * @param {DragEvent} event      The drag event.
+   * @param {ItemEd} document      The dropped knack item.
+   * @returns {Promise<boolean>}   Whether the drop was handled.
+   * @protected
+   */
   async _onDropKnack( event, document ) {
     const item = this.parent;
     await item.update( {

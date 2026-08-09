@@ -53,6 +53,10 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
 
   // region Getters
 
+  /**
+   * Whether the condition has names for its levels.
+   * @type {boolean}
+   */
   get hasLevelNames() {
     return CONFIG.ED4E.STATUS_CONDITIONS[ this.primary ]?.levelNames?.length > 0;
   }
@@ -93,6 +97,10 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
 
   // region Rendering
 
+  /**
+   * Convert the condition levels to a form group HTML.
+   * @returns {Handlebars.SafeString|void} The form group HTML.
+   */
   levelsToFormGroup() {
     const status = CONFIG.ED4E.STATUS_CONDITIONS[ this.primary ];
     if ( !status || !this.level ) return;
@@ -135,6 +143,11 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
 
   // region Levels
 
+  /**
+   * Get the name of the effect, including its level.
+   * @param {number} level  The level to include in the name.
+   * @returns {string}      The name with the level.
+   */
   getNameWithLevel( level ) {
     const status = CONFIG.ED4E.STATUS_CONDITIONS[ this.primary ];
     const baseName = this.parentDocument._source.name;

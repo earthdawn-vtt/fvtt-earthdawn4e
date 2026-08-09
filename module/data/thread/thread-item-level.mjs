@@ -83,6 +83,10 @@ export default class ThreadItemLevelData extends SparseDataModel {
 
   // region Getters
 
+  /**
+   * Whether this level is visible to the current user. True if the user is a GM or the level is {@link knownToPlayer}.
+   * @type {boolean}
+   */
   get isVisible() {
     return game.user.isGM || this.knownToPlayer;
   }

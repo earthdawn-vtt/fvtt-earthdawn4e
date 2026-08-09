@@ -16,6 +16,7 @@ export default class WarpingRollOptions extends EdRollOptions {
 
   // region Schema
 
+  /** @inheritdoc */
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
