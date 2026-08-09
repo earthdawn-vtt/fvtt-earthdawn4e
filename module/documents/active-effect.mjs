@@ -3,6 +3,9 @@ import * as SYSTEM from "../config/system.mjs";
 import { SYSTEM_TYPES } from "../constants/constants.mjs";
 import EarthdawnActiveEffectData from "../data/effect/eae.mjs";
 
+/**
+ * Custom ActiveEffect document class for Earthdawn.
+ */
 export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffect {
 
   // region Static Methods
@@ -454,6 +457,11 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
     return super.migrateData( source );
   }
 
+  /**
+   * Migrate the parent document type for the effect.
+   * @param {object} source  The source data to migrate.
+   * @protected
+   */
   static _migrateParentDocumentType( source ) {
     const parentDocumentType = this._getParentDocumentType( source );
     if ( source.system )
@@ -463,14 +471,30 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
 
   }
 
+  /**
+   * Get the parent document type for an effect.
+   * @param {object} source  The source data.
+   * @returns {string}       The document type.
+   * @protected
+   */
   static _getParentDocumentType( source ) {
     return "Item";
   }
 
+  /**
+   * Migrate the origin UUID for the effect.
+   * @param {object} source  The source data to migrate.
+   * @protected
+   */
   static _migrateOrigin( source ) {
     source.origin = source.system.source.documentOriginUuid ?? null;
   }
 
+  /**
+   * Migrate the transfer settings for the effect.
+   * @param {object} source  The source data to migrate.
+   * @protected
+   */
   static _migrateTransfer( source ) {
     let newTarget;
     if ( source.system.transferToTarget === true ) newTarget = "target";
@@ -495,6 +519,11 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
       source.system.transferring.abilityEdid = source.system.abilityEdid ?? SYSTEM.reservedEdid.DEFAULT;
   }
 
+  /**
+   * Migrate the `changes` array for the effect.
+   * @param {object} source  The source data to migrate.
+   * @protected
+   */
   static _migrateChanges( source ) {
     const changes = source.system?.changes;
     if ( !Array.isArray( changes ) ) return;
@@ -506,6 +535,11 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
     } );
   }
 
+  /**
+   * Migrate the duration data for the effect.
+   * @param {object} source  The source data to migrate.
+   * @protected
+   */
   static _migrateDuration( source ) {
     let newValueFormula = null;
     let uses = null;
@@ -548,6 +582,11 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
     };
   }
 
+  /**
+   * Migrate the execution data for the effect.
+   * @param {object} source  The source data to migrate.
+   * @protected
+   */
   static _migrateExecution( source ) {
     source.system.execution = {
       executable: source.system.executable,

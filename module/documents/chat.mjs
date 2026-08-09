@@ -1,5 +1,8 @@
 import { highlightElement } from "../helpers/ui.mjs";
 
+/**
+ * Custom ChatMessage document class for Earthdawn.
+ */
 export default class ChatMessageEd extends ChatMessage {
 
   /**

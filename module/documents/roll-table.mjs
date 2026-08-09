@@ -1,3 +1,6 @@
+/**
+ * Custom RollTable document class for Earthdawn.
+ */
 export default class RollTableEd extends foundry.documents.RollTable {
 
   /** @inheritdoc */

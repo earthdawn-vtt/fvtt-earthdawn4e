@@ -3,6 +3,11 @@ import AdvancementLevelData from "../data/advancement/advancement-level.mjs";
 import MigrationManager from "../services/migrations/migration-manager.mjs";
 
 /**
+ * @import { DocumentUuid } from "../_types.mjs";
+ * @import { tier } from "../config/legend.mjs";
+ */
+
+/**
  * Extend the base Item class to implement additional system-specific logic.
  */
 export default class ItemEd extends Item {
@@ -339,7 +344,6 @@ export default class ItemEd extends Item {
    * recalculate this item's weight. If successful, set a flag to indicate it's been calculated. Has to be unset
    * manually, otherwise another call of this function will not execute and instead display a warning.
    * @param {ItemEd} namegiver The namegiver whose name and weight multiplier should be used.
-   * @returns {Promise<void>}
    */
   async tailorToNamegiver( namegiver ) {
     if ( this.isOwned && !this.system.weight.calculated && namegiver ) {
@@ -356,6 +360,13 @@ export default class ItemEd extends Item {
     }
   }
 
+  /**
+   * Add an ability to the pools of class advancement data.
+   * @param {DocumentUuid} abilityUUID  The UUID of the ability to add.
+   * @param {keyof typeof tier} poolType     The pool to add the ability to.
+   * @param {number} [level]      The advancement level.
+   * @returns {Promise<ItemEd>}   The updated item.
+   */
   async addAdvancementAbilities( abilityUUID, poolType, level ) {
     let changes;
     if ( level ) {
@@ -387,6 +398,13 @@ export default class ItemEd extends Item {
     return this.update( changes );
   }
 
+  /**
+   * Remove an ability from the pools of class advancement data.
+   * @param {DocumentUuid} abilityUUID  The UUID of the ability to remove.
+   * @param {keyof typeof tier} poolType     The pool to remove the ability from.
+   * @param {number} [level]      The advancement level.
+   * @returns {Promise<ItemEd>}   The updated item.
+   */
   async removeAdvancementAbility( abilityUUID, poolType, level ) {
     let changes;
     if ( level ) {
@@ -427,6 +445,7 @@ export default class ItemEd extends Item {
   // endregion
 
   // region Migrations
+  /** @inheritdoc */
   static migrateData( source ) {
   // Skip migration for partial updates or non-complete documents
   // A complete document should have fundamental properties like name, type, etc.

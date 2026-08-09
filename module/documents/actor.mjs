@@ -31,6 +31,12 @@ import { sum } from "../utils/math.mjs";
 import { createStaticStatusId } from "../helpers/document.mjs";
 
 /**
+ * @import { itemStatus } from "../config/items.mjs";
+ * @import { DocumentId } from "../_types.mjs";
+ * @import { recoveryModes } from "../config/workflows.mjs";
+ */
+
+/**
  * Extend the base Actor class to implement additional system-specific logic.
  */
 export default class ActorEd extends Actor {
@@ -111,6 +117,10 @@ export default class ActorEd extends Actor {
     return this.itemTypes.discipline;
   }
 
+  /**
+   * Returns items that provide durability bonuses.
+   * @type {ItemEd[]}
+   */
   get durabilityItems() {
     return this.items.filter(
       item => [
@@ -359,6 +369,9 @@ export default class ActorEd extends Actor {
     return super.toggleStatusEffect( statusId, { active, overlay } );
   }
 
+  /**
+   * Toggle which class-related effects are active, based on which ones provide the highest bonus.
+   */
   async updateClassEffectStates() {
     const classEffects = this.classEffects;
     if ( classEffects.length === 0 ) return;
@@ -477,6 +490,12 @@ export default class ActorEd extends Actor {
     return createdEffects?.[0] ?? null;
   }
 
+  /**
+   * Upsert a change in the actor wide singleton effect representing user's manual overrides.
+   * @param {string} changeKey    The key of the property to override.
+   * @param {number} changeValue  The amount to add to the current override.
+   * @returns {Promise<EarthdawnActiveEffect>} The updated override effect.
+   */
   async manualOverride( changeKey, changeValue ) {
     let effect = this.getManualOverrideEffect();
     if ( !effect ) effect = await this.initializeManualOverrideEffect();
@@ -601,6 +620,11 @@ export default class ActorEd extends Actor {
     };
   }
 
+  /**
+   * Perform an attack with the specified attack type or equipped weapon.
+   * @param {string} attackType  The type of attack to perform.
+   * @returns {Promise<EdRoll|void>} The processed attack roll.
+   */
   async attack( attackType ) {
     let weapon = null;
     let effectiveAttackType = attackType;
@@ -1147,10 +1171,11 @@ export default class ActorEd extends Actor {
   }
 
   /**
-   * The sequence that is rotated
-   * @param {object}    itemId        Id of the item to rotate the status of
-   * @param {boolean}   backwards     Whether to rotate the status backwards
-   * @returns {Promise<ItemEd[]>}       The updated items
+   * Rotate a status between its possible states (e.g., equipment carried -> equipped -> owned).
+   * @param {DocumentId} itemId        The ID of the item to rotate the status of.
+   * @param {boolean} [backwards]  Whether to rotate the status backwards.
+   * @returns {Promise<ItemEd[]>}   The updated items.
+   * @see {@link itemStatus}
    */
   async rotateItemStatus( itemId, backwards = false ) {
     const item = this.items.get( itemId );
@@ -1158,6 +1183,11 @@ export default class ActorEd extends Actor {
     return this._updateItemStates( item, nextStatus );
   }
 
+  /**
+   * Perform a recovery test for this actor.
+   * @param {keyof typeof recoveryModes} recoveryMode  The recovery mode to use.
+   * @returns {Promise<EdRoll|null>} The result of the recovery test roll.
+   */
   async rollRecovery( recoveryMode ) {
     const recoveryWorkflow = new RecoveryWorkflow(
       this,
@@ -1427,6 +1457,7 @@ export default class ActorEd extends Actor {
   // endregion
 
   // region Migrations
+  /** @inheritdoc */
   static migrateData( source ) {
     // Skip migration for partial updates or non-complete documents
     // A complete document should have fundamental properties like name, type, etc.
