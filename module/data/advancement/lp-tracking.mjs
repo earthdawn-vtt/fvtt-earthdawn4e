@@ -114,6 +114,11 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
     `;
   }
 
+  /**
+   * The HTML table element representing the LP spendings sorted by time.
+   * @type {string}
+   * @see {@link _getHtmlSpendingsTable}
+   */
   get htmlSpendingsByTime() {
     const rows = this.spendings.toSorted(
       ( a, b ) => a.date - b.date
@@ -126,6 +131,10 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
     );
   }
 
+  /**
+   * The HTML table element representing the LP history in chronological order.
+   * @type {string}
+   */
   get htmlChronological() {
     const rows = this.chronologically.map( transaction => {
       return `
@@ -216,10 +225,22 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
     }
   }
 
+  /**
+   * Get the HTML table element for earnings.
+   * @param {string} sorting  The sorting method to use.
+   * @returns {string}        The HTML representing the earnings table.
+   * @protected
+   */
   _getHtmlEarnings( sorting ) {
     return this.htmlEarnings;
   }
 
+  /**
+   * Get the HTML table element for spendings.
+   * @param {string} sorting  The sorting method to use.
+   * @returns {string}        The HTML representing the spendings table.
+   * @protected
+   */
   _getHtmlSpendings( sorting ) {
     switch ( sorting ) {
       case "time": return this.htmlSpendingsByTime;
@@ -228,10 +249,22 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
     }
   }
 
+  /**
+   * Get the HTML table element for the chronological LP history.
+   * @param {string} sorting  The sorting method to use.
+   * @returns {string}        The HTML representing the chronological history table.
+   * @protected
+   */
   _getHtmlChronological( sorting ) {
     return this.htmlChronological;
   }
 
+  /**
+   * Get the HTML table element for spendings grouped by a category.
+   * @param {string} categoryType  The category to group by.
+   * @returns {string}             The HTML representing the grouped spendings.
+   * @protected
+   */
   _getHtmlSpendingsGrouped( categoryType ) {
     const groupedData = Object.groupBy(
       this.spendings.map(
@@ -271,6 +304,12 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
     return this._getHtmlSpendingsTable( content.join( "\n" ) );
   }
 
+  /**
+   * Helper method to wrap spendings rows in a table.
+   * @param {string} tableBody  The HTML content for the table body (or multiple bodies/headers).
+   * @returns {string}          The full HTML table.
+   * @protected
+   */
   _getHtmlSpendingsTable( tableBody ) {
     return `
       <table class="input--centered">

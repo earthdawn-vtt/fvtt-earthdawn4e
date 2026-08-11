@@ -162,6 +162,10 @@ export default class PowerData extends ActionTemplate.mixin(
     return this.rollType === "attack";
   }
 
+  /**
+   * The final rank for this power, that is, its power step.
+   * @type {number}
+   */
   get rankFinal() {
     return this.powerStep;
   }
@@ -259,6 +263,10 @@ export default class PowerData extends ActionTemplate.mixin(
     return Object.assign( rollData, {} );
   }
 
+  /**
+   * Roll an ability test with this power.
+   * @returns {Promise<EdRoll|void>} The processed roll.
+   */
   async rollAbility() {
     if ( !this.isActorEmbedded ) return;
 
@@ -282,6 +290,10 @@ export default class PowerData extends ActionTemplate.mixin(
     );
   }
 
+  /**
+   * Roll an attack test with this power.
+   * @returns {Promise<EdRoll|void>} The processed roll.
+   */
   async rollAttack() {
     if ( !this.isActorEmbedded ) return;
 
@@ -296,6 +308,10 @@ export default class PowerData extends ActionTemplate.mixin(
     return /** @type {Promise<Roll>} */ attackWorkflow.execute();
   }
 
+  /**
+   * Roll damage with this power.
+   * @returns {Promise<EdRoll|void>} The processed roll.
+   */
   async rollDamage() {
     const rollOptions = DamageRollOptions.fromActor(
       {
@@ -317,6 +333,10 @@ export default class PowerData extends ActionTemplate.mixin(
     return RollProcessor.process( roll, this.containingActor, { rollToMessage: true } );
   }
 
+  /**
+   * Roll the effect of this power.
+   * @hidden
+   */
   async rollEffect() {
     ui.notifications.info( "Effect not done yet" );
   }

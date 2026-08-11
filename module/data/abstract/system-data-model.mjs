@@ -192,7 +192,9 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
       }
     }
 
-    // create a new empty base class to mix in all templates
+    /**
+     * Base class for the mixed-in templates.
+     */
     const Base = class extends this {};
 
     // add the immutable information which templates the new class is made of
@@ -293,7 +295,6 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
    * @param {object} changed            The differential data that was changed relative to the documents prior values
    * @param {object} options            Additional options which modify the update request
    * @param {string} userId             The id of the User requesting the document update
-   * @returns {void}
    * @see {Document#_onUpdate}
    */
   _onUpdate( changed, options, userId ) {
@@ -421,6 +422,10 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     return {};
   }
 
+  /**
+   * Aggregate roll data from all mixed-in templates.
+   * @returns {object} The consolidated roll data.
+   */
   getTemplatesRollData() {
     const rollData = {};
 

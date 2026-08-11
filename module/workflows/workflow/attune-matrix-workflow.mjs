@@ -5,11 +5,18 @@ import AttuningRollOptions from "../../data/roll/attuning.mjs";
 import Rollable from "./rollable.mjs";
 
 /**
+ * @import { DocumentUuid } from "../../_types.mjs";
+ */
+
+/**
  * @typedef {object} AttuneMatrixWorkflowOptions
  * @property {string} firstMatrix The UUID for a matrix that should be focused when displaying the attune matrix prompt.
  * @property {boolean} [onTheFly=false] Whether the attunement is happening on the fly during casting.
  */
 
+/**
+ * Workflow for attuning spells to spell matrices.
+ */
 export default class AttuneMatrixWorkflow extends Rollable( ActorWorkflow ) {
 
   /**
@@ -73,7 +80,6 @@ export default class AttuneMatrixWorkflow extends Rollable( ActorWorkflow ) {
 
   /**
    * Gets user input for attuning configuration using AttuneMatrixPrompt.
-   * @returns {Promise<void>}
    */
   async #promptForAttuneConfiguration() {
     const response = await AttuneMatrixPrompt.waitPrompt( {
@@ -99,7 +105,6 @@ export default class AttuneMatrixWorkflow extends Rollable( ActorWorkflow ) {
 
   /**
    * Checks if the actor is currently reattuning on the fly by looking for the "attuningOnTheFly" status.
-   * @returns {Promise<void>}
    */
   async #checkIfReattuningOnTheFly() {
     this._isReattuningOnTheFly ??= this._actor.statuses.has( "attuningOnTheFly" ) || !!this._attuneAbility;
@@ -107,7 +112,7 @@ export default class AttuneMatrixWorkflow extends Rollable( ActorWorkflow ) {
 
   /**
    * If the user decided not to continue reattuning on the fly, dislodges all spells and stops the workflow.
-   * @returns {Promise<void>}
+   * @private
    */
   async #handleReattuningCancellation() {
     // This step only executes if we're reattuning on the fly and the user chose not to continue,
@@ -133,7 +138,7 @@ export default class AttuneMatrixWorkflow extends Rollable( ActorWorkflow ) {
 
   /**
    * Rolls for reattuning success if reattuning on the fly.
-   * @returns {Promise<void>}
+   * @private
    */
   async #rollForReattuningSuccess() {
     // Skip the roll if we're not reattuning on the fly
@@ -166,7 +171,7 @@ export default class AttuneMatrixWorkflow extends Rollable( ActorWorkflow ) {
 
   /**
    * If the reattuning roll was unsuccessful, adds the "attuningOnTheFly" status to the actor and stops the workflow.
-   * @returns {Promise<void>}
+   * @private
    */
   async #handleReattuningFailure() {
     // Skip this step if not reattuning on the fly or if the roll was successful
@@ -188,7 +193,7 @@ export default class AttuneMatrixWorkflow extends Rollable( ActorWorkflow ) {
 
   /**
    * Attunes the selected spells to the selected matrices.
-   * @returns {Promise<void>}
+   * @private
    */
   async #attuneSpellsToMatrices() {
     if ( this._isCancelingReattuning ) return;
@@ -229,7 +234,8 @@ export default class AttuneMatrixWorkflow extends Rollable( ActorWorkflow ) {
   /**
    * Removes entries from the toAttune object where the matrix spell configuration hasn't changed.
    * @param {object} toAttune - The object mapping matrix IDs to their selected spell UUIDs.
-   * @returns {{[matrixId: string]: string[]}} - A filtered copy of the toAttune object with only changed matrices.
+   * @returns {{[matrixId: DocumentUuid]: object[]}} - A filtered copy of the `toAttune` object with only changed matrices.
+   * @private
    */
   #filterUnchangedMatrices( toAttune ) {
     if ( !toAttune ) return {};

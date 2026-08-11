@@ -6,6 +6,10 @@ import { linkForUuid } from "../../helpers/formatting.mjs";
 
 const TextEditor = foundry.applications.ux.TextEditor.implementation;
 
+/**
+ * The sheet application for Mask items.
+ * @augments {ItemSheetEd}
+ */
 export default class MaskItemSheetEd extends ItemSheetEd {
 
   /** @inheritdoc */
@@ -65,6 +69,7 @@ export default class MaskItemSheetEd extends ItemSheetEd {
 
   // region Rendering
 
+  /** @inheritdoc */
   async _preparePartContext( partId, contextInput, options ) {
     const context = await super._preparePartContext( partId, contextInput, options );
     switch ( partId ) {

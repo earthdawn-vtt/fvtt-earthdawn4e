@@ -1,6 +1,10 @@
 import ApplicationEd from "../api/application.mjs";
 import * as ROLLS from "../../config/rolls.mjs";
 
+/**
+ * Dialog to choose an adder or substitute ability for damage rolls.
+ * @augments ApplicationEd
+ */
 export default class ChooseAdderSubstitutePrompt extends ApplicationEd {
 
   /**

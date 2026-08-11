@@ -207,6 +207,13 @@ export default class QuestorData extends ClassTemplate.mixin(
 
   // region Drag and Drop
 
+  /**
+   * Handle dropping a devotion item onto the questor sheet.
+   * @param {DragEvent} event      The drag event.
+   * @param {ItemEd} document      The dropped devotion item.
+   * @returns {Promise<boolean>}   Whether the drop was handled.
+   * @protected
+   */
   async _onDropDevotion( event, document ) {
     const questorItem = this.parentDocument;
     await questorItem.update( {

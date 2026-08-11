@@ -90,6 +90,11 @@ export default class AdvancementLevelData extends SparseDataModel {
 
   // region Static Methods
 
+  /**
+   * Determine the initial resource (karma/devotion) step for a level.
+   * @param {object} source  The source data for the level.
+   * @returns {number}       The initial resource step.
+   */
   static initResourceStep( source ) {
     return source.level >= 13 ? 5 : 4;
   }

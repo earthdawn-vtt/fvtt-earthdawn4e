@@ -1,3 +1,9 @@
+/**
+ * Extends the Foundry VTT `TokenHUD` class to provide system-specific functionality.
+ *
+ * @augments {foundry.applications.hud.TokenHUD}
+ * @inheritDoc
+ */
 export default class TokenHUDEd extends foundry.applications.hud.TokenHUD {
 
   /** @inheritDoc */

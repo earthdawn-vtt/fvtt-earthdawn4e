@@ -14,7 +14,7 @@ const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 
 /**
- * A stock application meant for async behavior using templates.
+ * Custom system application meant for async behavior using templates.
  * @augments ApplicationV2
  * @mixes HandlebarsApplicationMixin
  */
@@ -122,6 +122,15 @@ export default class ApplicationEd extends HandlebarsApplicationMixin( Applicati
 
   // endregion
 
+  /**
+   * Constructor for initializing the class with specified options.
+   *
+   * @param {object} [options={}] The configuration options for the instance,
+   *        see [ApplicationV2]{@link https://foundryvtt.com/api/classes/foundry.applications.api.ApplicationV2.html#constructor}.
+   * @param {Function} [options.resolve] A function to handle resolving logic.
+   * @param {object} [options.data={}] System data to initialize the instance to be used by the form.
+   * @returns {ApplicationEd} A new instance of the ApplicationEd class.
+   */
   constructor( options = {} ) {
     super( options );
     this.resolve = options.resolve;

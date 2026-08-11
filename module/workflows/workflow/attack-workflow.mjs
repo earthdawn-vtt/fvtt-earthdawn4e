@@ -14,6 +14,9 @@ import { SYSTEM_TYPES } from "../../constants/constants.mjs";
  * the attackType and/or weapon.
  */
 
+/**
+ * Workflow for performing an attack.
+ */
 export default class AttackWorkflow extends Rollable( ActorWorkflow ) {
 
   /**
@@ -55,6 +58,10 @@ export default class AttackWorkflow extends Rollable( ActorWorkflow ) {
     this._initRollableSteps();
   }
 
+  /**
+   * Determine and set the weapon to be used for the attack.
+   * @private
+   */
   async #setWeapon() {
     const weaponStatus = this._attackType === "tail"
       ? [ "tail" ]
@@ -77,6 +84,10 @@ export default class AttackWorkflow extends Rollable( ActorWorkflow ) {
     this._weapon = weapon;
   }
 
+  /**
+   * Determine and set the ability to be used for the attack.
+   * @private
+   */
   async #setAbility() {
     if ( [ "tail", "unarmed" ].includes( this._attackType ) ) {
       this._ability = this._actor.getSingleItemByEdid( getSetting( "edidUnarmedCombat" ) );

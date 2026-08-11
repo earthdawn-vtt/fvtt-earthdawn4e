@@ -68,16 +68,32 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
 
   // region Checkers
 
+  /**
+   * Check if a wound can be healed, that is, the actor has no damage and a recovery test resource is available.
+   * @param {number} availableRecoveryTests  The number of available recovery tests.
+   * @returns {boolean}                       True if a wound can be healed.
+   * @protected
+   */
   _canHealWound( availableRecoveryTests ) {
     return !this._actor.hasDamage( "standard" )
       && this._actor.hasWounds( "standard" )
       && availableRecoveryTests > 0;
   }
 
+  /**
+   * Check if the recovery requires no roll (e.g., full rest with no damage).
+   * @returns {boolean} True if no roll is needed.
+   * @protected
+   */
   _needsNoRoll() {
     return this._isFullRest && !this._actor.hasDamage( "standard" );
   }
 
+  /**
+   * Check if the recovery requires a roll.
+   * @returns {boolean} True if a roll is needed.
+   * @protected
+   */
   _needsRoll() {
     return !this._needsNoRoll();
   }
@@ -106,7 +122,6 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
 
   /**
    * Validates that recovery is needed and possible based on the recovery mode
-   * @returns {Promise<void>}
    * @private
    */
   async _validateRecovery() {
@@ -177,11 +192,7 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
     return super._createRoll();
   }
 
-  /**
-   * Processes the recovery based on the roll result and recovery mode
-   * @returns {Promise<void>}
-   * @private
-   */
+  /** @inheritdoc */
   async _processRoll() {
     if ( this._needsRoll() ) return super._processRoll();
 

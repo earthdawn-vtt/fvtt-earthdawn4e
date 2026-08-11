@@ -327,6 +327,12 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
     }
   }
 
+  /**
+   * Determines the previous status of the item based on the current status.
+   * @param {number} currentStatusIndex - The index of the current status in {@link _itemStatusOrder}.
+   * @returns {string} The previous valid status for the item.
+   * @protected
+   */
   _getPreviousItemStatus( currentStatusIndex ) {
     const statusOrder = this.constructor._itemStatusOrder;
     const namegiver = this.parent.parent?.namegiver;

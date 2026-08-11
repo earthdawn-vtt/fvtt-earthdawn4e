@@ -1,5 +1,12 @@
 import StartRoundCombatantPrompt from "../applications/combat/start-round-combatant-prompt.mjs";
 
+/**
+ * @import { eaeExecutionTime } from "../config/effects.mjs";
+ */
+
+/**
+ * Custom Combat document class for Earthdawn.
+ */
 export default class CombatEd extends foundry.documents.Combat {
 
   /** @inheritdoc */
@@ -77,7 +84,6 @@ export default class CombatEd extends foundry.documents.Combat {
    * Reset the initiative of all combatants in this combat.
    * @param {object} options          Options for the reset.
    * @param {boolean} options.force   Force the reset even if the Combatant#system.keepInitiative is `true`.
-   * @returns {Promise<void>}
    */
   async resetInitiatives( options = { force: false } ) {
     for ( const combatant of this.combatants ) {
@@ -89,9 +95,9 @@ export default class CombatEd extends foundry.documents.Combat {
 
   /**
    * Execute ActiveEffects that are triggered by the given execution time.
-   * @param {keyof eaeExecutionTime} executionTime The instant in the combat when the effect should be executed.
+   * @param {keyof typeof eaeExecutionTime} executionTime The instant in the combat when the effect should be executed.
    * @param {CombatantEd} combatant                The combatant to execute the effects for.
-   * @returns {Promise<void>}
+   * @private
    */
   async #executeEffects( executionTime, combatant ) {
     if ( !combatant ) return;
@@ -105,6 +111,11 @@ export default class CombatEd extends foundry.documents.Combat {
     }
   }
 
+  /**
+   * Execute ActiveEffects that are triggered by the given execution time for all combatants.
+   * @param {keyof typeof eaeExecutionTime} executionTime The instant in the combat when the effect should be executed.
+   * @private
+   */
   async #executeEffectsForAll( executionTime ) {
     const combatants = new Set( this.combatants.map( c => c.actor ) );
 

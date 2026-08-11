@@ -17,6 +17,7 @@ export default class ThreadWeavingMessageData extends BaseMessageData {
 
   // region Schema
 
+  /** @inheritdoc */
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
@@ -115,6 +116,11 @@ export default class ThreadWeavingMessageData extends BaseMessageData {
     );
   }
 
+  /**
+   * Prepare the spell for casting, ensuring the woven threads are correctly set.
+   * @returns {Promise<ItemEd>} The prepared spell.
+   * @protected
+   */
   async _prepareSpell() {
     const spell = this.spell;
     const extraThreads = this.extraThreads || [];

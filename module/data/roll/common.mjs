@@ -354,16 +354,33 @@ export default class EdRollOptions extends SparseDataModel {
 
   // region Data Field Initialization
 
+  /**
+   * Determine the initial resource step (karma or devotion) based on the field name.
+   * @param {*} _  Unused.
+   * @returns {number} The initial resource step.
+   */
   static initResourceStep( _ ) {
     const parentField = this?.parent?.name;
     return ROLLS.resourceDefaultStep[parentField] ?? 4;
   }
 
+  /**
+   * Determine the initial total value for a field.
+   * @param {object} source        The source data for the roll.
+   * @param {string} attribute     The attribute name (e.g. "step", "target", "strain").
+   * @param {number} defaultValue  The default value if not present in the source.
+   * @returns {number}             The initial total value.
+   */
   static initTotal( source, attribute, defaultValue ){
     const value = source?.[attribute]?.base ?? source.base ?? defaultValue;
     return value + sum( Object.values( source?.[attribute]?.modifiers ?? {} ) );
   }
 
+  /**
+   * Determine the initial total step for a roll.
+   * @param {object} source  The source data for the roll.
+   * @returns {number}       The initial total step.
+   */
   static initTotalStep( source ) {
     return Math.max(
       EdRollOptions.initTotal( source, "step", 1 ),
@@ -371,6 +388,11 @@ export default class EdRollOptions extends SparseDataModel {
     );
   }
 
+  /**
+   * Determine the initial total strain for a roll.
+   * @param {object} source  The source data for the roll.
+   * @returns {number}       The initial total strain.
+   */
   static initTotalStrain( source ) {
     return Math.max(
       EdRollOptions.initTotal( source, "strain", 0 ),
@@ -378,6 +400,11 @@ export default class EdRollOptions extends SparseDataModel {
     );
   }
 
+  /**
+   * Determine the initial total target difficulty for a roll.
+   * @param {object} source  The source data for the roll.
+   * @returns {number}       The initial total target.
+   */
   static initTotalTarget( source ) {
     return Math.max(
       EdRollOptions.initTotal( source, "target", 1 ),
@@ -385,6 +412,11 @@ export default class EdRollOptions extends SparseDataModel {
     );
   }
 
+  /**
+   * Determine the initial dice for a given step.
+   * @param {object} parent  The parent data model.
+   * @returns {string}       The dice formula for the step.
+   */
   static initDiceForStep( parent ) {
     return getDice( parent.step.total ?? parent.step );
   }
@@ -393,10 +425,18 @@ export default class EdRollOptions extends SparseDataModel {
 
   // region Dynamic Properties
 
+  /**
+   * The calculated total step value (base + modifiers).
+   * @type {number}
+   */
   get totalStep() {
     return this.step.base + sum( Object.values( this.step.modifiers ) );
   }
 
+  /**
+   * The calculated total target difficulty (base + modifiers).
+   * @type {number|null}
+   */
   get totalTarget() {
     if ( !this.target ) return null;
     return Math.max(
@@ -429,6 +469,11 @@ export default class EdRollOptions extends SparseDataModel {
     return super._initializeSource( data, options );
   }
 
+  /**
+   * Initialize the total values for step, target, and strain data.
+   * @param {object} data  The source data to initialize.
+   * @protected
+   */
   _initializeTotals( data ) {
     if ( data.step && !data.step.total ) {
       data.step.total = this.constructor.getTotalFromStepData( data.step );
@@ -462,12 +507,23 @@ export default class EdRollOptions extends SparseDataModel {
     return super.updateSource( updates, options );
   }
 
+  /**
+   * Update the total step value based on changes.
+   * @param {object} updates  The differential updates being applied.
+   * @returns {object}        The modified updates object.
+   * @protected
+   */
   _updateTotalStep( updates ) {
     updates.step ??= {};
     updates.step.total = this.step.total = this.totalStep;
     return updates;
   }
 
+  /**
+   * Update the total target value based on changes.
+   * @param {object} updates  The differential updates being applied.
+   * @protected
+   */
   _updateTotalTarget( updates ) {
     if ( updates.target && !updates.target.total ) updates.target.total = this.target.total = this.totalTarget;
   }
@@ -554,6 +610,11 @@ export default class EdRollOptions extends SparseDataModel {
 
   // region Methods
 
+  /**
+   * Calculate the sum of modifiers for a given field.
+   * @param {string} fieldName  The name of the field to sum modifiers for.
+   * @returns {number}          The sum of all modifiers.
+   */
   getModifierSum( fieldName ) {
     const field = this[fieldName];
     if ( !field || !field.modifiers ) return 0;

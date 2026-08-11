@@ -113,6 +113,10 @@ export default class RollableTemplate extends SystemDataModel {
     return EdRollOptions.fromActor( { devotionRequired: !!this.devotionRequired }, this.containingActor );
   }
 
+  /**
+   * Execute the roll associated with this item's current roll type.
+   * @returns {Promise<EdRoll|void>} The result of the roll.
+   */
   async roll() {
     let rollFunc;
     switch ( this.rollType ) {

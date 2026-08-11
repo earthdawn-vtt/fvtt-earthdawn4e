@@ -147,6 +147,10 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
     return this.itemStatus === "equipped";
   }
 
+  /**
+   * The index of the current item status in the status sequence.
+   * @type {number}
+   */
   get statusIndex() {
     return this.constructor._itemStatusOrder.indexOf( this.itemStatus );
   }

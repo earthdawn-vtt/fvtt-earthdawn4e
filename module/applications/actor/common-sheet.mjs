@@ -86,6 +86,12 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
     );
   }
 
+  /**
+   * Creates and returns the initial configuration for the context menu.
+   *
+   * @return {Array<object>} An array of context menu items, where each item is an object containing details such as
+   *                         the name, icon, and callback function for the menu action.
+   */
   _createInitialContextMenu() {
     return [
       {
@@ -298,7 +304,6 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
   /**
    * Handles adding an item to the actor's favorites.
    * @param {HTMLElement} target - The HTML element that triggered the action.
-   * @returns {Promise<void>}
    */
   async _onAddToFavorites( target ) {
     const itemUuid = target.closest( ".favoritable" ).dataset.uuid;

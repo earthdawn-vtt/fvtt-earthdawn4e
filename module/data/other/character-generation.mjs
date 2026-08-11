@@ -13,13 +13,13 @@ import { getSetting } from "../../helpers/settings.mjs";
 
 /**
  * @import { CharacterGenerationSystemData } from "./_types.mjs";
+ * @import { attributes } from "../../config/actors.mjs";
  */
 
 /**
- * The data model holding all in-progress choices for generating a new player character:
- * namegiver, class, attributes, abilities, spells, languages, and starting equipment.
- * @augments {SparseDataModel<CharacterGenerationSystemData>}
- * @see {@link CharacterGenerationSystemData} The system data model for character generation data.
+ * Class representing character generation data for initializing a character within the game.
+ * Extends `SparseDataModel` and provides schema definitions, various static properties,
+ * and helper methods for working with character attributes, abilities, spells, equipment, etc.
  */
 export default class CharacterGenerationData extends SparseDataModel {
 
@@ -189,14 +189,26 @@ export default class CharacterGenerationData extends SparseDataModel {
 
   // region Getters
 
+  /**
+   * Get the namegiver document.
+   * @type {Promise<ItemEd|null>}
+   */
   get namegiverDocument() {
     return fromUuid( this.namegiver );
   }
 
+  /**
+   * Get the selected class document.
+   * @type {Promise<ItemEd|null>}
+   */
   get classDocument() {
     return fromUuid( this.selectedClass );
   }
 
+  /**
+   * Calculate the number of available points to spend on attributes.
+   * @type {number}
+   */
   get availableAttributePoints() {
     const startingPoints = getSetting( "charGenAttributePoints" );
     return Object.values( this.attributes ).reduce(
@@ -237,26 +249,46 @@ export default class CharacterGenerationData extends SparseDataModel {
     return Promise.all( allAbilities );
   }
 
+  /**
+   * Get all spell documents selected in the character generation.
+   * @type {Promise<ItemEd[]>}
+   */
   get spellDocuments() {
     const allSpells = this.spells.map( async ( spell ) => await fromUuid( spell ) );
 
     return Promise.all( allSpells );
   }
 
+  /**
+   * Get all equipment documents selected in the character generation.
+   * @type {Promise<ItemEd[]>}
+   */
   get equipmentDocuments() {
     const allEquipment = this.equipment.map( async ( equipment ) => await fromUuid( equipment ) );
 
     return Promise.all( allEquipment );
   }
 
+  /**
+   * Get the selected optional ability.
+   * @type {string}
+   */
   get abilityOption() {
     return Object.keys( this.abilities.optional )[0];
   }
 
+  /**
+   * Get the class abilities.
+   * @type {object}
+   */
   get classAbilities() {
     return this.abilities.class;
   }
 
+  /**
+   * Get the namegiver abilities.
+   * @type {object}
+   */
   get namegiverAbilities() {
     return this.abilities.namegiver;
   }
@@ -265,6 +297,10 @@ export default class CharacterGenerationData extends SparseDataModel {
 
   // region Get-Methods
   
+  /**
+   * Get the namegiver abilities as UUIDs.
+   * @returns {Promise<string[]>}  An array of ability UUIDs.
+   */
   async getNamegiverAbilities() {
     const namegiver = await this.namegiverDocument;
     if ( !namegiver ) return [];
@@ -278,6 +314,38 @@ export default class CharacterGenerationData extends SparseDataModel {
     return abilities.filter( uuid => uuid !== null );
   }
 
+  /**
+   * @typedef {object} PreviewValues
+   * @property {number} previous  The value at the previous attribute step.
+   * @property {number} current   The value at the current attribute step.
+   * @property {number} next      The value at the next attribute step.
+   */
+
+  /**
+   * @typedef {object} CharacteristicsPreviewData
+   * @property {object}        health                            Health-related characteristics.
+   * @property {PreviewValues} health.unconsciousness            Unconsciousness rating.
+   * @property {PreviewValues} health.death                      Death rating.
+   * @property {PreviewValues} health.woundThreshold              Wound threshold.
+   * @property {PreviewValues} health.recoveryPerDay              Recovery tests per day.
+   * @property {PreviewValues} health.recoveryStep                Recovery step.
+   * @property {object}        characteristics                    Other characteristics.
+   * @property {object}        characteristics.defenses            Defense ratings.
+   * @property {PreviewValues} characteristics.defenses.physical  Physical defense rating.
+   * @property {PreviewValues} characteristics.defenses.mystic    Mystic defense rating.
+   * @property {PreviewValues} characteristics.defenses.social    Social defense rating.
+   * @property {object}        characteristics.armor               Armor ratings.
+   * @property {PreviewValues} characteristics.armor.physical     Physical armor rating.
+   * @property {PreviewValues} characteristics.armor.mystic       Mystic armor rating.
+   * @property {object}        characteristics.other               Miscellaneous characteristics.
+   * @property {PreviewValues} characteristics.other.carryingCapacity  Carrying capacity.
+   * @property {PreviewValues} characteristics.other.initiativeStep    Initiative step.
+   */
+
+  /**
+   * Calculate a preview of characteristics based on selected attributes.
+   * @returns {Promise<CharacteristicsPreviewData>}  The characteristics preview data.
+   */
   async getCharacteristicsPreview() {
     const lookup = LEGEND.characteristicsTable;
     const finalValues = await this.getFinalAttributeValues();
@@ -311,6 +379,14 @@ export default class CharacterGenerationData extends SparseDataModel {
     };
   }
 
+  /**
+   * Helper to get preview values from a lookup table.
+   * @param {object} lookupTable  The table to look up values in.
+   * @param {string} key          The key to look up.
+   * @param {number} index        The index (attribute value) to look up.
+   * @returns {PreviewValues}     The previous, current, and next values.
+   * @private
+   */
   _getPreviewValues( lookupTable, key, index ) {
     const lookup = lookupTable ?? LEGEND.characteristicsTable;
     return {
@@ -320,10 +396,19 @@ export default class CharacterGenerationData extends SparseDataModel {
     };
   }
 
+  /**
+   * Get the final value for a specific attribute.
+   * @param {string} attribute  The attribute ID.
+   * @returns {Promise<number>}  The final attribute value.
+   */
   async getFinalAttributeValue( attribute ) {
     return await this.getBaseAttributeValue( attribute ) + this.attributes[attribute].change;
   }
 
+  /**
+   * Get the final values for all attributes.
+   * @returns {Promise<Record<keyof typeof attributes, number>>}  An object containing all final attribute values.
+   */
   async getFinalAttributeValues() {
     const updateData = {};
     for ( const attribute of Object.keys( this.attributes ) ){
@@ -333,15 +418,28 @@ export default class CharacterGenerationData extends SparseDataModel {
     return updateData;
   }
 
+  /**
+   * Get the base value for an attribute from the namegiver document.
+   * @param {string} attribute  The attribute ID.
+   * @returns {Promise<number>}  The base attribute value.
+   */
   async getBaseAttributeValue( attribute ) {
     const document = await this.namegiverDocument;
     return document?.system?.attributeValues[attribute] ?? 10;
   }
 
+  /**
+   * Calculate the maximum number of points to spend on spells.
+   * @returns {Promise<number>}  The maximum spell points.
+   */
   async getMaxSpellPoints() {
     return getAttributeStepFromValue( await this. getFinalAttributeValue( "per" ) );
   }
 
+  /**
+   * Calculate the number of available points to spend on spells.
+   * @returns {Promise<number>}  The available spell points.
+   */
   async getAvailableSpellPoints() {
     const currentSpellLevels = await Promise.all(
       Array.from(
@@ -352,6 +450,10 @@ export default class CharacterGenerationData extends SparseDataModel {
     return ( await this.getMaxSpellPoints() ) - sum( currentSpellLevels );
   }
 
+  /**
+   * Determine the casting type (e.g. "spellcasting") from class abilities.
+   * @returns {Promise<string|undefined>}  The casting type.
+   */
   async getCastingType() {
     for ( const abilityUuid of Object.keys( this.abilities.class ) ) {
       let ability = await fromUuid( abilityUuid );
@@ -361,6 +463,10 @@ export default class CharacterGenerationData extends SparseDataModel {
     return undefined;
   }
 
+  /**
+   * Get the documents for language skills.
+   * @returns {Promise<{speak: ItemEd, readWrite: ItemEd}>}  An object with speak and readWrite skill documents.
+   */
   async getLanguageDocuments() {
     const languageSkills = await Promise.all( Object.keys( this.abilities.language ).map( async ( languageUuid ) => fromUuid( languageUuid ) ) );
     return {
@@ -369,6 +475,10 @@ export default class CharacterGenerationData extends SparseDataModel {
     };
   }
 
+  /**
+   * Get the current ranks for language skills.
+   * @returns {Promise<{speak: numbers, readWrite: number}>}  An object with speak and readWrite skill ranks.
+   */
   async getLanguageSkillRanks() {
     const languageSkills = await this.getLanguageDocuments();
     return {
@@ -450,6 +560,12 @@ export default class CharacterGenerationData extends SparseDataModel {
 
   // region Abilities
 
+  /**
+   * Add an ability to the character generation data.
+   * @param {string} abilityUuid  The UUID of the ability.
+   * @param {string} abilityType  The category of the ability.
+   * @returns {object}            The updated data.
+   */
   async addAbility( abilityUuid, abilityType ) {
     const abilityData = this.abilities[abilityType];
     abilityData[abilityUuid] = 0;
@@ -459,7 +575,16 @@ export default class CharacterGenerationData extends SparseDataModel {
     );
   }
 
+  /**
+   * Remove skills with a rank of zero.
+   */
   async removeRankZeroSkills() {
+    /**
+     * Predicate to filter for values less than or equal to zero.
+     * @param {string} key   The key to check.
+     * @param {number} value The value to check.
+     * @returns {boolean}    True if the value is <= 0.
+     */
     const lessOrEqualZeroPredicate = function ( key, value ) {
       return value <= 0;
     };
@@ -486,6 +611,13 @@ export default class CharacterGenerationData extends SparseDataModel {
     } );
   }
 
+  /**
+   * Change the rank of an ability.
+   * @param {string} abilityUuid  The UUID of the ability.
+   * @param {string} abilityType  The category of the ability.
+   * @param {string} changeType   "increase" or "decrease".
+   * @returns {Promise<object>}   The updated data.
+   */
   async changeAbilityRank( abilityUuid, abilityType, changeType ) {
     const isSkill = [ "artisan", "knowledge", "general", "language" ].includes( abilityType );
     const isOptionalTalent = abilityType === "optional";
@@ -547,7 +679,11 @@ export default class CharacterGenerationData extends SparseDataModel {
     return updateDiff;
   }
 
-  // Increase or decrease the value of an attribute modifier by 1 and update all associated values.
+  /**
+   * Change an attribute modifier and update costs.
+   * @param {string} attribute   The attribute ID.
+   * @param {"increase"|"decrease"} changeType  "increase" or "decrease".
+   */
   async changeAttributeModifier( attribute, changeType ) {
     let newModifier = this.attributes[attribute].change;
     switch ( changeType ) {
@@ -587,6 +723,16 @@ export default class CharacterGenerationData extends SparseDataModel {
     } );
   }
 
+  /**
+   * @typedef {("talent"|"devotion"|"general"|"special"|"artisan"|"knowledge")} AbilityClassType
+   */
+
+  /**
+   * Get the document type for an ability category (e.g., talent or devotion).
+   * @param {string} abilityType     The ability category.
+   * @returns {AbilityClassType}     The internal category type.
+   * @protected
+   */
   _getAbilityClassType( abilityType ) {
     const isClass = [ "class", "optional", "free", "namegiver" ].includes( abilityType );
     if ( isClass && this.isAdept ) return "talent";
@@ -595,11 +741,18 @@ export default class CharacterGenerationData extends SparseDataModel {
     return abilityType;
   }
 
+  /**
+   * Get the availability type for spending/refunding points.
+   * @param {string} abilityType        The ability category.
+   * @param {number} costDifference    The change in points.
+   * @returns {AbilityClassType}       The category to use for points.
+   * @protected
+   */
   _getAvailabilityType( abilityType, costDifference ) {
     // for artisan and knowledge skill:
     // when spending points (costDifference > 0) use the abilityType available ranks first, if not enough use general
     // when refunding points (costDifference < 0) make sure that the available ranks of the given type
-    // are their maximum  minus the current assigned ranks after refunding to general
+    // are their maximum minus the current assigned ranks after refunding to general
     if ( [ "artisan", "knowledge" ].includes( abilityType ) ) {
       const assignedRanks = sum( Object.values( this.abilities[abilityType] ) ) + costDifference;
       const availableRanks = this.availableRanks[abilityType];
@@ -618,6 +771,11 @@ export default class CharacterGenerationData extends SparseDataModel {
 
   // region Spells
 
+  /**
+   * Add a spell to the character generation data.
+   * @param {string} spellUuid  The UUID of the spell.
+   * @returns {Promise<object>}  The differential update data.
+   */
   async addSpell( spellUuid ) {
     if ( !spellUuid ) return {};
 
@@ -635,6 +793,11 @@ export default class CharacterGenerationData extends SparseDataModel {
     }
   }
 
+  /**
+   * Remove a spell from the character generation data.
+   * @param {string} spellUuid  The UUID of the spell.
+   * @returns {Promise<object>}  The differential update data.
+   */
   async removeSpell( spellUuid ) {
     if ( !spellUuid ) return {};
     const newSpellSet = new Set( this.spells );
@@ -646,6 +809,11 @@ export default class CharacterGenerationData extends SparseDataModel {
 
   // region Equipment
 
+  /**
+   * Add equipment to the character generation data.
+   * @param {string} equipmentUuid  The UUID of the equipment.
+   * @returns {Promise<object>}     The differential update data.
+   */
   async addEquipment( equipmentUuid ) {
     if ( !equipmentUuid ) return {};
     return this.updateSource( {
@@ -653,6 +821,11 @@ export default class CharacterGenerationData extends SparseDataModel {
     } );
   }
 
+  /**
+   * Remove equipment from the character generation data.
+   * @param {string} equipmentUuid  The UUID of the equipment.
+   * @returns {Promise<object>}     The differential update data.
+   */
   async removeEquipment( equipmentUuid ) {
     if ( !equipmentUuid ) return {};
     const newEquipmentSet = new Set( this.equipment );
@@ -664,12 +837,25 @@ export default class CharacterGenerationData extends SparseDataModel {
 
   // region Methods
 
+  /**
+   * @typedef {"attributes"|"classAbilities"|"skills"|"spells"} ResettableCategoryType
+   */
+
+  /**
+   * Reset points for a given category.
+   * @param {ResettableCategoryType} type  The category to reset.
+   */
   async resetPoints( type ) {
     const updateData = await this.getResetData( type );
     this.updateSource( updateData, { clean: { expand: false } } );
     return this.removeRankZeroSkills();
   }
 
+  /**
+   * Get the reset data for a given category.
+   * @param {ResettableCategoryType} type  The category to reset.
+   * @returns {Promise<object>}  The reset data.
+   */
   async getResetData( type ) {
     let updateData = {};
 

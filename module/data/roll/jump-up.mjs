@@ -17,6 +17,7 @@ export default class JumpUpRollOptions extends EdRollOptions {
 
   // region Schema
 
+  /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema( super.defineSchema(), {
       jumpUpAbilityUuid: new foundry.data.fields.DocumentUUIDField( {

@@ -1,6 +1,10 @@
 import LpTransactionData from "../../data/advancement/lp-transaction.mjs";
 import ApplicationEd from "../api/application.mjs";
 
+/**
+ * A prompt for assigning Legend Points (LP) to selected characters.
+ * Usually called using the chat command `\lp`
+ */
 export default class AssignLpPrompt extends ApplicationEd {
 
 

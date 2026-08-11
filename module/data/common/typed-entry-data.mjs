@@ -68,6 +68,11 @@ export default class TypedEntryData extends SparseDataModel {
 
   // region Getters
 
+  /**
+   * A summary string representing this entry.
+   * @type {string}
+   * @abstract
+   */
   get summaryString() {
     throw new Error( "A TypedEntryData subclass must implement this getter" );
   }

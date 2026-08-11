@@ -151,6 +151,12 @@ export default class DisciplineData extends ClassTemplate.mixin(
     );
   }
 
+  /**
+   * Get the talent requirements for increasing the circle of this discipline, based on the standard rule of counting
+   * only discipline talents.
+   * @type {object[]}
+   * @protected
+   */
   get _talentRequirementsStandard() {
     const nextLevel = this.unmodifiedLevel + 1;
     const disciplineTalents = this.getTalentsByCategory( "discipline" );
@@ -180,6 +186,12 @@ export default class DisciplineData extends ClassTemplate.mixin(
     ];
   }
 
+  /**
+   * Get the talent requirements for increasing the circle of this discipline, based on the optional
+   * rule of counting all available talents.
+   * @type {object[]}
+   * @protected
+   */
   get _talentRequirementsOptional() {
     const nextLevel = this.unmodifiedLevel + 1;
     const allCorrespondingTalents = this.talentsFromDiscipline.filter(
@@ -230,6 +242,11 @@ export default class DisciplineData extends ClassTemplate.mixin(
     ];
   }
 
+  /**
+   * Get the house rule talent requirements for increasing the circle of this discipline.
+   * @type {object[]}
+   * @protected
+   */
   get _talentRequirementsHouseRule() {
     const nextLevel = this.unmodifiedLevel + 1;
     const tierInfos = {

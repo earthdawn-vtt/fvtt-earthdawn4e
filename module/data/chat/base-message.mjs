@@ -107,6 +107,11 @@ export default class BaseMessageData extends SystemDataModel {
 
   // endregion
 
+  /**
+   * @param {object} data     The initial data for the message.
+   * @param {object} options  Additional options for the message.
+   * @see {@link https://foundryvtt.com/api/classes/foundry.documents.ChatMessage.html#constructorchatmessage}
+   */
   constructor( data, options ) {
     super( data, options );
 

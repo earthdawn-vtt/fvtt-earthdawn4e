@@ -6,6 +6,8 @@ import { mapObject } from "../../utils/object.mjs";
 
 /**
  * @import { AdvancementSystemData } from "./_types.mjs";
+ * @import { tier } from "../../config/legend.mjs";
+ * @import { DocumentUuid } from "../../_types.mjs";
  */
 
 /**
@@ -77,7 +79,7 @@ export default class AdvancementData extends SparseDataModel {
 
   /**
    * Get the abilities that are not yet learned for each tier.
-   * @type {Record<string,Set<string>>}
+   * @type {Record<keyof typeof tier,Set<DocumentUuid>>}
    */
   get availableAbilityOptions() {
     const learnedOptions = Object.keys( this.learnedOptions );
@@ -101,9 +103,9 @@ export default class AdvancementData extends SparseDataModel {
   // region Methods
 
   /**
-   * Add abilities to the given type of options pool.
-   * @param {[ItemEd|string]} abilities         An array of ability item or their UUIDs to add.
-   * @param {keyof typeof ED4E.tier} poolType   The type/tier of pool the abilities are added to.
+   * Add abilities to the given type of ability options pool.
+   * @param {[ItemEd|DocumentUuid]} abilities         An array of ability items or their UUIDs to add.
+   * @param {keyof typeof tier} poolType   The type/tier of pool the abilities are added to.
    */
   addAbilities( abilities, poolType ) {
     const propertyKey = `system.advancement.abilityOptions.${poolType}`;
@@ -145,8 +147,8 @@ export default class AdvancementData extends SparseDataModel {
 
   /**
    * Remove abilities from the given type of pool.
-   * @param {[ItemEd|string]} abilities             An array of ability items or their UUIDs to remove.
-   * @param {keyof typeof ED4E.tier} poolType       The type/tier of pool the abilities are removed from.
+   * @param {[ItemEd|DocumentUuid]} abilities             An array of ability items or their UUIDs to remove.
+   * @param {keyof typeof tier} poolType       The type/tier of pool the abilities are removed from.
    */
   removeAbilities( abilities, poolType ) {
     const propertyKey = `system.advancement.abilityOptions.${poolType}`;
@@ -162,6 +164,7 @@ export default class AdvancementData extends SparseDataModel {
 
   // region Migration
 
+  /** @inheritdoc */
   static migrateData( source ) {
     if ( Array.isArray( source.levels ) ) {
       source.levels = source.levels.reduce( ( acc, levelData ) => {

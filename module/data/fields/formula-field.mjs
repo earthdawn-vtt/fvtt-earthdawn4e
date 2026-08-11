@@ -106,6 +106,10 @@ export default class FormulaField extends foundry.data.fields.StringField {
 
   // region Getters
 
+  /**
+   * The placeholder hint for this field.
+   * @type {string}
+   */
   get placeholderHint() {
     return "e.g. 2*@rank + @extras";
   }

@@ -39,6 +39,7 @@ export default class AbilityRollOptions extends EdRollOptions {
 
   // region Static Methods
 
+  /** @inheritdoc */
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {

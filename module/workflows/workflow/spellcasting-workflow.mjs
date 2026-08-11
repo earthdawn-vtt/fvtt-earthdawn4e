@@ -13,12 +13,17 @@ import { LoggerEd } from "../../logging/logger.mjs";
 const logger = LoggerEd.getInstance();
 
 /**
+ * @typedef {"raw"|"grimoire"|"matrix"} CastingMethod
+ */
+
+/**
  * @typedef {object} SpellcastingWorkflowOptions
  * @property {Item} spell - The spell being cast
- * @property {"raw"|"grimoire"|"matrix"} [castingMethod] - The method used to cast the spell (matrix, grimoire, raw)
+ * @property {"raw"|"grimoire"|"matrix"} [CastingMethod] - The method used to cast the spell (matrix, grimoire, raw)
  * @property {boolean} [stopOnWeaving=true] - Whether to stop the workflow after thread weaving is required
  * @property {Item} [matrix] - The matrix the spell is attuned to, if applicable
  */
+
 
 /**
  * Base class for all spellcasting workflows
@@ -31,6 +36,11 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
     "raw":      RawCastingWorkflow,
   };
 
+  /**
+   * Whether the caster only uses raw magic when casting spells. These are dragons, horrors, and spirits.
+   * @type {boolean}
+   * @private
+   */
   get _isRawCaster() {
     return [
       SYSTEM_TYPES.Actor.dragon,
@@ -40,37 +50,37 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
   }
 
   /**
-   * The spell being cast
+   * The spell being cast.
    * @type {Item}
    */
   _spell;
 
   /**
-   * The method used to cast the spell (matrix, grimoire, raw)
-   * @type {string}
+   * The method used to cast the spell.
+   * @type {CastingMethod}
    */
   _castingMethod;
 
   /**
-   * If grimoire casting, the grimoire from which the spell is cast
+   * If grimoire casting, the grimoire from which the spell is cast.
    * @type {ItemEd}
    */
   _grimoire;
 
   /**
-   * Whether the spell should be attuned to a grimoire before casting
+   * Whether the spell should be attuned to a grimoire before casting.
    * @type {boolean}
    */
   _attuneGrimoire;
 
   /**
-   * The matrix the spell is attuned to, if applicable
+   * The matrix the spell is attuned to, if applicable.
    * @type {Item}
    */
   _matrix;
 
   /**
-   * Whether to stop the workflow after thread weaving
+   * Whether to stop the workflow after thread weaving.
    * @type {boolean}
    */
   _stopOnWeaving;
@@ -95,6 +105,10 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
     );
   }
 
+  /**
+   * Determine the casting method (matrix, grimoire, raw).
+   * @private
+   */
   async #chooseCastingMethod() {
     if ( this._spell.system.isWeaving && this._matrix ) this._castingMethod = "matrix";
     if ( this._castingMethod ) return;
@@ -106,6 +120,11 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
     if ( !this._castingMethod ) this.cancel();
   }
 
+  /**
+   * Prompt the user to choose a casting method.
+   * @returns {Promise<CastingMethod|null>}  The selected casting method.
+   * @private
+   */
   async #promptCastingMethod() {
     const buttonClass = "ed-button-select-casting-method";
 
@@ -147,6 +166,10 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
     );
   }
 
+  /**
+   * Attune the spell if necessary.
+   * @private
+   */
   async #attuneSpell() {
     if ( ![ "matrix", "grimoire" ].includes( this._castingMethod ) ) return;
 
@@ -157,6 +180,10 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
     }
   }
 
+  /**
+   * Handle attuning a spell to a grimoire.
+   * @private
+   */
   async #handleAttuneGrimoire() {
     try {
       const attunedGrimoires = this._spell.system.getAttunedGrimoires( this._actor );
@@ -192,6 +219,10 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
     }
   }
 
+  /**
+   * Handle attuning a spell to a matrix.
+   * @private
+   */
   async #handleAttuneMatrix() {
     const attuneMatrixWorkflow = new AttuneMatrixWorkflow( this._actor, {} );
     await attuneMatrixWorkflow.execute();
@@ -208,6 +239,10 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
     }
   }
 
+  /**
+   * Create the specific casting workflow as defined by {@link _castingMethod}.
+   * @private
+   */
   async #createCastingWorkflow() {
     if ( !this._castingMethod ) {
       throw new WorkflowInterruptError(
@@ -223,6 +258,10 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
     }
   }
 
+  /**
+   * Execute the specific casting workflow.
+   * @private
+   */
   async #executeCastingWorkflow() {
     if ( !this._CastingWorkflow ) {
       throw new Error( `Unknown casting method: ${this._castingMethod}` );

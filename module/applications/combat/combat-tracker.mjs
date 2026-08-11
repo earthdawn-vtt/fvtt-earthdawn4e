@@ -1,5 +1,8 @@
 import * as SYSTEM from "../../config/system.mjs";
 
+/**
+ * @inheritDoc
+ */
 export default class CombatTrackerEd extends foundry.applications.sidebar.tabs.CombatTracker {
 
   /** @inheritDoc */

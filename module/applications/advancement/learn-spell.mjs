@@ -4,6 +4,9 @@ import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import { getSetting } from "../../helpers/settings.mjs";
 
 
+/**
+ * A dialog for learning a spell with all options, like help from a teacher, patterncraft, etc.
+ */
 export default class LearnSpellPrompt extends ApplicationEd {
 
   /**
@@ -21,10 +24,17 @@ export default class LearnSpellPrompt extends ApplicationEd {
     this.spell = options.spell;
 
     const fields = foundry.data.fields;
-    this.dataModel = new class extends foundry.abstract.DataModel {
+
+    this.dataModel = new /**
+     * A data model for validating and rendering the learn spell dialog's form state.
+     * Holds all user-configurable options such as LP cost, patterncraft usage, and teacher involvement.
+     * @type {foundry.abstract.DataModel}
+     */ class extends foundry.abstract.DataModel {
       static LOCALIZATION_PREFIXES = [
         "ED.Data.Other.LearnSpell",
       ];
+
+      /** @inheritdoc */
       static defineSchema() {
         return {
           lpCost:       new fields.NumberField( {

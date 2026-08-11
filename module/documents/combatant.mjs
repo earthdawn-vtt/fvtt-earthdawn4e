@@ -2,6 +2,9 @@ import InitiativeRollOptions from "../data/roll/initiative.mjs";
 import EdRoll from "../dice/ed-roll.mjs";
 import StartRoundCombatantPrompt from "../applications/combat/start-round-combatant-prompt.mjs";
 
+/**
+ * Custom Combatant document class for Earthdawn.
+ */
 export default class CombatantEd extends foundry.documents.Combatant {
 
   // region Static Properties

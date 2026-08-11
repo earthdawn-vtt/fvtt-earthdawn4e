@@ -62,6 +62,10 @@ export default class Workflow {
 
   // region Properties
 
+  /**
+   * The name of the workflow.
+   * @type {string}
+   */
   get name() {
     return this._name;
   }
@@ -75,6 +79,10 @@ export default class Workflow {
     return this._canceled;
   }
 
+  /**
+   * The result of the workflow.
+   * @type {any}
+   */
   get result() {
     return this._result;
   }

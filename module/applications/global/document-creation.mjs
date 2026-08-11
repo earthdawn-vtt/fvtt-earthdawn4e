@@ -243,13 +243,12 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     event.stopPropagation();
     event.stopImmediatePropagation();
 
-    /* eslint-disable new-cap */
     let createData = this._updateCreationData( this.createData );
     createData.name ||= this.documentCls.implementation.defaultName( {
       type: createData.type,
     } );
     createData = new this.documentCls.implementation( createData ).toObject();
-    /* eslint-enable new-cap */
+     
 
     let promise;
 

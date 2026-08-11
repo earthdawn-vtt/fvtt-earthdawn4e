@@ -11,6 +11,9 @@ import AttuningRollOptions from "../../data/roll/attuning.mjs";
  * @property {ItemEd} [spell] - The spell to attune to the grimoire. If not provided, the user will be prompted to select a spell.
  */
 
+/**
+ * Workflow for attuning a spell to a grimoire.
+ */
 export default class AttuneGrimoireWorkflow extends Rollable( ActorWorkflow ) {
 
   /**
@@ -64,6 +67,10 @@ export default class AttuneGrimoireWorkflow extends Rollable( ActorWorkflow ) {
 
   // region Steps
 
+  /**
+   * Prompt the user to select a grimoire if one wasn't provided.
+   * @private
+   */
   async #selectGrimoire() {
     if ( this._grimoire ) return;
 
@@ -77,6 +84,10 @@ export default class AttuneGrimoireWorkflow extends Rollable( ActorWorkflow ) {
     this._grimoire = grimoire;
   }
 
+  /**
+   * Prompt the user to select a spell to attune to the grimoire.
+   * @private
+   */
   async #selectSpell() {
     if ( this._spell ) return;
 
@@ -114,6 +125,10 @@ export default class AttuneGrimoireWorkflow extends Rollable( ActorWorkflow ) {
     this._spell = spell;
   }
 
+  /**
+   * Find the Patterncraft ability for the attuning actor.
+   * @private
+   */
   async #findPatterncraftAbility() {
     if ( this._attuneAbility ) return;
 
@@ -128,6 +143,10 @@ export default class AttuneGrimoireWorkflow extends Rollable( ActorWorkflow ) {
     }
   }
 
+  /**
+   * Create the roll options for the attunement test.
+   * @private
+   */
   async #createRollOptions() {
     this._rollOptions = AttuningRollOptions.fromActor(
       {
@@ -141,6 +160,7 @@ export default class AttuneGrimoireWorkflow extends Rollable( ActorWorkflow ) {
     );
   }
 
+  /** @inheritdoc */
   async _processRoll() {
     this._roll = await this._roll.evaluate();
     this._result = this._roll;

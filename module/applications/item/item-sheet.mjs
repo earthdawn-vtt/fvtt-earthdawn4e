@@ -2,6 +2,8 @@ import SpellEnhancementsConfig from "../configs/spell-enhancements-config.mjs";
 import ConstraintsConfig from "../configs/constraints-config.mjs";
 import DocumentSheetMixinEd from "../api/document-sheet-mixin.mjs";
 
+/** @import from @
+
 const { ItemSheetV2 } = foundry.applications.sheets;
 const { TextEditor } = foundry.applications.ux;
 const { HTMLDocumentTagsElement }= foundry.applications.elements;
@@ -13,7 +15,7 @@ const { HTMLDocumentTagsElement }= foundry.applications.elements;
  * @augments {ItemSheetV2}
  * @mixes DocumentSheetMixinEd
  */
-export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
+export default class ItemSheetEd extends DocumentSheetMixinEd( foundry.applications.sheets.ItemSheetV2 ) {
 
   // region Static Properties
   static DEFAULT_OPTIONS = {
@@ -117,6 +119,8 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
   // endregion
 
   // region Rendering
+
+  /** @inheritDoc */
   async _preparePartContext( partId, contextInput, options ) {
     const context = await super._preparePartContext( partId, contextInput, options );
     switch ( partId ) {
@@ -134,6 +138,7 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
     return context;
   }
 
+  /** @inheritDoc */
   async _prepareContext( options ) {
     const context = await super._prepareContext( options );
     foundry.utils.mergeObject(
@@ -158,12 +163,26 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
     return context;
   }
 
+  /**
+   * Prepares the context for the "Details" tab.
+   *
+   * @param {ApplicationRenderContext} context - The context object to be prepared and updated.
+   * @param {HandlebarsRenderOptions} options - Options that configure application rendering behavior.
+   * @return {Promise<ApplicationRenderContext>} A promise that resolves to the updated context object.
+   */
   async _prepareDetailsContext( context, options ) {
-    if ( this.document.system.matrix )await this._prepareMatrixContext( context, options );
+    if ( this.document.system.matrix ) await this._prepareMatrixContext( context, options );
 
     return context;
   }
 
+  /**
+   * Prepares the context for the "Matrix" tab.
+   *
+   * @param {ApplicationRenderContext} context - The context object to be prepared and updated.
+   * @param {HandlebarsRenderOptions} options - Options that configure application rendering behavior.
+   * @return {Promise<ApplicationRenderContext>} A promise that resolves to the updated context object.
+   */
   async _prepareMatrixContext( context, options ) {
     context.activeSpellChoices = this.document.system.getActiveSpellChoices?.();
 
@@ -194,6 +213,11 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
 
   // region Event Handlers
 
+  /**
+   * Opens the configuration application for the item.
+   *
+   * @type {ApplicationClickAction}
+   */
   static async _onConfig( event, target ) {
     event.preventDefault();
     event.stopPropagation();
@@ -233,6 +257,12 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
 
   // region Drag and Drop
 
+  /**
+   * Creates and returns an array of DragDrop handler instances based on the configurations
+   * provided in the options.
+   *
+   * @return {foundry.applications.ux.DragDrop[]} An array of DragDrop handler instances.
+   */
   #createDragDropHandlers() {
     return this.options.dragDrop.map( dragDropConfig => {
       dragDropConfig.permissions = {
@@ -271,8 +301,6 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
   /**
    * An event that occurs when a drag workflow begins for a draggable item on the sheet.
    * @param {DragEvent} event       The initiating drag start event
-   * @returns {Promise<void>}
-   * @protected
    */
   async _onDragStart( event ) {
     if ( "link" in event.target.dataset ) return;
@@ -305,8 +333,6 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
   /**
    * An event that occurs when data is dropped into a drop target.
    * @param {DragEvent} event     The drop event
-   * @returns {Promise<void>}
-   * @protected
    */
   async _onDrop( event ) {
     if ( !this.isEditable ) return;
@@ -327,13 +353,11 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
    * Handle a dropped document on the ItemSheet
    * @param {DragEvent} event         The initiating drop event
    * @param {Document} document       The resolved Document class
-   * @returns {Promise<void>}
-   * @protected
    */
   async _onDropDocument( event, document ) {
     // Ignore our handling if dropped on a Foundry document tags element
     if ( event.target.closest(
-      HTMLDocumentTagsElement.tagName.toLowerCase()
+      foundry.applications.elements.HTMLDocumentTagsElement.tagName.toLowerCase()
     )?.contains( event.target ) ) return;
 
     if ( !this.item.system._onDropDocument( event, document ) ) return;
@@ -354,8 +378,6 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
    * The default implementation creates an Active Effect embedded document on the Actor.
    * @param {DragEvent} event       The initiating drop event
    * @param {ActiveEffect} effect   The dropped ActiveEffect document
-   * @returns {Promise<void>}
-   * @protected
    */
   async _onDropActiveEffect( event, effect ) {
     if ( !this.item.isOwner ) return;
@@ -368,8 +390,6 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
    * Handle a dropped Actor on the ItemSheet.
    * @param {DragEvent} event     The initiating drop event
    * @param {Actor} actor         The dropped Actor document
-   * @returns {Promise<void>}
-   * @protected
    */
   async _onDropActor( event, actor ) {}
 
@@ -377,8 +397,6 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
    * Handle a dropped Item on the Actor Sheet.
    * @param {DragEvent} event     The initiating drop event
    * @param {Item} item           The dropped Item document
-   * @returns {Promise<void>}
-   * @protected
    */
   async _onDropItem( event, item ) {
     // do nothing
@@ -388,8 +406,6 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
    * Handle a dropped Folder on the Actor Sheet.
    * @param {DragEvent} event     The initiating drop event
    * @param {object} data         Extracted drag transfer data
-   * @returns {Promise<void>}
-   * @protected
    */
   async _onDropFolder( event, data ) {}
 

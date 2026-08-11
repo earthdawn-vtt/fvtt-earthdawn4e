@@ -4,6 +4,9 @@ import ApplicationEd from "../api/application.mjs";
 import * as ROLLS from "../../config/rolls.mjs";
 import * as SYSTEM from "../../config/system.mjs";
 
+/**
+ * The prompt dialog for initiating and managing rolls within Earthdawn.
+ */
 export default class RollPrompt extends ApplicationEd {
 
   // region Properties

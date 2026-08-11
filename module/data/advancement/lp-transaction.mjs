@@ -83,12 +83,23 @@ export default class LpTransactionData extends foundry.abstract.DataModel {
 
   // region Rendering
 
+  /**
+   * Get this transaction as an HTML `<tr>` row element in the LP tracking table..
+   * @param {number} index     The index of the transaction.
+   * @param {string[]} classes  Additional CSS classes.
+   * @param {string} dataGroup  The data group for the row.
+   * @returns {string}         The HTML string for the row.
+   * @abstract
+   */
   getHtmlRow( index, classes, dataGroup ) {
     throw new Error( `The ${this["name"]} subclass of LpTransactionData must define its htmlRow` );
   }
 
   // endregion
 
+  /**
+   * Open a prompt to assign Legend Points to actors.
+   */
   static async assignLpPrompt () {
     const transactionsPerUser = await AssignLpPrompt.waitPrompt();
     if ( !transactionsPerUser ) return;

@@ -1,6 +1,12 @@
 import * as MAGIC from "../../config/magic.mjs";
 import * as SYSTEM from "../../config/system.mjs";
 
+/**
+ * Earthdawn-specific extensions to the SceneConfig application.
+ * Adds a select input for astral pollution.
+ *
+ * @augments {foundry.applications.sheets.SceneConfig}
+ */
 export default class SceneConfigEd extends foundry.applications.sheets.SceneConfig {
 
   static PARTS = {

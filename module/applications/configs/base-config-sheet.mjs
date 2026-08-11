@@ -54,6 +54,14 @@ export default class BaseConfigSheet extends DocumentSheetMixinEd( DocumentSheet
 
   // region Rendering
 
+  /**
+   * @inheritDoc
+   * Render the frame and modify the output by removing specific UI elements.
+   * This method can be overridden to customize the rendering behavior.
+   *
+   * @param {Object} [options={}] - Configuration options for rendering the frame.
+   * @return {Promise<HTMLElement>} A promise that resolves to the rendered frame element.
+   */
   async _renderFrame( options = {} ) {
     // Overwrite to not add the edit toggle (this shouldn't be a DocumentSheet I guess...)
     const frame = /** @type {HTMLElement} */ await super._renderFrame( options );

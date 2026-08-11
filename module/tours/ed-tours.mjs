@@ -3,6 +3,9 @@ import { LoggerEd } from "../logging/logger.mjs";
 
 const logger = LoggerEd.getInstance();
 
+/**
+ * Custom Tour class for Earthdawn.
+ */
 export default class EdTour extends foundry.nue.Tour {
   static tours = [
     "systems/ed4e/module/tours/lang/actor-item-creation",
@@ -14,6 +17,9 @@ export default class EdTour extends foundry.nue.Tour {
 
   ];
 
+  /**
+   * Register all tours.
+   */
   static async travelAgency(){
     const lang = game.i18n.lang === "de" ? "de" : "en";
     logger.log( "Adding ED Tours" );
@@ -29,6 +35,7 @@ export default class EdTour extends foundry.nue.Tour {
     }
   }
 
+  /** @inheritdoc */
   async _preStep() {
     // tabs of sidebar
     if( this.currentStep.activateTab ){
@@ -68,6 +75,7 @@ export default class EdTour extends foundry.nue.Tour {
   //     super.exit()
   // }
 
+  /** @inheritdoc */
   async start() {
     if( this.config.preCommand ){
       const AsyncFunction = Object.getPrototypeOf( async () => { } ).constructor;
