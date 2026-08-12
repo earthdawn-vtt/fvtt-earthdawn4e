@@ -79,4 +79,16 @@ Pfade und Questoren haben eine Fähigkeit, die in direktem Bezug zur Berufung st
 
 Wenn eine Disziplin erhöht wird, die ein Fadenwebentalent besitzt, das zum Zaubern genutzt wird, so erscheint noch eine Option, einen neuen Zauber zu erlernen.
 
+### Kreisaufstieg mit der Hausregel „Alle Talente“
+
+Die Einstellung "Mindestanforderungen Talente bei Kreisaufstieg" bietet **Alle Talente für Kreisaufstieg (Hausregel)**. Dabei handelt es sich um eine angepasste, nach Tiers aufgeteilte Version der optionalen Regel **„Using All Talents To Advance“** aus dem Spielerhandbuch. Die vollständige Regel ist im Spielerhandbuch beschrieben.
+
+Die Hausregel unterscheidet sich in folgenden Punkten von der Regel im Spielerhandbuch:
+
+- Statt einer Gesamtzahl wird eine Mindestanzahl für die Kategorien Novize, Geselle, Hüter und Meister verlangt.
+- Die Anforderungen für die einzelnen Kategorien beginnen in unterschiedlichen Kreisen und haben jeweils eine Obergrenze.
+- Für die Anforderungen an eine Kategorie wird nur geprüft, ob die Talente vorhanden sind. Der im Spielerhandbuch genannte Mindestrang wird dabei nicht verlangt.
+
+Die Bedingung, dass ein im aktuellen Kreis erlerntes Talent auf den Rang des neuen Kreises erhöht werden muss, bleibt bestehen. Es werden alle Talente berücksichtigt, die der Disziplin zugeordnet sind, einschließlich optionaler Talente.
+
 
