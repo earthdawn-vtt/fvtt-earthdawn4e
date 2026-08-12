@@ -103,7 +103,7 @@ export default class CombatEd extends foundry.documents.Combat {
     if ( !combatant ) return;
     const effects = combatant.effects.filter(
       effect => effect.system?.execution.executable === true
-        && effect.system?.executeOn === executionTime
+        && effect.system?.execution.executeOn === executionTime
     );
 
     for ( const effect of effects ) {
