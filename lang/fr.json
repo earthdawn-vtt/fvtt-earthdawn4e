@@ -3519,7 +3519,8 @@
         "talentKnacks":                           "Tours du talent",
         "talentSource":                           "Source du talent",
         "targetingDetails":                       "Détails de ciblage",
-        "type":                                   "Type"
+        "type":                                   "Type",
+        "weaponDetails":                          "TODO: Add translation"
       },
       "Namegiver": {
         "charismaValue":                          "Valeur de Charisme",
