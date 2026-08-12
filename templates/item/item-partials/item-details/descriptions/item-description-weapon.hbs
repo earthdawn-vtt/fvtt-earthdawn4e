@@ -4,7 +4,7 @@
     {{#if @root.editable}}
         {{formField systemFields.weaponType name="system.weaponType" value=item.system.weaponType localize=true}}
     {{/if}}
-    {{#if this.item.system.isRanged}}
+    {{#if (eq this.item.system.weaponType "missile")}}
         {{!-- Weapon Subtype --}}
         <div class="item-section item-section--weapon-subtype item-group">
         {{#if @root.editable}}
