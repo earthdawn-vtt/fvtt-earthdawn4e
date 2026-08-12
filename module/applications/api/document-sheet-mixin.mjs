@@ -324,7 +324,7 @@ const DocumentSheetMixinEd = Base => {
      * @this {DocumentSheetEd}
      */
     static async _onToggleActiveEffect( event, target ) {
-      const effect = /** @type {EarthdawnActiveEffect} */await fromUuid( target.dataset.effectUuid );
+      const effect = /** @type {EarthdawnActiveEffect} */ await this._resolveChildDocument( target );
 
       await effect.toggleActive();
     }
