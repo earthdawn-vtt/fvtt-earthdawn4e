@@ -3958,8 +3958,9 @@
       "weaveThread":                              "TODO: Add translation"
     },
     "Update": {
+      "changelog":                                "TODO: Add translation",
       "contact":                                  "TODO: Add translation",
-      "news1_0_0":                                "TODO: Add translation",
+      "news":                                     "TODO: Add translation",
       "newsHeader":                               "TODO: Add translation",
       "welcome":                                  "TODO: Add translation"
     }
