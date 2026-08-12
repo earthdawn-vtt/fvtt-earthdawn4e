@@ -92,11 +92,15 @@ export default class CombatEd extends foundry.documents.Combat {
    * @param {boolean} options.force   Force the reset even if the Combatant#system.keepInitiative is `true`.
    */
   async resetInitiatives( options = { force: false } ) {
-    for ( const combatant of this.combatants ) {
-      if ( options.force || !combatant.system.keepInitiative ) {
-        await combatant.resetInitiative();
-      }
-    }
+    const updates = this.combatants
+      .filter( combatant => options.force || !combatant.system.keepInitiative )
+      .filter( combatant => combatant.initiative !== null )
+      .map( combatant => ( { _id: combatant.id, initiative: null, } ) );
+
+    if ( updates.length ) await this.updateEmbeddedDocuments( "Combatant", updates, {
+      combatTurn: this.turn,
+      turnEvents: false,
+    } );
   }
 
   /**
