@@ -17,14 +17,16 @@ export default class RollProcessor {
 
   /**
    * Processors for specific roll types
-   * Each processor should handle the roll and return necessary updates to the actor
+   * Each processor should handle the roll and return the necessary updates to the actor
    * @type {Record<string, RollProcessorCallback>}
    */
   static _processors = {
-    "initiative": ( roll, actor, updateData = {} ) => { return updateData; },
-    "jumpUp":     RollProcessor._processJumpUp,
-    "knockdown":  RollProcessor._processKnockdown,
-    "recovery":   RollProcessor._processRecovery,
+    "initiative": ( roll, actor, updateData = {} ) => {
+      return updateData;
+    },
+    "jumpUp":    RollProcessor._processJumpUp,
+    "knockdown": RollProcessor._processKnockdown,
+    "recovery":  RollProcessor._processRecovery
     // Add other specialized processors here
   };
 
@@ -58,14 +60,16 @@ export default class RollProcessor {
     if ( roll.isDummy ) return roll;
 
     // Initialize update object to collect all changes
-    const updateData = {};
+    const updateData = {
+      system: {}
+    };
 
     // Process strain
     if ( !options.skipStrain && roll.totalStrain ) {
       await actor.takeDamage( roll.totalStrain, {
         isStrain:    true,
         damageType:  "standard",
-        ignoreArmor: true,
+        ignoreArmor: true
       } );
     }
 
@@ -76,7 +80,7 @@ export default class RollProcessor {
     }
 
     // Process by roll type
-    const typeProcessor = this._processors[ roll.options.rollType ];
+    const typeProcessor = this._processors[roll.options.rollType];
     if ( typeProcessor ) {
       await typeProcessor( roll, actor, updateData );
     }
@@ -100,19 +104,22 @@ export default class RollProcessor {
    * @param {RollResourceData} karma        The karma usage data.
    * @param {RollResourceData} devotion     The devotion usage data.
    * @param {object} [updateData] The update data to collect changes in.
+   * @param {object} [updateData.system] The updates for the character's system data.
    * @returns {object}            The modified update data.
    * @protected
    */
-  static _processResources( actor, karma, devotion, updateData = {} ) {
+  static _processResources( actor, karma, devotion, updateData = { system: {}, } ) {
     const karmaOk = actor.system.karma.value >= karma.pointsUsed;
     const devotionOk = actor.system.devotion.value >= devotion.pointsUsed;
 
     if ( karma.pointsUsed && karmaOk ) {
-      updateData["system.karma.value"] = actor.system.karma.value - karma.pointsUsed;
+      updateData.system.karma ??= {};
+      updateData.system.karma.value = actor.system.karma.value - karma.pointsUsed;
     }
 
     if ( devotion.pointsUsed && devotionOk ) {
-      updateData["system.devotion.value"] = actor.system.devotion.value - devotion.pointsUsed;
+      updateData.system.devotion ??= {};
+      updateData.system.devotion.value = actor.system.devotion.value - devotion.pointsUsed;
     }
 
     if ( !karmaOk )
@@ -128,12 +135,13 @@ export default class RollProcessor {
    * @param {EdRoll} roll         The jump up roll.
    * @param {ActorEd} actor       The actor who made the roll.
    * @param {object} [updateData] The update data.
+   * @param {object} [updateData.system] The updates for the character's system data.
    * @returns {Promise<object>}   The modified update data.
    * @protected
    */
-  static async _processJumpUp( roll, actor, updateData = {} ) {
+  static async _processJumpUp( roll, actor, updateData = { system: {} } ) {
     if ( roll.isSuccess ) {
-      await actor.toggleStatusEffect( "knockedDown", { active: false,}, );
+      await actor.toggleStatusEffect( "knockedDown", { active: false } );
     }
     return updateData;
   }
@@ -143,12 +151,13 @@ export default class RollProcessor {
    * @param {EdRoll} roll         The knockdown roll.
    * @param {ActorEd} actor       The actor who made the roll.
    * @param {object} [updateData] The update data.
+   * @param {object} [updateData.system] The updates for the character's system data.
    * @returns {Promise<object>}   The modified update data.
    * @protected
    */
-  static async _processKnockdown( roll, actor, updateData = {} ) {
+  static async _processKnockdown( roll, actor, updateData = { system: {} } ) {
     if ( !roll.isSuccess ) {
-      await actor.toggleStatusEffect( "knockedDown", { active: true, } );
+      await actor.toggleStatusEffect( "knockedDown", { active: true } );
     }
     return updateData;
   }
@@ -158,10 +167,11 @@ export default class RollProcessor {
    * @param {EdRoll} roll         The recovery roll.
    * @param {ActorEd} actor       The actor who made the roll.
    * @param {object} [updateData] The update data.
+   * @param {object} [updateData.system] The updates for the character's system data.
    * @returns {Promise<object>}   The modified update data.
    * @protected
    */
-  static async _processRecovery( roll, actor, updateData = {} ) {
+  static async _processRecovery( roll, actor, updateData = { system: {} } ) {
     let availableRecoveryTests = actor.system.characteristics.recoveryTestsResource.value;
     let stunRecoveryAvailable = actor.system.characteristics.recoveryTestsResource.stunRecoveryAvailable;
     let damageStandard = actor.system.characteristics.health.damage.standard;
@@ -200,18 +210,17 @@ export default class RollProcessor {
       availableRecoveryTests -= 1;
     }
 
-    updateData.system ??= {};
     updateData.system.characteristics ??= {};
     updateData.system.characteristics.recoveryTestsResource = {
       value:                 availableRecoveryTests,
-      stunRecoveryAvailable: stunRecoveryAvailable,
+      stunRecoveryAvailable: stunRecoveryAvailable
     };
     updateData.system.characteristics.health = {
       damage: {
         standard: damageStandard,
-        stun:     damageStun,
+        stun:     damageStun
       },
-      wounds: wounds,
+      wounds: wounds
     };
 
     return updateData;
