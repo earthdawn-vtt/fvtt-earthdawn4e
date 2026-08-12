@@ -208,11 +208,13 @@ async function _createDebugDocuments() {
 
 /**
  * Display the update news dialog
- * @returns {Promise<void>}
  */
 async function _showUpdateNews() {
   const html = await foundry.applications.handlebars.renderTemplate(
-    "systems/ed4e/templates/system-messages/update-message-v1_0_0.hbs"
+    "systems/ed4e/templates/system-messages/update-message.hbs",
+    {
+      version: game.system.version,
+    }
   );
   DialogEd.wait( {
     title:   _loc( "ED.Dialogs.Header.update" ),
