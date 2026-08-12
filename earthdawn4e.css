@@ -1314,6 +1314,10 @@ body.theme-light {
   background-image: url('assets/chat/messages/background-spellcasting.svg');
   background-repeat: no-repeat;
 }
+.chat-message .flavor-text:has(.half-magic-visualization) {
+  background-image: url('assets/chat/messages/background-half-magic.svg');
+  background-repeat: no-repeat;
+}
 .chat-message .flavor-text:has(.damage-visualization) {
   background-image: url('assets/chat/messages/background-damage.svg');
   background-repeat: no-repeat;
