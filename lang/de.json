@@ -3958,8 +3958,9 @@
       "weaveThread":                              "Würfle Fadenweben um den Fadenrang zu erhöhen."
     },
     "Update": {
+      "changelog":                                "Eine vollständige Liste der Änderungen kannst du hier finden: <a href=\"https://github.com/earthdawn-vtt/fvtt-earthdawn4e/blob/release-{version}/CHANGELOG.md\" target=\"_blank\">Changelog</a>.",
       "contact":                                  "Bei Fragen oder Problemen kontaktiert uns bitte im <a href=\"https://discord.gg/earthdawn-foundry\" target=\"_blank\">Earthdawn Foundry Discord</a>.",
-      "news1_0_0":                                "<h3>Willkommen in bei der neuesten Version vom Earthdawn System für Foundry Virtual Tabletop</h3><p>Dies ist die Beta Version des überarbeiteten Earthdawn Systems.</p><p>Das System wurde von Grund auf neu überarbeitet und viele Abläufe haben sich geändert.</p><p>Alle Einzelheiten hier aufzuführen wäre zu viel, schaut euch gerne das Wiki an <a href=\"https://github.com/earthdawn-vtt/fvtt-earthdawn4e/wiki\" target=\"_blank\">Wiki</a> an</p>",
+      "news":                                     "<h3>Willkommen in bei der neuesten Version vom Earthdawn System für Foundry Virtual Tabletop</h3><p>Dies ist die Beta Version des überarbeiteten Earthdawn Systems.</p><p>Das System wurde von Grund auf neu überarbeitet und viele Abläufe haben sich geändert.</p><p>Alle Einzelheiten hier aufzuführen wäre zu viel, schaut euch gerne das Wiki an <a href=\"https://github.com/earthdawn-vtt/fvtt-earthdawn4e/wiki\" target=\"_blank\">Wiki</a> an</p>",
       "newsHeader":                               "Neuigkeiten",
       "welcome":                                  "Willkommen bei der Edition {version} vom Earthdawn Foundry System"
     }
