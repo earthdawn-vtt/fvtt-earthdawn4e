@@ -49,7 +49,7 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
         "effect",
         "parent",
         "options",
-        `{${ this.executionScript }\n}`,
+        `{${ this.execution.script }\n}`,
       );
       await fn.call( globalThis, this.parentDocument, this.parentDocument.parent, options );
     } catch ( error ) {
