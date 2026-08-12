@@ -37,7 +37,21 @@ export default function () {
 
     // endregion
 
-    if ( getSetting( "hideUpdateNews" ) === false ) await _showUpdateNews();
+    // region Updates
+
+    const currentVersion = game.system.version;
+    const lastSeenVersion = getSetting( "lastSeenVersion" );
+    const isNewVersion = foundry.utils.isNewerVersion( currentVersion, lastSeenVersion );
+
+    if (
+      isNewVersion
+      || getSetting( "hideUpdateNews" ) === false
+    ) {
+      await _showUpdateNews();
+      if ( isNewVersion ) await setSetting( "lastSeenVersion", currentVersion );
+    }
+
+    // endregion
 
   } );
 }
