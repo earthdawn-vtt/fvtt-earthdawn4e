@@ -152,7 +152,7 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( foundry.applicati
       }
     );
 
-    context.enrichedBriefDescription = await TextEditor.enrichHTML(
+    context.enrichedBriefDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
       this.document.system.summary.value,
       {
         // Only show secret blocks to owner

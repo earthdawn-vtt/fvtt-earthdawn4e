@@ -11,8 +11,9 @@
       <input type="checkbox"
              class="effect-card__grid--checkbox"
              data-action="toggleActiveEffect"
-             data-effect-id="{{_id}}"
-             data-effect-uuid="{{_uuid}}"
+             data-uuid="{{_uuid}}"
+             data-embedded-id="{{_id}}"
+             data-document-type="{{documentName}}"
              {{#unless disabled}}checked{{/unless}}
       />
     </div>
