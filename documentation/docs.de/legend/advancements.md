@@ -4,8 +4,6 @@ group: Deutsch
 category: Legende
 ---
 
-# Verbesserungen
-
 Wie schon im Kapitel [Legendenpunkte](./legend-points.md) erwähnt, können viele Fähigkeiten der Charaktere durch den Einsatz von Legendenpunkten (LP) erlernt oder verbessert werden. Außerdem gibt es noch die Verbesserungen der Disziplinen, der Pfade und der Questoren, die keine Legendenpunkte benötigen.
 
 Unabhängig davon werden in diesem Abschnitt die einzelnen Lern- und Verbesserungsmethoden detailliert beschrieben.

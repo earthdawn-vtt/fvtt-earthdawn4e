@@ -3,7 +3,6 @@ title: Legendenpunkte
 group: Deutsch
 category: Legende
 ---
-# Grundlagen
 
 Legendenpunkte (LP) sind ein zentrales Element des Earthdawn-Systems und ermöglichen es Charakteren, ihre Fähigkeiten zu verbessern. Das Earthdawn-System für Foundry VTT hat umfangreiche Möglichkeiten zur Verwaltung von Legendenpunkten.
 
@@ -78,5 +77,4 @@ Diese Berufungen lassen sich alle im Editiermodus steigern. Ähnlich den Fähigk
 Pfade und Questoren haben eine Fähigkeit, die in direktem Bezug zur Berufung steht und die mindestens einen Rang besitzen muss, der dem neuen Rang des Pfades oder des Questors entspricht. Ist dies nicht der Fall, bietet das System die Möglichkeit, die entsprechende Fähigkeit gleich mitzusteigern.
 
 Wenn eine Disziplin erhöht wird, die ein Fadenwebentalent besitzt, das zum Zaubern genutzt wird, so erscheint noch eine Option, einen neuen Zauber zu erlernen.
-
 

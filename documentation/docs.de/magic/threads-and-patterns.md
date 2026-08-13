@@ -3,8 +3,6 @@ title: Fäden und Strukturen
 group: Deutsch
 category: Magie
 ---
-# Fäden und Strukturen
-
 In diesem Kapitel werden die Funktionsweisen von magischen Fäden – außerhalb der Spruchzauberei – behandelt.
 
 ## Strukturen
@@ -84,5 +82,4 @@ Gewobene Fäden sind im Tab „Verknüpfungen“ zu finden und können auch dort
 ### Fadengegenstände
 
 Viele Strukturgegenstände im Spiel sind Fadengegenstände mit mehreren Rängen. Die Anzahl der Ränge kann mit der Funktion „Rang hinzufügen“ oder „Rang entfernen“ angepasst werden. Es wird immer der nächsthöhere Rang hinzugefügt und immer der höchste Rang entfernt. Entfernte Ränge sind nicht wiederherstellbar.
-
 

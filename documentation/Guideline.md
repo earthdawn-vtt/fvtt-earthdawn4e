@@ -4,7 +4,7 @@ This Guideline provides an overview of the documentation and provides the rules 
 
 ## Release Notes
 
-The release notes provide an overview of all changes done to the system. Release notes will be created for every version. 
+The release notes provide an overview of all changes done to the system. Release notes will be created for every version.
 
 ### Versioning
 
@@ -29,7 +29,7 @@ minor releases contain upgrades to the Topic of the main release. Features point
 #### Bug fix releases / Foundry upgrade
 
 Bug fix releases are for sever bugs which cannot wait for the next major or minor release. <br>
-If a new Foundry Core version is released, a separate release might be required which is not containing any new features. 
+If a new Foundry Core version is released, a separate release might be required which is not containing any new features.
 
 ### Version Changes
 
@@ -37,9 +37,10 @@ Version changes to the system require a specific documentation. the following Ch
 
 #### Breaking Changes
 
-Breaking Changes are system changes which will change or disable previous system functionality behavior. 
+Breaking Changes are system changes which will change or disable previous system functionality behavior.
 
-**Template**
+##### Template
+
 - Change
 - Reason
 - Current Behavior
@@ -50,7 +51,8 @@ Breaking Changes are system changes which will change or disable previous system
 
 New Features bring new functionality to the system without interfering with current functionality.
 
-**Template**
+##### Template
+
 - Major Release Topic
 - New Feature
 - how does it work
@@ -60,19 +62,21 @@ New Features bring new functionality to the system without interfering with curr
 
 Fixed bugs will contain a list of all bugs fixed in this release
 
-**Template**
+##### Template
+
 - #ISSUEID - Bug name
 
 #### Known Bugs
 
-Known bugs will contain a list of all current Bugs in the system 
+Known bugs will contain a list of all current Bugs in the system
 
-**Template**
+##### Template
+
 - #ISSUEID - Bug name
 
 ## Manual
 
-There will be two different types of manuals available. The first is to be found in the github repository, accessible for everyone. The second manual is an in game Journal Compendium for the usage during the gaming session. Each Manual is separated into two parts. A Game Master section and a Player section. The Game Master section containing all information about the system setup, configurations etc. 
+There will be two different types of manuals available. The first is to be found in the github repository, accessible for everyone. The second manual is an in game Journal Compendium for the usage during the gaming session. Each Manual is separated into two parts. A Game Master section and a Player section. The Game Master section containing all information about the system setup, configurations etc.
 
 ### System Manual for Game Master
 
@@ -85,7 +89,7 @@ Every chapter in the Player Manual is dedicated to one general Topic ( Actor She
 
 ## Functional Specification
 
-The Functional Specification holds the content of the system Manuals and extents them by adding flow diagrams if necessary. The Functionality is further cut down into use cases (see below). Every use case has a connection to a set of user functions, and test cases (see also below). 
+The Functional Specification holds the content of the system Manuals and extents them by adding flow diagrams if necessary. The Functionality is further cut down into use cases (see below). Every use case has a connection to a set of user functions, and test cases (see also below).
 
 ### Use Cases
 
@@ -99,7 +103,7 @@ every time a code change is made, the user function attached to the changed func
 User Functions are named using this schema:<br>
 UF_`<FUNCTION>`-`<OPERATION>` <br>
 User Functions are not linked by default to any use case by name or similar, only by adding the user function to the link list in the use case itself.
-Every user function contains a brief description about its functionality. This description is - if necessary - separated into a description and a technical part. 
+Every user function contains a brief description about its functionality. This description is - if necessary - separated into a description and a technical part.
 
 #### Test Cases
 
@@ -111,7 +115,8 @@ The following chapter is about the responsibility of developers to document the 
 
 ### JSDoc
 
-We use JSDoc for type safety and documentation. 
+We use JSDoc for type safety and documentation.
+
 - Use `@typedef` for complex objects, especially for function parameters and results.
 - Frequently used types should be placed in `module/_types.mjs`.
 - Document everything.
@@ -129,7 +134,7 @@ With every release it is mandatory to create and update tests according to the c
 
 ## Testing
 
-Testing is a crucial part of software development and this is no exception to it. 
+Testing is a crucial part of software development and this is no exception to it.
 
 ### GitHub usage
 
