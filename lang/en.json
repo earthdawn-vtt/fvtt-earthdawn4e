@@ -822,7 +822,7 @@
       "displayItem":                              "Show Item in Chat",
       "downgrade":                                "Downgrade",
       "edit":                                     "Edit",
-      "lockHint":                                 "TODO: 'Controls.lockHint' missing",
+      "lockHint":                                 "Lock Hint",
       "middleClick":                              "Middle Mouse Button (Scroll Wheel)",
       "sheetModeEdit":                            "Edit",
       "sheetModePlay":                            "Play",
@@ -1253,8 +1253,8 @@
               "label":                            "Initiative Penalty"
             },
             "jumpUpStep": {
-              "hint":                             "TODO: Add translation",
-              "label":                            "TODO: Add translation"
+              "hint":                             "Step to use for jump up tests",
+              "label":                            "Jump Up Step"
             },
             "karma": {
               "freeAttributePoints": {
@@ -1279,8 +1279,8 @@
               }
             },
             "knockdownStep": {
-              "hint":                             "TODO: Add translation",
-              "label":                            "TODO: Add translation"
+              "hint":                             "Step to use for knockdown tests",
+              "label":                            "Knockdown Step"
             },
             "relations": {
               "attitude": {
@@ -2072,14 +2072,14 @@
                   "label":                        "Weapon Status"
                 },
                 "weaponTypes": {
-                  "hint":                         "TODO: Add translation",
-                  "label":                        "TODO: Add translation"
+                  "hint":                         "Weapon types related to this roll",
+                  "label":                        "Weapon Types"
                 }
               },
               "damage": {
                 "combatType": {
-                  "hint":                         "TODO: Add translation",
-                  "label":                        "TODO: Add translation"
+                  "hint":                         "Combat type related to this roll",
+                  "label":                        "Combat Type"
                 },
                 "hint":                           "Damage related to this roll",
                 "label":                          "Damage"
@@ -2512,8 +2512,8 @@
         "AttributeRollOptions": {
           "FIELDS": {
             "attribute": {
-              "hint":                             "TODO: Add translation",
-              "label":                            "TODO: Add translation"
+              "hint":                             "Attribute this roll is based on",
+              "label":                            "Attribute"
             }
           }
         },
@@ -3050,8 +3050,8 @@
         "complete":                               "Complete",
         "configure":                              "Configure",
         "continue":                               "Continue",
-        "continueWeavingSpellNo":                 "TODO: Add translation",
-        "continueWeavingSpellYes":                "TODO: Add translation",
+        "continueWeavingSpellNo":                 "Restart weaving",
+        "continueWeavingSpellYes":                "Continue weaving",
         "emptyAllMatrices":                       "Empty All Matrices",
         "finish":                                 "Finish",
         "free":                                   "Free",
@@ -3146,7 +3146,7 @@
         "Validation": {
           "Categories": {
             "attributes":                         "Attributes",
-            "class":                              "TODO: Add translation",
+            "class":                              "Vocation",
             "classRanks":                         "Discipline/Questor Ranks",
             "languages":                          "Languages",
             "namegiver":                          "Namegiver",
@@ -3175,7 +3175,7 @@
         "chooseSpellsRules":                      "Select spells from the lists below.<br>Maximum number of spells equals Perception step.<br>Circle 1 spells cost 1 point, Circle 2 spells cost 2 points.",
         "chooseTalentsRules":                     "Here are the Discipline talents and optional Novice talents.<br>You may choose one optional talent to raise with the Discipline talents.<br>Free talents always match Circle rank.<br>Assigned rank equals starting rank.",
         "circle":                                 "Circle {level}",
-        "classImageAlt":                          "TODO: Add translation",
+        "classImageAlt":                          "Image of the selected vocation",
         "discipline":                             "Discipline",
         "disciplineTalents":                      "Discipline Talents",
         "initiative":                             "Initiative Step / Dice",
@@ -3252,12 +3252,12 @@
           "classAbilitiesGained":                 "Gained Discipline Talents",
           "classIncreasedTier":                   "The class has been raised to {newTier}",
           "effectsGained":                        "Effects Gained",
-          "freeAbilitiesGained":                  "TODO: Add translation",
+          "freeAbilitiesGained":                  "Free Abilities Gained",
           "increaseClassTo":                      "Increase vocation to {increaseClassToLevel}",
           "learningClass":                        "Learning Vocation",
           "optionalAbilityGained":                "You gained an optional ability which can be increased later.",
           "resourceStepIncreased":                "Resource Step Increased",
-          "specialAbilitiesGained":               "TODO: Add translation",
+          "specialAbilitiesGained":               "Special Abilities Gained",
           "spellsGained":                         "Spells Gained"
         },
         "LearnSpell": {
@@ -3292,8 +3292,8 @@
           "disciplineLearnShortRequirements":     "<ul>\n<li>Study with an Adept of the desired Discipline (Fifth Circle or higher)</li>\n<li>The base cost in silver equals the sum of all Circles the student has in other Disciplines, multiplied by 100</li>\n<li>Learn all First Circle talents that are not yet known.</li>\n<li>Sufficient Legend Points must be available to learn all First Circle talents at once</li>\n<li>The lowest Circle among all previous Disciplines determines the cost for Rank 1 of the talents of the new Discipline</li>\n<li>Talent Options of the First Circle may be learned later as usual.</li>\n<li>The student must complete 40 hours of training within a week for each talent</li>\n</ul>\n",
           "pathIncreaseShortRequirements":        "To increase a rank:<ul>\n<li>Pass the corresponding path test.</li>\n<li>Obtain permission from higher-ranked members of the path.</li>\n<li>Perform the rank advancement ritual.</li>\n</ul>",
           "pathLearnShortRequirements":           "<ul>\n<li>The character must have passed the path test.</li>\n<li>The character must perform the advancement ritual with approval from a higher-ranked member.</li>\n<li>The character must have sufficient Legend Points for the next rank.</li>\n<li>The character must succeed at a Thread Weaving test.</li>\n</ul>",
-          "questorIncreaseShortRequirements":     "Todo: Add translation",
-          "questorLearnShortRequirements":        "Todo: Add translation",
+          "questorIncreaseShortRequirements":     "<ul>\n<li>Communicate with the Patron Passion by using the Questor devotion</li>\n<li>No test is required</li>\n<li>Only one devotion can be acquired or increased per day, and no more than one rank can be increased at a time for each devotion</li>\n<li>Apart from the Legend Point cost and the time spent on the advancement, there are no restrictions on increasing the rank of the Questor devotion within the same tier</li>\n<li>Moving from one tier to the next (e.g., from Follower to Adherent) requires accepting and completing a task (quest) in the name of the Passion</li>\n<li>A devotion from an earlier tier may be chosen</li>\n<li>The Legend Point cost of a granted devotion is based on when it becomes available, even if it is learned later</li>\n</ul>\n",
+          "questorLearnShortRequirements":        "<ul>\n<li>Explain the intention to become a Questor</li>\n<li>Begin by dedicating the character’s life to a single Passion</li>\n<li>Live by the ideals of this Passion</li>\n<li>Help spread its influence throughout Barsaive</li>\n<li>In return, the character gains access to the Questor devotion</li>\n<li>The rank in this devotion serves as a measure of dedication</li>\n</ul>\n",
           "skillIncreaseShortRequirements":       "<ul>\n<li>The character must be rested, with no damage or wounds during training.</li>\n<li>The character must train for a number of weeks equal to the new skill rank.</li>\n<li>The character must have sufficient Legend Points for the next rank.</li>\n<li>Training costs usually 10 silver × the new rank per week.</li>\n<li>The previous increase must be at least {trainingTime} weeks ago.</li>\n</ul>",
           "talentIncreaseShortRequirements":      "<ul>\n<li>The adept must be rested, with no damage or wounds.</li>\n<li>The adept must meditate for eight uninterrupted hours.</li>\n<li>The talent cannot already have been raised that day.</li>\n<li>The adept must have sufficient Legend Points for the next rank.</li>\n</ul>",
           "threadItemIncreaseShortRequirements":  "<ul>\n<li>The required Key Knowledge must be known</li>\n<li>The character must succeed at a Thread Weaving test.</li>\n<li>The character has sufficient Legend Points for the next Rank.</li>\n</ul>\n"
@@ -3351,7 +3351,7 @@
           "halfMagic":                            "Roll Half-Magic on {attribute}",
           "itemHistory":                          "Roll Item History",
           "jumpUp":                               "Roll Jump Up",
-          "rollAttribute":                        "TODO: Add translation",
+          "rollAttribute":                        "Roll Attribute Test",
           "weaveThread":                          "Weave Thread"
         },
         "devotion":                               "Devotion",
@@ -3638,7 +3638,7 @@
         "castSpellNoActor":                       "No actor found to cast the spell.",
         "chooseActorPromptNoActorAvailable":      "No actors are available for selection.",
         "classIncreaseProblems":                  "Circle or rank could not be updated.",
-        "couldNotAddLpTransaction":               "TODO: translation",
+        "couldNotAddLpTransaction":               "Could not add Legend Points transaction.",
         "couldNotScrollToSourceMessage":          "Could not find the source message.",
         "firstClassViaCharGen":                   "When selecting your first Discipline, use Character Generation, or attributes may not be set correctly.",
         "grimoireAddAlreadyInGrimoire":           "The spell is already in the Grimoire.",
@@ -3676,7 +3676,7 @@
       "Modifiers": {
         "bonusDamageFromExtraSuccesses":          "Bonus Damage from Extra Successes",
         "grimoirePenalty":                        "Foreign Grimoire",
-        "jumpUpNoKnockdownPenalty":               "TODO: Translation",
+        "jumpUpNoKnockdownPenalty":               "No Penalty from Being Knocked Down",
         "manual":                                 "Manual Adjustment",
         "spellEffectOrDamageStepCircle":          "Circle ({discipline})",
         "stunRecoveryWillpower":                  "Willpower"
@@ -3773,44 +3773,44 @@
       },
       "Groups": {
         "CharGen": {
-          "hint":                                 "TODO: Add translation",
-          "label":                                "TODO: Add translation",
-          "name":                                 "TODO: Add translation"
+          "hint":                                 "Settings for Character Generation",
+          "label":                                "Character Generation",
+          "name":                                 "Character Generation"
         },
         "Chat": {
-          "hint":                                 "TODO: Add translation",
-          "label":                                "TODO: Add translation",
-          "name":                                 "TODO: Add translation"
+          "hint":                                 "Settings for Chat and Chat Messages",
+          "label":                                "Chat",
+          "name":                                 "Chat"
         },
         "Controls": {
-          "hint":                                 "TODO: Add translation",
-          "label":                                "TODO: Add translation",
-          "name":                                 "TODO: Add translation"
+          "hint":                                 "Settings for System Controls",
+          "label":                                "Controls",
+          "name":                                 "Controls"
         },
         "Debug": {
-          "hint":                                 "TODO: Add translation",
-          "label":                                "TODO: Add translation",
-          "name":                                 "TODO: Add translation"
+          "hint":                                 "Settings for Debugging",
+          "label":                                "Debug",
+          "name":                                 "Debug"
         },
         "Edid": {
-          "hint":                                 "TODO: Add translation",
-          "label":                                "TODO: Add translation",
-          "name":                                 "TODO: Add translation"
+          "hint":                                 "The names for ED-IDs Used by the System",
+          "label":                                "Customize ED-IDs",
+          "name":                                 "ED-ID"
         },
         "GameMechanics": {
-          "hint":                                 "TODO: Add translation",
-          "label":                                "TODO: Add translation",
-          "name":                                 "TODO: Add translation"
+          "hint":                                 "Setting for Game Rules, Default Values, and Everything concerning Game Mechanics.",
+          "label":                                "Configure Game Mechanics",
+          "name":                                 "Game Mechanics"
         },
         "LpTracking": {
-          "hint":                                 "TODO: Add translation",
-          "label":                                "TODO: Add translation",
-          "name":                                 "TODO: Add translation"
+          "hint":                                 "Settings for Managing Legend Points",
+          "label":                                "Legend Points",
+          "name":                                 "LP-Tracking"
         },
         "Updates": {
-          "hint":                                 "TODO: Add translation",
-          "label":                                "TODO: Add translation",
-          "name":                                 "TODO: Add translation"
+          "hint":                                 "Settings for System Updates",
+          "label":                                "Updates",
+          "name":                                 "Updates"
         }
       },
       "Hint": {
