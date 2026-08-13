@@ -31,10 +31,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Setup Node.js
+      - name: Setup Node.js ${{ vars.NODE_VERSION }}
         uses: actions/setup-node@v5
         with:
-          node-version: ">=24"
+          node-version: ${{ vars.NODE_VERSION }}
 
       - name: Install dependencies
         run: npm install fast-glob yargs
