@@ -78,6 +78,7 @@ jobs:
         env:
           version: ${{ steps.bump_version.outputs.version }}
           download: https://github.com/${{ github.repository }}/releases/download/${{ env.TAG_NAME }}/${{ steps.system_id.outputs.value }}-${{ env.TAG_NAME }}.zip
+          changelog: https://github.com/${{ github.repository }}/fvtt-earthdawn4e/blob/release-${{ steps.bump_version.outputs.version }}/CHANGELOG.md
 
       - name: Commit changes
         run: |

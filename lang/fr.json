@@ -3958,8 +3958,9 @@
       "weaveThread":                              "Tisser un Filament"
     },
     "Update": {
+      "changelog":                                "TODO: Add translation",
       "contact":                                  "Contact",
-      "news1_0_0":                                "Nouveautés 1.0.0",
+      "news":                                     "Nouveautés 1.0.0",
       "newsHeader":                               "Actualités",
       "welcome":                                  "Bienvenue"
     }

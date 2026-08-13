@@ -139,6 +139,16 @@ const systemSettings = [
     } )
   },
 
+  {
+    group:  settingGroupsByKey.updates.key,
+    key:    "lastSeenVersion",
+    config: false,
+    scope:  "user",
+    type:   new StringField( {
+      initial: ""
+    } )
+  },
+
   // endregion
 
   // region ED-IDs
