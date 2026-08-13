@@ -82,3 +82,15 @@ All these vocations can be increased in Edit mode. Similar to abilities, a dialo
 Paths and Questors have an ability directly tied to the vocation that must have at least a rank equal to the new rank of the Path or Questor. If this is not the case, the system offers the option to increase that ability immediately.
 
 If a Discipline is increased, and it has a Thread Weaving talent used for spellcasting, another option appears to learn a new spell.
+
+### Circle advancement with the all-talents house rule
+
+The setting "Circle Advancement Talent Requirements" offers **All Talents for Circle Advancement (House Rule)**. This is an adjusted, tier-based version of the Player’s Guide optional rule **“Using All Talents To Advance”**. Refer to the Player’s Guide for the complete rule.
+
+The house rule differs from the Player’s Guide rule in the following ways:
+
+- Instead of one total number of talents, it requires separate minimum numbers for the Novice, Journeyman, Warden, and Master tiers.
+- The tier requirements start at different Circles and are capped at a maximum number of talents.
+- The tier counts only check whether the talents exist; they do not require the minimum talent rank from the Player’s Guide.
+
+The requirement that one talent learned at the current Circle must be raised to the new Circle’s rank remains in effect. All talents associated with the Discipline are considered, including optional talents.
