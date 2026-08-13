@@ -99,4 +99,3 @@ Im nächsten Schritt werden die Sprachen des Charakters bestimmt. Du kannst dabe
 
 Im letzten Schritt bekommst du die Grundausrüstung des Charakters. Das sind die Ausrüstungsgegenstände, die der Grundausrüstung aus dem Kapitel Charaktererschaffung aus dem Spielerhandbuch entsprechen. Zusätzliche Ausrüstung musst du nach der Charaktererschaffung selbst hinzufügen.
 
-

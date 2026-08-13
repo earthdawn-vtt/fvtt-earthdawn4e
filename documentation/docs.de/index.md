@@ -12,4 +12,4 @@ children:
   - ./system/release-notes.md
 ---
 
-# Deutsche Doku
+Deutsche Doku

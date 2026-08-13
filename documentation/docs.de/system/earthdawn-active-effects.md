@@ -3,7 +3,6 @@ title: Aktive Effekte
 group: Deutsch
 category: System
 ---
-# Earthdawn Active Effects
 
 Die meisten Dinge im Earthdawn-System verlassen sich auf [Foundrys Active Effects](https://foundryvtt.com/article/active-effects/). Diese wurden erheblich angepasst, um den Anforderungen des Systems gerecht zu werden.
 
@@ -42,5 +41,4 @@ Die folgenden Module werden zusätzlich zum System empfohlen. Sie sind nicht una
 
 - [Visual Active Effects](https://foundryvtt.com/packages/visual-active-effects)
 - [Times Up](https://foundryvtt.com/packages/times-up)
-
 
