@@ -43,20 +43,24 @@ The latest version of the system can be installed through the in-app System Brow
 
 You can also use one of the following alternative installation methods:
 
-1. Pasting https://github.com/earthdawn-vtt/fvtt-earthdawn4e/releases/latest/download/system.json into the Install System dialog on the Setup menu of the application.
+1. Pasting <https://github.com/earthdawn-vtt/fvtt-earthdawn4e/releases/latest/download/system.json> into the Install System dialog on the Setup menu of the application.
 2. Browsing the repository's Releases page, where you can copy any system.json link for use in the Install System dialog.
 3. Downloading one of the .zip archives from the Releases page and extracting it into your foundry Data folder, under Data/systems/ed4e.
 
 ## Frequently Asked Questions
+
 The best way to learn about the system is in our [documentation](https://earthdawn-vtt.github.io/fvtt-earthdawn4e/) or the [wiki](https://github.com/earthdawn-vtt/fvtt-earthdawn4e/wiki/).
 
 ## More Content
+
 For a full list of available premium content, have a look at the [Foundry package page](https://foundryvtt.com/packages/ed4e), or [search for "Earthdawn" on the Foundry VTT Marketplace](https://www.foundryvtt.store/search?q=earthdawn).
 
 ## Community Contribution
+
 Have a look at the [CONTRIBUTING](/CONTRIBUTING.md) file for information about how you can help this project.
 
 ## AI Guidelines
+
 _No AI is used for the generation of any kind of assets, texts, and other creative media. All sources are indicated
 accordingly._
 
@@ -69,4 +73,5 @@ We strive to keep AI to a minimum.
 ### Assets
 
 #### Icons
-- https://game-icons.net, see Authors & Contributors on https://game-icons.net/about.html#authors
+
+- <https://game-icons.net>, see Authors & Contributors on <https://game-icons.net/about.html#authors>
