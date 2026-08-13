@@ -3,7 +3,6 @@ title: Versionshinweise
 group: Deutsch
 category: System
 ---
-# Release Notes
 
 Im folgenden Abschnitt werden alle Funktionen des Earthdawn-Systems für Foundry VTT beschrieben.
 
@@ -32,5 +31,4 @@ Charaktere sind die wichtigste Art der Akteure und haben entsprechend auch die m
 - Charakterbogen – Funktionen des Earthdawn-Rollenspiels für Spielende
 - Charaktererschaffung – umfangreiche Charaktererstellung mit mehreren Schritten
 - Legendenpunkte – Verwaltung und Verwendung von Legendenpunkten zum Erlernen und Verbessern von Fähigkeiten
-
 

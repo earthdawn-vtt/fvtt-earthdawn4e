@@ -3,7 +3,6 @@ title: Advancements
 group: English
 category: Legend
 ---
-# Advancements
 
 As already mentioned in [Legend Points](../legend/legend-points.md), many character abilities can be learned or improved by spending Legend Points (LP). In addition, there are Discipline, Path, and Questor advancements that do not require Legend Points.
 

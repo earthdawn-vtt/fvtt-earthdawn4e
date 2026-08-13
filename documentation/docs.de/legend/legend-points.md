@@ -3,7 +3,6 @@ title: Legendenpunkte
 group: Deutsch
 category: Legende
 ---
-# Grundlagen
 
 Legendenpunkte (LP) sind ein zentrales Element des Earthdawn-Systems und ermöglichen es Charakteren, ihre Fähigkeiten zu verbessern. Das Earthdawn-System für Foundry VTT hat umfangreiche Möglichkeiten zur Verwaltung von Legendenpunkten.
 

@@ -18,6 +18,6 @@
 "lang/**/*.json": "npm run lint:lang"
 
 
-# activate when clear what the *.md format is
-# if Github docs, there is an extra module for it: https://github.com/github/markdownlint-github
-# "documentation/**/*.md": "markdownlint --fix --config .markdownlint.jsonc --ignore node_modules"
+# lint markdown files
+"documentation/**/*.md": "markdownlint --fix --config .markdownlint.jsonc --ignore node_modules"
+"./*.md": "markdownlint --fix --config .markdownlint.jsonc --ignore node_modules"

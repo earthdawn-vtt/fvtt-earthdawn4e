@@ -78,4 +78,3 @@ Der Tab "Besonderheiten" ist in drei Bereiche unterteilt:
 
 Jeder Effekt wird mit einem Bild, Namen, einer Checkbox (aktiv/inaktiv) und einem Kontrollmenü angezeigt. Das Kontrollmenü enthält Buttons für "Zeige im Chat", "Bearbeiten" und "Löschen".
 
-
