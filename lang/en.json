@@ -3519,7 +3519,8 @@
         "talentKnacks":                           "Knacks",
         "talentSource":                           "Talent Source",
         "targetingDetails":                       "Targeting Details",
-        "type":                                   "Type"
+        "type":                                   "Type",
+        "weaponDetails":                          "Weapon Details"
       },
       "Namegiver": {
         "charismaValue":                          "Charisma Value",

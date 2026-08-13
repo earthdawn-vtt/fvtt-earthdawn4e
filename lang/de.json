@@ -3519,7 +3519,8 @@
         "talentKnacks":                           "Kniffe",
         "talentSource":                           "Talent Ursprung",
         "targetingDetails":                       "Ziel Details",
-        "type":                                   "Typ"
+        "type":                                   "Typ",
+        "weaponDetails":                          "Waffendetails"
       },
       "Namegiver": {
         "charismaValue":                          "Charisma Wert",
