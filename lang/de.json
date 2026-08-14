@@ -3302,7 +3302,7 @@
           "availableLearnImprovedSpellSlots":     "Frei Ränge (Knifflimit)",
           "availableLp":                          "Sind ausreichend Legendenpunkte vorhanden?",
           "availableMoney":                       "Ist ausreichend Silber vorhanden?",
-          "enoughTalentsOfTier":                  "{current} von {required} Talente haben den Mindstrang {nextLevel} erreicht",
+          "enoughTalentsOfTier":                  "Mindestens {required} Talente müssen den Mindstrang {nextLevel} erreicht haben.",
           "enoughTalentsOnMinRank":               "Alle {required} Talente haben vorhanden",
           "hasDamage":                            "Hat Schaden",
           "hasNoDamage":                          "Hat keinen Schaden",
