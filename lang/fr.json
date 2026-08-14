@@ -3583,11 +3583,6 @@
       "tskrang":                                  "T'skrang",
       "windling":                                 "Sylphelin"
     },
-    "Migrations": {
-      "setSpellDuration":                         "Définir la durée du sort",
-      "setSpellEffect":                           "Définir l'effet du sort",
-      "setSpellRange":                            "Définir la portée du sort"
-    },
     "Notifications": {
       "Error": {
         "abilityIncreaseNoTier":                  "Pas de tier spécifié pour l'augmentation.",
