@@ -978,6 +978,17 @@ export default class ActorEd extends Actor {
   }
 
   /**
+   * Find a thread attached to the given document's true pattern.
+   * @param {ActorEd|ItemEd} document - The actor or item to search for a connecting thread.
+   * @returns {ItemEd|null} The thread item connecting this actor to the document, or `null` if none exists.
+   */
+  findConnectedThread( document ) {
+    const attachedThreads = document.system.truePattern?.attachedThreads;
+    if ( !attachedThreads ) return null;
+    return this.itemTypes.thread.find( thread => attachedThreads.has( thread.uuid ) ) ?? null;
+  }
+
+  /**
    * Perform the karma ritual for this actor to set the current karma points to maximum.
    * Only to be used for namegivers with a discipline.
    * @returns {Promise<ActorEd>} The updated actor instance, or `undefined` if not updated.

@@ -367,7 +367,9 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       return;
     }
 
-    await actor.weaveThread( this.document );
+    const thread = actor.findConnectedThread( this.document );
+
+    await actor.weaveThread( this.document, thread );
   }
 
   // endregion
