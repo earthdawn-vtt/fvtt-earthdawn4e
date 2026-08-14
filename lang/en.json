@@ -3302,7 +3302,7 @@
           "availableLearnImprovedSpellSlots":     "Free Ranks (Knack Limit)",
           "availableLp":                          "Are enough Legend Points available?",
           "availableMoney":                       "Is enough silver available?",
-          "enoughTalentsOfTier":                  "Not all {required} of {current} talents have reached the minimum rank {nextLevel}",
+          "enoughTalentsOfTier":                  "At least {required} Talents must have reached rank {nextLevel}.",
           "enoughTalentsOnMinRank":               "All {required} talents are present",
           "hasDamage":                            "Has Damage",
           "hasNoDamage":                          "Has no damage",
