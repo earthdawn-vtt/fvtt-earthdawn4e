@@ -1,10 +1,14 @@
-<div class="card__effect">
-  <div class="effect-card__grid--container item-id" data-item-id="{{_id}}">
+{{#with effect}}
+<div class="card__effect draggable"
+     data-effect-id="{{_id}}"
+     {{#if ../isItemEffect}}data-item-id="{{parent._id}}"{{/if}}
+>
+  <div class="effect-card__grid--container item-id">
     <div class="effect-card__grid--item">
       <img class="effect-icon" src="{{img}}" />
     </div>
     <div class="effect-card__grid--item">{{name}}</div>
-    {{#unless isItemEffect}}
+    {{#unless ../isItemEffect}}
       <div class="effect-card__grid--item">{{{ed-linkForUuid origin}}}</div>
     {{/unless}}
     <div class="effect-card__grid--item">
@@ -26,3 +30,4 @@
     </span>
   </div>
 </div>
+{{/with}}

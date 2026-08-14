@@ -30,16 +30,6 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( foundry.applicati
       left:   220,
       width:  520,
     },
-    dragDrop: [
-      {
-        dragSelector: ".draggable",
-        dropSelector: null,
-      },
-      {
-        dragSelector: "[data-drag]",
-        dropSelector: null,
-      },
-    ],
   };
 
   static PARTS = {
@@ -90,31 +80,6 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( foundry.applicati
     sheet:             "general",
     classAdvancements: "options",
   };
-
-  /**
-   * The drag-and-drop handlers for this Application.
-   * @type {DragDrop[]}
-   */
-  #dragDrop;
-
-  // endregion
-
-  /** @inheritdoc */
-  constructor( options = {} ) {
-    super( options );
-
-    this.#dragDrop = this.#createDragDropHandlers();
-  }
-
-  // region Getters
-
-  /**
-   * The drag-and-drop handlers for this Application.
-   * @type {DragDrop[]}
-   */
-  get dragDrop() {
-    return this.#dragDrop;
-  }
 
   // endregion
 
@@ -202,13 +167,6 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( foundry.applicati
     );
   }
 
-  /** @inheritDoc */
-  async _onRender( context, options ) {
-    await super._onRender( context, options );
-
-    this.#dragDrop.forEach( dragDropConfig => dragDropConfig.bind( this.element ) );
-  }
-  
   // endregion
 
   // region Event Handlers
@@ -256,98 +214,6 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( foundry.applicati
   // endregion
 
   // region Drag and Drop
-
-  /**
-   * Creates and returns an array of DragDrop handler instances based on the configurations
-   * provided in the options.
-   *
-   * @return {foundry.applications.ux.DragDrop[]} An array of DragDrop handler instances.
-   */
-  #createDragDropHandlers() {
-    return this.options.dragDrop.map( dragDropConfig => {
-      dragDropConfig.permissions = {
-        dragstart: this._canDragStart.bind( this ),
-        drop:      this._canDragDrop.bind( this ),
-      };
-      dragDropConfig.callbacks = {
-        dragstart: this._onDragStart.bind( this ),
-        dragover:  this._onDragOver.bind( this ),
-        drop:      this._onDrop.bind( this ),
-      };
-      return new foundry.applications.ux.DragDrop( dragDropConfig );
-    } );
-  }
-
-  // this is taken and adjusted from Foundry's ActorSheetV2 class
-
-  /**
-   * Define whether a user is able to begin a dragstart workflow for a given drag selector.
-   * @param {string} selector   The candidate HTML selector for dragging.
-   * @returns {boolean}         Can the current user drag this selector?
-   */
-  _canDragStart( selector ) {
-    return true;
-  }
-
-  /**
-   * Define whether a user is able to conclude a drag-and-drop workflow for a given drop selector.
-   * @param {string} selector   The candidate HTML selector for the drop target.
-   * @returns {boolean}         Can the current user drop on this selector?
-   */
-  _canDragDrop( selector ) {
-    return this.isEditable;
-  }
-
-  /**
-   * An event that occurs when a drag workflow begins for a draggable item on the sheet.
-   * @param {DragEvent} event       The initiating drag start event
-   */
-  async _onDragStart( event ) {
-    if ( "link" in event.target.dataset ) return;
-
-    const currentTarget = event.currentTarget;
-    let dragData;
-
-    // Active Effect
-    if ( currentTarget.dataset.effectId ) {
-      const effect = this.item.effects.get( currentTarget.dataset.effectId );
-      dragData = effect.toDragData();
-    } else {
-      // Documents
-      const document = await this._getEmbeddedDocument( currentTarget );
-      dragData = document?.toDragData?.();
-    }
-
-    // Set data transfer
-    if ( !dragData ) return;
-    event.dataTransfer.setData( "text/plain", JSON.stringify( dragData ) );
-  }
-
-  /**
-   * An event that occurs when a drag workflow moves over a drop target.
-   * @param {DragEvent} event      The dragover event
-   * @protected
-   */
-  _onDragOver( event ) {}
-
-  /**
-   * An event that occurs when data is dropped into a drop target.
-   * @param {DragEvent} event     The drop event
-   */
-  async _onDrop( event ) {
-    if ( !this.isEditable ) return;
-    const data = TextEditor.getDragEventData( event );
-    const item = this.item;
-    const allowed = Hooks.call( "dropItemSheetData", item, this, data );
-    if ( allowed === false ) return;
-
-    // Dropped Documents
-    const documentClass = getDocumentClass( data.type );
-    if ( documentClass ) {
-      const document = await documentClass.fromDropData( data );
-      await this._onDropDocument( event, document );
-    }
-  }
 
   /**
    * Handle a dropped document on the ItemSheet
