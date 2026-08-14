@@ -70,13 +70,4 @@ export default class NamegiverTemplate extends SentientTemplate {
     ).system.castingType;
   }
 
-  /* -------------------------------------------- */
-  /*  Migrations                  */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    return super.migrateData( source );
-    // specific migration functions
-  }
 }

@@ -3,7 +3,6 @@ import EdRollOptions from "../data/roll/common.mjs";
 import DialogEd from "../applications/api/dialog.mjs";
 import { SYSTEM_TYPES } from "../constants/constants.mjs";
 import { getSetting, setSetting } from "../helpers/settings.mjs";
-// import TypeTransformationManager from "../services/migrations/type-transformation-manager.mjs";
 
 /**
  *
@@ -11,23 +10,9 @@ import { getSetting, setSetting } from "../helpers/settings.mjs";
 export default function () {
   Hooks.once( "ready", async () => {
 
-
     // region Debug Documents
 
     if ( getSetting( "debugMode" ) ) await _createDebugDocuments();
-
-    // endregion
-
-    // region Fix Transformed Documents
-
-    // Fix all documents that were transformed during migration
-    /* if ( game.user.isGM ) {
-      const transformedDocuments = TypeTransformationManager.getAllTransformedDocumentIds();
-      const hasTransformedDocs = Object.values( transformedDocuments ).some( ids => ids.length > 0 );
-      if ( hasTransformedDocs ) {
-        await TypeTransformationManager.fixAllTransformedDocuments( transformedDocuments );
-      }
-    } */
 
     // endregion
 

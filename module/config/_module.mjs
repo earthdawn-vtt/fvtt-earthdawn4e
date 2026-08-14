@@ -16,7 +16,6 @@ import * as SOCKETS from "./sockets.mjs";
 import * as STATUSES from "./statuses.mjs";
 import * as SYSTEM from "./system.mjs";
 import * as TOKEN from "./token.mjs";
-import * as MIGRATIONS from "./migrations.mjs";
 import * as WORKFLOWS from "./workflows.mjs";
 
 export * from "./actions.mjs";
@@ -35,7 +34,6 @@ export * from "./sockets.mjs";
 export * from "./statuses.mjs";
 export * from "./system.mjs";
 export * from "./token.mjs";
-export * from "./migrations.mjs";
 export * from "./workflows.mjs";
 
 /** @ignore */
@@ -55,7 +53,6 @@ export {
   SOCKETS,
   STATUSES,
   SYSTEM,
-  MIGRATIONS,
   WORKFLOWS,
   TOKEN
 };
@@ -80,7 +77,6 @@ const ED4E = {
   SOCKETS:       {...SOCKETS},
   STATUSES:      {...STATUSES},
   SYSTEM:        {...SYSTEM},
-  MIGRATIONS:    {...MIGRATIONS},
   WORKFLOWS:     {...WORKFLOWS},
   TOKEN:         {...TOKEN},
   ...ACTIONS,
@@ -98,7 +94,6 @@ const ED4E = {
   ...SOCKETS,
   ...STATUSES,
   ...SYSTEM,
-  ...MIGRATIONS,
   ...WORKFLOWS,
   ...TOKEN
 };

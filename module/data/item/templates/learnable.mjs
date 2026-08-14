@@ -107,13 +107,4 @@ export default class LearnableTemplate extends SystemDataModel {
     return ( await actor.createEmbeddedDocuments( "Item", [ itemData ] ) )?.[0];
   }
 
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    return super.migrateData( source );
-    // specific migration functions
-  }
 }

@@ -62,13 +62,4 @@ export default class ItemDescriptionTemplate extends SystemDataModel {
 
   // endregion
 
-  // region Migration
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    return super.migrateData( source );
-    // specific migration functions
-  }
-
-  // endregion
 }

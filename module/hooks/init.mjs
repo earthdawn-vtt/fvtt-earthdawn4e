@@ -291,7 +291,6 @@ export default function () {
     setupActiveEffects();
     setupStatusEffects();
     setupDataModels();
-    // initializeMigrations();
     registerSheetApps();
     setupHandlebars();
 

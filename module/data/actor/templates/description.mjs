@@ -31,13 +31,4 @@ export default class ActorDescriptionTemplate extends SystemDataModel {
     };
   }
 
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    return super.migrateData( source );
-    // specific migration functions
-  }
 }

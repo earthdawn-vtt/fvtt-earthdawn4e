@@ -630,15 +630,5 @@ export default class SentientTemplate extends CommonTemplate {
 
   // endregion
 
-  // region Migrations
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    return super.migrateData( source );
-    // specific migration functions
-  }
-
-  // endregion
-
 }
 

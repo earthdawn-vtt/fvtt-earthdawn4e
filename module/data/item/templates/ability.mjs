@@ -266,13 +266,4 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
 
   // endregion
 
-  // region Migration
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    return super.migrateData( source );
-    // specific migration functions
-  }
-
-  // endregion
 }

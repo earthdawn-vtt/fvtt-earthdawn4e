@@ -122,13 +122,4 @@ export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
 
   // endregion
 
-  // region Migration
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    return super.migrateData( source );
-    // specific migration functions
-  }
-
-  // endregion
 }

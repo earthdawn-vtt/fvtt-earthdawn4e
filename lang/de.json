@@ -3583,11 +3583,6 @@
       "tskrang":                                  "T'skrang",
       "windling":                                 "Windling"
     },
-    "Migrations": {
-      "setSpellDuration":                         "|| Bitte überarbeite die Zauberdauer für diesen Zauber.",
-      "setSpellEffect":                           "|| Bitte überarbeite den Zaubereffekt für diesen Zauber.",
-      "setSpellRange":                            "|| Bitte überarbeite die Zauberreichweite für diesen Zauber."
-    },
     "Notifications": {
       "Error": {
         "abilityIncreaseNoTier":                  "Die Fähigkeit kann nicht gesteigert werden, es fehlt eine Gradzuordnung (Novize, Geselle, Wächter oder Meister).",
