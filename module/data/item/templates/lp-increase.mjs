@@ -148,13 +148,4 @@ export default class LpIncreaseTemplate extends SystemDataModel {
 
   // endregion
 
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    return super.migrateData( source );
-    // specific migration functions
-  }
 }

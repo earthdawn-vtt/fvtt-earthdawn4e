@@ -3583,11 +3583,6 @@
       "tskrang":                                  "T'skrang",
       "windling":                                 "Windling"
     },
-    "Migrations": {
-      "setSpellDuration":                         "|| Please revise the spell duration for this spell.",
-      "setSpellEffect":                           "|| Please revise the spell effect for this spell.",
-      "setSpellRange":                            "|| Please revise the spell range for this spell."
-    },
     "Notifications": {
       "Error": {
         "abilityIncreaseNoTier":                  "The ability cannot be increased, a tier mapping (Novice, Journeyman, Warden, or Master) is missing.",

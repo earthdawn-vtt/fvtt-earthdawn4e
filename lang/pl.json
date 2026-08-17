@@ -3583,11 +3583,6 @@
       "tskrang":                                  "TODO: Add translation",
       "windling":                                 "TODO: Add translation"
     },
-    "Migrations": {
-      "setSpellDuration":                         "TODO: Add translation",
-      "setSpellEffect":                           "TODO: Add translation",
-      "setSpellRange":                            "TODO: Add translation"
-    },
     "Notifications": {
       "Error": {
         "abilityIncreaseNoTier":                  "TODO: Add translation",

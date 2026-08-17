@@ -162,18 +162,4 @@ export default class AdvancementData extends SparseDataModel {
 
   // endregion
 
-  // region Migration
-
-  /** @inheritdoc */
-  static migrateData( source ) {
-    if ( Array.isArray( source.levels ) ) {
-      source.levels = source.levels.reduce( ( acc, levelData ) => {
-        acc[levelData.level] = levelData;
-        return acc;
-      }, {} );
-    }
-    return super.migrateData( source );
-  }
-
-  // endregion
 }
