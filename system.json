@@ -1,6 +1,6 @@
 {
     "id": "ed4e",
-    "title": "Earthdawn (Beta)",
+    "title": "Earthdawn",
     "description": "A system for playing the 4th edition of Earthdawn in Foundry VTT.",
     "version": "1.0.0",
     "compatibility": {
@@ -16,7 +16,7 @@
             "discord": "patrickmohrmann"
         },
         {
-            "name": "Chris",
+            "name": "qrizzl",
             "discord": "qrizzl",
             "ko-fi": "https://ko-fi.com/qrizzl"
         },
@@ -26,8 +26,7 @@
         }
     ],
     "esmodules": [
-        "earthdawn4e.mjs",
-        "tests/quench/index.mjs"
+        "earthdawn4e.mjs"
     ],
     "styles": [
         "earthdawn4e.css"
