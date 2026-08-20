@@ -13,7 +13,7 @@
     "url": "https://github.com/earthdawn-vtt/fvtt-earthdawn4e/issues"
   },
   "scripts": {
-    "build": "npm run build:docs && build:packs && npm run build:css",
+    "build": "npm run build:docs && npm run build:packs && npm run build:css",
     "build:css": "gulp buildCSS",
     "build:docs": "typedoc --options typedoc.config.mjs",
     "build:packs": "npm run pullJSONtoLDB",
