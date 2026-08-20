@@ -1,6 +1,6 @@
 {
   "name": "ed4e",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "An implementation of the ED4E game system for Foundry Virtual Tabletop (https://foundryvtt.com).",
   "author": "Patrick & Qrizzl & alegionofone & Jacklifear",
   "homepage": "https://github.com/earthdawn-vtt/fvtt-earthdawn4e",
@@ -13,7 +13,7 @@
     "url": "https://github.com/earthdawn-vtt/fvtt-earthdawn4e/issues"
   },
   "scripts": {
-    "build": "npm run build:docs && build:packs && npm run build:css",
+    "build": "npm run build:docs && npm run build:packs && npm run build:css",
     "build:css": "gulp buildCSS",
     "build:docs": "typedoc --options typedoc.config.mjs",
     "build:packs": "npm run pullJSONtoLDB",
