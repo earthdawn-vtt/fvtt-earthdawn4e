@@ -1,18 +1,23 @@
 name: Check Changelog Updated
 
-on: workflow_call
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_call:
 
-  #pull_request:
-  #  branches: [ "main" ]
+permissions:
+  contents: read
 
 jobs:
   check-changelog:
-    runs-on: ubuntu-latest
     name: Verify CHANGELOG.md Updated
-    permissions:
-      pull-requests: read
+    runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v47
@@ -20,14 +25,8 @@ jobs:
           files: |
             CHANGELOG.md
 
-      - name: Check if CHANGELOG.md was modified
+      - name: Verify CHANGELOG.md was updated
         if: steps.changed-files.outputs.modified_files_count != 1
         run: |
-          echo "ERROR: CHANGELOG.md must be updated in this PR."
-          echo "Please remember to update the changelog with your changes."
-          echo "Thank you! ☺️"
+          echo "::error file=CHANGELOG.md::CHANGELOG.md must be updated with changes in this pull request."
           exit 1
-
-      - name: Success message
-        run: |
-          echo "CHANGELOG.md has been updated. Thank you! 🤗"
