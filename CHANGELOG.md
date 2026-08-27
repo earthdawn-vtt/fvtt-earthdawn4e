@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Activate CI check to ensure the changelog is updated with every Pull Request.
 
+### Fixed
+
+- Fix the manifest url so automatic updates in the Foundry VTT package manager work.
+
 ## [1.0.0] - 2026-08-20
 
 _First release._
