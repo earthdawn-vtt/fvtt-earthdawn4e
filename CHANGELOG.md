@@ -11,9 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Activate CI check to ensure the changelog is updated with every Pull Request.
 
+### Changed
+
+- Simplify ESLint configuration and update to the latest version
+
 ### Fixed
 
 - Fix the manifest url so automatic updates in the Foundry VTT package manager work.
+
+### Removed
+
+- Remove ESLint workflow from Gulp to use the modern ESLint CLI
 
 ## [1.0.0] - 2026-08-20
 
