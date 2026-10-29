@@ -24,6 +24,7 @@ import * as tours from "./module/tours/_module.mjs";
 import * as utils from "./module/utils/_module.mjs";
 import * as workflows from "./module/workflows/_module.mjs";
 import registerHooks from "./module/system/hooks.mjs";
+import "./tests/quench/index.mjs";
 
 // region Module Structure Definition
 

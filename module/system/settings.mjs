@@ -446,7 +446,7 @@ const systemSettings = [
       } ),
       {
         empty:   false,
-        initial: Object.values( ACTORS.languages ),
+        initial: () => Object.values( ACTORS.languages ),
         label:   "ED.Settings.GameMechanics.languages",
         hint:    "ED.Settings.GameMechanics.languagesHint"
       }
