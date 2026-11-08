@@ -24,7 +24,8 @@ export default class BaseSettingsConfig extends ApplicationEd {
 
   static PARTS = {
     config: {
-      template: "systems/ed4e/templates/settings/base-settings-config.hbs",
+      template:   "systems/ed4e/templates/settings/base-settings-config.hbs",
+      scrollable: [ "" ],
     },
     footer: {
       template: "systems/ed4e/templates/global/form-footer.hbs",

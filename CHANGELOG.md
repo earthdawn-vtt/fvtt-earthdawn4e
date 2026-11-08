@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Fix overflowing LP Tracking settings in smaller frames (#3976).
+
 - Fix the manifest url so automatic updates in the Foundry VTT package manager work.
 
 ### Removed
