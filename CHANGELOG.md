@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Fix the extra zero in the chat step shown for journal roll links such as `@Roll(/s 10)` (#3984).
+
 - Fix the manifest url so automatic updates in the Foundry VTT package manager work.
 
 ### Removed
