@@ -87,7 +87,7 @@ async function rollAction( event ) {
     {},
     new EdRollOptions( {
       step: {
-        base: step,
+        base: Number( step ),
       },
       chatFlavor: target.dataset.rollFlavor,
       testType:   target.dataset.testType,
