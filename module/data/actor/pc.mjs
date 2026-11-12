@@ -1,5 +1,6 @@
 import NamegiverTemplate from "./templates/namegiver.mjs";
 import CharacterGenerationPrompt from "../../applications/actor/character-generation-prompt.mjs";
+import CharacterGenerationData from "../other/character-generation.mjs";
 import LpTrackingData from "../advancement/lp-tracking.mjs";
 import ActorEd from "../../documents/actor.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
@@ -149,11 +150,13 @@ export default class PcData extends NamegiverTemplate {
   // region Character Generation
 
   /**
-   *
+   * Start character generation with optional initial data.
+   * @param {object} [data={}] Initial character generation data.
+   * @param {string} [data.name] The initial character name.
    * @returns {Promise<ActorEd|void>} The newly created actor or `undefined` if the generation was canceled.
    */
-  static async characterGeneration () {
-    const generation = await CharacterGenerationPrompt.waitPrompt();
+  static async characterGeneration ( data = {} ) {
+    const generation = await CharacterGenerationPrompt.waitPrompt( new CharacterGenerationData( data ) );
     if ( !generation ) return;
 
     const attributeData = mapObject(
@@ -314,8 +317,8 @@ export default class PcData extends NamegiverTemplate {
     const content = `
     <p>${ _loc( "ED.Dialogs.Legend.Rules.attributeIncreaseShortRequirements", {trainingsTimeAttribute: attributeEnhanceStep, learningTime: attributeField.step, trainingCost: attributeField.step * 10 } ) }</p>
     ${ Object.entries( increaseValidationData ).map( ( [ key, value ] ) => {
-    return `<div class="flex-row">${ key }: <i class="fa-solid ${ value ? "fa-hexagon-check" : "fa-hexagon-xmark" }"></i></div>`;
-  } ).join( "" ) }
+      return `<div class="flex-row">${ key }: <i class="fa-solid ${ value ? "fa-hexagon-check" : "fa-hexagon-xmark" }"></i></div>`;
+    } ).join( "" ) }
     `;
 
     let spendLp = useLp;
