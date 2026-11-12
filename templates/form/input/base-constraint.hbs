@@ -10,7 +10,7 @@ Expects parameters:
 
 {{#each fields as | field |}}
   {{#unless (eq field.name "type")}}
-    {{formGroup field value=(lookup data field.name) name=(concat fieldPath "." field.name) localize=true}}
+    {{formGroup field value=(lookup ../data field.name) name=(concat ../fieldPath "." field.name) localize=true}}
   {{/unless}}
 {{else}}
   <div class="undefined-field">

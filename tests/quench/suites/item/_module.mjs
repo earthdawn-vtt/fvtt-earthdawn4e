@@ -1,11 +1,9 @@
+import constraints from "./constraints.quench.mjs";
+
 /**
  * Item test suite.
+ * @param {object} context The Quench test context.
  */
 export default ( context ) => {
-  const { describe, it, expect } = context;
-  describe("Items", () => {
-    it("should be implemented", () => {
-      expect(true).to.be.true;
-    });
-  });
+  constraints( context );
 };
