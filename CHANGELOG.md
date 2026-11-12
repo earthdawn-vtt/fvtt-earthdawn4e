@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Fix knack requirement and restriction fields failing to display and save their configured values (#4010).
+
 - Fix the manifest url so automatic updates in the Foundry VTT package manager work.
 
 ### Removed
