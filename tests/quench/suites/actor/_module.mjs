@@ -1,5 +1,4 @@
 import creation from "./creation.quench.mjs";
-import characterGenerationName from "./character-generation-name.quench.mjs";
 // import properties from "./properties.mjs";
 
 /**
@@ -8,6 +7,5 @@ import characterGenerationName from "./character-generation-name.quench.mjs";
  */
 export default ( context ) => {
   creation( context );
-  characterGenerationName( context );
   // properties(context);
 };

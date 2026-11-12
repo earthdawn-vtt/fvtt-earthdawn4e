@@ -243,8 +243,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     event.stopPropagation();
     event.stopImmediatePropagation();
 
-    const formData = new foundry.applications.ux.FormDataExtended( this.form );
-    let createData = this._updateCreationData( foundry.utils.expandObject( formData.object ) );
+    let createData = this._updateCreationData( this.createData );
     createData.name ||= this.documentCls.implementation.defaultName( {
       type: createData.type,
     } );
@@ -256,7 +255,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     if ( createData.type === SYSTEM_TYPES.Actor.pc && getSetting( "autoOpenCharGen" ) ) {
       const useCharGen = await DocumentCreateDialog._showCharGenPrompt();
       if ( useCharGen ) {
-        promise = PcData.characterGeneration( { name: createData.name } );
+        promise = PcData.characterGeneration();
       } else {
         const options = {};
         if ( this.pack ) options.pack = this.pack;
