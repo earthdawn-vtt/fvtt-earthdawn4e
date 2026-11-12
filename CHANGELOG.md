@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Preserve the name entered in Create Actor when opening the character creation wizard (#3993).
+
 - Fix the manifest url so automatic updates in the Foundry VTT package manager work.
 
 ### Removed
