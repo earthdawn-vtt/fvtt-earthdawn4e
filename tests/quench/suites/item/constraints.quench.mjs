@@ -1,5 +1,12 @@
 /**
  * Regression tests for the knack constraint configuration form (#4010).
+ * Runs six cases: requirements and restrictions for Ability, Karma, and Maneuver knacks.
+ * Each case renders two ability entries and checks their ED-IDs, ranks, distinct input
+ * paths, and the absence of an editable internal type field. It edits the first entry,
+ * reads the form data into the Item, then serializes, recreates, and renders the Item
+ * again to verify that the edit survives and the second entry stays unchanged.
+ * Items exist only in memory: this does not test world database persistence or the
+ * sheet submission handler.
  * @param {object} context The Quench test context.
  */
 export default ( { describe, it, expect } ) => {
