@@ -311,11 +311,11 @@ export default class ClassAdvancementDialog extends ApplicationEd {
     this.selectedOption = data.selectedOption ?? this.selectedOption;
     
     // Filter out null values from checkbox array - unchecked checkboxes become null
-    const spells = Array.isArray( data.selectedSpells ) 
-      ? data.selectedSpells.filter( spell => spell !== null )
-      : [];
-    this.selectedSpells = new Set( spells );
-    
+    const spells = Array.isArray( data.selectedSpells )
+      ? data.selectedSpells
+      : [ data.selectedSpells ];
+    this.selectedSpells = new Set( spells.filter( spell => typeof spell === "string" && spell.length > 0 ) );
+
     // Re-render to update the UI with the new selections
     this.render();
   }

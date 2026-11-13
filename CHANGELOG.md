@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Fix spell selection, selected-spell previews, and learning multiple spells during circle advancement (#3978).
+
 - Fix the manifest url so automatic updates in the Foundry VTT package manager work.
 
 ### Removed
