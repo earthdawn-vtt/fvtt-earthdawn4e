@@ -9,7 +9,7 @@ import * as ROLLS from "../config/rolls.mjs";
 export function registerCustomEnrichers() {
   CONFIG.TextEditor.enrichers.push(
     {
-      pattern:  /@(?<type>roll)\(\s*(?<rollCmd>\/s\s*\d+(?:\s*\+\s*\d+)?)\s*\)(?:\((?<flavor>(?:[\u00C0-\u1FFF\u2C00-\uD7FF\w]+\s?)*)\))?(?:\((?<testType>action|effect|damage)\))?/gi,
+      pattern:  /@(?<type>roll)\(\s*(?<rollCmd>\/s\s*\d+(?:[^()]|\((?:[^()]|\([^()]*\))*\))*)\)(?:\s*\((?<flavor>[^()]*)\))?(?:\s*\((?<testType>action|effect|damage)\))?/gi,
       enricher: enrichString,
     },
   );
@@ -37,32 +37,54 @@ async function enrichString( match, options ) {
 
 /**
  * Parse the embedded roll and provide the appropriate content.
- * @param {RegExpMatchArray} match   The regular expression match result.
- * @param {EnrichmentOptions} options  Options provided to customize text enrichment.
- * @returns {HTMLElement|null}   An HTML link if the check could be built, otherwise null.
+ * @param {RegExpMatchArray} match     The regular expression match result.
+ * @param {EnrichmentOptions} options Options provided to customize text enrichment.
+ * @returns {HTMLElement|null}        An HTML link if the check could be built, otherwise null.
  */
-async function enrichRoll( match, options ) {
+function enrichRoll( match, options ) {
+  const rollCmd = match.groups.rollCmd.trim();
+  if ( !parseRollCommand( rollCmd ) ) return null;
 
-  const rollCmd = match.groups.rollCmd;
-  const rollFlavor = match.groups.flavor;
-  const testType = match.groups.testType ?? "arbitrary";
+  const rollFlavor = match.groups.flavor?.trim() ?? "";
+  const requestedTestType = match.groups.testType?.toLowerCase() ?? "arbitrary";
+  const testType = requestedTestType === "damage" ? "effect" : requestedTestType;
 
-  const textRollFormula = rollCmd.replace(
-    "/s",
-    _loc( "ED.Journal.TextEnricher.step"
-    ) );
-  const textTestType = ( testType === "arbitrary" )
-    ? ""
-    : `${ROLLS.testTypes[testType].label}:&nbsp;`;
+  const textRollFormula = rollCmd.replace( /^\/s/i, _loc( "ED.Journal.TextEnricher.step" ) );
+  const textTestType = testType === "arbitrary" ? "" : `${ROLLS.testTypes[testType].label}:\u00a0`;
+  const rollElement = document.createElement( "a" );
+  rollElement.className = "journal--roll strong";
+  rollElement.dataset.rollCmd = rollCmd;
+  rollElement.dataset.rollFlavor = rollFlavor;
+  rollElement.dataset.testType = testType;
+  rollElement.title = _loc( "X.Click to roll" );
 
-  const rollElement = `
-            <a class="journal--roll strong" data-roll-cmd="${rollCmd}" data-roll-flavor="${rollFlavor}" 
-              data-test-type="${testType}" title="${_loc( "X.Click to roll" )}">
-              <i class="fas fa-regular fa-dice"></i>
-              ${textTestType}${textRollFormula}&nbsp;${rollFlavor}
-            </a>`;
+  const icon = document.createElement( "i" );
+  icon.className = "fas fa-regular fa-dice";
+  rollElement.append( icon, `${textTestType}${textRollFormula}${rollFlavor ? `\u00a0${rollFlavor}` : ""}` );
+  return rollElement;
+}
 
-  return $( rollElement )[0];
+/* -------------------------------------------- */
+
+/**
+ * Convert the leading step to dice and preserve the complete remaining expression.
+ * @param {string} command The step command to parse.
+ * @returns {{step: number, formula: string}|null} The numeric step and validated dice expression, or null.
+ */
+function parseRollCommand( command ) {
+  const match = command.match( /^\/s\s*(?<step>\d+)(?<modifier>\s*(?:[+\-*/%][\s\S]*)?)$/i );
+  if ( !match ) return null;
+
+  const step = Number( match.groups.step );
+  if ( !Number.isSafeInteger( step ) || step < 1 ) return null;
+
+  try {
+    const modifier = match.groups.modifier.trim();
+    const formula = `(${getDice( step ).trim()})${modifier ? ` ${modifier}` : ""}`;
+    return Roll.validate( formula ) ? { step, formula } : null;
+  } catch {
+    return null;
+  }
 }
 
 /* -------------------------------------------- */
@@ -77,24 +99,18 @@ async function rollAction( event ) {
   if ( !target ) return;
   event.stopPropagation();
 
-  // replace all whitespace in the roll formula
-  const [ step, modifier ] = target.dataset.rollCmd.replaceAll( /\s*/g, "" ).replace( "/s", "" ).split( "+" );
-  const formula = getDice( step ).trim();
-  let roll; 
-  
-  roll = new EdRoll(
-    `(${formula} ${modifier ? "+" : "" } ${modifier ?? "" })[${target.dataset.flavor}]`,
+  const parsed = parseRollCommand( target.dataset.rollCmd );
+  if ( !parsed ) return;
+
+  const roll = new EdRoll(
+    parsed.formula,
     {},
     new EdRollOptions( {
-      step: {
-        base: Number( step ),
-      },
+      step:       { base: parsed.step },
       chatFlavor: target.dataset.rollFlavor,
       testType:   target.dataset.testType,
     } )
   );
-  
-  
 
   return roll.toMessage();
 }
