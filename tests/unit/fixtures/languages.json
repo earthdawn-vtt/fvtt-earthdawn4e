@@ -1,0 +1,22 @@
+{
+  "English": {
+    "dwarf": "Dwarven",
+    "elf": "Sperethiel",
+    "human": "Human",
+    "obsidiman": "Obsidiman",
+    "ork": "Or'zet",
+    "troll": "Troll",
+    "tskrang": "T'skrang",
+    "windling": "Windling"
+  },
+  "German": {
+    "dwarf": "Zwergisch",
+    "elf": "Sperethiel",
+    "human": "Menschlich",
+    "obsidiman": "Obsidianisch",
+    "ork": "Or'zet",
+    "troll": "Trollisch",
+    "tskrang": "T'skrang",
+    "windling": "Windling"
+  }
+}
