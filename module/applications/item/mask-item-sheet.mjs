@@ -80,12 +80,11 @@ export default class MaskItemSheetEd extends ItemSheetEd {
       case "general": {
         // Process powers
         const powers = await Promise.all(
-          ( Object.values( this.document.system.powers ) ?? [] ).map( async power => {
-            const data = {...power};
-            data.id = foundry.utils.parseUuid( power.uuid )?.id;
-            data.enrichedLink = await linkForUuid( power.uuid );
-            return data;
-          } )
+          Object.entries( this.document.system.powers ).map( async ( [ key, power ] ) => ( {
+            ...power,
+            key,
+            enrichedLink: await linkForUuid( power.uuid ),
+          } ) )
         );
         
         // Process maneuvers
@@ -165,7 +164,8 @@ export default class MaskItemSheetEd extends ItemSheetEd {
       if ( !confirmDelete ) return;
     }
 
-    await this.item.system.removeItemFromMask( target.dataset.uuid, target.dataset.type );
+    const { uuid, type, powerKey } = target.dataset;
+    await this.item.system.removeItemFromMask( uuid, type, powerKey );
   }
   
   // endregion

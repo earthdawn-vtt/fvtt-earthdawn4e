@@ -252,24 +252,25 @@ export default class MaskData extends ItemDataModel.mixin(
   /**
    * Removes a power or maneuver from the mask.
    * @param {string} itemUuid The UUID of the item to remove from the mask
-   * @param {string} itemType The type of the item to remove from the mask ("power" or "maneuver")
+   * @param {string} itemType The type of item to remove from the mask ("power" or "maneuver")
+   * @param {string} [powerKey] The stored key of the power, if selected on the sheet
    * @returns {Promise<ItemEd|undefined>} The updated mask item or undefined if no action was taken
    */
-  async removeItemFromMask( itemUuid, itemType ) {
-    if ( ![ SYSTEM_TYPES.Item.power, SYSTEM_TYPES.Item.maneuver ].includes( itemType ) ) return;
+  async removeItemFromMask( itemUuid, itemType, powerKey ) {
+    if ( itemType === SYSTEM_TYPES.Item.power ) {
+      const key = powerKey ?? Object.keys( this.powers ).find( key => this.powers[key].uuid === itemUuid );
+      if ( key === undefined || !Object.hasOwn( this.powers, key ) ) return;
 
-    const isPower = itemType === SYSTEM_TYPES.Item.power;
-    const oldData = isPower ? this.powers : this.maneuvers;
-
-    if ( isPower && this.hasPower( itemUuid ) ) {
       return this.parentDocument.update( {
-        [ `system.powers.${ foundry.utils.parseUuid( itemUuid )?.id }` ]: _del,
+        system: { powers: { [key]: _del } },
       } );
     }
 
-    return this.parent.update( {
-      [`system.${itemType}s`]: oldData.filter( entry => entry !== itemUuid )
-    } );
+    if ( itemType === SYSTEM_TYPES.Item.maneuver && this.maneuvers.has( itemUuid ) ) {
+      return this.parentDocument.update( {
+        "system.maneuvers": Array.from( this.maneuvers ).filter( uuid => uuid !== itemUuid ),
+      } );
+    }
   }
 
   // endregion

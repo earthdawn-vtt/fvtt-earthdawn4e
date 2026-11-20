@@ -81,24 +81,26 @@
   <fieldset>
     <legend>{{localize "ED.Item.Header.powers"}}</legend>
     {{#each powerItems}}
-      <div class="power-item embedded-item flexrow" data-item-id="{{_id}}" data-type="power">
+      <div class="power-item embedded-item flexrow" data-item-id="{{this.key}}" data-type="power">
         <div class="power-name">
           {{{this.enrichedLink.outerHTML}}}
           {{#if @root.editable}}
             <a class="remove item-control maneuver-delete-btn"
                data-action="deleteChild"
                data-type="power"
-               data-uuid="{{this.uuid}}"
+               data-power-key="{{this.key}}"
                data-tooltip="{{localize 'ED.ToolTips.deletePower'}}">
               <i class="fas {{@root.config.icons.x}}"></i>
             </a>
           {{/if}}
         </div>
-        {{formGroup
-          @root/systemFields.powers.element.fields.step
-          name=(concat "system.powers." id ".step")
-          value=this.step disabled=(not @root/editable)
-        }}
+        {{#if this.key}}
+          {{formGroup
+            @root/systemFields.powers.element.fields.step
+            name=(concat "system.powers." this.key ".step")
+            value=this.step disabled=(not @root/editable)
+          }}
+        {{/if}}
       </div>
     {{/each}}
   </fieldset>
